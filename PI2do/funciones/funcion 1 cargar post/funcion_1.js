@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Esperar a que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', () => {
     // Seleccionar el contenedor donde se mostrarán los posts
@@ -79,6 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loadMoreButton.onclick = loadMorePosts;
     document.body.appendChild(loadMoreButton);
 =======
+=======
+>>>>>>> 499d868 (cambios)
 // Esperar a que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', () => {
     // Seleccionar el contenedor donde se mostrarán los posts
@@ -158,5 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loadMoreButton.textContent = 'Cargar Más';
     loadMoreButton.onclick = loadMorePosts;
     document.body.appendChild(loadMoreButton);
+<<<<<<< HEAD
 >>>>>>> cc3b0c4 (codigo corregido)
+=======
+>>>>>>> 499d868 (cambios)
   });

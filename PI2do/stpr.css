@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 .sobreprod {
     display: flex; /* Coloca los elementos en fila */
     align-items: center; /* Alinea verticalmente el cuadro y la imagen */
@@ -47,6 +48,8 @@
     }
 }
 =======
+=======
+>>>>>>> 499d868 (cambios)
 .sobreprod {
     display: flex; /* Coloca los elementos en fila */
     align-items: center; /* Alinea verticalmente el cuadro y la imagen */
@@ -94,4 +97,7 @@
         width: 100%;
     }
 }
+<<<<<<< HEAD
 >>>>>>> cc3b0c4 (codigo corregido)
+=======
+>>>>>>> 499d868 (cambios)

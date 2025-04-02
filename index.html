@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRODCONS</title>
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+
+    <header> 
+        <div class="header-contenedor">
+            <div class="principal"> 
+                <a class="navlink" href="#empresasresponsables" onclick="setActive(this)">EMPRESAS RESPONSABLES</a> 
+
+                <div class="telefono">
+                
+                    <a class="navlink" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="28" height="28" stroke-width="1"> 
+                    <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"></path> 
+                 </svg></a>
+                 <span> 314 139 7633 </span>
+                </div>
+            
+                <a class="navlink" href="#idiomas"><img class="españa" src="mundo.png">
+                <img class="ingles" src="reino-unido (1).png"></a>
+
+    </div>
+        </div>
+    </header>
+
+    
+    <section class="login">
+        <h1>INGRESAR USUARIO </h1>
+        <input class="controls" type="email" name="usuario" id="usuario" placeholder="CORREO ELECTRONICO">
+        <input class="controls" type="password" name="contraseña" id="contraseña" placeholder="CONTRASEÑA">
+        <div class="recuerdame">
+            <label>
+                <input class="C" type="checkbox">
+                Recuerdame
+            </label>
+        </div>
+
+        <input class="boton" type="submit" value="INGRESAR">
+
+
+    </section>
+   
+    <section class="logo"> 
+        <div class="header_2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="36" height="36" stroke-width="1.5">
+                <path d="M4 6l16 0">
+            </path>
+                 <path d="M4 12l16 0">
+            </path> 
+                <path d="M4 18l16 0">
+            </path> 
+            </svg> 
+        <img class="prodcons" src="logoSinfondo.png" alt="Logo"> 
+        <div class="subtitulos">
+
+            <ul>
+                <li><a href="#produccion" onclick="setActive(this)">PRODUCCION RESPONSABLE</a></li>
+                <div class="info" id="info-produccion">
+                  <img class="img-info1" src="produccion.jpg">
+                </div>
+                    <div class="info-prod">
+                    <h2>LA PRODUCCIÓN RESPONSABLE</h2>
+                    <p>Cada producto que consumimos tiene un costo ambiental que muchas veces no vemos. Desde la extracción de materiales hasta su fabricación y distribución, el impacto puede ser enorme si no se hace de manera responsable.</p>
+                </div> 
+            </li>
+            
+            <li><a href="#consumo" onclick="setActive(this)">CONSUMO RESPONSABLE</a></li>
+                <div class="info2" id="info-consumo"> 
+                     <img class="img-info2" src="consumo.jpg">
+                    </div>
+                     <div class="info-cons" >
+                    <h2>EL CONSUMO RESPONSABLE</h2> 
+                    <p>El consumo responsable implica elegir productos y servicios que minimicen el impacto ambiental, fomenten la economía local y respeten los derechos de los trabajadores. Es una forma de tomar decisiones conscientes para reducir el desperdicio y promover un futuro más sostenible.</p>
+                </div>
+            </li>
+        </ul>
+            <!--formulario-->
+           <form class="search-form">
+                <input type="search" placeholder="Buscar..."/>
+                <button class=" lupa">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="36" height="36" stroke-width="1.5"> 
+                        <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+                         <path d="M21 21l-6 -6"></path> 
+                        </svg>
+                </button>
+
+         </form>
+
+        </div>
+    </section>
+
+    
+
+    <div class="sobrecont">
+    <div class="tex1">
+        <p> PRODUCCION  >  BLOG </p>
+    </div>
+    <div class="cuadro-info">
+        <h2>BLOG</h2>
+        <p>Somos una organización dedicada a cuidar del medio ambiente, aplicándolo en nuestra vida diaria y promoviendo a los demás a hacerlo para el bienestar de todos.</p>
+    </div>
+<img class="imagen-principal" src="presentacion.png" alt="Imagen Principal">
+    </body>
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-left">
+            <img class="prodcons2" src="logoSinfondo.png" alt="Logo">
+        </div>
+        <div class="footer-center">
+            <h4>SOBRE NOSOTROS</h4>
+            <p>Somos una organización dedicada a cuidar del medio ambiente, aplicándolo en nuestra vida diaria y promoviendo a los demás a hacerlo para el bienestar de todos.</p>
+        </div>
+        <div class="footer-right">
+            <ul>
+                <li><a href="#">AVISOS DE PRIVACIDAD</a></li>
+                <li><a href="#">POLÍTICA DE SOSTENIBILIDAD</a></li>
+                <li><a href="#">TÉRMINOS Y CONDICIONES</a></li>
+            </ul>
+            <p>Teléfono: 3141397633</p>
+            <p>Correo: podcons@gmail.com</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2025 PRODCONS. Todos los derechos reservados.
+    </div>
+</footer>
+
+<script src="code.js"></script>
+</body>
+</html>

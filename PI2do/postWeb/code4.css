@@ -8,12 +8,44 @@ body {
     font-size: 18px;
 }
 
+<<<<<<< HEAD
+=======
+.barra_left{
+    top: 0;/*que tan separado estara del inicio*/
+    left: 0;
+    width: 100%;/*anchura que abarcara de la pantalla*/
+    background: rgb(225, 216, 204);/*color del fondo*/
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;/*indicaremos cuanto lo justificaremos a la derecha*/
+    border-bottom: 4px solid black;
+    position: fixed; /* Fija la barra */
+    left: 0; /* Alineación izquierda */
+    right: 0;
+    height: 50px;
+}
+
+.flecha_left svg {
+    width: 25px; /* Tamaño del ícono */
+    height: 50px;
+    fill: #000; /* Color del icono */
+    cursor: pointer;
+    /*transition: transform 0.3s ease;*/
+    padding-right: 1630px;
+    margin-top: 6px;
+}
+>>>>>>> 499d868 (cambios)
 /* Estilos para la sección que reemplaza al header */
 .header-section {
     background-color: #3f5022;
     color: white;
     padding: 20px;
     text-align: center;
+<<<<<<< HEAD
+=======
+    margin-top: 90px;
+>>>>>>> 499d868 (cambios)
 }
 
 .header-section h1 {
@@ -107,4 +139,141 @@ ul {
         flex: none;
         width: 100%;
     }
+<<<<<<< HEAD
 }
+=======
+}
+
+/* Empuja el footer hacia abajo*/
+.footer {
+    background: #0B4F14;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    height: 100%;
+    margin-top: 40px;
+    max-height: 350px;
+    position: relative;
+    padding: 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 2500px;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+
+.af {
+    max-width: 500px;
+    padding: 0;
+    text-align: justify;
+    line-height: 20px;
+    color: white;
+    font-size: 15px;
+    transform: translateX(-60px)
+}
+
+.footer-center {
+    max-width: 500px;
+    padding: 0;
+    text-align: left;
+    line-height: 18px;
+    padding-top: 10px;
+}
+
+.footer1 {
+    top: 10px;
+    text-align: justify;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.footer3, .footer-center, .footer2{
+    flex: 1;
+    margin: 25px;
+    min-width: 100px;
+    font-size: 25px;
+}
+
+.prodcons2 {
+    width: 300px;
+    height: auto;
+    margin-bottom: 5.5px;
+    display: block;
+    margin: 0 auto;
+    max-height: 150px;
+}
+
+h4 {
+    top: -20px;
+    margin: 0 0 10px;
+    font-weight: bold;
+    transform: translateY(-8px);
+    color: white;
+}
+
+.pfooter .lf {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+.ulfooter .lf {
+    font-size: 15px;
+    line-height: 5px;
+    padding-top: 15px;
+    list-style: none;
+}
+
+.footer2 {
+    line-height: 15px;
+    transform: translateX(-10px);
+    font-size: 26px;
+}
+
+.footer3 {
+    line-height: 20px;
+}
+
+.cfooter {
+    font-size: 20px;
+    padding-top: 15px;
+    text-align: left;
+}
+
+.footer-bottom {
+    flex: 1;
+    margin: 1px;
+    min-width: -150px;
+    font-size: 17.4px;
+    text-align: right;
+    margin-top: -70px;
+    transform: translateX(-22px);
+}
+
+.footer3{
+    line-height: 20px;
+}
+
+.cfooter{
+    font-size: 20px;
+    padding-top: 15px;
+    text-align: left;
+}
+
+
+.footer-bottom {
+    flex: 1;
+    margin: 1px;
+    min-width: -150px;
+    font-size: 17.4px;
+    text-align: right;
+    margin-top: -70px;
+    transform: translateX(-22px)
+    
+}
+>>>>>>> 499d868 (cambios)

@@ -1,0 +1,13 @@
+{
+    "es" : {
+        "index": {
+            "varManzana": "Manzana"
+        }
+    },
+    "en" : {
+        "index": {
+            "varManzana": "Apple"
+        }
+    }
+
+}

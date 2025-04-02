@@ -1,0 +1,653 @@
+:root{
+  color: rgb(126, 222, 126);
+  color: rgb(109, 151, 109);
+  color: rgb(115, 206, 115);
+  color: rgb(95, 202, 95);
+  color: rgb(168, 228, 168);
+  color: rgb(103, 189, 103);
+  color: rgb(80, 179, 80);
+  color: rgb(122, 250, 122);
+}
+body {
+    font-family: Georgia, serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #040404;
+    font-size: 18px;
+}
+
+.barra_left{
+    top: 0;/*que tan separado estara del inicio*/
+    left: 0;
+    width: 100%;/*anchura que abarcara de la pantalla*/
+    background: rgb(225, 216, 204);/*color del fondo*/
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;/*indicaremos cuanto lo justificaremos a la derecha*/
+    border-bottom: 4px solid black;
+    position: fixed; /* Fija la barra */
+    left: 0; /* Alineación izquierda */
+    right: 0;
+    height: 50px;
+    z-index: 10000;
+}
+
+.flecha_left svg {
+    width: 25px; /* Tamaño del ícono */
+    height: 50px;
+    fill: #000; /* Color del icono */
+    cursor: pointer;
+    /*transition: transform 0.3s ease;*/
+    padding-right: 1630px;
+    margin-top: 6px;
+}
+
+.introduccion-section{
+    background-color: white;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    margin-top: 90px;
+    font-size: 20px;
+}
+
+.introduccion-section h1 {
+    margin: 0;
+    font-size: 2.3rem;
+}
+
+.empresas_responsablesM{
+    font-size: 25px;
+    text-align: center;
+    margin-top: -20px;
+}
+
+.cuadro-info1{
+    position: absolute;
+    top: 660px; /* Ajusta el cuadro arriba de la imagen*/
+    right: 25px;
+    transform: translateY(-50%);/*Centrar el cuadro de manera horizontal*/
+    height: 350px; /*la altura del cuadrado*/
+    background-color:  rgb(126, 222, 126);/*color de fondo que contendra el cuadrado*/
+    color: black;/*color de las letras que contendra el texto añadido*/
+    font-size: 20px;/*Tamaño asignado de las letras*/
+    display: flex;
+    align-items: center;/*posicionar el texto en el centro del cuadrado*/
+    justify-content: center;/*justificar el contenido al centro*/
+    flex-direction: column; /* Asegura que el texto esté arriba */
+    text-align: justify; /* justifica el texto */
+    width: 100%; /* Ajusta el ancho si es necesario */
+    padding: 25px;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    max-width: 1585px;
+    margin-top: 5px;
+}
+.cemex {
+    width: 960px;
+    margin-top: 35px;
+}
+.p1 {
+    max-width: 1050px;
+    margin-left: -860px;
+    margin-top: 10px;
+}
+.p2{
+    max-width: 600px;
+    margin-left: -840px;
+    margin-top: 25px;
+}
+.img-cemex{
+    width: 700px;
+    height: 270px;
+    margin-top: -300px;
+    margin-right: -850px;
+    flex-direction: column;
+}
+
+.cuadro-info2{
+    position: absolute;
+    top: 660px; /* Ajusta el cuadro arriba de la imagen*/
+    right: 25px;
+    transform: translateY(-50%);/*Centrar el cuadro de manera horizontal*/
+    height: 350px; /*la altura del cuadrado*/
+    background-color:  rgb(109, 151, 109);/*color de fondo que contendra el cuadrado*/
+    color: white;/*color de las letras que contendra el texto añadido*/
+    font-size: 20px;/*Tamaño asignado de las letras*/
+    display: flex;
+    align-items: center;/*posicionar el texto en el centro del cuadrado*/
+    justify-content: center;/*justificar el contenido al centro*/
+    flex-direction: column; /* Asegura que el texto esté arriba */
+    text-align: justify; /* justifica el texto */
+    width: 100%; /* Ajusta el ancho si es necesario */
+    padding: 25px;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    max-width: 1585px;
+    margin-top: 430px;
+}
+.bimbo {
+    width: 960px;
+    margin-top: 15px;
+    margin-right: -1750px;
+}
+.p3 {
+    max-width: 1050px;
+    margin-right: -860px;
+    margin-top: 10px;
+}
+.p4{
+    max-width: 600px;
+    margin-right: -890px;
+    margin-top: 25px;
+}
+.img-bimbo{
+    width: 700px;
+    height: 270px;
+    margin-top: -300px;
+    margin-left: -850px;
+    flex-direction: column;
+}
+
+.cuadro-info3{
+    position: absolute;
+    top: 660px; /* Ajusta el cuadro arriba de la imagen*/
+    right: 25px;
+    transform: translateY(-50%);/*Centrar el cuadro de manera horizontal*/
+    height: 350px; /*la altura del cuadrado*/
+    background-color:   rgb(115, 206, 115);/*color de fondo que contendra el cuadrado*/
+    color: black;/*color de las letras que contendra el texto añadido*/
+    font-size: 20px;/*Tamaño asignado de las letras*/
+    display: flex;
+    align-items: center;/*posicionar el texto en el centro del cuadrado*/
+    justify-content: center;/*justificar el contenido al centro*/
+    flex-direction: column; /* Asegura que el texto esté arriba */
+    text-align: justify; /* justifica el texto */
+    width: 100%; /* Ajusta el ancho si es necesario */
+    padding: 25px;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    max-width: 1585px;
+    margin-top: 858px;
+}
+.femsa {
+    width: 960px;
+    margin-top: 35px;
+    margin-left: -150px;
+}
+.p5 {
+    max-width: 1050px;
+    margin-left: -860px;
+    margin-top: 10px;
+}
+.p6{
+    max-width: 600px;
+    margin-left: -840px;
+    margin-top: 25px;
+}
+.img-femsa{
+    width: 700px;
+    height: 270px;
+    margin-top: -300px;
+    margin-right: -850px;
+    flex-direction: column;
+}
+
+.cuadro-info4{
+    position: absolute;
+    top: 660px; /* Ajusta el cuadro arriba de la imagen*/
+    right: 25px;
+    transform: translateY(-50%);/*Centrar el cuadro de manera horizontal*/
+    height: 350px; /*la altura del cuadrado*/
+    background-color: rgb(95, 202, 95);/*color de fondo que contendra el cuadrado*/
+    color: black;/*color de las letras que contendra el texto añadido*/
+    font-size: 20px;/*Tamaño asignado de las letras*/
+    display: flex;
+    align-items: center;/*posicionar el texto en el centro del cuadrado*/
+    justify-content: center;/*justificar el contenido al centro*/
+    flex-direction: column; /* Asegura que el texto esté arriba */
+    text-align: justify; /* justifica el texto */
+    width: 100%; /* Ajusta el ancho si es necesario */
+    padding: 25px;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    max-width: 1585px;
+    margin-top: 1288px;
+}
+.grupo-modelo {
+    width: 960px;
+    margin-top: 15px;
+    margin-right: -1650px;
+}
+.p7{
+    max-width: 1050px;
+    margin-right: -860px;
+    margin-top: 10px;
+}
+.p8{
+    max-width: 600px;
+    margin-right: -890px;
+    margin-top: 25px;
+}
+.img-g_modelo{
+    width: 750px;
+    height: 270px;
+    margin-top: -300px;
+    margin-left: -795px;
+    flex-direction: column;
+}
+
+.cuadro-info5{
+    position: absolute;
+    top: 660px; /* Ajusta el cuadro arriba de la imagen*/
+    right: 25px;
+    transform: translateY(-50%);/*Centrar el cuadro de manera horizontal*/
+    height: 350px; /*la altura del cuadrado*/
+    background-color: rgb(168, 228, 168);/*color de fondo que contendra el cuadrado*/
+    color: black;/*color de las letras que contendra el texto añadido*/
+    font-size: 20px;/*Tamaño asignado de las letras*/
+    display: flex;
+    align-items: center;/*posicionar el texto en el centro del cuadrado*/
+    justify-content: center;/*justificar el contenido al centro*/
+    flex-direction: column; /* Asegura que el texto esté arriba */
+    text-align: justify; /* justifica el texto */
+    width: 100%; /* Ajusta el ancho si es necesario */
+    padding: 25px;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    max-width: 1585px;
+    margin-top: 1719px;
+}
+.alsea {
+    width: 960px;
+    margin-top: 35px;
+    margin-left: 80px;
+}
+.p9{
+    max-width: 1050px;
+    margin-left: -860px;
+    margin-top: 10px;
+}
+.p10{
+    max-width: 600px;
+    margin-left: -840px;
+    margin-top: 25px;
+}
+.img-alsea{
+    width: 700px;
+    height: 270px;
+    margin-top: -300px;
+    margin-right: -850px;
+    flex-direction: column;
+}
+
+.cuadro-info6{
+    position: absolute;
+    top: 660px; /* Ajusta el cuadro arriba de la imagen*/
+    right: 25px;
+    transform: translateY(-50%);/*Centrar el cuadro de manera horizontal*/
+    height: 350px; /*la altura del cuadrado*/
+    background-color: rgb(103, 189, 103);/*color de fondo que contendra el cuadrado*/
+    color: black;/*color de las letras que contendra el texto añadido*/
+    font-size: 20px;/*Tamaño asignado de las letras*/
+    display: flex;
+    align-items: center;/*posicionar el texto en el centro del cuadrado*/
+    justify-content: center;/*justificar el contenido al centro*/
+    flex-direction: column; /* Asegura que el texto esté arriba */
+    text-align: justify; /* justifica el texto */
+    width: 100%; /* Ajusta el ancho si es necesario */
+    padding: 25px;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    max-width: 1585px;
+    margin-top: 2150px;
+}
+.grupo-herdez {
+    width: 650px;
+    margin-top: 50px;
+    margin-right: -1330px;
+}
+.p11{
+    max-width: 1050px;
+    margin-right: -890px;
+    margin-top: 10px;
+}
+.p12{
+    max-width: 600px;
+    margin-right: -920px;
+    margin-top: 25px;
+}
+.img-herdez{
+    width: 750px;
+    height: 270px;
+    margin-top: -300px;
+    margin-left: -795px;
+    flex-direction: column;
+}
+
+.empresasMPM{
+    font-size: 35px;
+    text-align: center;
+    margin-top: 2630px;
+}
+
+.cuadro-info7{
+    position: absolute;
+    top: 660px; /* Ajusta el cuadro arriba de la imagen*/
+    right: 25px;
+    transform: translateY(-50%);/*Centrar el cuadro de manera horizontal*/
+    height: 350px; /*la altura del cuadrado*/
+    background-color: rgb(80, 179, 80);/*color de fondo que contendra el cuadrado*/
+    color: black;/*color de las letras que contendra el texto añadido*/
+    font-size: 20px;/*Tamaño asignado de las letras*/
+    display: flex;
+    align-items: center;/*posicionar el texto en el centro del cuadrado*/
+    justify-content: center;/*justificar el contenido al centro*/
+    flex-direction: column; /* Asegura que el texto esté arriba */
+    text-align: justify; /* justifica el texto */
+    width: 100%; /* Ajusta el ancho si es necesario */
+    padding: 25px;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    max-width: 1585px;
+    margin-top: 2695px;
+}
+.unilever {
+    width: 960px;
+    margin-top: 35px;
+    margin-left: 25px;
+}
+.p13{
+    max-width: 1050px;
+    margin-left: -860px;
+    margin-top: 10px;
+}
+.p14{
+    max-width: 600px;
+    margin-left: -855px;
+    margin-top: 25px;
+}
+.img-unilever{
+    width: 700px;
+    height: 270px;
+    margin-top: -300px;
+    margin-right: -850px;
+    flex-direction: column;
+}
+
+.cuadro-info8{
+    position: absolute;
+    top: 660px; /* Ajusta el cuadro arriba de la imagen*/
+    right: 25px;
+    transform: translateY(-50%);/*Centrar el cuadro de manera horizontal*/
+    height: 350px; /*la altura del cuadrado*/
+    background-color: rgb(122, 250, 122);/*color de fondo que contendra el cuadrado*/
+    color: black;/*color de las letras que contendra el texto añadido*/
+    font-size: 20px;/*Tamaño asignado de las letras*/
+    display: flex;
+    align-items: center;/*posicionar el texto en el centro del cuadrado*/
+    justify-content: center;/*justificar el contenido al centro*/
+    flex-direction: column; /* Asegura que el texto esté arriba */
+    text-align: justify; /* justifica el texto */
+    width: 100%; /* Ajusta el ancho si es necesario */
+    padding: 25px;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    max-width: 1585px;
+    margin-top: 3130px;
+}
+.nestle {
+    width: 650px;
+    margin-top: 50px;
+    margin-right: -1475px;
+}
+.p15{
+    max-width: 1050px;
+    margin-right: -890px;
+    margin-top: 10px;
+}
+.p16{
+    max-width: 600px;
+    margin-right: -920px;
+    margin-top: 25px;
+}
+.img-nestle{
+    width: 750px;
+    height: 270px;
+    margin-top: -300px;
+    margin-left: -795px;
+    flex-direction: column;
+}
+
+.cuadro-info9{
+    position: absolute;
+    top: 660px; /* Ajusta el cuadro arriba de la imagen*/
+    right: 25px;
+    transform: translateY(-50%);/*Centrar el cuadro de manera horizontal*/
+    height: 350px; /*la altura del cuadrado*/
+    background-color: rgb(80, 179, 80);/*color de fondo que contendra el cuadrado*/
+    color: black;/*color de las letras que contendra el texto añadido*/
+    font-size: 20px;/*Tamaño asignado de las letras*/
+    display: flex;
+    align-items: center;/*posicionar el texto en el centro del cuadrado*/
+    justify-content: center;/*justificar el contenido al centro*/
+    flex-direction: column; /* Asegura que el texto esté arriba */
+    text-align: justify; /* justifica el texto */
+    width: 100%; /* Ajusta el ancho si es necesario */
+    padding: 25px;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    max-width: 1585px;
+    margin-top: 3565px;
+}
+.walmartM {
+    width: 960px;
+    margin-top: 35px;
+    margin-left: -165px;
+}
+.p17{
+    max-width: 1050px;
+    margin-left: -860px;
+    margin-top: 10px;
+}
+.p18{
+    max-width: 600px;
+    margin-left: -855px;
+    margin-top: 25px;
+}
+.img-walmart{
+    width: 700px;
+    height: 270px;
+    margin-top: -300px;
+    margin-right: -850px;
+    flex-direction: column;
+}
+
+.cuadro-info10{
+    position: absolute;
+    top: 660px; /* Ajusta el cuadro arriba de la imagen*/
+    right: 25px;
+    transform: translateY(-50%);/*Centrar el cuadro de manera horizontal*/
+    height: 350px; /*la altura del cuadrado*/
+    background-color: rgb(108, 225, 108);/*color de fondo que contendra el cuadrado*/
+    color: black;/*color de las letras que contendra el texto añadido*/
+    font-size: 20px;/*Tamaño asignado de las letras*/
+    display: flex;
+    align-items: center;/*posicionar el texto en el centro del cuadrado*/
+    justify-content: center;/*justificar el contenido al centro*/
+    flex-direction: column; /* Asegura que el texto esté arriba */
+    text-align: justify; /* justifica el texto */
+    width: 100%; /* Ajusta el ancho si es necesario */
+    padding: 25px;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    max-width: 1585px;
+    margin-top: 4000px;
+}
+.pepsico {
+    width: 650px;
+    margin-top: -20px;
+    margin-right: -1350px;
+}
+.p19{
+    max-width: 1050px;
+    margin-right: -890px;
+    margin-top: 10px;
+}
+.p20{
+    max-width: 600px;
+    margin-right: -920px;
+    margin-top: 20px;
+}
+.img-pepsico{
+    width: 750px;
+    height: 270px;
+    margin-top: -300px;
+    margin-left: -795px;
+    flex-direction: column;
+    transform: translateY(-12px);
+}
+
+.cuadro-info11{
+    position: absolute;
+    top: 660px; /* Ajusta el cuadro arriba de la imagen*/
+    right: 25px;
+    transform: translateY(-50%);/*Centrar el cuadro de manera horizontal*/
+    height: 350px; /*la altura del cuadrado*/
+    background-color: rgb(80, 179, 80);/*color de fondo que contendra el cuadrado*/
+    color: black;/*color de las letras que contendra el texto añadido*/
+    font-size: 20px;/*Tamaño asignado de las letras*/
+    display: flex;
+    align-items: center;/*posicionar el texto en el centro del cuadrado*/
+    justify-content: center;/*justificar el contenido al centro*/
+    flex-direction: column; /* Asegura que el texto esté arriba */
+    text-align: justify; /* justifica el texto */
+    width: 100%; /* Ajusta el ancho si es necesario */
+    padding: 25px;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    max-width: 1585px;
+    margin-top: 4435px;
+}
+.coca-colaM {
+    width: 960px;
+    margin-top: 35px;
+    margin-left: -165px;
+}
+.p21{
+    max-width: 1050px;
+    margin-left: -860px;
+    margin-top: 10px;
+}
+.p22{
+    max-width: 600px;
+    margin-left: -855px;
+    margin-top: 25px;
+}
+.img-ccm{
+    width: 700px;
+    height: 270px;
+    margin-top: -300px;
+    margin-right: -850px;
+    flex-direction: column;
+}
+
+/*elemento que van al final del blog*/
+.footer {
+    background: #0B4F14;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    height: 100%;
+    margin-top: 2230px; /*pega el footer al suelo*/
+    max-height: 250px; /*acomodar la altura maxima*/
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 2500px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.af{
+    max-width: 500px; /* Comprime el ancho del contenedor */
+    /*text-align: left; /* Alinea el texto a la izquierda */
+    padding: 0;
+    text-align: justify;
+    line-height: -35px;
+    color: white;
+    font-size: 20px;
+}
+
+.footer-center{
+    max-width: 500px; /* Comprime el ancho del contenedor */
+    /*text-align: left; /* Alinea el texto a la izquierda */
+    padding: 0;
+    text-align: left;
+    line-height: 18px;
+    padding-top: 10px;/*mover el texto para abajo*/
+}
+
+.footer1  {
+    text-align: justify;
+    font-size: 16px; /* Ajusta el tamaño de la fuente para hacer el texto más comprimido */
+    line-height: 26px; /* Ajusta la altura de las líneas para que el texto esté más compacto */
+}
+.footer3, .footer-center, .footer2 {
+    flex: 1;
+    margin: 25px;
+    min-width: 100px;
+    font-size: 25px;
+}
+
+.prodcons2 {
+    width: 300px;
+    height: auto;
+    margin-bottom: 7px;
+}
+
+h4 {
+    margin: 0 0 10px;
+    font-weight: bold;
+    transform: translateY(-8px); /* Mueve el texto de 'SOBRE NOSOTROS' hacia arriba */
+}
+
+.pfooter .lf {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+
+
+.ulfooter .lf .af {
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 1px;
+    padding-top: 15px;
+}
+
+.footer2{
+    line-height: 30px;
+    transform: translateX(30px);
+    font-size: 26px;
+    transform: translateY(-10px)
+}
+
+.footer3{
+    line-height: 20px;
+}
+
+.cfooter{
+    font-size: 20px;
+    padding-top: 15px;
+    text-align: left;
+}
+
+
+.footer-bottom {
+    flex: 1;
+    margin: 1px;
+    min-width: -150px;
+    font-size: 17.4px;
+    text-align: right;
+    margin-top: -70px;
+    transform: translateX(-22px)
+    
+}

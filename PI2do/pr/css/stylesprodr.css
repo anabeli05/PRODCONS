@@ -1,0 +1,227 @@
+.barra_left{
+    top: 0;/*que tan separado estara del inicio*/
+    left: 0;
+    width: 100%;/*anchura que abarcara de la pantalla*/
+    background: rgb(225, 216, 204);/*color del fondo*/
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;/*indicaremos cuanto lo justificaremos a la derecha*/
+    border-bottom: 4px solid black;
+    position: fixed; /* Fija la barra */
+    left: 0; /* Alineación izquierda */
+    right: 0;
+    height: 50px;
+}
+
+.flecha_left svg {
+    width: 25px; /* Tamaño del ícono */
+    height: 50px;
+    fill: #000; /* Color del icono */
+    cursor: pointer;
+    /*transition: transform 0.3s ease;*/
+    padding-right: 1630px;
+    margin-top: 6px;
+}
+.sobreprod {
+    display: flex; /* Coloca los elementos en fila */
+    align-items: center; /* Alinea verticalmente el cuadro y la imagen */
+    justify-content: center; /* Centra todo horizontalmente */
+    margin: 50px auto; /* Centra todo el contenedor */
+    
+}
+
+/* Ajustes para la imagen */
+.imagens {
+    display: block;       /*  centrar */
+    width: 64%;           /* Define el ancho */
+    height: 620px;        /* Define la altura */
+    object-fit: cover;    /* Ajusta la imagen sin deformarla */
+    margin-left: 585px;
+    margin-top: 40px;
+}
+
+/* Ajustes para el cuadro */
+.info-prod {
+    position: absolute;
+    top: 324.5px; /* Ajusta el cuadro arriba de la imagen*/
+    left: 9px;
+    transform: translateY(-50%);/*Centrar el cuadro de manera horizontal*/
+    height: 570px; /*la altura del cuadrado*/
+    background-color:  #868278;/*color de fondo que contendra el cuadrado*/
+    color: white;/*color de las letras que contendra el texto añadido*/
+    font-size: 20px;/*Tamaño asignado de las letras*/
+    display: flex;
+    align-items: center;/*posicionar el texto en el centro del cuadrado*/
+    justify-content: center;/*justificar el contenido al centro*/
+    flex-direction: column; /* Asegura que el texto esté arriba */
+    text-align: justify; /* justifica el texto */
+    width: 50%; /* Ajusta el ancho si es necesario */
+    padding: 25px;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    max-width: 540px;
+    margin-top: 75.5px;
+}
+
+.title{
+    padding: 10px;
+    font-size: 36px;
+    text-align: center;
+    transform: translateY(-5px);
+    line-height: 44px;
+}
+
+.text{
+    padding: 10px;
+    font-size: 25px;
+    text-align:justify;
+    transform: translateY(-20px);
+    width: 460px;
+    line-height: 30px;/*espacio entre renglones*/
+
+}
+/* Para que se adapte bien en pantallas pequeñas */
+@media (max-width: 768px) {
+    .sobreprod {
+        flex-direction: column;
+    }
+    .imagen-principal, .cuadro-info {
+        width: 100%;
+    }
+}
+
+/* Empuja el footer hacia abajo*/
+.footer {
+    background: #0B4F14;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    height: 100%;
+    margin-top: 40px;
+    max-height: 270px;
+    position: relative;
+    padding: 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 2500px;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+
+.af {
+    max-width: 500px;
+    padding: 0;
+    text-align: justify;
+    line-height: 20px;
+    color: white;
+    font-size: 15px;
+    transform: translateX(90px)
+}
+
+.footer-center {
+    max-width: 500px;
+    padding: 0;
+    text-align: left;
+    line-height: 18px;
+    padding-top: 10px;
+}
+
+.footer1 {
+    top: 10px;
+    text-align: justify;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.footer3, .footer-center, .footer2{
+    flex: 1;
+    margin: 25px;
+    min-width: 100px;
+    font-size: 25px;
+}
+
+.prodcons2 {
+    width: 350px;
+    height: auto;
+    margin-bottom: 5.5px;
+    display: block;
+    margin: 0 auto;
+    max-height: 250px;
+    margin-top: -30px;
+    margin-left: -50px;
+}
+
+h4 {
+    top: -20px;
+    margin: 0 0 10px;
+    font-weight: bold;
+    transform: translateY(-8px);
+    color: white;
+}
+
+.pfooter .lf {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+.ulfooter .lf {
+    font-size: 15px;
+    line-height: 30px;
+    padding-top: 3px;
+    list-style: none;
+}
+
+.footer2 {
+    line-height: 15px;
+    transform: translateX(-10px);
+    font-size: 26px;
+}
+
+.footer3 {
+    line-height: 20px;
+}
+
+.cfooter {
+    font-size: 20px;
+    padding-top: 15px;
+    text-align: left;
+}
+
+.footer-bottom {
+    flex: 1;
+    margin: 1px;
+    min-width: -150px;
+    font-size: 17.4px;
+    text-align: right;
+    margin-top: -70px;
+    transform: translateX(-22px);
+}
+
+.footer3{
+    line-height: 20px;
+}
+
+.cfooter{
+    font-size: 20px;
+    padding-top: 15px;
+    text-align: left;
+}
+
+
+.footer-bottom {
+    flex: 1;
+    margin: 1px;
+    min-width: -150px;
+    font-size: 17.4px;
+    text-align: right;
+    margin-top: -70px;
+    transform: translateX(-22px)
+    
+}
+

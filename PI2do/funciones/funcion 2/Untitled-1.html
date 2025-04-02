@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -63,6 +64,8 @@
   </script>
 </body>
 =======
+=======
+>>>>>>> 499d868 (cambios)
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -126,5 +129,8 @@
     document.addEventListener('DOMContentLoaded', fetchPosts);
   </script>
 </body>
+<<<<<<< HEAD
 >>>>>>> cc3b0c4 (codigo corregido)
+=======
+>>>>>>> 499d868 (cambios)
 </html>
