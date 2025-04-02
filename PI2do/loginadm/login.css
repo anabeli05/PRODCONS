@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+:root {
+    color: black;
+    color: white;    
+    --amarillo: #FFC107;
+    --blue: #0097A7;
+    color: rgb(90, 61, 61);
+    color: beige;
+    color: rgb(12, 115, 12);
+    color: rgb(47, 81, 47);
+    color: rgb(126, 222, 126);
+    color: rgb(225, 216, 204);
+    color: #868278;
+    color: rgb(231, 231, 219);
+    color: rgb(109, 151, 109);
+
+}
+/* ESTILOS BASE */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 62.5%;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    background: white;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* HEADER */
+header {
+    width: 100%;
+    height: 50px;
+    background: rgb(225, 216, 204);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header_2 {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: white;
+    border-bottom: 2px solid black;
+    padding-left: 20px;
+}
+
+.prodcons {
+    height: 120px;
+    max-width: 100%;
+    transition: height 0.3s ease;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.contenedor-main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1400px;
+    justify-content: space-around; /* Cambiado de space-between */
+    align-items: center;
+    padding: 0 20px;
+    flex-wrap: wrap; /*Permite que los elementos se ajusten */
+    gap: 20px; /*Espacio entre elementos*/
+}
+
+/* FORMULARIO */
+.form {
+    width: 100%;
+    max-width: 450px; /* Ancho máximo */
+    background: white;
+    border-radius: 5px;
+    text-align: center;
+    padding: 30px;
+    z-index: 1;
+    margin: 0 auto;
+}
+
+.form h1 {
+    font-family:'Times New Roman', Times, serif;
+    margin-top: auto;
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: black;
+}
+
+form {
+    width: 100%;
+    background: white;
+    border-radius: 5px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+form .buton {
+    width: 80%;
+    margin-bottom: 35px;
+    margin-left: 40px;
+}
+
+form input {
+    height: 35px; /*alturabotones*/
+    width: 100%;
+    outline: none;
+    padding: 0 15px;
+    border-radius: 30px;
+    border: 1px solid black;
+    background-color: rgb(164, 212, 164);
+}
+
+form input::placeholder {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #ffffff;
+}
+
+.recuerdame {
+    display: flex;
+    margin: 8px ;
+    color: rgb(79, 79, 79);
+    font-size: 12px;
+}
+
+.recuerdame input[type="checkbox"] {
+    width: 10px;
+    height: 10px;
+    margin-right: 8px;
+    margin-left: 40px;
+}
+
+form input[type="submit"] {
+    height: 35px;
+    width: 80%;
+    margin-top: 50px;
+    border: 1px solid black;
+    background-color: rgb(94, 127, 94);
+    color: rgb(235, 225, 214);
+    font-size: 20px;
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+form input[type="submit"]:hover {
+    background: rgb(38, 94, 38);
+}
+
+/*contenedor de logo*/
+.contenedor-logo {
+    position: relative;
+    width: 60%;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.bg-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: rgba(231, 231, 219, 0.8);
+}
+
+.logo-portada {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    z-index: 2;
+    margin: 0 auto;
+    display: block;
+}
+
+figcaption {
+    position: relative;
+    color: rgb(38, 94, 38);
+    font-family: 'Times New Roman', serif;
+    font-size: 15px;
+    font-weight: bold;
+    bottom: 90px;
+    left: 70%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    z-index: 3;
+    text-align: center;
+    width: 100%;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 1200px) {
+    .wrapper {
+        justify-content: center;
+    }
+    
+    .contenedor-logo {
+        max-width: 500px;
+        min-height: 350px;
+    }
+}
+
+@media (max-width: 992px) {
+    .wrapper {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .form {
+        order: 2;
+    }
+    
+    .contenedor-logo {
+        order: 1;
+        min-height: 300px;
+    }
+    
+    .prodcons {
+        height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header_2 {
+        height: 70px;
+        justify-content: center;
+    }
+    
+    .prodcons {
+        height: 80px;
+    }
+    
+    .contenedor-logo {
+        min-height: 250px;
+    }
+    
+    .logo-portada {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .form {
+        padding: 20px;
+    }
+    
+    .contenedor-logo {
+        min-height: 200px;
+    }
+    
+    .logo-portada {
+        max-width: 250px;
+    }
+    
+    form input {
+        height: 40px;
+    }
+    
+    form input[type="submit"] {
+        height: 40px;
+    }
+}
