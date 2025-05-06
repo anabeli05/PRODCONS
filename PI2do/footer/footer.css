@@ -16,6 +16,7 @@ html, body {
     margin: 0;
     display: flex;
     flex-direction: column;
+    margin-bottom: auto;
 }
 
 /* Empuja el footer hacia abajo */
@@ -24,12 +25,12 @@ html, body {
 }
 
 /* Estilos del footer */
-.footer {
+.footer-container {
     background: #0B4F14;
     color: white;
     padding: 10px 0;
     font-family: Arial, sans-serif;
-    height: auto;
+    height: 30%;
     width: 100%;
     position: relative;
 }
@@ -44,11 +45,15 @@ html, body {
     width: 100%;
 }
 
+.footer1 {
+    font-size: 80px;
+}
+
 .footer-center, .footer2, .footer3 {
     flex: 1;
-    margin: 10px;
+    margin: 25px;
     min-width: 180px;
-    font-size: 16px;
+    font-size: 22px;
     padding: 10px;
     text-align: left;
 }
@@ -65,7 +70,7 @@ html, body {
 }
 
 h4 {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-weight: bold;
 }
 
@@ -89,6 +94,7 @@ ul li a {
     font-size: 14px;
     text-align: right;
     padding: 10px;
+    margin-top: -80px;
 }
 
 /* Botones en el footer */
