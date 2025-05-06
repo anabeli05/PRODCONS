@@ -561,137 +561,6 @@ section.logo{
     width: 104.5%;
 }
 
-/*elemento que van al final del blog*/
-.footer {
-    background: #0B4F14;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-    font-family: 'Georgia';
-    height: 100%;
-    margin-top: auto; /*pega el footer al suelo*/
-    max-height: 200px; /*acomodar la altura maxima*/
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 2500px;
-    margin: 0 auto;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.af{
-    max-width: 500px; /* Comprime el ancho del contenedor */
-    /*text-align: left; /* Alinea el texto a la izquierda */
-    padding: 0;
-    text-align: justify;
-    line-height: 15px;
-    color: white;
-    font-size: 20px;
-    font-family: 'Georgia';
-}
-
-.footer-center{
-    max-width: 500px; /* Comprime el ancho del contenedor */
-    /*text-align: left; /* Alinea el texto a la izquierda */
-    padding: 0;
-    text-align: left;
-    line-height: 18px;
-    padding-top: 10px;/*mover el texto para abajo*/
-}
-
-.footer1  {
-    text-align: justify;
-    font-size: 16px; /* Ajusta el tamaño de la fuente para hacer el texto más comprimido */
-    line-height: 26px; /* Ajusta la altura de las líneas para que el texto esté más compacto */
-    font-family: 'Georgia';
-}
-.footer3, .footer-center, .footer2 {
-    flex: 1;
-    margin: 25px;
-    min-width: 100px;
-    font-size: 25px;
-    font-family: 'Georgia';
-}
-
-.prodcons2 {
-    width: auto;
-    height: 250px;
-    margin-bottom: 5.5px;
-    margin-top: -35px;
-}
-
-h4 {
-    margin: 0 0 10px;
-    font-weight: bold;
-    transform: translateY(-8px); /* Mueve el texto de 'SOBRE NOSOTROS' hacia arriba */
-    font-family: 'Georgia';
-}
-
-.pfooter .lf {
-    margin: 5px 0;
-    font-size: 0.9rem;
-    font-family: 'Georgia';
-}
-
-
-
-.ulfooter .lf .af {
-    text-decoration: none;
-    font-size: 15px;
-    line-height: 1px;
-    padding-top: 8px;
-    font-family: 'Georgia';
-}
-
-.footer2{
-    line-height: 15px;
-    transform: translateX(80px);
-    font-size: 26px;
-    font-family: 'Georgia';
-}
-
-.footer3{
-    line-height: 20px;
-}
-
-.footer3 a{
-    color: white;
-    text-decoration: none;
-    font-size: 15px;
-    line-height: 65px;
-    margin-right: 100px;
-}
-
-.footer3 li{
-    list-style-type: none;
-}
-
-.cfooter{
-    font-size: 20px;
-    padding-top: 10px;
-    text-align: left;
-    font-family: 'Georgia';
-    margin-left: 20px;
-}
-
-
-.footer-bottom {
-    flex: 1;
-    margin: 1px;
-    min-width: -150px;
-    font-family: 'Georgia';
-    font-size: 17.4px;
-    text-align: right;
-    margin-top: -65px;
-    transform: translateX(-22px)
-}
-
-
-
 /*Menu de registro*/
 *{
     margin: 0;
@@ -843,3 +712,112 @@ h4 {
       line-height: 22px;
     }
   }
+
+  /* Mensaje de bienvenida */
+
+.falling-leaves-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: rgb(246, 246, 233);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Cuadro con el texto "Bienvenidos" */
+.welcome-box {
+    position: relative;
+    z-index: 2;
+    background-color: beige;
+    padding: 150px 200px;
+    border-radius: 15px;
+    font-size: 3.2rem;
+    font-family: 'Georgia', serif;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+/* Contenedor de hojas */
+.leaves {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Hoja individual */
+.leaf {
+    position: absolute;
+    top: -5%;
+    animation-name: fall;
+    animation-timing-function: linear;
+}
+
+/* Animación de caída */
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* Tamaño del SVG de la hoja */
+.leaf svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Contenido del blog (oculto al inicio) */
+#main-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+/* Mostrar el contenido con transición */
+#main-content.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Responsividad: móvil */
+@media (max-width: 480px) {
+    #welcome-box {
+        padding: 1.5rem 1rem; /* Reducir padding en móviles */
+        width: 70%; /* El cuadro se ajusta más en pantallas pequeñas */
+        max-width: 300px; /* Limitar el tamaño máximo en móviles */
+    }
+
+    #welcome-box h1 {
+        font-size: 1.8rem; /* Tamaño de fuente adecuado para móviles */
+    }
+}
+
+/* Responsividad: tablet */
+@media (min-width: 481px) and (max-width: 768px) {
+    #welcome-box {
+        padding: 1.5rem 2rem; /* Ajustamos el padding en tablets */
+        width: 70%; /* Aumentamos un poco el tamaño para tabletas */
+        max-width: 400px; /* Limitar el tamaño máximo */
+    }
+
+    #welcome-box h1 {
+        font-size: 2rem; /* Font-size mayor en tablets */
+    }
+}
+
+/* Responsividad: pantallas grandes */
+@media (min-width: 769px) {
+    #welcome-box {
+        width: 50%; /* Aseguramos que no ocupe todo el ancho en pantallas grandes */
+        max-width: 600px; /* Limitamos el tamaño máximo para pantallas grandes */
+    }
+}
+
+

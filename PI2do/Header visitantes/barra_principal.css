@@ -80,12 +80,12 @@ header {
 #idiomasOpciones {
     display: none;
     position: absolute;
-    top: 65px;
-    right: 10px;
-    background: white;
-    border: 1px solid #000;
+    /* top: 65px; */
+    right: 2px;
+    background: rgb(225, 216, 204);
+    /* border: 1px solid #000; */
     border-radius: 5px;
-    padding: 5px;
+    padding: 1px;
     z-index: 100;
 }
 
@@ -100,13 +100,13 @@ header {
 
 /* LOGO */
 .prodcons {
-    height: 170px; /* Altura del logo */
+    height: auto; /* Altura del logo */
     position: fixed; /* Hace que el logo se quede fijo */
     left: 0; /* Alinea el logo a la izquierda */
     display: flex;
     align-items: center; /* Centra el logo verticalmente */
     justify-content: center; /* Centra el logo horizontalmente */
-    width: 20%; /* Ajusta el tamaño del logo */
+    width: 15%; /* Ajusta el tamaño del logo */
     z-index: 10; /* Asegura que el logo esté por encima de otros elementos */
     max-width: 100%;
 }
