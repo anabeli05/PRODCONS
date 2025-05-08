@@ -7,6 +7,8 @@
     <title>PRODCONS</title>
     <link rel="stylesheet" href="/PI2do/styles.css">
     <link rel="stylesheet" href="/PI2do/footer/footer.css">
+    <link rel="stylesheet" href="articulos.css">
+    <link href="/PI2do/Header visitantes/barra_principal.css" rel="stylesheet">
 
 </head>
 
@@ -15,84 +17,91 @@
     <header>
         <div class="header-contenedor">
             <div class="principal">
-                <a class="navlink" href="/PI2do/empresas_responsables/empresasr.html" onclick="setActive(this)">EMPRESAS RESPONSABLES</a>
+                <a class="navlink" href="/PI2do/empresas_responsables/empresasr.html">EMPRESAS RESPONSABLES</a>
 
-                <div class="telefono">
-
-                    <a class="navlinkt" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"
-                            stroke-width="1">
-                            <path
-                                d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2">
-                            </path>
-                        </svg></a>
-                   
+                <!-- Bandera actual -->
+                <div id="idiomaToggle">
+                    <img class="españa" id="banderaIdioma" src="/PI2do/imagenes/logos/espanol.png" alt="Idioma">
                 </div>
 
-                <a class="navlink" href="#idiomas"><img class="españa" src="/PI2do/imagenes/logos/espanol.png">
-                    <!--<img  class="ingles" src="reino-unido (1).png"></a>-->
-
+                <!-- Opción secundaria -->
+                <div id="idiomasOpciones">
+                    <img class="ingles" src="/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')"
+                        alt="Cambiar a inglés">
+                    <img class="españa" src="/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')"
+                        alt="Cambiar a español">
+                </div>
             </div>
         </div>
     </header>
 
-
     <section class="logo">
-         <div class="header_2">
-          <!-- <svg  class="amburguesa" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-linecap="round" stroke-linejoin="round" width="36" height="36" stroke-width="1.5"> -->
-                <path d="M4 6l16 0">
-                </path>
-                <path d="M4 12l16 0">
-                </path>
-                <path d="M4 18l16 0">
-                </path>
+        <div class="header_2">
+            <svg class="hamburguesa" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-linecap="round" stroke-linejoin="round" width="36" height="36" stroke-width="1.5" onclick="toggleMenu()">
+                <path d="M4 6l16 0"></path>
+                <path d="M4 12l16 0"></path>
+                <path d="M4 18l16 0"></path>
             </svg>
+
             <img class="prodcons" src="/PI2do/imagenes/prodcon/logoSinfondo.png" alt="Logo">
+
             <div class="subtitulos">
+                <li><a href="/PI2do/pr/produccionr.html">PRODUCCIÓN RESPONSABLE</a></li>
+                <li><a href="/PI2do/cr/consumores.html">CONSUMO RESPONSABLE</a></li>
 
-                <li><a href="/PI2do/pr/produccionr.html" onclick="setActive(this)">PRODUCCION RESPONSABLE</a>
-                    <!--  <div class="info" id="info-produccion">
-                  <img class="img-info1" src="produccion.jpg">
-                </div>
-                    <div class="info-prod">
-                    <h2>LA PRODUCCIÓN RESPONSABLE</h2>
-                    <p>Cada producto que consumimos tiene un costo ambiental que muchas veces no vemos. Desde la extracción de materiales hasta su fabricación y distribución, el impacto puede ser enorme si no se hace de manera responsable.</p>
-                </div> -->
-                </li>
-
-                <li><a href="/PI2do/cr/consumores.html" onclick="setActive(this)">CONSUMO RESPONSABLE</a>
-                    <!--<div class="info2" id="info-consumo"> 
-                     <img class="img-info2" src="consumo.jpg">
-                    </div>
-                     <div class="info-cons" >
-                    <h2>EL CONSUMO RESPONSABLE</h2> 
-                    <p>El consumo responsable implica elegir productos y servicios que minimicen el impacto ambiental, fomenten la economía local y respeten los derechos de los trabajadores. Es una forma de tomar decisiones conscientes para reducir el desperdicio y promover un futuro más sostenible.</p>
-                </div>-->
-                </li>
-                </ul>
-                <!--formulario-->
-               <form class="search-form">
-                    <input type="search" placeholder="Buscar..." />
-                    <button class=" lupa">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-linecap="round" stroke-linejoin="round" width="36" height="36" stroke-width="1.5">
+                <form class="search-form">
+                    <button class="lupa">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"
+                            stroke-width="1.5">
                             <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
                             <path d="M21 21l-6 -6"></path>
                         </svg>
                     </button>
-
-                </form> 
-
+                    <input type="search" placeholder="Buscar..." />
+                </form>
             </div>
+        </div>
     </section>
 
 
+    <!-- Menú de hamburguesa -->
+    <div class="menu" id="menu">
+        <ul>
+            <li><a href="/PI2do/pr/produccionr.html" onclick="setActive(this)">PRODUCCION RESPONSABLE</a></li>
+            <li><a href="/PI2do/cr/consumores.html" onclick="setActive(this)">CONSUMO RESPONSABLE</a></li>
+            <li><a href="#">Lupa de búsqueda</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // Toggle para la visibilidad del menú de hamburguesa
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.classList.toggle("active");
+        }
+
+        const idiomaToggle = document.getElementById('idiomaToggle');
+        const bandera = document.getElementById('banderaIdioma');
+        const opciones = document.getElementById('idiomasOpciones');
+
+        idiomaToggle.addEventListener('click', () => {
+            opciones.style.display = opciones.style.display === 'block' ? 'none' : 'block';
+        });
+
+        function cambiarIdioma(idioma) {
+            if (idioma === 'ingles') {
+                bandera.src = "/PI2do/imagenes/logos/ingles.png";
+            } else {
+                bandera.src = "/PI2do/imagenes/logos/espanol.png";
+            }
+            opciones.style.display = 'none';
+        }
+    </script>
+
 
     <div class="sobrecont">
-        <div class="tex1">
-            <p> PRODUCCION > BLOG </p>
-        </div>
         <div class="cuadro-info">
             <h2>BLOG</h2>
             <p>Somos una organización dedicada a cuidar del medio ambiente, aplicándolo en nuestra vida diaria y
@@ -105,19 +114,6 @@
 
 <h3 class="apubli"> MIRA MAS DE NUESTRO CONTENIDO </h3>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial -scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="articulos.css">
-    <title>PRODCONS</title>
-</head>
-
-<body>
-    <title></title>
 
     <section class="post-list">
         <div class="content">
@@ -210,7 +206,7 @@
         </div>
     </section>
 
-    <script src="main.js"></script>
+    
 
     <!-- <div class="carousel-container">
         <div class="carousel">
@@ -234,12 +230,14 @@
     </div> -->
     
     <!--FOOTER-->
-    <footer>
+    <!-- <footer>
         <div class="footer-container"></div>
-</footer>
+      </footer> -->
+      
 
 
-<script src="/PI2do/footer/footer.js"></script>
+      <script src="/PI2do/Header visitantes/barra_principal.js"></script>
+<!-- <script src="/PI2do/footer/footer.js"></script> -->
 </body>
 
 </html>

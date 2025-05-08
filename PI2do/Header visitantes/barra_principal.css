@@ -106,7 +106,7 @@ header {
     display: flex;
     align-items: center; /* Centra el logo verticalmente */
     justify-content: center; /* Centra el logo horizontalmente */
-    width: 15%; /* Ajusta el tamaño del logo */
+    width: 13%; /* Ajusta el tamaño del logo */
     z-index: 10; /* Asegura que el logo esté por encima de otros elementos */
     max-width: 100%;
 }
@@ -119,17 +119,15 @@ header {
 /* Ajustes para pantallas pequeñas */
 @media (max-width: 768px) {
     .prodcons {
-        width: 15%; /* Ajusta el tamaño del logo en pantallas más pequeñas */
+        width: 13%; /* Ajusta el tamaño del logo en pantallas más pequeñas */
     }
 }
 
 @media (max-width: 480px) {
     .prodcons {
-        width: 10%; /* Ajusta el tamaño del logo para pantallas muy pequeñas */
+        width: 8%; /* Ajusta el tamaño del logo para pantallas muy pequeñas */ 
     }
 }
-
-
 
 /* SEGUNDA BARRA */
 .header_2 {
@@ -140,11 +138,11 @@ header {
     border-bottom: 4px solid black;
     padding: 15px 20px;
     position: fixed;
-    top: 65px;
-    width: 100%;
-    z-index: 9;
+    top: 50px;
+    z-index: 8;
     height: 80px;
     font-family: 'Georgia';
+    width: 100%;
 }
 
 /* SUBTÍTULOS */

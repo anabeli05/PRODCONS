@@ -10,51 +10,45 @@
     box-sizing: border-box;
     font-family: 'Georgia';
 }
-
+/* 1. Establecer la estructura del body y html para ocupar toda la pantalla */
+/* General */
 html, body {
     height: 100%;
     margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    margin-bottom: auto;
 }
 
-/* Empuja el footer hacia abajo */
+/* El contenido ocupa el espacio disponible pero nunca empuja el footer */
 .content {
-    flex: 1;
+    flex-grow: 1;  /* Esto hace que el contenido se expanda si es necesario */
+    margin-top: 100%;
 }
 
-/* Estilos del footer */
+/* FOOTER */
 .footer-container {
     background: #0B4F14;
     color: white;
-    padding: 10px 0;
+    height: 200px;
     font-family: Arial, sans-serif;
-    height: 30%;
     width: 100%;
-    position: relative;
-}
-
-.footer-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: flex-start;
-    max-width: 2500px;
-    margin: 0 auto;
-    width: 100%;
+    /* align-items: flex-start; */
+    /* padding: 10px 15px; */
+    position: relative;
+    margin-top: auto; /* Asegura que el footer siempre se quede en la parte inferior */
 }
 
-.footer1 {
-    font-size: 80px;
-}
-
+/* 4. El contenido dentro del footer */
 .footer-center, .footer2, .footer3 {
     flex: 1;
-    margin: 25px;
+    margin: 10px;
     min-width: 180px;
-    font-size: 22px;
-    padding: 10px;
+    font-size: 24px;
+    padding: 5px;
     text-align: left;
 }
 
@@ -64,19 +58,21 @@ html, body {
 
 .prodcons2 {
     width: 100%;
-    max-width: 250px; /* Limita el tamaño máximo de la imagen, menos reducida */
+    max-width: 300px;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    margin-top: -15%;
 }
 
 h4 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: bold;
+    margin-top: 10%;
 }
 
 p, li {
     margin: 5px 0;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 ul {
@@ -87,23 +83,25 @@ ul {
 ul li a {
     color: white;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.5rem;
+    padding-left: 5%;
+    line-height: 20px;
 }
 
 .footer-bottom {
     font-size: 14px;
     text-align: right;
-    padding: 10px;
-    margin-top: -80px;
+    padding: 5px;
+    margin-top: 30px;
 }
 
-/* Botones en el footer */
+/* Botones */
 .contenedor-botones {
     display: flex;
     flex-direction: column;
-    gap: 20px;              /* Espacio entre botones */
-    align-items: flex-end;  /* Alineación de los botones a la derecha */
-    padding: 20px;
+    gap: 15px;
+    align-items: flex-end;
+    padding: 10px;
 }
 
 .suscribirme, .ini_secion {
@@ -114,9 +112,10 @@ ul li a {
     font-weight: bold;
     border-radius: 12px;
     cursor: pointer;
-    padding: 15px 30px;
+    padding: 12px 25px;
     transition: all 0.3s ease;
     width: 100%;
+    max-width: 250px;
 }
 
 .suscribirme:hover, .ini_secion:hover {
@@ -126,45 +125,31 @@ ul li a {
 }
 
 .footer2, .footer3 {
-    line-height: 29px;
-    margin-top: 20px;
+    line-height: 8px;
+    margin-top: 10px;
 }
 
-/* Responsividad */
-@media screen and (max-width: 1200px) {
+/* === RESPONSIVIDAD === */
+/* 5. Responsividad */
+@media screen and (max-width: 768px) {
     .footer-container {
         flex-direction: column;
+        align-items: center;
         text-align: center;
+        height: auto;
+        padding: 15px;
     }
 
     .footer-center, .footer2, .footer3 {
-        flex: 1 0 100%; /* Hace que los elementos se apilen en pantallas pequeñas */
+        font-size: 14px;
         text-align: center;
-    }
-
-    .contenedor-botones {
-        align-items: center;
+        min-width: 100%;
+        padding-left: 0;
     }
 
     .footer-bottom {
         text-align: center;
-        margin-top: 20px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .footer-center, .footer2, .footer3 {
-        font-size: 14px; /* Reducir el tamaño de la fuente en pantallas más pequeñas */
-    }
-
-    .suscribirme, .ini_secion {
-        font-size: 16px;
-        padding: 12px 25px;
-    }
-
-    /* Aseguramos que la imagen sea más pequeña en pantallas pequeñas */
-    .prodcons2 {
-        max-width: 200px; /* Limita menos la reducción de la imagen */
+        margin-top: 10px;
     }
 }
 
@@ -175,29 +160,10 @@ ul li a {
     }
 
     .footer-center, .footer2, .footer3 {
-        font-size: 12px; /* Reducir aún más el tamaño de la fuente */
-    }
-
-    .prodcons2 {
-        max-width: 150px; /* Reducir el tamaño máximo de la imagen en pantallas pequeñas */
-    }
-
-    /* Aseguramos que el footer abarque todo el ancho en pantallas pequeñas */
-    .footer {
-        width: 100%;
-    }
-
-    .footer-container {
-        width: 100%;
-    }
-
-    .contenedor-botones {
-        width: 100%; /* Hacer que los botones ocupen todo el ancho */
-        align-items: center;
+        font-size: 14px;
     }
 
     .footer-bottom {
-        text-align: center;
         font-size: 12px;
     }
 }

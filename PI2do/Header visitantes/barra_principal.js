@@ -1,15 +1,21 @@
-document.addEventListener("DOMContentLoaded", function () {
-    fetch("/PI2do/BarrasNav/barra_principal.html")
-        .then(response => {
-            if (response.ok) {
-                console.log("Footer cargado exitosamente");
-                return response.text();
-            } else {
-                console.log("Error al cargar el footer:", response.status);
-            }
-        })
+document.addEventListener('DOMContentLoaded', function() {
+    // Cargar barra principal
+    fetch('/PI2do/Header visitantes/barra_principal.html')
+        .then(response => response.text())
         .then(data => {
-            document.body.insertAdjacentHTML("beforeend", data);
+            document.getElementById('barraPrincipal').innerHTML = data;
+        })
+        .catch(error => {
+            console.error('Error al cargar la barra principal:', error);
         });
-  });
-  
+
+    // Cargar barra secundaria
+    fetch('/PI2do/Header visitantes/barra_secundaria.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('barraSecundaria').innerHTML = data;
+        })
+        .catch(error => {
+            console.error('Error al cargar la barra secundaria:', error);
+        });
+});
