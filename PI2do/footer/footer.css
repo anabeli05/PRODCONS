@@ -1,118 +1,83 @@
 :root {
     --verde: rgb(12, 115, 12);
-    --amarillo: #FFC107;
-    --azul: #0097A7;
+    --verde-oscuro: #0B4F14;
+    --gris-claro: #C0C0C0;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Georgia';
-}
-/* 1. Establecer la estructura del body y html para ocupar toda la pantalla */
-/* General */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-/* El contenido ocupa el espacio disponible pero nunca empuja el footer */
-.content {
-    flex-grow: 1;  /* Esto hace que el contenido se expanda si es necesario */
-    margin-top: 100%;
-}
-
-/* FOOTER */
-.footer-container {
-    background: #0B4F14;
+.site-footer {
+    background: var(--verde-oscuro);
     color: white;
-    height: 200px;
-    font-family: Arial, sans-serif;
+    width: 100%;
+    flex-shrink: 0;
+    margin-top: auto;
+}
+
+.footer-container {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    /* align-items: flex-start; */
-    /* padding: 10px 15px; */
-    position: relative;
-    margin-top: auto; /* Asegura que el footer siempre se quede en la parte inferior */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* 4. El contenido dentro del footer */
-.footer-center, .footer2, .footer3 {
+.footer-left, .footer-center, .footer2, .footer3 {
     flex: 1;
-    margin: 10px;
-    min-width: 180px;
-    font-size: 24px;
-    padding: 5px;
-    text-align: left;
-}
-
-.footer-center {
-    max-width: 500px;
+    min-width: 200px;
+    padding: 10px;
 }
 
 .prodcons2 {
     width: 100%;
-    max-width: 300px;
+    max-width: 250px;
     height: auto;
-    margin-bottom: 5px;
-    margin-top: -15%;
 }
 
-h4 {
-    margin-bottom: 10px;
-    font-weight: bold;
-    margin-top: 10%;
+.footer-center h4 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
 }
 
-p, li {
-    margin: 5px 0;
-    font-size: 1.5rem;
+.footer-center p {
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
-ul {
+.footer2 ul {
     list-style: none;
     padding: 0;
 }
 
-ul li a {
+.footer2 li {
+    margin-bottom: 10px;
+}
+
+.footer2 a {
     color: white;
     text-decoration: none;
-    font-size: 1.5rem;
-    padding-left: 5%;
-    line-height: 20px;
+    transition: color 0.3s ease;
 }
 
-.footer-bottom {
-    font-size: 14px;
-    text-align: right;
-    padding: 5px;
-    margin-top: 30px;
+.footer2 a:hover {
+    color: var(--gris-claro);
 }
 
-/* Botones */
 .contenedor-botones {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    align-items: flex-end;
-    padding: 10px;
+    gap: 10px;
 }
 
 .suscribirme, .ini_secion {
-    background-color: #C0C0C0;
+    background-color: var(--gris-claro);
     color: var(--verde);
     border: 3px solid var(--verde);
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     border-radius: 12px;
     cursor: pointer;
-    padding: 12px 25px;
+    padding: 10px 20px;
     transition: all 0.3s ease;
     width: 100%;
     max-width: 250px;
@@ -121,49 +86,34 @@ ul li a {
 .suscribirme:hover, .ini_secion:hover {
     background-color: #a9a9a9;
     color: white;
-    transform: scale(1.05);
 }
 
-.footer2, .footer3 {
-    line-height: 8px;
-    margin-top: 10px;
+.footer-bottom {
+    text-align: center;
+    padding: 10px;
+    background: #083a0e;
+    font-size: 14px;
+    width: 100%;
 }
 
-/* === RESPONSIVIDAD === */
-/* 5. Responsividad */
-@media screen and (max-width: 768px) {
+/* Responsive */
+@media (max-width: 768px) {
     .footer-container {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        height: auto;
-        padding: 15px;
     }
-
-    .footer-center, .footer2, .footer3 {
-        font-size: 14px;
+    
+    .footer-left, .footer-center, .footer2, .footer3 {
         text-align: center;
-        min-width: 100%;
-        padding-left: 0;
     }
-
+    
+    .contenedor-botones {
+        align-items: center;
+    }
+    
     .footer-bottom {
-        text-align: center;
-        margin-top: 10px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .suscribirme, .ini_secion {
-        font-size: 14px;
-        padding: 10px 20px;
-    }
-
-    .footer-center, .footer2, .footer3 {
-        font-size: 14px;
-    }
-
-    .footer-bottom {
-        font-size: 12px;
+        position: static;
+        margin-top: 20px;
     }
 }

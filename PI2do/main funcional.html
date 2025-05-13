@@ -100,9 +100,10 @@
         }
     </script>
 
-
-    <div class="sobrecont">
-        <div class="cuadro-info">
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <div class="sobrecont">
+            <div class="cuadro-info">
             <h2>BLOG</h2>
             <p>Somos una organización dedicada a cuidar del medio ambiente, aplicándolo en nuestra vida diaria y
                 promoviendo a los demás a hacerlo para el bienestar de todos.</p>
@@ -205,7 +206,42 @@
             </article>
         </div>
     </section>
+    </main>
 
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container"></div>
+    </footer>
+
+    <script>
+        // Toggle para la visibilidad del menú de hamburguesa
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.classList.toggle("active");
+        }
+
+        const idiomaToggle = document.getElementById('idiomaToggle');
+        const bandera = document.getElementById('banderaIdioma');
+        const opciones = document.getElementById('idiomasOpciones');
+
+        idiomaToggle.addEventListener('click', () => {
+            opciones.style.display = opciones.style.display === 'block' ? 'none' : 'block';
+        });
+
+        function cambiarIdioma(idioma) {
+            if (idioma === 'ingles') {
+                bandera.src = "/PI2do/imagenes/logos/ingles.png";
+            } else {
+                bandera.src = "/PI2do/imagenes/logos/espanol.png";
+            }
+            opciones.style.display = 'none';
+        }
+    </script>
+
+    <script src="/PI2do/Header visitantes/barra_principal.js"></script>
+    <script src="/PI2do/footer/footer.js"></script>
+</body>
+</html>
     
 
     <!-- <div class="carousel-container">
@@ -230,14 +266,3 @@
     </div> -->
     
     <!--FOOTER-->
-    <!-- <footer>
-        <div class="footer-container"></div>
-      </footer> -->
-      
-
-
-      <script src="/PI2do/Header visitantes/barra_principal.js"></script>
-<!-- <script src="/PI2do/footer/footer.js"></script> -->
-</body>
-
-</html>
