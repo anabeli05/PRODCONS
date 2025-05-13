@@ -17,7 +17,6 @@
     <!-- ============================================= -->
     <!-- SECCIÓN DE ANIMACIÓN DE FONDO -->
     <!-- ============================================= -->
-    <!-- Contiene círculos animados que flotan en el fondo -->
     <div class="background-animation">
         <div class="circle circle-1"></div>
         <div class="circle circle-2"></div>
@@ -51,27 +50,33 @@
             <!-- FORMULARIO DE LOGIN (visible por defecto) -->
             <!-- ============================================= -->
             <div class="form" id="login-form">
-                <h1>INGRESAR USUARIO</h1>                <form action="procesar_login.php" method="POST">
+                <h1>INGRESAR USUARIO</h1>
+                <form action="">
                     <!-- Campo para el correo electrónico -->
                     <div class="buton">
                         <div class="input-area">
-                            <input type="email" placeholder="Correo Electrónico" name="email" required>
-                            <i class="fas fa-envelope"></i> <!-- Icono de Font Awesome -->
+                            <input type="email" placeholder="Correo Electrónico" required>
+                            <i class="fas fa-envelope"></i>
                         </div>
                     </div>
 
                     <!-- Campo para la contraseña -->
                     <div class="buton">
                         <div class="input-area">
-                            <input type="password" placeholder="Contraseña" name="password" required>
-                            <i class="fas fa-lock"></i> <!-- Icono de Font Awesome -->
+                            <input type="password" placeholder="Contraseña" required>
+                            <i class="fas fa-lock"></i>
                         </div>
                     </div>
 
-                    <!-- Checkbox "Recuérdame" -->
-                    <div class="recuerdame">
-                        <input class="C" type="checkbox">
-                        <label>Recuérdame</label>
+                    <!-- Checkbox "Recuérdame" y enlace para recuperar contraseña -->
+                    <div class="recuerdame-contenedor">
+                        <div class="recuerdame">
+                            <input class="C" type="checkbox">
+                            <label>Recuérdame</label>
+                        </div>
+                        <div class="olvido-contrasena">
+                            <a href="#" id="mostrar-recuperacion">¿Olvidaste tu contraseña?</a>
+                        </div>
                     </div>
         
                     <!-- Botón de envío -->
@@ -94,7 +99,7 @@
                     <div class="buton">
                         <div class="input-area">
                             <input type="text" placeholder="Nombre Completo" required>
-                            <i class="fas fa-user"></i> <!-- Icono de Font Awesome -->
+                            <i class="fas fa-user"></i>
                         </div>
                     </div>
 
@@ -139,13 +144,41 @@
             </div>
             
             <!-- ============================================= -->
+            <!-- FORMULARIO DE RECUPERACIÓN (oculto inicialmente) -->
+            <!-- ============================================= -->
+            <div class="form" id="recuperacion-form" style="display: none;">
+                <h1>RECUPERAR CONTRASEÑA</h1>
+                <form action="">
+                    <!-- Instrucciones -->
+                    <div class="instrucciones">
+                        <p>Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.</p>
+                    </div>
+
+                    <!-- Campo para el correo electrónico -->
+                    <div class="buton">
+                        <div class="input-area">
+                            <input type="email" placeholder="Correo Electrónico" required>
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+
+                    <!-- Botón de envío -->
+                    <input type="submit" value="ENVIAR ENLACE"> 
+                    
+                    <!-- Enlace para volver al login -->
+                    <div class="alternar-form">
+                        <p>¿Recordaste tu contraseña? <a href="#" id="volver-login">Inicia sesión aquí</a></p>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- ============================================= -->
             <!-- CONTENEDOR DEL LOGO (lado derecho) -->
             <!-- ============================================= -->
             <div class="contenedor-logo">
                 <img src="/PI2do/imagenes/login.png" alt="Imagen de fondo" class="bg-image">
                 <figure>
                     <img src="/PI2do/imagenes/prodcon/logoSinfondo.png" alt="Logo transparente" class="logo-portada">
-                   
                 </figure>
             </div>
         </section>
@@ -155,17 +188,36 @@
     <!-- SCRIPTS JAVASCRIPT -->
     <!-- ============================================= -->
     <script>
-        // Función para alternar entre formularios de login y registro
+        // Función para alternar entre formularios
+        function mostrarFormulario(idFormulario) {
+            // Ocultar todos los formularios primero
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('registro-form').style.display = 'none';
+            document.getElementById('recuperacion-form').style.display = 'none';
+            
+            // Mostrar el formulario solicitado
+            document.getElementById(idFormulario).style.display = 'block';
+        }
+        
+        // Event listeners para los enlaces
         document.getElementById('mostrar-registro').addEventListener('click', function(e) {
             e.preventDefault();
-            document.getElementById('login-form').style.display = 'none';
-            document.getElementById('registro-form').style.display = 'block';
+            mostrarFormulario('registro-form');
         });
         
         document.getElementById('mostrar-login').addEventListener('click', function(e) {
             e.preventDefault();
-            document.getElementById('registro-form').style.display = 'none';
-            document.getElementById('login-form').style.display = 'block';
+            mostrarFormulario('login-form');
+        });
+        
+        document.getElementById('mostrar-recuperacion').addEventListener('click', function(e) {
+            e.preventDefault();
+            mostrarFormulario('recuperacion-form');
+        });
+        
+        document.getElementById('volver-login').addEventListener('click', function(e) {
+            e.preventDefault();
+            mostrarFormulario('login-form');
         });
 
         // Efectos de hover para los botones de envío
