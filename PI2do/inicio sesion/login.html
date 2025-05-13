@@ -51,12 +51,11 @@
             <!-- FORMULARIO DE LOGIN (visible por defecto) -->
             <!-- ============================================= -->
             <div class="form" id="login-form">
-                <h1>INGRESAR USUARIO</h1>
-                <form action="">
+                <h1>INGRESAR USUARIO</h1>                <form action="procesar_login.php" method="POST">
                     <!-- Campo para el correo electrónico -->
                     <div class="buton">
                         <div class="input-area">
-                            <input type="email" placeholder="Correo Electrónico" required>
+                            <input type="email" placeholder="Correo Electrónico" name="email" required>
                             <i class="fas fa-envelope"></i> <!-- Icono de Font Awesome -->
                         </div>
                     </div>
@@ -64,7 +63,7 @@
                     <!-- Campo para la contraseña -->
                     <div class="buton">
                         <div class="input-area">
-                            <input type="password" placeholder="Contraseña" required>
+                            <input type="password" placeholder="Contraseña" name="password" required>
                             <i class="fas fa-lock"></i> <!-- Icono de Font Awesome -->
                         </div>
                     </div>
