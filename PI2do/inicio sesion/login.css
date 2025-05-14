@@ -1,4 +1,41 @@
 /* ============================================= */
+/* ESTILOS PARA RECUPERACIÓN DE CONTRASEÑA */
+/* ============================================= */
+
+/* Contenedor para "Recuérdame" y "Olvidé contraseña" */
+.recuerdame-contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 15px auto;
+}
+
+/* Estilo para el enlace "Olvidé contraseña" */
+.olvido-contrasena a {
+    color: var(--verde-oscuro);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.olvido-contrasena a:hover {
+    text-decoration: underline;
+    color: var(--verde-claro);
+}
+
+/* Instrucciones para recuperación */
+.instrucciones {
+    width: 90%;
+    margin: 0 auto 25px;
+    color: var(--gris);
+    font-size: 1.3rem;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* ============================================= */
 /* VARIABLES CSS (valores reutilizables) */
 /* ============================================= */
 :root {

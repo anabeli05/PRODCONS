@@ -10,27 +10,6 @@
     <link rel="stylesheet" href="articulos.css">
     <link href="/PI2do/Header visitantes/barra_principal.css" rel="stylesheet">
 
-    <!-- Google Cloud Translation API -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-    <!-- Script de traducción global -->
-    <script src="/PI2do/translate.js"></script>
-    <style>
-        /* Estilos para la bandera de idioma */
-        #banderaIdioma {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid black;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        
-        #banderaIdioma:hover {
-            transform: scale(1.1);
-        }
-    </style>
-
 </head>
 
 <body>
@@ -40,14 +19,17 @@
             <div class="principal">
                 <a class="navlink" href="/PI2do/empresas_responsables/empresasr.html">EMPRESAS RESPONSABLES</a>
 
-                <!-- Bandera para cambiar idioma -->
+                <!-- Bandera actual -->
                 <div id="idiomaToggle">
-                    <img class="españa" id="banderaIdioma" src="/PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
+                    <img class="españa" id="banderaIdioma" src="/PI2do/imagenes/logos/espanol.png" alt="Idioma">
                 </div>
+
                 <!-- Opción secundaria -->
                 <div id="idiomasOpciones">
-                    <img class="ingles" src="/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés">
-                    <img class="españa" src="/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español">
+                    <img class="ingles" src="/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')"
+                        alt="Cambiar a inglés">
+                    <img class="españa" src="/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')"
+                        alt="Cambiar a español">
                 </div>
             </div>
         </div>
@@ -100,41 +82,25 @@
             menu.classList.toggle("active");
         }
 
-        // Función para alternar entre idiomas
-        function alternarIdioma() {
-            const bandera = document.getElementById('banderaIdioma');
-            const idiomaActual = bandera.src.includes('ingles.png') ? 'ingles' : 'espanol';
-            const nuevoIdioma = idiomaActual === 'ingles' ? 'espanol' : 'ingles';
-            
-            // Cambiar la imagen de la bandera
-            bandera.src = nuevoIdioma === 'ingles' 
-                ? "/PI2do/imagenes/logos/ingles.png" 
-                : "/PI2do/imagenes/logos/espanol.png";
-            
-            // Realizar la traducción
-            translateContent(nuevoIdioma === 'ingles' ? 'en' : 'es');
-            
-            // Guardar la preferencia en localStorage
-            localStorage.setItem('preferredLanguage', nuevoIdioma === 'ingles' ? 'en' : 'es');
-        }
+        const idiomaToggle = document.getElementById('idiomaToggle');
+        const bandera = document.getElementById('banderaIdioma');
+        const opciones = document.getElementById('idiomasOpciones');
 
-        // Cargar el idioma guardado al iniciar la página
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedLanguage = localStorage.getItem('preferredLanguage');
-            if (savedLanguage) {
-                const bandera = document.getElementById('banderaIdioma');
-                bandera.src = savedLanguage === 'en' 
-                    ? "/PI2do/imagenes/logos/ingles.png" 
-                    : "/PI2do/imagenes/logos/espanol.png";
-                translateContent(savedLanguage);
-            }
+        idiomaToggle.addEventListener('click', () => {
+            opciones.style.display = opciones.style.display === 'block' ? 'none' : 'block';
         });
+
+        function cambiarIdioma(idioma) {
+            if (idioma === 'ingles') {
+                bandera.src = "/PI2do/imagenes/logos/ingles.png";
+            } else {
+                bandera.src = "/PI2do/imagenes/logos/espanol.png";
+            }
+            opciones.style.display = 'none';
+        }
     </script>
 
-    
 
-    <!-- Contenido principal -->
-    <main class="main-content">
     <div class="sobrecont">
         <div class="cuadro-info">
             <h2>BLOG</h2>
@@ -143,7 +109,6 @@
         </div>
         <img class="imagen-principal" src="/PI2do/imagenes/tractor.png" alt="Imagen Principal">
 </body>
-
 <!-- Banner de Cookies -->
 <div class="cookie-banner" id="cookieBanner">
     <div class="cookie-content">
@@ -252,17 +217,7 @@
             </article>
         </div>
     </section>
-    </main>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-container"></div>
-    </footer>
-
-    <script src="/PI2do/Header visitantes/barra_principal.js"></script>
-    <script src="/PI2do/footer/footer.js"></script>
-</body>
-</html>
     
 
     <!-- <div class="carousel-container">
@@ -287,6 +242,11 @@
     </div> -->
     
     <!--FOOTER-->
+    <!-- <footer>
+        <div class="footer-container"></div>
+      </footer> -->
+      
+
 
       <script src="/PI2do/Header visitantes/barra_principal.js"></script>
 <!-- <script src="/PI2do/footer/footer.js"></script> -->

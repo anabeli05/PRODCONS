@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/PI2do/footer/footer.css">
     <link rel="stylesheet" href="articulos.css">
     <link href="/PI2do/Header visitantes/barra_principal.css" rel="stylesheet">
-
     <!-- Google Cloud Translation API -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
@@ -30,24 +29,17 @@
             transform: scale(1.1);
         }
     </style>
-
 </head>
 
 <body>
-
     <header>
         <div class="header-contenedor">
             <div class="principal">
                 <a class="navlink" href="/PI2do/empresas_responsables/empresasr.html">EMPRESAS RESPONSABLES</a>
 
-                <!-- Bandera para cambiar idioma -->
+                <!-- Bandera para cambiar idioma (alterna con cada clic) -->
                 <div id="idiomaToggle">
                     <img class="españa" id="banderaIdioma" src="/PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
-                </div>
-                <!-- Opción secundaria -->
-                <div id="idiomasOpciones">
-                    <img class="ingles" src="/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés">
-                    <img class="españa" src="/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español">
                 </div>
             </div>
         </div>
@@ -99,14 +91,14 @@
             const menu = document.getElementById("menu");
             menu.classList.toggle("active");
         }
-
-        // Función para alternar entre idiomas
+        
+        // Función para alternar entre idiomas con un solo clic
         function alternarIdioma() {
             const bandera = document.getElementById('banderaIdioma');
             const idiomaActual = bandera.src.includes('ingles.png') ? 'ingles' : 'espanol';
             const nuevoIdioma = idiomaActual === 'ingles' ? 'espanol' : 'ingles';
             
-            // Cambiar la imagen de la bandera
+            // Cambiar la imagen de la bandera inmediatamente
             bandera.src = nuevoIdioma === 'ingles' 
                 ? "/PI2do/imagenes/logos/ingles.png" 
                 : "/PI2do/imagenes/logos/espanol.png";
@@ -117,7 +109,7 @@
             // Guardar la preferencia en localStorage
             localStorage.setItem('preferredLanguage', nuevoIdioma === 'ingles' ? 'en' : 'es');
         }
-
+        
         // Cargar el idioma guardado al iniciar la página
         document.addEventListener('DOMContentLoaded', function() {
             const savedLanguage = localStorage.getItem('preferredLanguage');
@@ -126,15 +118,11 @@
                 bandera.src = savedLanguage === 'en' 
                     ? "/PI2do/imagenes/logos/ingles.png" 
                     : "/PI2do/imagenes/logos/espanol.png";
-                translateContent(savedLanguage);
             }
         });
     </script>
 
-    
 
-    <!-- Contenido principal -->
-    <main class="main-content">
     <div class="sobrecont">
         <div class="cuadro-info">
             <h2>BLOG</h2>
@@ -142,24 +130,10 @@
                 promoviendo a los demás a hacerlo para el bienestar de todos.</p>
         </div>
         <img class="imagen-principal" src="/PI2do/imagenes/tractor.png" alt="Imagen Principal">
-</body>
-
-<!-- Banner de Cookies -->
-<div class="cookie-banner" id="cookieBanner">
-    <div class="cookie-content">
-        <p>Utilizamos cookies para mejorar tu experiencia en nuestro sitio web. Al hacer clic en "Aceptar todas", aceptas el uso de todas las cookies. Sin embargo, puedes visitar "Configuración de cookies" para proporcionar un consentimiento controlado.</p>
-        <div class="cookie-buttons">
-            <button id="rejectCookies" class="cookie-btn reject-btn">Rechazar</button>
-            <button id="acceptCookies" class="cookie-btn accept-btn">Aceptar</button>
-        </div>
     </div>
-</div>
-
-<script src="cookies.js"></script>
-</div>
 
 
-<h3 class="apubli"> MIRA MAS DE NUESTRO CONTENIDO </h3>
+    <h3 class="apubli"> MIRA MAS DE NUESTRO CONTENIDO </h3>
 
 
     <section class="post-list">
@@ -252,17 +226,7 @@
             </article>
         </div>
     </section>
-    </main>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-container"></div>
-    </footer>
-
-    <script src="/PI2do/Header visitantes/barra_principal.js"></script>
-    <script src="/PI2do/footer/footer.js"></script>
-</body>
-</html>
     
 
     <!-- <div class="carousel-container">
@@ -287,6 +251,11 @@
     </div> -->
     
     <!--FOOTER-->
+    <!-- <footer>
+        <div class="footer-container"></div>
+      </footer> -->
+      
+
 
       <script src="/PI2do/Header visitantes/barra_principal.js"></script>
 <!-- <script src="/PI2do/footer/footer.js"></script> -->
