@@ -1,290 +1,167 @@
-.barra_left{
-    top: 0;/*que tan separado estara del inicio*/
-    left: 0;
-    width: 100%;/*anchura que abarcara de la pantalla*/
-    background: rgb(225, 216, 204);/*color del fondo*/
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 20px;/*indicaremos cuanto lo justificaremos a la derecha*/
-    border-bottom: 4px solid black;
-    position: fixed; /* Fija la barra */
-    left: 0; /* Alineación izquierda */
-    right: 0;
-    height: 50px;
-    z-index: 1000;
-}
-
-.flecha_left svg {
-    width: 25px; /* Tamaño del ícono */
-    height: 50px;
-    fill: #000; /* Color del icono */
-    cursor: pointer;
-    /*transition: transform 0.3s ease;*/
-    padding-right: 1630px;
-    margin-top: 6px;
-}
 .sobreprod {
-    display: flex; /* Coloca los elementos en fila */
-    align-items: center; /* Alinea verticalmente el cuadro y la imagen */
-    justify-content: center; /* Centra todo horizontalmente */
-    margin: 50px auto; /* Centra todo el contenedor */
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px auto;
 }
 
-/* Ajustes para la imagen */
+/* Imagen principal */
 .imagens {
-    display: block;       /*  centrar */
-    width: 64%;           /* Define el ancho */
-    height: 620px;        /* Define la altura */
-    object-fit: cover;    /* Ajusta la imagen sin deformarla */
-    margin-left: 578px;
+    display: block;
+    width: 64%;
+    height: 620px;
+    object-fit: cover;
+    margin-right: 578px;
     margin-top: 40px;
 }
 
-/* Ajustes para el cuadro */
+/* Cuadro de información */
 .info-prod {
     position: absolute;
-    top: 324.5px; /* Ajusta el cuadro arriba de la imagen*/
-    left: 9px;
-    transform: translateY(-50%);/*Centrar el cuadro de manera horizontal*/
-    height: 570px; /*la altura del cuadrado*/
-    background-color:  #868278;/*color de fondo que contendra el cuadrado*/
-    color: white;/*color de las letras que contendra el texto añadido*/
-    font-size: 20px;/*Tamaño asignado de las letras*/
+    top: 324.5px;
+    right: 9px;
+    transform: translateY(-50%);
+    height: 570px;
+    background-color: #868278;
+    color: white;
+    font-size: 18px;
     display: flex;
-    align-items: center;/*posicionar el texto en el centro del cuadrado*/
-    justify-content: center;/*justificar el contenido al centro*/
-    flex-direction: column; /* Asegura que el texto esté arriba */
-    text-align: justify; /* justifica el texto */
-    width: 50%; /* Ajusta el ancho si es necesario */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: justify;
+    width: 50%;
     padding: 25px;
     font-family: 'Arial Narrow Bold', sans-serif;
     max-width: 540px;
     margin-top: 75.5px;
     z-index: 1;
-    margin-bottom: 0;
 }
 
-.title{
+.title {
     padding: 10px;
     font-size: 36px;
     text-align: center;
     transform: translateY(-5px);
     line-height: 44px;
-    font-family: 'Georgia';
 }
 
-.text{
+.texto {
     padding: 10px;
     font-size: 25px;
-    text-align:justify;
+    text-align: justify;
     transform: translateY(-20px);
     width: 460px;
-    line-height: 30px;/*espacio entre renglones*/
-    font-family: 'Georgia';
-
+    line-height: 30px;
 }
-/* Para que se adapte bien en pantallas pequeñas */
+
+
+/* === RESPONSIVE DESIGN === */
+
+/* Para pantallas hasta 1024px */
+@media (max-width: 1024px) {
+    .sobreprod {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 30px 0;
+    }
+
+    .imagens {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .info-prod {
+        position: static;
+        transform: none;
+        width: 100%;
+        height: auto;
+        margin-top: 45px;
+        padding: 55px;
+        box-sizing: border-box;
+        max-width: none; /* <--- Esto elimina el límite de ancho */
+    }
+
+    .title {
+        font-size: 28px;
+        line-height: 36px;
+        text-align: center;
+    }
+
+    .texto {
+        font-size: 20px;
+        line-height: 28px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* Hasta 768px */
+/* Para pantallas hasta 768px */
 @media (max-width: 768px) {
     .sobreprod {
         flex-direction: column;
-    }
-    .imagen-principal, .cuadro-info {
-        width: 100%;
-    }
-}
-
-/* Empuja el footer hacia abajo*/
-.footer {
-    background: #0B4F14;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-    font-family: 'Georgia';
-    height: 100%;
-    margin-top: auto; /*pega el footer al suelo*/
-    max-height: 200px; /*acomodar la altura maxima*/
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 2500px;
-    margin: 0 auto;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.af{
-    max-width: 500px; /* Comprime el ancho del contenedor */
-    /*text-align: left; /* Alinea el texto a la izquierda */
-    padding: 0;
-    text-align: justify;
-    line-height: 15px;
-    color: white;
-    font-size: 20px;
-    font-family: 'Georgia';
-}
-
-.footer-center{
-    max-width: 500px; /* Comprime el ancho del contenedor */
-    /*text-align: left; /* Alinea el texto a la izquierda */
-    padding: 0;
-    text-align: left;
-    line-height: 18px;
-    padding-top: 10px;/*mover el texto para abajo*/
-}
-
-.footer1  {
-    text-align: justify;
-    font-size: 16px; /* Ajusta el tamaño de la fuente para hacer el texto más comprimido */
-    line-height: 26px; /* Ajusta la altura de las líneas para que el texto esté más compacto */
-    font-family: 'Georgia';
-}
-.footer3, .footer-center, .footer2 {
-    flex: 1;
-    margin: 25px;
-    min-width: 100px;
-    font-size: 25px;
-    font-family: 'Georgia';
-}
-
-.prodcons2 {
-    width: 300px;
-    height: auto;
-    margin-bottom: 5.5px;
-}
-
-h4 {
-    margin: 0 0 10px;
-    font-weight: bold;
-    transform: translateY(-8px); /* Mueve el texto de 'SOBRE NOSOTROS' hacia arriba */
-    font-family: 'Georgia';
-}
-
-.pfooter .lf {
-    margin: 5px 0;
-    font-size: 0.9rem;
-    font-family: 'Georgia';
-}
-
-
-
-.ulfooter .lf .af {
-    text-decoration: none;
-    font-size: 15px;
-    line-height: 35px;
-    padding-top: 8px;
-    font-family: 'Georgia';
-    list-style-type: none;
-}
-
-.footer2 li{
-    list-style-type: none;
-}
-
-.footer2{
-    line-height: 15px;
-    transform: translateX(80px);
-    font-size: 26px;
-    font-family: 'Georgia';
-    margin-top: 5px;
-    text-align: left;
-}
-
-.footer3{
-    line-height: 18px;
-    margin-top: 5px;
-}
-
-.footer3 a{
-    color: white;
-    text-decoration: none;
-    font-size: 15px;
-    line-height: 65px;
-    margin-right: 100px;
-}
-
-.footer3 li{
-    list-style-type: none;
-}
-
-.cfooter{
-    font-size: 20px;
-    padding-top: 10px;
-    text-align: left;
-    font-family: 'Georgia';
-    margin-left: 20px;
-}
-
-
-.footer-bottom {
-    flex: 1;
-    margin: 1px;
-    min-width: -150px;
-    font-family: 'Georgia';
-    font-size: 17.4px;
-    text-align: right;
-    margin-top: -50px;
-    transform: translateX(-22px)
-}
-
-/* Responsividad para dispositivos más pequeños (móviles) */
-@media (max-width: 768px) {
-    .sobreprod {
-        flex-direction: column; /* Coloca elementos en columna */
         align-items: center;
+        width: 100%;
+        margin: 30px 0;
+    }
+
+    .imagens {
+        width: 100%;
+        height: auto;
+        margin-top: 0px;
     }
 
     .info-prod {
-        position: static; /* Elimina posicionamiento absoluto */
-        order: 1;
-        width: 90%;
-        margin: 10px auto;
+        position: static;
         transform: none;
-        top: auto;
-        left: auto;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin-top: 40px;
+        padding: 20px;
+        box-sizing: border-box;
     }
 
     .title {
-        font-size: 22px;
+        font-size: 24px;
+        line-height: 32px;
+        text-align: center;
+    }
+
+    .texto {
+        font-size: 18px;
+        line-height: 26px;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: justify;
+    }
+}
+
+/* Hasta 480px */
+/* Para pantallas hasta 480px */
+@media (max-width: 480px) {
+    .imagens {
+        width: 100%;
+        height: auto;
+        margin-top: 0px;
+    }
+
+    .info-prod {
+        width: 100%;
+        padding: 15px;
+        margin-top: 35px;
+    }
+
+    .title {
+        font-size: 20px;
         line-height: 28px;
     }
 
-    .text {
-        font-size: 14px;
-        line-height: 22px;
-        width: 100%;
-    }
-
-    .imagens {
-        order: 2;
-        width: 90%;
-        margin: 10px auto;
-        height: auto;
-    }
-
-}
-
-@media (max-width: 480px) {
-    .info-prod {
-        font-size: 14px;
-        padding: 10px;
-        width: 95%;
-    }
-    .title {
-        font-size: 18px;
+    .texto {
+        font-size: 16px;
         line-height: 24px;
-    }
-
-    .text {
-        font-size: 12px;
-        line-height: 20px;
-    }
-
-    .imagens {
-        width: 95%;
     }
 }
