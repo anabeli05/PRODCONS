@@ -106,7 +106,7 @@ header {
     display: flex;
     align-items: center; /* Centra el logo verticalmente */
     justify-content: center; /* Centra el logo horizontalmente */
-    width: 13%; /* Ajusta el tamaño del logo */
+    width: 11.5%; /* Ajusta el tamaño del logo */
     z-index: 10; /* Asegura que el logo esté por encima de otros elementos */
     max-width: 100%;
 }
@@ -262,7 +262,7 @@ header {
     }
 
     .prodcons {
-        width: 120px;
+        width: 220px;
     }
 
     .search-form input {
@@ -292,7 +292,8 @@ header {
     }
 
     .prodcons {
-        width: 80px;
+        width: 100px;
+        height: 15%;
     }
 
     .search-form input {
