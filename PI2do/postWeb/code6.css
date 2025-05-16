@@ -6,40 +6,22 @@ body {
     background-color: #f4f4f4;
     color: #333;
     font-size: 18px;
-}
-.barra_left{
-    top: 0;/*que tan separado estara del inicio*/
-    left: 0;
-    width: 100%;/*anchura que abarcara de la pantalla*/
-    background: rgb(225, 216, 204);/*color del fondo*/
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 20px;/*indicaremos cuanto lo justificaremos a la derecha*/
-    border-bottom: 4px solid black;
-    position: fixed; /* Fija la barra */
-    left: 0; /* Alineación izquierda */
-    right: 0;
-    height: 50px;
+    box-sizing: border-box;
 }
 
-.flecha_left svg {
-    width: 25px; /* Tamaño del ícono */
-    height: 50px;
-    fill: #000; /* Color del icono */
-    cursor: pointer;
-    /*transition: transform 0.3s ease;*/
-    padding-right: 1630px;
-    margin-top: 6px;
+/* Aplicar box-sizing a todos los elementos */
+*, *::before, *::after {
+    box-sizing: inherit;
 }
 
-/* Estilos para la sección que reemplaza al header */
+/* Header */
 .header-section {
     background-color: #3f5022;
     color: white;
     padding: 20px;
     text-align: center;
     margin-top: 90px;
+    width: 100%;
 }
 
 .header-section h1 {
@@ -47,47 +29,58 @@ body {
     font-size: 2.5rem;
 }
 
+/* Contenedor general */
 .contenedor-imagenes {
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     gap: 20px;
     padding: 20px;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
+    justify-content: space-between;
 }
 
 .texto {
     flex: 2;
     text-align: justify;
+    min-width: 280px;
+    width: 100%;
 }
 
 .imagenes {
     flex: 1;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 250px;
+    align-items: flex-end;
+    width: 100%;
 }
 
+/* Imágenes */
 img {
-    min-width: 350px;
-    max-width: 400px;
+    width: 100%;
     height: auto;
+    max-width: 100%;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
 }
 
 .imagen-primera {
-    min-width: 400px;
     max-width: 500px;
 }
 
 .imagen-huella {
-    min-width: 300px;
-    max-width: 350px; /* Tamaño más grande para esta imagen */
+    max-width: 350px;
 }
 
 main {
     padding: 20px;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
 }
 
@@ -108,15 +101,15 @@ ul {
     margin-left: 20px;
 }
 
-/* Estilos para la sección que reemplaza al footer */
+/* Footer */
 .footer-section {
     background-color: #333;
     color: white;
     padding: 20px;
     text-align: center;
-    max-width: 100%;
-    margin: 0 auto;
+    width: 100%;
     font-size: 15px;
+    margin-top: 40px;
 }
 
 .footer-section a {
@@ -128,8 +121,32 @@ ul {
     text-decoration: underline;
 }
 
-/* Estilos responsivos para pantallas pequeñas */
+/* Responsivo: tablets */
+@media (max-width: 1024px) {
+    .contenedor-imagenes {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .imagenes {
+        align-items: center;
+    }
+
+    .texto, .imagenes {
+        width: 100%;
+    }
+
+    .header-section h1 {
+        font-size: 2.2rem;
+    }
+}
+
+/* Responsivo: móviles */
 @media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+
     .contenedor-imagenes {
         flex-direction: column;
         align-items: center;
@@ -137,156 +154,48 @@ ul {
 
     .imagenes {
         justify-content: center;
+        align-items: center;
     }
 
     .texto, .imagenes {
-        flex: none;
         width: 100%;
+    }
+
+    .header-section h1 {
+        font-size: 2rem;
+    }
+
+    .footer-section {
+        font-size: 14px;
+        padding: 15px;
     }
 }
 
-/* Estilos específicos para la sección de la laptop */
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    body {
+        font-size: 15px;
+    }
+
+    .header-section h1 {
+        font-size: 1.7rem;
+    }
+
+    .footer-section {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    img {
+        max-width: 100%;
+    }
+}
+
+/* Casos específicos */
 .contenedor-imagenes.laptop {
-    flex-direction: row-reverse; /* Invierte el orden de los elementos */
+    flex-direction: row-reverse;
 }
 
-/* Estilos específicos para la sección de la mano con planta */
 .contenedor-imagenes.mano-planta {
-    flex-direction: row; /* Imagen a la izquierda, texto a la derecha */
-}
-
-/* Empuja el footer hacia abajo*/
-.footer {
-    background: #0B4F14;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-    font-family: 'Georgia';
-    height: 100%;
-    margin-top: auto; /*pega el footer al suelo*/
-    max-height: 200px; /*acomodar la altura maxima*/
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 2500px;
-    margin: 0 auto;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.af{
-    max-width: 500px; /* Comprime el ancho del contenedor */
-    /*text-align: left; /* Alinea el texto a la izquierda */
-    padding: 0;
-    text-align: justify;
-    line-height: 15px;
-    color: white;
-    font-size: 20px;
-    font-family: 'Georgia';
-}
-
-.footer-center{
-    max-width: 500px; /* Comprime el ancho del contenedor */
-    /*text-align: left; /* Alinea el texto a la izquierda */
-    padding: 0;
-    text-align: left;
-    line-height: 18px;
-    padding-top: 10px;/*mover el texto para abajo*/
-}
-
-.footer1  {
-    text-align: justify;
-    font-size: 16px; /* Ajusta el tamaño de la fuente para hacer el texto más comprimido */
-    line-height: 26px; /* Ajusta la altura de las líneas para que el texto esté más compacto */
-    font-family: 'Georgia';
-}
-.footer3, .footer-center, .footer2 {
-    flex: 1;
-    margin: 25px;
-    min-width: 100px;
-    font-size: 25px;
-    font-family: 'Georgia';
-}
-
-.prodcons2 {
-    width: 300px;
-    height: auto;
-    margin-bottom: 5.5px;
-}
-
-h4 {
-    margin: 0 0 10px;
-    font-weight: bold;
-    transform: translateY(-8px); /* Mueve el texto de 'SOBRE NOSOTROS' hacia arriba */
-    font-family: 'Georgia';
-}
-
-.pfooter .lf {
-    margin: 5px 0;
-    font-size: 0.9rem;
-    font-family: 'Georgia';
-}
-
-
-
-.ulfooter .lf .af {
-    text-decoration: none;
-    font-size: 15px;
-    line-height: 35px;
-    padding-top: 8px;
-    font-family: 'Georgia';
-    list-style-type: none;
-}
-
-.footer2 li{
-    list-style-type: none;
-}
-
-.footer2{
-    line-height: 15px;
-    transform: translateX(80px);
-    font-size: 26px;
-    font-family: 'Georgia';
-    margin-top: 5px;
-    text-align: left;
-}
-
-.footer3{
-    line-height: 18px;
-    margin-top: 5px;
-}
-
-.footer3 a{
-    color: white;
-    text-decoration: none;
-    font-size: 15px;
-    line-height: 65px;
-    margin-right: 100px;
-}
-
-.footer3 li{
-    list-style-type: none;
-}
-
-.cfooter{
-    font-size: 20px;
-    padding-top: 10px;
-    text-align: left;
-    font-family: 'Georgia';
-    margin-left: 20px;
-}
-
-
-.footer-bottom {
-    flex: 1;
-    margin: 1px;
-    min-width: -150px;
-    font-family: 'Georgia';
-    font-size: 17.4px;
-    text-align: right;
-    margin-top: -50px;
-    transform: translateX(-22px)
+    flex-direction: row;
 }

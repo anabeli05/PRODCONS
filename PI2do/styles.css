@@ -134,31 +134,13 @@ body{
     flex-direction: column;
 }
 
-
-.tex1{
-    position: fixed;
-    color: #000;
-    top: 125px; /* Suma de la altura de ambas barras */
-    left: 0; /*alineacion a la izquierda*/
-    width: 100%;/*ancho que abarcara en la pagina principal*/
-    height: 60px;/*tamaño que abarcara el texto*/
-    display: flex;
-    justify-content: flex-start;
-    text-align: left; 
-    padding-left: 35px;
-    background-color: white; /*Color del fondo*/
-    font-size: 18px;
-    font-weight: bold;
-    align-items: center;/* texto centrado*/
-    z-index: 7; /* configurarlo debajo de la segunda barra */
-}
-
 .imagen-principal{
     display: block;       /*  centrar */
     width: 90%;           /* Define el ancho */
     height: 500px;        /* Define la altura */
     object-fit: cover;    /* Ajusta la imagen sin deformarla */
-    margin: 250px auto 0; /* Centrar y empujar hacia abajo */
+    margin: 170px auto 0; /* Centrar y empujar hacia abajo */
+
 }
 
 .sobrecont{
@@ -168,8 +150,8 @@ body{
 
 .cuadro-info{
     position: absolute;
-    top: 45%; /* Ajusta el cuadro arriba de la imagen*/
-    left: 21.5%;
+    top: 35%; /* Ajusta el cuadro arriba de la imagen*/
+    left: 25%;
     transform: translateX(-50%);/*Centrar el cuadro de manera horizontal*/
     height: 340px; /*la altura del cuadrado*/
     background-color: beige;/*color de fondo que contendra el cuadrado*/
@@ -542,20 +524,11 @@ p {
 
 @media (max-width: 1024px) {
     .cuadro-info {
-        width: 45%;
+        width: 50%;
         font-size: 16px;
         height: auto;
         padding: 15px;
-    }
-}
-
-@media (max-width: 768px) {
-    .cuadro-info {
-        width: 80%;
-        font-size: 15px;
-        padding: 10px;
-        height: auto;
-        top: 30px;
+        left: 50%;
     }
 }
 
@@ -566,6 +539,7 @@ p {
         padding: 10px;
         height: auto;
         top: 20px;
+        left: 50%;
     }
 }
 
@@ -579,11 +553,11 @@ p {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 80%;
+      width: 70%;
       max-width: 90%;
-      padding: 15px;
+      padding: 10px;
       font-size: 16px;
-      z-index: 10;
+     
     }
   
     .cuadro-info p {
@@ -593,6 +567,7 @@ p {
     }
   }
 
+ 
   /* Mensaje de bienvenida */
 
 .falling-leaves-container {
@@ -751,4 +726,142 @@ p {
 .reject-btn {
     background-color: #868278;
     color: white;
+}
+
+/* Botón hamburguesa */
+.hamburger-icon {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    position: fixed;
+    top: 62px;
+    right: 15px;
+    z-index: 1001;
+    color: rgb(29, 123, 41);
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+/* Menú lateral móvil */
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background:   rgb(193, 238, 196);
+    width: 260px;
+    height: 100vh;
+    padding: 20px;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    width: 100%;
+}
+
+/* Mostrar cuando está activo */
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+/* Botón cerrar */
+.close-icon {
+    font-size: 24px;
+    align-self: flex-end;
+    cursor: pointer;
+    margin-bottom: 20px;
+    color: black;
+}
+
+/* Logo dentro del menú */
+.mobile-logo {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.mobile-logo img {
+    width: 300px;
+    height: auto;
+}
+
+/* Lista del menú */
+.mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    line-height: 80px;
+    margin-left: 50px;
+}
+
+.mobile-menu li {
+    margin: 15px 0;
+    width: 100%;
+    text-align: left 50%;
+    margin-top: -10px;
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    font-size: 19px;
+    color: black;
+}
+
+.lupa-icon {
+    width: 34px;
+    height: 24px;
+    margin-left: 30%;
+}
+
+.buscador-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.barra-busqueda {
+  width: 0;
+  opacity: 0;
+  transition: width 0.4s ease, opacity 0.4s ease;
+  padding: 5px;
+  border: rgb(193, 238, 196);
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Cuando se activa */
+.barra-busqueda.activa {
+  width: 250px; /* o el ancho que desees */
+  height: 40px;
+  opacity: 1;
+}
+
+
+
+/* Mostrar solo en móviles */
+@media screen and (max-width: 480px) {
+    .hamburger-icon {
+        display: block;
+    }
+
+    /* Oculta la segunda barra original en móviles */
+    .subtitulos {
+        display: none !important;
+        color: black;
+    }
+}
+
+@media screen and (max-width: 412px) {
+    .hamburger-icon {
+        display: block;
+    }
+
+    /* Oculta la segunda barra original en móviles */
+    .subtitulos {
+        display: none !important;
+        color: black;
+    }
 }

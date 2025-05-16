@@ -33,6 +33,68 @@
 
 </head>
 
+<!-- Botón hamburguesa (solo en móviles) -->
+<div class="hamburger-icon" onclick="toggleMenu()">☰</div>
+
+<!-- Menú hamburguesa lateral -->
+<nav class="mobile-menu" id="mobileMenu">
+  <div class="close-icon" onclick="toggleMenu()">✖</div>
+
+  <!-- Logo dentro del menú -->
+  <div class="mobile-logo">
+    <img src="/PI2do/imagenes/prodcon/logoSinfondo.png" alt="Logo" />
+  </div>
+
+  <!-- Opciones del menú -->
+  <ul>
+    <li><a href="/PI2do/pr/produccionr.html">PRODUCCIÓN RESPONSABLE</a></li>
+    <li><a href="/PI2do/cr/consumores.html">CONSUMO RESPONSABLE</a></li>
+     <li>
+      <form>
+        <button id="btnLupa" class="lupa" aria-label="Abrir buscador" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"
+               stroke-width="1.5">
+            <circle cx="10" cy="10" r="7"></circle>
+            <line x1="21" y1="21" x2="15" y2="15"></line>
+          </svg>
+        </button>
+        <div class="buscador-container">
+          <input type="text" id="barraBusqueda" class="barra-busqueda" placeholder="Buscar..." />
+        </div>
+      </form>
+    </li>
+  </ul>
+</nav>
+
+<script>
+  const btnLupa = document.getElementById('btnLupa');
+  const barraBusqueda = document.getElementById('barraBusqueda');
+
+  btnLupa.addEventListener('click', () => {
+    barraBusqueda.classList.toggle('activa');
+    if (barraBusqueda.classList.contains('activa')) {
+      barraBusqueda.focus();
+    }
+  });
+</script>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById("mobileMenu");
+        const burger = document.querySelector(".hamburger-icon");
+        
+        menu.classList.toggle("active");
+
+        // Ocultar hamburguesa si el menú está activo
+        if (menu.classList.contains("active")) {
+            burger.style.display = "none";
+        } else {
+            burger.style.display = "block";
+        }
+    }
+</script>
+
 <body>
 
     <header>
@@ -55,13 +117,6 @@
 
     <section class="logo">
         <div class="header_2">
-            <svg class="hamburguesa" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-linecap="round" stroke-linejoin="round" width="36" height="36" stroke-width="1.5" onclick="toggleMenu()">
-                <path d="M4 6l16 0"></path>
-                <path d="M4 12l16 0"></path>
-                <path d="M4 18l16 0"></path>
-            </svg>
-
             <img class="prodcons" src="/PI2do/imagenes/prodcon/logoSinfondo.png" alt="Logo">
 
             <div class="subtitulos">
@@ -83,23 +138,8 @@
         </div>
     </section>
 
-
-    <!-- Menú de hamburguesa -->
-    <div class="menu" id="menu">
-        <ul>
-            <li><a href="/PI2do/pr/produccionr.html" onclick="setActive(this)">PRODUCCION RESPONSABLE</a></li>
-            <li><a href="/PI2do/cr/consumores.html" onclick="setActive(this)">CONSUMO RESPONSABLE</a></li>
-            <li><a href="#">Lupa de búsqueda</a></li>
-        </ul>
-    </div>
-
     <script>
-        // Toggle para la visibilidad del menú de hamburguesa
-        function toggleMenu() {
-            const menu = document.getElementById("menu");
-            menu.classList.toggle("active");
-        }
-
+        
         // Función para alternar entre idiomas
         function alternarIdioma() {
             const bandera = document.getElementById('banderaIdioma');
@@ -286,10 +326,6 @@
         <button class="next">›</button>
     </div> -->
     
-    <!--FOOTER-->
+   
 
-      <script src="/PI2do/Header visitantes/barra_principal.js"></script>
-<!-- <script src="/PI2do/footer/footer.js"></script> -->
-</body>
-
-</html>
+ 
