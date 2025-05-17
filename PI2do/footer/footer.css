@@ -40,11 +40,11 @@
 /* TEXTOS */
 .footer-center h4 {
     margin-bottom: 15px;
-    font-size: 1.2rem;
+    font-size: 2rem;
 }
 
 .footer-center p {
-    font-size: 1rem;
+    font-size: 1.6rem;
     line-height: 1.5;
 }
 
@@ -63,6 +63,7 @@
     color: white;
     text-decoration: none;
     transition: color 0.3s ease;
+    line-height: 35px;
 }
 
 .footer2 a:hover {
@@ -119,10 +120,19 @@
         text-align: center;
         width: 100%;
         max-width: 100%;
+        font-size: 1rem;
     }
 
     .contenedor-botones {
         align-items: center;
+    }
+
+     .footer-center h4 {
+        font-size: 1.3rem;
+    }
+
+    .footer-center p {
+        font-size: 1rem;
     }
 }
 
@@ -144,3 +154,23 @@
         font-size: 12px;
     }
 }
+
+@media (max-width: 768px) {
+    .footer-center h4 {
+        font-size: 2rem;
+    }
+
+    .footer-center p {
+        font-size: 16px;
+    }
+
+    .suscribirme, .ini_secion {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .footer-bottom {
+        font-size: 12px;
+    }
+}
+
