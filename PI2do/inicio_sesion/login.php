@@ -126,7 +126,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['registro'])) {
     <!-- ============================================= -->
     <section class="logo"> 
         <div class="header_2">
-            <img class="prodcons" src="../imagenes/prodcon/logoSinfondo.png" alt="Logo"> 
+            <a href="/">           
+                 <img class="prodcons" src="../imagenes/prodcon/logoSinfondo.png" alt="Logo"> 
+            </a>
         </div>
     </section>
 

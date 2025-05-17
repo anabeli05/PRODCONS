@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     // Lógica para suscripción
                 });
                 
-                document.querySelector('.ini_secion')?.addEventListener('click', () => {
-                    window.location.href = "/PI2do/inicio sesion/login.html";
-                });
+                // document.querySelector('.ini_secion')?.addEventListener('click', () => {
+                //     window.location.href = "/PI2do/inicio sesion/login.html";
+                // });
             })
             .catch(error => {
                 console.error("Error al cargar el footer:", error);
