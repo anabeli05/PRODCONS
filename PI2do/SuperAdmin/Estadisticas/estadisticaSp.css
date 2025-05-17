@@ -1,0 +1,282 @@
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(225, 216, 204);;
+  padding: 10px 20px;
+  border-bottom: 2px solid #ccc;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 100px;
+  height: auto;
+}
+
+.admin-panel {
+  display: flex;
+  align-items: center;
+}
+
+.icon-img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.admin-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px;
+}
+
+.statistics {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px;
+}
+
+.stat {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.chart {
+  margin: 40px 0;
+  position: relative;
+}
+
+.chart-wrapper {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.bar-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bar-title {
+  flex: 0 0 250px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.bar-container {
+  flex: 1;
+  max-width: 700px;
+  position: relative;
+  background: #eaeaea;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  position: relative;
+  transition: width 0.5s ease;
+}
+
+.bar::after {
+  content: attr(data-label);
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+}
+
+.bar1 { background-color: #2d89ef; }
+.bar2 { background-color: #28a745; }
+.bar3 { background-color: #ff9800; }
+.bar4 { background-color: #9c27b0; }
+.bar5 { background-color: #f44336; }
+.bar6 { background-color: #00bcd4; }
+
+.axis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  font-size: 12px;
+  color: #333;
+  width: 100%;
+  padding-left: 260px;
+  box-sizing: border-box;
+  max-width: calc(260px + 700px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer {
+  margin-top: 30px;
+  background: #e0ffe0;
+  padding: 20px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.green-box {
+  display: flex;
+  align-items: center;
+  background-color: #32CD32;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: white;
+}
+
+.green-box i {
+  margin-right: 10px;
+}
+
+.footer-small {
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .statistics {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .bar-label {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .bar-title {
+      text-align: left;
+      width: 100%;
+  }
+
+  .bar-container {
+      width: 100%;
+  }
+
+  .axis {
+      padding-left: 0;
+      max-width: 100%;
+  }
+
+  .footer-content {
+      flex-direction: column;
+  }
+}
+
+.sidebar-admin {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 100%;
+  background-color: #dfc6a3;
+  padding: 16px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  transform: translateX(100%);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 1000;
+  color: white;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar-admin.visible-admin {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.admin-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+.admin-overlay.hidden-admin {
+  display: none;
+}
+
+.sidebar-admin h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-admin .close-admin-btn {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.sidebar-admin ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-admin ul li {
+  margin: 10px 0;
+}
+
+.sidebar-admin ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-admin ul li img {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}

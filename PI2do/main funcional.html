@@ -102,11 +102,15 @@
             <div class="principal">
                 <a class="navlink" href="/PI2do/empresas_responsables/empresasr.html">EMPRESAS RESPONSABLES</a>
 
-                <!-- Bandera para cambiar idioma -->
+                <!-- =====================================================================
+                SELECTOR DE BANDERA PARA CAMBIO DE IDIOMA - PERSONALIZABLE
+                Estos elementos controlan la selección de idioma en la página principal
+                ===================================================================== -->
+                <!-- Bandera principal visible - Puedes cambiar la imagen por defecto aquí -->
                 <div id="idiomaToggle">
                     <img class="españa" id="banderaIdioma" src="/PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
                 </div>
-                <!-- Opción secundaria -->
+                <!-- Opciones de banderas desplegables - Puedes cambiar las imágenes aquí -->
                 <div id="idiomasOpciones">
                     <img class="ingles" src="/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés">
                     <img class="españa" src="/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español">
@@ -140,25 +144,33 @@
 
     <script>
         
-        // Función para alternar entre idiomas
+        // =====================================================================
+        // FUNCIONES DE CONTROL DE IDIOMA - MODIFICAR CON PRECAUCIÓN
+        // =====================================================================
+        
+        /**
+         * Función para alternar entre idiomas al hacer clic en la bandera principal
+         * Esta función cambia la imagen de la bandera y realiza la traducción
+         * MODIFICAR SOLO si necesitas cambiar la apariencia o comportamiento
+         */
         function alternarIdioma() {
             const bandera = document.getElementById('banderaIdioma');
             const idiomaActual = bandera.src.includes('ingles.png') ? 'ingles' : 'espanol';
             const nuevoIdioma = idiomaActual === 'ingles' ? 'espanol' : 'ingles';
             
-            // Cambiar la imagen de la bandera
+            // Cambiar la imagen de la bandera - Puedes modificar las rutas si cambias las imágenes
             bandera.src = nuevoIdioma === 'ingles' 
-                ? "/PI2do/imagenes/logos/ingles.png" 
-                : "/PI2do/imagenes/logos/espanol.png";
+                ? "/PI2do/imagenes/logos/ingles.png" // Ruta a la imagen de la bandera inglesa
+                : "/PI2do/imagenes/logos/espanol.png"; // Ruta a la imagen de la bandera española
             
-            // Realizar la traducción
+            // Realizar la traducción - NO MODIFICAR esta línea
             translateContent(nuevoIdioma === 'ingles' ? 'en' : 'es');
             
-            // Guardar la preferencia en localStorage
+            // Guardar la preferencia en localStorage - NO MODIFICAR esta línea
             localStorage.setItem('preferredLanguage', nuevoIdioma === 'ingles' ? 'en' : 'es');
         }
 
-        // Cargar el idioma guardado al iniciar la página
+        // Cargar el idioma guardado al iniciar la página - NO MODIFICAR
         document.addEventListener('DOMContentLoaded', function() {
             const savedLanguage = localStorage.getItem('preferredLanguage');
             if (savedLanguage) {

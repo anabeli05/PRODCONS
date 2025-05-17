@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRODCONS - Notificaciones--</title>
+  <link href="/PRODCONS-main/PI2do/Vista-Admin/Notibox/noti-box.css" rel="stylesheet">
+
+</head>
+<body>
+  <section class="notificaciones">
+    <div class="notifications-container">
+
+      <!-- Hoy -->
+       <div class="date-label">Hoy</div>
+       <div class="notification" data-post-id="123">
+        <div class="like-icon">❤️</div>
+        <div class="content">
+          <div class="like-summary">
+            Tu publicación ya tiene <span id="likeCounter">12</span> likes.
+          </div>
+          <a href="/publicacion/123" class="view-post-button">Ver publicación</a>
+          <div class="time">hace 1 hora</div>
+        </div>
+      </div>
+
+      <div class="notification" data-post-id="124">
+        <div class="avatar" style="background-image: url('user.jpg')"></div>
+        <div class="content">
+          <div class="user-comment"><strong>Usuario</strong> comentó: “Me encantó esta entrada, ¡felicidades!”</div>
+          <a href="/publicacion/124" class="view-post-button">Ver publicación</a>
+          <div class="time">hace 3 horas</div>
+        </div>
+      </div>
+
+      <div class="notification" data-post-id="124">
+        <div class="avatar" style="background-image: url('admin.jpg')"></div>
+        <div class="content">
+          <div class="admin-comment">Superadmin comentó: “Revisa la ortografía del segundo párrafo.”</div>
+          <a href="/publicacion/124" class="view-post-button">Ver publicación</a>
+          <div class="time">hace 4 horas</div>
+        </div>
+      </div>
+      
+      <!-- Ayer -->
+       <div class="date-label">Ayer</div>
+       <div class="notification" data-post-id="125">
+        <div class="avatar" style="background-image: url('admin.jpg')"></div>
+        <div class="content">
+          <div class="status-rejected">Tu publicación fue rechazada</div>
+          <div class="admin-comment">Motivo: “El contenido incluye imágenes no permitidas.”</div>
+          <a href="/publicacion/125" class="view-post-button">Ver publicación</a>
+          <div class="time">ayer a las 17:30</div>
+        </div>
+      </div>
+      
+      <div class="notification" data-post-id="126">
+        <div class="avatar" style="background-image: url('admin.jpg')"></div>
+        <div class="content">
+          <div class="status-accepted">Tu publicación fue aceptada y ya está en línea</div>
+          <a href="/publicacion/126" class="view-post-button">Ver publicación</a>
+          <div class="time">ayer a las 10:12</div>
+        </div>
+      </div>
+      
+      <!-- Fecha específica -->
+       <div class="date-label">12 de abril de 2025</div>
+       <div class="notification" data-post-id="121">
+        <div class="avatar" style="background-image: url('user.jpg')"></div>
+        <div class="content">
+          <div class="user-comment"><strong>Usuario</strong> comentó: “Espero más contenido como este.”</div>
+          <a href="/publicacion/121" class="view-post-button">Ver publicación</a>
+          <div class="time">12/04/2025, 19:04</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</body>
+</html>

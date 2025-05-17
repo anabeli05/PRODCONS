@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 62.5%;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    background: white;
+}
+
+
+*, *:before, *:after { /*Se quita la barra de desplazamiento de abajo*/
+    box-sizing: inherit;
+}
+
+.contenedor-planeados {
+  font-family: 'Arial', sans-serif;
+  margin: 40px;
+}
+
+.titulo-planeados {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 28px;
+  margin: 0;
+}
+
+.division-dos{
+  display: flex;
+  margin: 30px 45px 0px 35px;
+  gap: 35px;
+}
+
+.contenedor-cajas {
+  width: 100%;
+  position: relative;
+  align-items: center;
+}
+
+.programa {
+  width: 100%;
+  height: 155px;
+  background-color: #f4f4f4;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.programa p {
+  font-family:'Times New Roman', Times, serif;
+  margin: 0 0 20px;
+  font-size: 16px;
+  color: #333;
+  max-width: 80%;
+}
+
+
+.mas {
+  background-color: #b1dcaa;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 50px;
+  color: rgb(12, 85, 12);
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.mas:hover {
+  transform: scale(1.1);
+}
+
+.decoracion {
+  position: absolute;
+}
+
+.hojas-izq {
+  left: 15px;
+  top: 25px;
+}
+
+.hojas-der {
+  right: 15px;
+  top: 25px;
+}
+
+/*------ apartado calendario ------*/
+.contenedor-calendario{
+  background-color:#fff;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.titulo-calendario{
+  background-color: #f5b98e;
+  border-radius: 6px;
+  height: 30px;
+  text-align: center;
+  font-size: 10px;
+}
+
+h2{
+  padding: 6px;
+}
+
+.calendario {
+  background: rgb(236, 234, 234);
+  border-radius: 8px;
+  width: 100%;
+  height: 100px;
+}
+
+.dias-semana{
+  display: flex;
+  margin: 0px 45px 0px 45px;
+  padding: 10px;
+ font-size: 13px;
+  font-weight: bold;
+}
+
+.dias-semana{
+  justify-content: space-between;
+}
+
+.contenedores {
+  display: flex;
+  margin-right: 30px;
+  margin-left: 30px;
+  padding: 10px;
+  font-size: 15px;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+
+.cuadrito{
+  background-color:green;
+  padding: 20px;
+  border-radius: 10px;
+  width: 45px;
+}
+
+.contenedor-postit{
+  background-color: rgb(244, 233, 132);
+  padding: 25px;
+  width: 40%;
+  height: 250px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.contenedor-postit h2{
+  padding-left: 60px;
+  font-size: 25px;
+}
