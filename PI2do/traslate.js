@@ -1,13 +1,28 @@
-// API key para Google Cloud Translation
+// =====================================================================
+// CONFIGURACIÓN PRINCIPAL DEL SISTEMA DE TRADUCCIÓN
+// =====================================================================
+// API key para Google Cloud Translation - Puedes cambiarla si necesitas otra API key
 const API_KEY = 'AIzaSyBjze7ZlB-8YXWrH8vHR6wdEU-7Zm1iDNM';
-let currentLanguage = 'es';
+let currentLanguage = 'es'; // Idioma predeterminado es español (es)
 
-// Elementos a traducir
+// Elementos HTML que serán traducidos
+// Si necesitas traducir otros elementos, agrégalos a este array
 const translatableElements = [
     'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'a', 'span', 'li'
 ];
 
-// Función para obtener todos los textos traducibles
+// =====================================================================
+// FUNCIONES PRINCIPALES DE TRADUCCIÓN
+// =====================================================================
+
+/**
+ * Recopila todos los elementos para traducir de la página actual.
+ * Esta función busca todos los elementos definidos en 'translatableElements'
+ * y los prepara para la traducción.
+ * 
+ * Si necesitas excluir algún elemento específico de la traducción,
+ * añade el atributo 'data-no-translate' a ese elemento en tu HTML.
+ */
 function getTranslatableContent() {
     const elements = {};
     translatableElements.forEach(tag => {
@@ -26,11 +41,32 @@ function getTranslatableContent() {
     return elements;
 }
 
-// Función para traducir el contenido usando Google Cloud Translation API
+/**
+ * Decodifica entidades HTML en el texto traducido.
+ * IMPORTANTE: Soluciona el problema de los apóstrofes (') que aparecían como &#39;
+ * y otros caracteres especiales en las traducciones.
+ * 
+ * Esta función fue añadida para corregir problemas con caracteres especiales
+ * en las traducciones devueltas por la API.
+ */
+function decodeHTMLEntities(text) {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = text;
+    return textarea.value;
+}
+
+/**
+ * Función principal que realiza la traducción de todo el contenido.
+ * Procesa todos los elementos seleccionados por getTranslatableContent()
+ * y los traduce usando la API de Google Cloud Translation.
+ * 
+ * @param {string} targetLanguage - Idioma al que se va a traducir ('en' para inglés, 'es' para español)
+ */
 async function translateContent(targetLanguage) {
+    // No hacer nada si ya estamos en el idioma objetivo
     if (currentLanguage === targetLanguage) return;
     
-    // Mostrar indicador de carga
+    // Mostrar indicador de carga (puedes personalizar el estilo aquí)
     const loadingIndicator = document.createElement('div');
     loadingIndicator.id = 'translation-loading';
     loadingIndicator.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,255,255,0.9); padding: 20px; border-radius: 10px; z-index: 9999; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.2);';
@@ -41,7 +77,7 @@ async function translateContent(targetLanguage) {
     const textsToTranslate = Object.values(elements).map(item => item.text);
     
     try {
-        // URL para la API de Google Cloud Translation
+        // URL para la API de Google Cloud Translation - No cambiar a menos que la API cambie
         const url = `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}`;
         
         const response = await fetch(url, {
@@ -60,17 +96,27 @@ async function translateContent(targetLanguage) {
         
         if (data.data && data.data.translations) {
             Object.keys(elements).forEach((id, index) => {
-                elements[id].element.innerText = data.data.translations[index].translatedText;
+                // Decodificar entidades HTML para corregir apóstrofes y otros caracteres especiales
+                const translatedText = decodeHTMLEntities(data.data.translations[index].translatedText);
+                elements[id].element.innerText = translatedText;
             });
             
+            // Actualizar el idioma actual
             currentLanguage = targetLanguage;
+            
             // Actualizar el atributo lang de HTML
             document.documentElement.lang = targetLanguage;
             
             // Guardar la preferencia de idioma en localStorage
             localStorage.setItem('preferredLanguage', targetLanguage);
             
-            // Actualizar el texto del banner si existe
+            // =====================================================================
+            // ACTUALIZACIÓN DE ELEMENTOS DE LA INTERFAZ DE USUARIO
+            // =====================================================================
+            
+            // 1. Actualizar el texto del banner de idioma si existe
+            // Este banner puede estar presente en algunas páginas como alternativa
+            // al selector de bandera
             const banner = document.getElementById('language-banner');
             if (banner) {
                 const bannerText = banner.querySelector('p');
@@ -86,6 +132,24 @@ async function translateContent(targetLanguage) {
                     buttons[1].innerText = targetLanguage === 'en' ? 'Spanish' : 'Español';
                 }
             }
+            
+            // 2. Actualizar los botones de idioma en los artículos
+            // Estos botones están en el pequeño cuadro flotante en las páginas de artículos
+            const btnEs = document.getElementById('btn-es');
+            const btnEn = document.getElementById('btn-en');
+            const toggleText = document.getElementById('toggle-text');
+            
+            if (btnEs && btnEn && toggleText) {
+                if (targetLanguage === 'en') {
+                    btnEs.classList.remove('active');
+                    btnEn.classList.add('active');
+                    toggleText.innerText = 'Change language?';
+                } else {
+                    btnEn.classList.remove('active');
+                    btnEs.classList.add('active');
+                    toggleText.innerText = '¿Cambiar idioma?';
+                }
+            }
         }
     } catch (error) {
         console.error('Error al traducir:', error);
@@ -99,9 +163,18 @@ async function translateContent(targetLanguage) {
     }
 }
 
-// Función para cambiar idioma que puede ser llamada desde cualquier página
+// =====================================================================
+// FUNCIONES DE INTERFAZ DE USUARIO PARA CAMBIO DE IDIOMA
+// =====================================================================
+
+/**
+ * Cambia el idioma de la página y actualiza los elementos visuales.
+ * Esta función es llamada desde los botones de idioma y otros controles.
+ * 
+ * @param {string} idioma - 'ingles' o 'espanol' (sin tilde)
+ */
 function cambiarIdioma(idioma) {
-    // Primero intentamos actualizar la bandera principal si existe
+    // 1. Actualizar la bandera principal si existe
     const bandera = document.getElementById('banderaIdioma');
     if (bandera) {
         bandera.src = idioma === 'ingles' 
@@ -109,24 +182,47 @@ function cambiarIdioma(idioma) {
             : "/PI2do/imagenes/logos/espanol.png";
     }
     
-    // Llamar a la función de traducción con el idioma apropiado
+    // 2. Llamar a la función de traducción con el idioma apropiado
     translateContent(idioma === 'ingles' ? 'en' : 'es');
     
-    // Cerrar el menú de opciones si existe
+    // 3. Cerrar el menú de opciones si existe
     const opciones = document.getElementById('idiomasOpciones');
     if (opciones) {
         opciones.style.display = 'none';
     }
 }
 
-// Cargar el idioma preferido del usuario al iniciar la página
+/**
+ * Alterna entre español e inglés.
+ * Esta función es llamada al hacer clic en la bandera principal
+ * en las páginas que usan el selector de bandera.
+ */
+function alternarIdioma() {
+    const bandera = document.getElementById('banderaIdioma');
+    const idiomaActual = bandera.src.includes('ingles.png') ? 'ingles' : 'espanol';
+    const nuevoIdioma = idiomaActual === 'ingles' ? 'espanol' : 'ingles';
+    
+    cambiarIdioma(nuevoIdioma);
+}
+
+// =====================================================================
+// INICIALIZACIÓN Y CONFIGURACIÓN EN CARGA DE PÁGINA
+// =====================================================================
+
+/**
+ * Esta sección se ejecuta cuando la página termina de cargar.
+ * Configura los eventos de idioma, carga el idioma preferido del usuario
+ * y establece los manejadores de eventos para los controles de idioma.
+ */
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Cargar el idioma preferido del usuario desde localStorage
     const savedLanguage = localStorage.getItem('preferredLanguage');
     if (savedLanguage) {
+        // Si tenemos preferencia guardada, usar cambiarIdioma para actualizar la interfaz completa
         cambiarIdioma(savedLanguage === 'en' ? 'ingles' : 'espanol');
     }
     
-    // Inicializar el toggle de idioma
+    // 2. Inicializar el toggle de idioma para las páginas principales
     const idiomaToggle = document.getElementById('idiomaToggle');
     const opciones = document.getElementById('idiomasOpciones');
     
@@ -136,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Agregar eventos click a las imágenes de idioma
+    // 3. Agregar eventos click a las imágenes de idioma
     const banderaIngles = document.querySelector('.ingles');
     const banderaEspanol = document.querySelector('.españa');
     
@@ -147,4 +243,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (banderaEspanol) {
         banderaEspanol.addEventListener('click', () => cambiarIdioma('espanol'));
     }
-});
+}); 

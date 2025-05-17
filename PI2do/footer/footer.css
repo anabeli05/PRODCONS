@@ -9,7 +9,7 @@
     background: var(--verde-oscuro);
     color: white;
     width: 100vw;
-    margin-top: auto;
+    margin-top: -40px;
     padding: 0; /* evita márgenes que achiquen el ancho */
 }
 

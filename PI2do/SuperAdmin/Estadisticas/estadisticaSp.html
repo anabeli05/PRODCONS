@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PRODCONS - Estadísticas</title>
+  <link rel="stylesheet" href="estadisticaSp.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/PI2do/imagenes/prodcon/logoSinfondo.png" alt="PRODCONS" class="logo-img" />
+    </div>
+    <div class="admin-panel">
+      <img src="/PI2do/imagenes/SuperAdmin/superadminPersona.png" alt="ADMIN" class="admin-img" />
+      <button id="admin-btn" class="admin-button">ADMIN</button>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar-admin hidden-admin">
+    <button class="close-admin-btn" id="close-btn">&times;</button>
+    <h3>ADMIN <img src="/PI2do/imagenes/chicaLaptop.png" alt="Admin Icon"></h3>
+    <ul>
+      <li><a href="/PI2do/SuperAdmin/inicioSp.html"><span>inicio</span><img src="/PI2do/imagenes/personaBotella.png" alt="inicio"></a></li>
+      <li><a href="/mis-articulos"><span>Mis Artículos</span><img src="/PI2do/imagenes/composta.png" alt="Artículos"></a></li>
+      <li><a href="/configuracion"><span>Configuración</span><img src="/PI2do/imagenes/SuperAdmin/EngranajeSinfondo.png" alt="Configuración"></a></li>
+      <li><a href="/post-planeados"><span>Post Planeados</span><img src="/PI2do/imagenes/ropaOtraVez.png" alt="Post Planeados"></a></li>
+      <li><a href="/PI2do/inicio sesion/loginSuper.html"><span>Cerrar Sesión</span></a></li>
+    </ul>
+  </div>
+  <div id="overlay" class="admin-overlay hidden-admin"></div>
+
+  <main>
+    <section class="statistics">
+      <div class="stat">
+        <h2>Vistas Totales</h2>
+        <p id="views">👁️ Cargando...</p>
+      </div>
+      <div class="stat">
+        <h2>Tiempo en el sitio</h2>
+        <p>⏳ 03:00 min</p>
+      </div>
+    </section>
+    <!--PENDIENTE EL RESPONSI AL HACERLO PEQUEÑO-->
+    <section class="chart">
+      <h2>Gráficos de Vistas</h2>
+      <div class="chart-wrapper">
+        <div class="bars">
+          <div class="bar-label">
+            <div class="bar-title">Menos plásticos más vida</div>
+            <div class="bar-container">
+              <div class="bar bar1" data-label="0" data-views="6500000"></div>
+            </div>
+          </div>
+          <div class="bar-label">
+            <div class="bar-title">Tú puedes hacer la diferencia</div>
+            <div class="bar-container">
+              <div class="bar bar2" data-label="0" data-views="5000000"></div>
+            </div>
+          </div>
+          <div class="bar-label">
+            <div class="bar-title">La revolución de la moda sostenible</div>
+            <div class="bar-container">
+              <div class="bar bar3" data-label="0" data-views="4000000"></div>
+            </div>
+          </div>
+          <div class="bar-label">
+            <div class="bar-title">Reduciendo residuos en el hogar</div>
+            <div class="bar-container">
+              <div class="bar bar4" data-label="0" data-views="3500000"></div>
+            </div>
+          </div>
+          <div class="bar-label">
+            <div class="bar-title">Crea tu propio huerto</div>
+            <div class="bar-container">
+              <div class="bar bar5" data-label="0" data-views="3000000"></div>
+            </div>
+          </div>
+          <div class="bar-label">
+            <div class="bar-title">Consumo digital responsable</div>
+            <div class="bar-container">
+              <div class="bar bar6" data-label="0" data-views="2000000"></div>
+            </div>
+          </div>
+        </div>
+        <div class="axis" id="axis"></div>
+      </div>
+    </section>
+
+    <section class="footer">
+      <div class="footer-content">
+        <div class="green-box">
+          <i><p>Sigue Administrando contenido para que las personas puedan pensar en sus acciones</p></i>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="estadisticaSp.js"></script>
+</body>
+</html>
