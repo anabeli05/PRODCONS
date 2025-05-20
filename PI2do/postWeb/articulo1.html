@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menos Plásticos, Más Vida</title>
-    <!-- Estilos principales -->
     <link rel="stylesheet" href="/PI2do/postWeb/code.css">
-    <!-- Estilos del header -->
-    <link rel="stylesheet" href="/PI2do/Header admin/headers-style.css">
-    <!-- Estilos del footer -->
-    <link rel="stylesheet" href="/PI2do/footer/footer.css">
-    
-    <!-- Scripts de traducción -->
+      <link rel="stylesheet" href="/PI2do/footer/footer.css">
+        <link rel="stylesheet" href="/PI2do/Header para regresar/regresar/barra_normal.css">
+</head>
+<body>
+    <!-- Section para crear la barra de la flecha para poder regresa -->
+     <section class="barra_left">
+    <i class="flecha_left">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path onclick="window.history.back()"  d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+    </i>
+</section>
+
+ <!-- Scripts de traducción -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <script src="/PI2do/traslate.js"></script>
@@ -38,15 +43,6 @@
             <button id="btn-en" onclick="cambiarIdioma('ingles')">English</button>
         </div>
     </div>
-
-    <!-- Botón de regreso -->
-    <section class="barra_left">
-        <i class="flecha_left">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path onclick="window.history.back()" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
-            </svg>
-        </i>
-    </section>
 
 <!-- Header convertido en section -->
     <section class="header-section">
@@ -97,8 +93,8 @@
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-container">
+    <!-- Footer convertido en section -->
+    <section class="footer-section">
         <div class="contenedor-imagenes">
             <div class="texto">
                 <p>Reducir el uso de plásticos no es solo una tendencia; es una necesidad urgente. No se trata de ser perfecto, sino de tomar pequeños pasos hacia un estilo de vida más consciente. Desde llevar tus propias bolsas al supermercado hasta decirle adiós a los popotes de plástico, cada acción cuenta. Juntos podemos construir un mundo donde el plástico no sea un problema, sino una excepción. ¿Qué cambio harás hoy?</p>
@@ -110,41 +106,27 @@
                        POR JUAN PABLO MANCILLA RODRIGUEZ</div>
             </div>
 
-    <!-- Scripts -->
-    <script>
-        // Function to update button states based on current language    function updateLanguageButtons() {        const btnEs = document.getElementById('btn-es');        const btnEn = document.getElementById('btn-en');        const toggleText = document.getElementById('toggle-text');                // Get current language from localStorage or default to Spanish        const currentLang = localStorage.getItem('preferredLanguage') || 'es';                // Update active button        if (currentLang === 'en') {            btnEs.classList.remove('active');            btnEn.classList.add('active');            toggleText.innerText = 'Change language?';        } else {            btnEn.classList.remove('active');            btnEs.classList.add('active');            toggleText.innerText = '¿Cambiar idioma?';        }    }
-        
-        // Call this function on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            updateLanguageButtons();
-            
-            // Add event listener to update buttons when language changes
-            const observer = new MutationObserver(function(mutations) {
-                updateLanguageButtons();
-            });
-            
-            // Start observing the document with the configured parameters
-            observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
-            
-            // Add event listener for the close button
-            document.getElementById('close-language-toggle').addEventListener('click', function() {
-                document.getElementById('language-toggle').style.display = 'none';
-            });
-        });
-        
-        // Override the cambiarIdioma function to update button states
-        const originalCambiarIdioma = window.cambiarIdioma;
-        window.cambiarIdioma = function(idioma) {
-            if (typeof originalCambiarIdioma === 'function') {
-                originalCambiarIdioma(idioma);
-            } else {
-                // Fallback if the original function isn't available
-                translateContent(idioma === 'ingles' ? 'en' : 'es');
-            }
-            
-            // Update button states
-            setTimeout(updateLanguageButtons, 100);
-        };
-    </script>
+        </div>
+    </section>
+
+    <!-- Nueva sección para el autor y bibliografías -->
+    <section class="autor-bibliografias">
+    
+        <h3>Bibliografías</h3>
+        <ul>
+            <li>Ritchie, H., & Roser, M. (2018). Plastic pollution. Our World in Data. Recuperado de <a href="https://ourworldindata.org/plastic-pollution">https://ourworldindata.org/plastic-pollution</a></li>
+            <li>Secretaría de Medio Ambiente y Recursos Naturales. (s.f.). Estrategias para reducir el uso de plásticos. Recuperado de <a href="https://www.gob.mx/semarnat">https://www.gob.mx/semarnat</a></li>
+            <li>Greenpeace México. (s.f.). Cómo reducir el uso de plásticos de un solo uso. Recuperado de <a href="https://www.greenpeace.org/mexico">https://www.greenpeace.org/mexico</a></li>
+            <li>Plastic Pollution Coalition. (s.f.). Guía para reducir el uso de plásticos. Recuperado de <a href="https://www.plasticpollutioncoalition.org">https://www.plasticpollutioncoalition.org</a></li>
+            <li>OpenAI. (2023). ChatGPT (versión febrero 2023) Modelo de lenguaje. <a href="https://chat.openai.com">https://chat.openai.com</a></li>
+        </ul>
+    </section>
+
+   <footer class="site-footer">
+        <div class="footer-container"></div>
+    </footer>
+
+     <script src="/PI2do/footer/footer.js"></script>
+
 </body>
 </html>
