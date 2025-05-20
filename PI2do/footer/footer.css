@@ -28,6 +28,11 @@
     flex: 1 1 200px;
     padding: 10px;
     box-sizing: border-box;
+    color: white;
+}
+
+.footer3 p{
+    color: white;
 }
 
 /* Imagen */
@@ -46,6 +51,7 @@
 .footer-center p {
     font-size: 1.6rem;
     line-height: 1.5;
+    color: white;
 }
 
 /* ENLACES */

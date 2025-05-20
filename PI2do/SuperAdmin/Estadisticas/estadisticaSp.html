@@ -4,99 +4,195 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PRODCONS - Estadísticas</title>
-  <link rel="stylesheet" href="estadisticaSp.css" />
+  <link rel="stylesheet" href="/PI2do/SuperAdmin/Estadisticas/estadisticaSp.css" />
+  <link rel="stylesheet" href="/PI2do/Vista-Admin/1SideBar/sidebar.css" />
+  
+
+  <script src="/PI2do/Vista-Admin/1SideBar/barra-nav.js" defer></script>
+  <script src="/PI2do/Vista-Admin/Estadisticas/estadisticas-adm.js" defer></script>
+
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="/PI2do/imagenes/prodcon/logoSinfondo.png" alt="PRODCONS" class="logo-img" />
-    </div>
-    <div class="admin-panel">
-      <img src="/PI2do/imagenes/SuperAdmin/superadminPersona.png" alt="ADMIN" class="admin-img" />
-      <button id="admin-btn" class="admin-button">ADMIN</button>
-    </div>
+
+  <header> 
+    <div class="header-contenedor">
+      <div class="principal"></div>
+      </div>
   </header>
 
-  <!-- Sidebar -->
-  <div id="sidebar" class="sidebar-admin hidden-admin">
-    <button class="close-admin-btn" id="close-btn">&times;</button>
-    <h3>ADMIN <img src="/PI2do/imagenes/chicaLaptop.png" alt="Admin Icon"></h3>
-    <ul>
-      <li><a href="/PI2do/SuperAdmin/inicioSp.html"><span>inicio</span><img src="/PI2do/imagenes/personaBotella.png" alt="inicio"></a></li>
-      <li><a href="/mis-articulos"><span>Mis Artículos</span><img src="/PI2do/imagenes/composta.png" alt="Artículos"></a></li>
-      <li><a href="/configuracion"><span>Configuración</span><img src="/PI2do/imagenes/SuperAdmin/EngranajeSinfondo.png" alt="Configuración"></a></li>
-      <li><a href="/post-planeados"><span>Post Planeados</span><img src="/PI2do/imagenes/ropaOtraVez.png" alt="Post Planeados"></a></li>
-      <li><a href="/PI2do/inicio sesion/loginSuper.html"><span>Cerrar Sesión</span></a></li>
-    </ul>
-  </div>
-  <div id="overlay" class="admin-overlay hidden-admin"></div>
+    <section class="logo"> 
+        <div class="header_2">
+            <img class="prodcons" src="/PI2do/Vista-Admin/UsuarioAdmin/img-vista-admin/logoSinfondo.png" alt="Logo">
 
-  <main>
-    <section class="statistics">
-      <div class="stat">
-        <h2>Vistas Totales</h2>
-        <p id="views">👁️ Cargando...</p>
-      </div>
-      <div class="stat">
-        <h2>Tiempo en el sitio</h2>
-        <p>⏳ 03:00 min</p>
-      </div>
-    </section>
-    <!--PENDIENTE EL RESPONSI AL HACERLO PEQUEÑO-->
-    <section class="chart">
-      <h2>Gráficos de Vistas</h2>
-      <div class="chart-wrapper">
-        <div class="bars">
-          <div class="bar-label">
-            <div class="bar-title">Menos plásticos más vida</div>
-            <div class="bar-container">
-              <div class="bar bar1" data-label="0" data-views="6500000"></div>
+            <div class="admin-controls">
+                <!-- Botón de búsqueda-->
+                <button class="search-toggle-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+
+                <!--Barra de búsqueda-->
+                <div class="search-bar hidden">
+                    <input type="text" placeholder="Buscar...">
+                    <button class="search-close-btn">&times;</button>
+                </div>
+
+                <!--Botón de notificaciones-->
+                <a href="/PI2do/Vista-Admin/Notibox/noti-box.html" class="notif-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="notif-badge">1</span>
+                </a>
+
+                <!-- Botón Admin con avatar -->
+                <div class="admin-btn">
+                    <span>SuperAdmin</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 11l8 3l8 -3" />
+                    </svg>
+                    <img src="/PI2do/Vista-Admin/UsuarioAdmin/img-vista-admin/removebg-preview.png" alt="Admin" class="admin-avatar">
+                </div>
             </div>
-          </div>
-          <div class="bar-label">
-            <div class="bar-title">Tú puedes hacer la diferencia</div>
-            <div class="bar-container">
-              <div class="bar bar2" data-label="0" data-views="5000000"></div>
+
+            <!----- sidebar ----->
+            <div class="admin-sidebar" id="adminSidebar">
+                <div class="sidebar-header">
+                    <h3>SUPERADMIN</h3>
+                    <button class="close-sidebar">
+                        <img src="/PI2do/Vista-Admin/UsuarioAdmin/img-vista-admin/removebg-preview.png" alt="Admin" class="admin-avatar">
+                    </button>
+                </div>
+                
+                <nav class="sidebar-menu">
+                    <a href="/PI2do/Vista-Admin/MisArticulos/mis-articulos.html">
+                        <span>Artículos</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="/PI2do/Vista-Admin/Configuracion/config.html">
+                        <span>Configuración</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="/PI2do/Vista-Admin/PostPlaneados/post-planeados.html">
+                        <span>Post Planeados</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="/PI2do/Vista-Admin/Estadisticas/estadisticas-adm.html">
+                        <span>Estadísticas</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="20" x2="12" y2="10"/>
+                            <line x1="18" y1="20" x2="18" y2="4"/>
+                            <line x1="6" y1="20" x2="6" y2="16"/>
+                        </svg>
+                    </a>
+                </nav>
+                
+                <div class="sidebar-footer">
+                    <button class="logout-btn">Cerrar Sesión</button>
+                </div>
+
             </div>
-          </div>
-          <div class="bar-label">
-            <div class="bar-title">La revolución de la moda sostenible</div>
-            <div class="bar-container">
-              <div class="bar bar3" data-label="0" data-views="4000000"></div>
-            </div>
-          </div>
-          <div class="bar-label">
-            <div class="bar-title">Reduciendo residuos en el hogar</div>
-            <div class="bar-container">
-              <div class="bar bar4" data-label="0" data-views="3500000"></div>
-            </div>
-          </div>
-          <div class="bar-label">
-            <div class="bar-title">Crea tu propio huerto</div>
-            <div class="bar-container">
-              <div class="bar bar5" data-label="0" data-views="3000000"></div>
-            </div>
-          </div>
-          <div class="bar-label">
-            <div class="bar-title">Consumo digital responsable</div>
-            <div class="bar-container">
-              <div class="bar bar6" data-label="0" data-views="2000000"></div>
-            </div>
-          </div>
+
         </div>
-        <div class="axis" id="axis"></div>
-      </div>
     </section>
 
-    <section class="footer">
-      <div class="footer-content">
-        <div class="green-box">
-          <i><p>Sigue Administrando contenido para que las personas puedan pensar en sus acciones</p></i>
+  
+  
+  
+  <div class="contenedor-estadisticas">
+    <div class="titulo-estadisticas"><h1>Estadísticas</h1></div>
+      
+      <section class="statistics">
+        <div class="stat">
+          <h1>Vistas Totales</h1>
+          <p id="views">👁️ Cargando...</p>
         </div>
-      </div>
-    </section>
-  </main>
 
-  <script src="estadisticaSp.js"></script>
+        <div class="stat">
+          <h1>Tiempo en el sitio</h1>
+          <p id="min">⏳ 03:00 min</p>
+        </div>
+      </section>
+
+      <div class="titulo-estadisticas"><h1>Gráficos de Vistas</h1></div>
+    
+      <!-- GRAFICOS DE VISTA -->
+
+      <div class="contenedor-ok">
+        <section class="chart">
+          <div class="chart-wrapper">
+            <div class="bars">
+              <div class="bar-label">
+                <div class="bar-title">Menos plásticos más vida</div>
+                <div class="bar-container">
+                  <div class="bar bar1" data-label="0" data-views="6500000"></div>
+                </div>
+              </div>
+              <div class="bar-label">
+                <div class="bar-title">Tú puedes hacer la diferencia</div>
+                <div class="bar-container">
+                  <div class="bar bar2" data-label="0" data-views="5000000"></div>
+                </div>
+              </div>
+              <div class="bar-label">
+                <div class="bar-title">La revolución de la moda sostenible</div>
+                <div class="bar-container">
+                  <div class="bar bar3" data-label="0" data-views="4000000"></div>
+                </div>
+              </div>
+              <div class="bar-label">
+                <div class="bar-title">Reduciendo residuos en el hogar</div>
+                <div class="bar-container">
+                  <div class="bar bar4" data-label="0" data-views="3500000"></div>
+                </div>
+              </div>
+              <div class="bar-label">
+                <div class="bar-title">Crea tu propio huerto</div>
+                <div class="bar-container">
+                  <div class="bar bar5" data-label="0" data-views="3000000"></div>
+                </div>
+              </div>
+              <div class="bar-label">
+                <div class="bar-title">Consumo digital responsable</div>
+                <div class="bar-container">
+                  <div class="bar bar6" data-label="0" data-views="2000000"></div>
+                </div>
+              </div>
+            </div>
+            <div class="axis" id="axis"></div>
+          </div>
+        </section>
+        
+        <section class="footer">
+          <div class="footer-content">
+            <div class="green-box"><p>Sigue Administrando contenido para que las personas puedan pensar en sus acciones !</p></i></div>
+            <img src="/PI2do/Vista-Admin/UsuarioAdmin/img-vista-admin/plant.png" href="plantita">
+          </div>
+        </section>
+        
+      </div>
+        
+    </div>
+    
 </body>
 </html>
