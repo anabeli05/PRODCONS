@@ -575,8 +575,7 @@ p {
   }
 
  
-  /* Mensaje de bienvenida */
-
+  /* Contenedor de bienvenida */
 .falling-leaves-container {
     position: relative;
     width: 100%;
@@ -650,37 +649,32 @@ p {
 
 /* Responsividad: móvil */
 @media (max-width: 480px) {
-    #welcome-box {
+    .welcome-box {
         padding: 1.5rem 1rem; /* Reducir padding en móviles */
         width: 70%; /* El cuadro se ajusta más en pantallas pequeñas */
         max-width: 300px; /* Limitar el tamaño máximo en móviles */
-    }
-
-    #welcome-box h1 {
         font-size: 1.8rem; /* Tamaño de fuente adecuado para móviles */
     }
 }
 
 /* Responsividad: tablet */
 @media (min-width: 481px) and (max-width: 768px) {
-    #welcome-box {
+    .welcome-box {
         padding: 1.5rem 2rem; /* Ajustamos el padding en tablets */
         width: 70%; /* Aumentamos un poco el tamaño para tabletas */
         max-width: 400px; /* Limitar el tamaño máximo */
-    }
-
-    #welcome-box h1 {
         font-size: 2rem; /* Font-size mayor en tablets */
     }
 }
 
 /* Responsividad: pantallas grandes */
 @media (min-width: 769px) {
-    #welcome-box {
+    .welcome-box {
         width: 50%; /* Aseguramos que no ocupe todo el ancho en pantallas grandes */
         max-width: 600px; /* Limitamos el tamaño máximo para pantallas grandes */
     }
 }
+
 
 /* Estilos para el banner de cookies */
 .cookie-banner {

@@ -36,3 +36,8 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     }
 });
+
+document.getElementById("loginBtn").addEventListener("click", function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
