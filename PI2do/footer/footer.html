@@ -1,40 +1,48 @@
-<link rel="stylesheet" href="/PI2do/footer/footer.css">
-<div class="footer-container">
-    <div class="footer-left">
-        <a href="#" onclick="scrollToTop()">
-    <img class="prodcons2" src="/PI2do/imagenes/prodcon/prodcons_white.png" alt="Logo">
-</a>
-    </div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer PRODCONS</title>
+    <link rel="stylesheet" href="footer.css">
+</head>
+<body>
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Columna 1: Logo -->
+            <div class="footer-left">
+                <img class="logo" src="/PI2do/imagenes/prodcon/prodcons_white.png" alt="Logo PRODCONS">
+            </div>
 
-    <div class="footer-center">
-        <h4>SOBRE NOSOTROS</h4>
-        <div class="footer1">
-            <p>Somos una organización dedicada a cuidar del medio ambiente, aplicándolo en nuestra vida diaria y promoviendo a los demás a hacerlo para el bienestar de todos.</p>
+            <!-- Columna 2: Sobre Nosotros -->
+            <div class="footer-center">
+                <h4>SOBRE <span class="green-text">NOSOTROS</span></h4>
+                <p>Somos una organización dedicada a cuidar del medio ambiente, aplicándolo en nuestra vida diaria y promoviendo a los demás a hacerlo para el bienestar de todos.</p>
+            </div>
+
+            <!-- Columna 3: Enlaces legales -->
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#"><span class="green-text">AVISOS</span> DE PRIVACIDAD</a></li>
+                    <li><a href="#"><span class="green-text">POLÍTICA</span> DE SOSTENIBILIDAD</a></li>
+                    <li><a href="#"><span class="green-text">TÉRMINOS</span> Y CONDICIONES</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 4: Correo + Botones -->
+            <div class="footer-right">
+                <p class="email"><span class="green-text">prodcons@gmail.com</span></p>
+                <div class="footer-buttons">
+                    <a href="/registro.html" class="footer-btn">REGISTRARME</a>
+                    <a href="/login.html" class="footer-btn">INICIAR SESIÓN</a>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="footer2">
-        <ul>
-            <li><a href="/PI2do/footer/parafooter/AvisoPriv/avisospriv.html">Avisos de privacidad</a></li>
-            <li><a href="/PI2do/footer/parafooter/politicas/politica.html">Política de sostenibilidad</a></li>
-            <li><a href="/PI2do/footer/parafooter/term-condi/term-condi.html">Términos y condiciones</a></li>
-        </ul>
-    </div>
-
-    <div class="footer3">  
-        <p>Correo: prodcons@gmail.com</p>
-    </div>
-
-    <div class="contenedor-botones">
-        <button class="suscribirme">
-            <a href="../inicio_sesion/login.php">REGISTRARME</a>
-        </button>
-        <button class="ini_secion">
-            <a href="/PI2do/inicio_sesion/login.php">INICIAR SESIÓN</a>
-        </button>
-    </div>
-</div>
-
-<div class="footer-bottom">
-    &copy; 2025 PRODCONS. Todos los derechos reservados.
-</div>
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            © 2005 PRODCONS. Todos los derechos reservados.
+        </div>
+    </footer>
+</body>
+</html>

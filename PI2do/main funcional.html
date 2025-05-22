@@ -15,7 +15,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <!-- Script de traducción global -->
-    <script src="/PI2do/traslate.js"></script>
+    <script src="/PI2do/translate.js"></script>
     <style>
         /* Estilos para la bandera de idioma */
         #banderaIdioma {
@@ -29,6 +29,55 @@
         
         #banderaIdioma:hover {
             transform: scale(1.1);
+        }
+
+        /* Estilos para el resaltado de búsqueda */
+        .search-highlight {
+            display: inline !important;
+            white-space: inherit !important;
+            background: none !important;
+            color: inherit !important;
+            font-family: inherit !important;
+            font-size: inherit !important;
+            font-weight: inherit !important;
+            font-style: inherit !important;
+            line-height: inherit !important;
+            letter-spacing: inherit !important;
+            text-shadow: 0 0 1px #137333;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+        }
+        .descripcion .search-highlight {
+            text-shadow: 0 0 1px #444;
+        }
+
+        .post {
+            transition: all 0.3s ease;
+        }
+
+        .post.hidden {
+            display: none;
+        }
+
+        .post.visible {
+            display: block;
+        }
+
+        /* Estilos para el buscador */
+        .search-form input[type="search"],
+        .buscador-container input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+        }
+
+        .search-form input[type="search"]:focus,
+        .buscador-container input[type="text"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
         }
     </style>
 
@@ -78,6 +127,74 @@
     if (barraBusqueda.classList.contains('activa')) {
       barraBusqueda.focus();
     }
+  });
+
+  // Función para normalizar y eliminar acentos
+  function normalizeText(text) {
+    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  }
+
+  // Función para escapar caracteres especiales de regex
+  function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  // Función para resaltar texto
+  function highlightText(text, searchTerm) {
+    if (!searchTerm) return text;
+    const safeTerm = escapeRegExp(searchTerm);
+    const regex = new RegExp(`(${safeTerm})`, 'gi');
+    return text.replace(regex, '<span class="search-highlight">$1</span>');
+  }
+
+  // Función de búsqueda mejorada
+  function searchArticles(searchTerm) {
+    const articles = document.querySelectorAll('.post');
+    const normalizedSearch = normalizeText(searchTerm.trim());
+
+    if (!normalizedSearch) {
+      // Si no hay término de búsqueda, mostrar todos los artículos
+      articles.forEach(article => {
+        article.style.display = 'block';
+        const title = article.querySelector('h2');
+        const description = article.querySelector('.descripcion');
+        if (title) title.innerHTML = title.textContent;
+        if (description) description.innerHTML = description.textContent;
+      });
+      return;
+    }
+
+    articles.forEach(article => {
+      const title = article.querySelector('h2');
+      const description = article.querySelector('.descripcion');
+      if (!title) return;
+      const titleText = title.textContent;
+      const descriptionText = description ? description.textContent : '';
+      const normalizedTitle = normalizeText(titleText);
+      const normalizedDescription = normalizeText(descriptionText);
+      const content = normalizedTitle + ' ' + normalizedDescription;
+
+      if (content.includes(normalizedSearch)) {
+        article.style.display = 'block';
+        // Resaltar el texto que coincide
+        title.innerHTML = highlightText(titleText, searchTerm);
+        if (description) {
+          description.innerHTML = highlightText(descriptionText, searchTerm);
+        }
+      } else {
+        article.style.display = 'none';
+      }
+    });
+  }
+
+  // Agregar event listeners para ambos buscadores
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInputs = document.querySelectorAll('input[type="search"], input[type="text"]');
+    searchInputs.forEach(input => {
+      input.addEventListener('input', (e) => {
+        searchArticles(e.target.value);
+      });
+    });
   });
 </script>
 
@@ -363,6 +480,6 @@
         <button class="next">›</button>
     </div> -->
     
-   
 
- 
+
+    
