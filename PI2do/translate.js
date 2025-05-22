@@ -1,4 +1,6 @@
 // =====================================================================
+// AUTOR: Juan Pablo Mancilla Rodriguez
+// =====================================================================
 // CONFIGURACIÓN PRINCIPAL DEL SISTEMA DE TRADUCCIÓN
 // =====================================================================
 // API key para Google Cloud Translation - Puedes cambiarla si necesitas otra API key
