@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Posts</title>
+    <link href="formulario-new-post.css" rel="stylesheet">
+
+    <!--javascript-->
+    <script src="/UsuarioAsdmin/barra-nav-misartic.js" defer></script>
+</head>
+<body>
+    <header> 
+        <div class="header-contenedor">
+            <div class="principal"></div>
+        </div>
+    </header>
+
+    <section class="logo"> 
+        <div class="header_2">
+            <img class="prodcons" src="/PI2do/imagenes/prodcon/logoSinfondo.png" alt="Logo">
+
+            <div class="admin-controls">
+                <!-- Botón de búsqueda-->
+                <button class="search-toggle-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+
+                <!--Barra de búsqueda-->
+                <div class="search-bar hidden">
+                    <input type="text" placeholder="Buscar...">
+                    <button class="search-close-btn">&times;</button>
+                </div>
+
+                <!--Botón de notificaciones-->
+                <button class="notif-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="notif-badge">1</span>
+                </button>
+
+                <!-- Botón Admin con avatar -->
+                <div class="admin-btn">
+                    <span>Admin</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 11l8 3l8 -3" />
+                    </svg>
+                    <img src="/PI2do/imagenes/logos/perfil.png" alt="Admin" class="admin-avatar">
+                </div>
+            </div>
+
+            <!----- sidebar ----->
+            <div class="admin-sidebar" id="adminSidebar">
+                <div class="sidebar-header">
+                    <h3>ADMIN</h3>
+                    <button class="close-sidebar">
+                        <img src="/PI2do/imagenes/logos/perfil.png" alt="Admin" class="admin-avatar">
+                    </button>
+                </div>
+                
+                <nav class="sidebar-menu">
+                    <a href="/PI2do/UsuarioAdmin/MisArticulos/mis-articulos.html">
+                        <span>Mis Artículos</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="#">
+                        <span>Configuración</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="#">
+                        <span>Post Planeados</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="#">
+                        <span>Estadísticas</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="20" x2="12" y2="10"/>
+                            <line x1="18" y1="20" x2="18" y2="4"/>
+                            <line x1="6" y1="20" x2="6" y2="16"/>
+                        </svg>
+                    </a>
+                </nav>
+                
+                <div class="sidebar-footer">
+                    <button class="logout-btn">Cerrar Sesión</button>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <div class="contenedor-formulario">
+        <h1>Crear Nuevo Post</h1>
+
+        <form action="/guardar-post" method="POST" enctype="multipart/form-data">
+          <label for="titulo">Título del Post:</label>
+          <input type="text" id="titulo" name="titulo" required>
+      
+          <label for="contenido">Contenido:</label>
+          <textarea id="contenido" name="contenido" rows="8" required></textarea>
+      
+          <label for="imagenes">Subir Imágenes:</label>
+          <input type="file" id="imagenes" name="imagenes[]" multiple accept="image/*">
+      
+          <label for="etiquetas">Etiquetas (separadas por comas):</label>
+          <input type="text" id="etiquetas" name="etiquetas" placeholder="Ej: medio ambiente, reciclaje, energía">
+      
+          <label for="comentario_autor">Comentario del Autor:</label>
+          <textarea id="comentario_autor" name="comentario_autor" rows="4" placeholder="Un mensaje personal para los lectores..."></textarea>
+      
+          <button type="submit">Publicar</button>
+        </form>
+
+    </div>
+
+
+
+</body>
+</html>

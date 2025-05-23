@@ -1,0 +1,28 @@
+/* barra_normal.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.barra_left {
+    position: fixed; /* Fija la barra */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ocupa el 100% del ancho de la pantalla */
+    background: rgb(225, 216, 204); /* Color de fondo */
+    display: flex;
+    justify-content: flex-start; /* Alinea la flecha a la izquierda */
+    align-items: center; /* Centra la flecha verticalmente */
+    padding-left: 20px; /* Un poco de espacio desde el borde izquierdo */
+    height: 50px; /* Altura de la barra */
+    border-bottom: 4px solid black; /* Borde inferior */
+    z-index: 10000;
+}
+
+.flecha_left svg {
+    width: 25px; /* Tamaño de la flecha */
+    height: 25px; /* Ajusta el alto para que quede centrada */
+    fill: #000; /* Color del icono */
+    cursor: pointer;
+}
