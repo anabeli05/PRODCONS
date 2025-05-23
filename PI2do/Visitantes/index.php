@@ -1,5 +1,3 @@
-<?php 
- ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,17 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODCONS</title>
-    <link rel="stylesheet" href="/PI2do/styles.css">
-    <link rel="stylesheet" href="/PI2do/footer/footer.css">
-    <link rel="stylesheet" href="articulos.css">
-    <link href="/PI2do/Header visitantes/barra_principal.css" rel="stylesheet">
-     <link rel="stylesheet" href="/PI2do/Bienvenida/Bienvenida.css" />
+    <link rel="stylesheet" href='../styles.css'>
+    <link rel="stylesheet" href='../footer/footer.css'>
+    <link rel="stylesheet" href='../articulos.css'>
+    <link href='../Header visitantes/barra_principal.css' rel="stylesheet">
 
     <!-- Google Cloud Translation API -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <!-- Script de traducción global -->
-    <script src="/PI2do/translate.js"></script>
+    <script src='../traslate.js'></script>
     <style>
         /* Estilos para la bandera de idioma */
         #banderaIdioma {
@@ -32,55 +29,6 @@
         #banderaIdioma:hover {
             transform: scale(1.1);
         }
-
-        /* Estilos para el resaltado de búsqueda */
-        .search-highlight {
-            display: inline !important;
-            white-space: inherit !important;
-            background: none !important;
-            color: inherit !important;
-            font-family: inherit !important;
-            font-size: inherit !important;
-            font-weight: inherit !important;
-            font-style: inherit !important;
-            line-height: inherit !important;
-            letter-spacing: inherit !important;
-            text-shadow: 0 0 1px #137333;
-            border-radius: 0;
-            padding: 0;
-            box-shadow: none;
-        }
-        .descripcion .search-highlight {
-            text-shadow: 0 0 1px #444;
-        }
-
-        .post {
-            transition: all 0.3s ease;
-        }
-
-        .post.hidden {
-            display: none;
-        }
-
-        .post.visible {
-            display: block;
-        }
-
-        /* Estilos para el buscador */
-        .search-form input[type="search"],
-        .buscador-container input[type="text"] {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 200px;
-        }
-
-        .search-form input[type="search"]:focus,
-        .buscador-container input[type="text"]:focus {
-            outline: none;
-            border-color: #4CAF50;
-            box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
-        }
     </style>
 
 </head>
@@ -94,13 +42,13 @@
 
   <!-- Logo dentro del menú -->
   <div class="mobile-logo">
-    <img src="/PI2do/imagenes/prodcon/logoSinfondo.png" alt="Logo" />
+    <img src='../imagenes/prodcon/logoSinfondo.png' alt="Logo" />
   </div>
 
   <!-- Opciones del menú -->
   <ul>
-    <li><a href="/PI2do/pr/produccionr.html">PRODUCCIÓN RESPONSABLE</a></li>
-    <li><a href="/PI2do/cr/consumores.html">CONSUMO RESPONSABLE</a></li>
+    <li><a href='../pr/produccionr.html'>PRODUCCIÓN RESPONSABLE</a></li>
+    <li><a href='../cr/consumores.html'>CONSUMO RESPONSABLE</a></li>
      <li>
       <form>
         <button id="btnLupa" class="lupa" aria-label="Abrir buscador" type="button">
@@ -120,7 +68,6 @@
 </nav>
 
 <script>
-  // Script para activar/desactivar la barra de búsqueda
   const btnLupa = document.getElementById('btnLupa');
   const barraBusqueda = document.getElementById('barraBusqueda');
 
@@ -130,120 +77,30 @@
       barraBusqueda.focus();
     }
   });
-
-  // Función para normalizar y eliminar acentos
-  function normalizeText(text) {
-    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-  }
-
-  // Función para escapar caracteres especiales de regex
-  function escapeRegExp(string) {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
-
-  // Función para resaltar texto
-  function highlightText(text, searchTerm) {
-    if (!searchTerm) return text;
-    const safeTerm = escapeRegExp(searchTerm);
-    const regex = new RegExp(`(${safeTerm})`, 'gi');
-    return text.replace(regex, '<span class="search-highlight">$1</span>');
-  }
-
-  // Función de búsqueda mejorada
-  function searchArticles(searchTerm) {
-    const articles = document.querySelectorAll('.post');
-    const normalizedSearch = normalizeText(searchTerm.trim());
-
-    if (!normalizedSearch) {
-      // Si no hay término de búsqueda, mostrar todos los artículos
-      articles.forEach(article => {
-        article.style.display = 'block';
-        const title = article.querySelector('h2');
-        const description = article.querySelector('.descripcion');
-        if (title) title.innerHTML = title.textContent;
-        if (description) description.innerHTML = description.textContent;
-      });
-      return;
-    }
-
-    articles.forEach(article => {
-      const title = article.querySelector('h2');
-      const description = article.querySelector('.descripcion');
-      if (!title) return;
-      const titleText = title.textContent;
-      const descriptionText = description ? description.textContent : '';
-      const normalizedTitle = normalizeText(titleText);
-      const normalizedDescription = normalizeText(descriptionText);
-      const content = normalizedTitle + ' ' + normalizedDescription;
-
-      if (content.includes(normalizedSearch)) {
-        article.style.display = 'block';
-        // Resaltar el texto que coincide
-        title.innerHTML = highlightText(titleText, searchTerm);
-        if (description) {
-          description.innerHTML = highlightText(descriptionText, searchTerm);
-        }
-      } else {
-        article.style.display = 'none';
-      }
-    });
-  }
-
-  // Agregar event listeners para ambos buscadores
-  document.addEventListener('DOMContentLoaded', function() {
-    const searchInputs = document.querySelectorAll('input[type="search"], input[type="text"]');
-    searchInputs.forEach(input => {
-      input.addEventListener('input', (e) => {
-        searchArticles(e.target.value);
-      });
-    });
-  });
 </script>
 
 <script>
-  // Función para alternar el menú de hamburguesa
-  function toggleMenu() {
-    const menu = document.getElementById("mobileMenu");
-    const burger = document.querySelector(".hamburger-icon");
+    function toggleMenu() {
+        const menu = document.getElementById("mobileMenu");
+        const burger = document.querySelector(".hamburger-icon");
+        
+        menu.classList.toggle("active");
 
-    menu.classList.toggle("active");
-
-    // Ocultar icono hamburguesa si el menú está abierto
-    if (menu.classList.contains("active")) {
-      burger.style.display = "none";
-    } else {
-      burger.style.display = "block";
+        // Ocultar hamburguesa si el menú está activo
+        if (menu.classList.contains("active")) {
+            burger.style.display = "none";
+        } else {
+            burger.style.display = "block";
+        }
     }
-  }
-
-  // Evento para ocultar menú móvil si se cambia a pantalla grande
-  window.addEventListener('resize', () => {
-    const menu = document.getElementById("mobileMenu");
-    const burger = document.querySelector(".hamburger-icon");
-
-    if (window.innerWidth > 768) {
-      // Oculta el menú móvil y muestra el icono hamburguesa de nuevo
-      if (menu.classList.contains("active")) {
-        menu.classList.remove("active");
-        burger.style.display = "block";
-      }
-    }
-  });
 </script>
 
-
 <body>
-
-     <!-- Pantalla de bienvenida -->
-  <div class="falling-leaves-container" id="welcome">
-    <div class="welcome-box">¡Bienvenidos!</div>
-    <div class="leaves"></div>
-  </div>
 
     <header>
         <div class="header-contenedor">
             <div class="principal">
-                <a class="navlink" href="/PI2do/empresas_responsables/empresasr.html">EMPRESAS RESPONSABLES</a>
+                <a class="navlink" href='../empresas_responsables/empresasr.html'>EMPRESAS RESPONSABLES</a>
 
                 <!-- =====================================================================
                 SELECTOR DE BANDERA PARA CAMBIO DE IDIOMA - PERSONALIZABLE
@@ -251,12 +108,12 @@
                 ===================================================================== -->
                 <!-- Bandera principal visible - Puedes cambiar la imagen por defecto aquí -->
                 <div id="idiomaToggle">
-                    <img class="españa" id="banderaIdioma" src="/PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
+                    <img class="españa" id="banderaIdioma" src='../imagenes/logos/espanol.png' alt="Idioma" onclick="alternarIdioma()">
                 </div>
                 <!-- Opciones de banderas desplegables - Puedes cambiar las imágenes aquí -->
                 <div id="idiomasOpciones">
-                    <img class="ingles" src="/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés">
-                    <img class="españa" src="/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español">
+                    <img class="ingles" src='../imagenes/logos/ingles.png' onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés">
+                    <img class="españa" src='../imagenes/logos/espanol.png' onclick="cambiarIdioma('espanol')" alt="Cambiar a español">
                 </div>
             </div>
         </div>
@@ -264,11 +121,11 @@
 
     <section class="logo">
         <div class="header_2">
-            <img class="prodcons" src="/PI2do/imagenes/prodcon/logoSinfondo.png" alt="Logo">
+            <img class="prodcons" src='../imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
             <div class="subtitulos">
-                <li><a href="/PI2do/pr/produccionr.html">PRODUCCIÓN RESPONSABLE</a></li>
-                <li><a href="/PI2do/cr/consumores.html">CONSUMO RESPONSABLE</a></li>
+                <li><a href='../pr/produccionr.html'>PRODUCCIÓN RESPONSABLE</a></li>
+                <li><a href='../cr/consumores.html'>CONSUMO RESPONSABLE</a></li>
 
                 <form class="search-form">
                     <button class="lupa">
@@ -303,8 +160,8 @@
             
             // Cambiar la imagen de la bandera - Puedes modificar las rutas si cambias las imágenes
             bandera.src = nuevoIdioma === 'ingles' 
-                ? "/PI2do/imagenes/logos/ingles.png" // Ruta a la imagen de la bandera inglesa
-                : "/PI2do/imagenes/logos/espanol.png"; // Ruta a la imagen de la bandera española
+                ? '../imagenes/logos/ingles.png' // Ruta a la imagen de la bandera inglesa
+                : '../imagenes/logos/espanol.png'; // Ruta a la imagen de la bandera española
             
             // Realizar la traducción - NO MODIFICAR esta línea
             translateContent(nuevoIdioma === 'ingles' ? 'en' : 'es');
@@ -319,8 +176,8 @@
             if (savedLanguage) {
                 const bandera = document.getElementById('banderaIdioma');
                 bandera.src = savedLanguage === 'en' 
-                    ? "/PI2do/imagenes/logos/ingles.png" 
-                    : "/PI2do/imagenes/logos/espanol.png";
+                    ? '../imagenes/logos/ingles.png' 
+                    : '../imagenes/logos/espanol.png';
                 translateContent(savedLanguage);
             }
         });
@@ -336,7 +193,7 @@
             <p>Somos una organización dedicada a cuidar del medio ambiente, aplicándolo en nuestra vida diaria y
                 promoviendo a los demás a hacerlo para el bienestar de todos.</p>
         </div>
-        <img class="imagen-principal" src="/PI2do/imagenes/tractor.png" alt="Imagen Principal">
+        <img class="imagen-principal" src="../imagenes/tractor.png" alt="Imagen Principal">
 </body>
 
 <!-- Banner de Cookies -->
@@ -350,7 +207,7 @@
     </div>
 </div>
 
-<script src="cookies.js"></script>
+<script src='../Dashboard_Usuario/cookies.js'></script>
 </div>
 
 
@@ -366,7 +223,7 @@
                 <div class="post-body">
                     <h2>Menos plásticos mas vida</h2>
                     <p class="descripcion">El plástico nos rodea: en casa, en tiendas y hasta en los océanos. Con pequeñas decisiones, podemos reducir su uso y hacer la diferencia. ¿Listo para cambiar hábitos y ayudar al planeta? </p>
-                    <a href="/PI2do/postWeb/articulo1.php" class="post-link">Leer más...</a>
+                    <a href='../postWeb/articulo1.html' class="post-link">Leer más...</a>
                     <span>Publicado el 14 de febrero del 2025 </span>
                     <span>| Juan Pablo Mancilla Rodriguez</span>
                 </div>
@@ -379,7 +236,7 @@
                 <div class="post-body">
                     <h2>Tu puedes hacer la diferencia</h2>
                     <p>Cada elección cuenta. Adoptar hábitos más sostenibles en el día a día no solo reduce nuestra huella ecológica, sino que inspira un cambio real en la sociedad. ¿Te animas a dar el primer paso?</p>
-                    <a href="/PI2do/postWeb/articulo2.php" class="post-link">Leer más...</a>
+                    <a href='../postWeb/articulo2.html' class="post-link">Leer más...</a>
                     <span>Publicado el 19 de Febrero del 2025 </span>
                     <span>| Yureni Elizabeth Sierra Aguilar </span>
                 </div>
@@ -398,7 +255,7 @@
                 <div class="post-body">
                     <h2>La Revolución de la Moda Sostenible </h2>
                     <p class="descripcion">La industria de la moda es poderosa, pero también contaminante. Apostar por opciones sostenibles es clave para un futuro más limpio. ¿Sabes cómo tu ropa puede marcar la diferencia?</p>
-                    <a href="/PI2do/postWeb/articulo3.php" class="post-link">Leer más...</a>
+                    <a href='../postWeb/articulo3.html' class="post-link">Leer más...</a>
                     <span>Publicado el 19 de Febrero del 2025</span>
                     <span> | Daniel Sahid Barroso Alvarez </span>
                 </div>
@@ -412,7 +269,7 @@
 
                     <h2>Crea tu propio huerto y sus ventajas</h2>
                     <p class="descripcion">Cultivar tus propios alimentos te da frescura, control y una alimentación más sana. Además, reduces residuos y cuidas el medioambiente. ¿Te animas a empezar tu propio huerto? </p>
-                    <a href="/PI2do/postWeb/articulo4.php" class="post-link">Leer más...</a>
+                    <a href='../postWeb/articulo4.html' class="post-link">Leer más...</a>
                     <span>Publicado el 20 de Febrero del 2025 </span>
                     <span>| Xiomara Anabeli Cobian Ramirez</span>
                 </div>
@@ -425,7 +282,7 @@
                 <div class="post-body">
                     <h2>Reduciendo residuos en el hogar</h2>
                     <p class="descripcion">Consumimos sin medida, sin pensar en el impacto. Es momento de tomar decisiones responsables y reducir nuestra huella ecológica. Cada elección cuenta. ¿Qué harás hoy por un futuro más verde? </p>
-                    <a href="/PI2do/postWeb/articulo5.php" class="post-link">Leer más...</a>
+                    <a href='../postWeb/articulo5.html' class="post-link">Leer más...</a>
                     <span>Publicado el 21 de Febrero del 2025 </span>
                     <span>| Fernando Benitez Astudillo</span>
                 </div>
@@ -439,7 +296,7 @@
 
                     <h2>Consumo Digital y Producción Responsable</h2>
                     <p class="descripcion">El consumo digital impacta el planeta más de lo que imaginas. Optar por prácticas responsables en tecnología puede hacer una gran diferencia. ¿Sabes cómo reducir tu impacto digital?</p>
-                    <a href="/PI2do/postWeb/articulo6.php" class="post-link">Leer más...</a>
+                    <a href='../postWeb/articulo6.html' class="post-link">Leer más...</a>
                     <span>Publicado el 21 de Febrero del 2025 </span>
                     <span>| Isabela Monserrat Vidrio Camarena</span>
 
@@ -454,9 +311,8 @@
         <div class="footer-container"></div>
     </footer>
 
-    <script src="/PI2do/Bienvenida/Bienvenida.js"></script>
-    <script src="/PI2do/Header visitantes/barra_principal.js"></script>
-    <script src="/PI2do/footer/footer.js"></script>
+    <script src='../Header visitantes/barra_principal.js'></script>
+    <script src='../footer/footer.js'></script>
 </body>
 </html>
     
@@ -482,6 +338,6 @@
         <button class="next">›</button>
     </div> -->
     
+   
 
-
-    
+ 
