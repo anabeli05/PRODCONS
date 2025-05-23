@@ -21,8 +21,16 @@ body {
 }
 
 .flecha_left svg {
-    width: 25px; /* Tamaño de la flecha */
-    height: 25px; /* Ajusta el alto para que quede centrada */
+    width: 30px; /* Tamaño de la flecha */
+    height: 30px; /* Ajusta el alto para que quede centrada */
     fill: #000; /* Color del icono */
     cursor: pointer;
 }
+
+        .flecha_left {
+            display: inline-block;
+            padding: 15px; /* Aumenta el área clickeable */
+            cursor: pointer;
+        }
+
+       

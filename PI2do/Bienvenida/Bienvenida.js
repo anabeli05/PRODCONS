@@ -4,7 +4,7 @@ function createLeaf() {
   const leaf = document.createElement('div');
   leaf.classList.add('leaf');
   leaf.style.left = Math.random() * 100 + 'vw';
-  leaf.style.animationDuration = (0.5 + Math.random() * 1.2) + 's'; // caída rápida
+  leaf.style.animationDuration = (5 + Math.random() * 2) + 's'; // caída entre 5 y 7 segundos
   leaf.style.opacity = Math.random();
   leaf.style.width = Math.random() * 60 + 50 + 'px'; // hojas grandes
 
@@ -18,7 +18,7 @@ function createLeaf() {
   `;
 
   leavesContainer.appendChild(leaf);
-  setTimeout(() => leaf.remove(), 2000);
+  setTimeout(() => leaf.remove(), 7000); // eliminar después de 7 segundos
 }
 
 // Crear hojas cada 100 ms
@@ -36,4 +36,4 @@ setTimeout(() => {
     welcome.style.display = 'none';
     document.getElementById('main-content').classList.add('show');
   }, 1000);
-}, 4500); // duración total del efecto: 7s
+}, 7000);

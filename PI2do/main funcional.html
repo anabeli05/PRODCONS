@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/PI2do/footer/footer.css">
     <link rel="stylesheet" href="articulos.css">
     <link href="/PI2do/Header visitantes/barra_principal.css" rel="stylesheet">
+     <link rel="stylesheet" href="/PI2do/Bienvenida/Bienvenida.css" />
 
     <!-- Google Cloud Translation API -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
@@ -117,6 +118,7 @@
 </nav>
 
 <script>
+  // Script para activar/desactivar la barra de búsqueda
   const btnLupa = document.getElementById('btnLupa');
   const barraBusqueda = document.getElementById('barraBusqueda');
 
@@ -197,22 +199,44 @@
 </script>
 
 <script>
-    function toggleMenu() {
-        const menu = document.getElementById("mobileMenu");
-        const burger = document.querySelector(".hamburger-icon");
-        
-        menu.classList.toggle("active");
+  // Función para alternar el menú de hamburguesa
+  function toggleMenu() {
+    const menu = document.getElementById("mobileMenu");
+    const burger = document.querySelector(".hamburger-icon");
 
-        // Ocultar hamburguesa si el menú está activo
-        if (menu.classList.contains("active")) {
-            burger.style.display = "none";
-        } else {
-            burger.style.display = "block";
-        }
+    menu.classList.toggle("active");
+
+    // Ocultar icono hamburguesa si el menú está abierto
+    if (menu.classList.contains("active")) {
+      burger.style.display = "none";
+    } else {
+      burger.style.display = "block";
     }
+  }
+
+  // Evento para ocultar menú móvil si se cambia a pantalla grande
+  window.addEventListener('resize', () => {
+    const menu = document.getElementById("mobileMenu");
+    const burger = document.querySelector(".hamburger-icon");
+
+    if (window.innerWidth > 768) {
+      // Oculta el menú móvil y muestra el icono hamburguesa de nuevo
+      if (menu.classList.contains("active")) {
+        menu.classList.remove("active");
+        burger.style.display = "block";
+      }
+    }
+  });
 </script>
 
+
 <body>
+
+     <!-- Pantalla de bienvenida -->
+  <div class="falling-leaves-container" id="welcome">
+    <div class="welcome-box">¡Bienvenidos!</div>
+    <div class="leaves"></div>
+  </div>
 
     <header>
         <div class="header-contenedor">
@@ -428,6 +452,7 @@
         <div class="footer-container"></div>
     </footer>
 
+    <script src="/PI2do/Bienvenida/Bienvenida.js"></script>
     <script src="/PI2do/Header visitantes/barra_principal.js"></script>
     <script src="/PI2do/footer/footer.js"></script>
 </body>

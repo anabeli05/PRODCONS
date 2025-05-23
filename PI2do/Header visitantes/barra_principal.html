@@ -2,10 +2,10 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>PRODCONS</title>
-    <link href="/PI2do/Header visitantes/barra_principal.css" rel="stylesheet">
+    <link href="/PI2do/Header visitantes/barra_principal.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -16,15 +16,13 @@
 
                 <!-- Bandera actual -->
                 <div id="idiomaToggle">
-                    <img class="españa" id="banderaIdioma" src="/PI2do/imagenes/logos/espanol.png" alt="Idioma">
+                    <img class="españa" id="banderaIdioma" src="/PI2do/imagenes/logos/espanol.png" alt="Idioma" />
                 </div>
 
                 <!-- Opción secundaria -->
                 <div id="idiomasOpciones">
-                    <img class="ingles" src="/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')"
-                        alt="Cambiar a inglés">
-                    <img class="españa" src="/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')"
-                        alt="Cambiar a español">
+                    <img class="ingles" src="/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés" />
+                    <img class="españa" src="/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español" />
                 </div>
             </div>
         </div>
@@ -39,22 +37,22 @@
                 <path d="M4 18l16 0"></path>
             </svg>
 
-            <img class="prodcons" src="/PI2do/imagenes/prodcon/logoSinfondo.png" alt="Logo">
+            <img class="prodcons" src="/PI2do/imagenes/prodcon/logoSinfondo.png" alt="Logo" />
 
             <div class="subtitulos">
                 <li><a href="/PI2do/pr/produccionr.html">PRODUCCIÓN RESPONSABLE</a></li>
                 <li><a href="/PI2do/cr/consumores.html">CONSUMO RESPONSABLE</a></li>
 
-                <form class="search-form">
-                    <button class="lupa">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"
-                            stroke-width="1.5">
-                            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-                            <path d="M21 21l-6 -6"></path>
+                <!-- Buscador con lupa integrada -->
+                <form class="search-form" action="#" method="GET" role="search">
+                    <input type="search" name="q" placeholder="Buscar..." aria-label="Buscar" />
+                    <button type="submit" aria-label="Buscar">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" width="20" height="20" stroke-width="1.5">
+                            <circle cx="10" cy="10" r="7"></circle>
+                            <line x1="21" y1="21" x2="15" y2="15"></line>
                         </svg>
                     </button>
-                    <input type="search" placeholder="Buscar..." />
                 </form>
             </div>
         </div>
@@ -65,7 +63,16 @@
         <ul>
             <li><a href="/PI2do/pr/produccionr.html" onclick="setActive(this)">PRODUCCION RESPONSABLE</a></li>
             <li><a href="/PI2do/cr/consumores.html" onclick="setActive(this)">CONSUMO RESPONSABLE</a></li>
-            <li><a href="#">Lupa de búsqueda</a></li>
+             <form class="search-form" action="#" method="GET" role="search">
+                    <input type="search" name="q" placeholder="Buscar..." aria-label="Buscar" />
+                    <button type="submit" aria-label="Buscar">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" width="20" height="20" stroke-width="1.5">
+                            <circle cx="10" cy="10" r="7"></circle>
+                            <line x1="21" y1="21" x2="15" y2="15"></line>
+                        </svg>
+                    </button>
+                </form>
         </ul>
     </div>
 
@@ -93,6 +100,12 @@
             opciones.style.display = 'none';
         }
     </script>
+
+    <!-- Google Cloud Translation API -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <!-- Script de traducción global -->
+    <script src="/PI2do/translate.js"></script>
 </body>
 
 </html>
