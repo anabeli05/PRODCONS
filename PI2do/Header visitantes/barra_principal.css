@@ -190,206 +190,115 @@ header {
 }
 
 /* BUSCADOR */
+/* BUSCADOR */
+/* NUEVO BUSCADOR FIJO CON LUPA DENTRO */
 .search-form {
     position: relative;
-    width: 280px; /* ancho fijo o ajustable */
+    width: 220px !important;  /* Fijo y con !important para que no cambie */
+    height: 36px !important;  /* Fijo y con !important */
 }
 
 .search-form input[type="search"] {
-    width: 100%;
-    padding: 8px 40px 8px 12px; /* espacio para el botón lupa a la derecha */
+    width: 220px !important;  /* Igual que el contenedor */
+    height: 36px !important;
+    padding: 8px 36px 8px 12px;
     border: 1px solid #000;
-    border-radius: 20px;
+    border-radius: 25px !important;
     font-size: 1.6rem;
     font-family: 'Georgia', serif;
     box-sizing: border-box;
-    transition: none;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: all 0.3s ease-in-out;
+    min-width: 220px; /* Para que no se haga más pequeño */
+    max-width: 220px; /* Para que no crezca */
 }
 
+/* Evita que autofill reduzca tamaño o cambie padding */
+.search-form input[type="search"]:-webkit-autofill {
+    border-radius: 25px !important;
+    box-shadow: 0 0 0px 1000px white inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+    min-width: 220px !important;
+    max-width: 220px !important;
+    padding: 8px 36px 8px 12px !important;
+}
+
+/* Al enfocar que no cambie tamaño ni padding */
+.search-form input[type="search"]:focus {
+    width: 220px !important;
+    min-width: 220px !important;
+    max-width: 220px !important;
+    padding: 8px 36px 8px 12px !important;
+}
+
+/* Mantén el botón igual */
 .search-form button {
     position: absolute;
     top: 50%;
-    right: 8px;
+    right: 10px;
     transform: translateY(-50%);
-    background: white;
+    background: transparent;
     border: none;
-    cursor: pointer;
     padding: 0;
-    color: black;
+    cursor: pointer;
+    color: #666;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .search-form button svg {
-    stroke: black;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+    stroke: #666;
 }
 
 .search-form button:hover svg {
-    stroke: rgb(14, 95, 14);
+    stroke: #0e5f0e;
 }
 
-/* Ajustes responsivos para pantallas pequeñas */
+/* Responsivo sin cambios en width fijo */
 @media (max-width: 768px) {
     .search-form {
-        width: 150px;
+        width: 150px !important;
+        height: 36px !important;
     }
 
     .search-form input[type="search"] {
+        width: 150px !important;
+        min-width: 150px !important;
+        max-width: 150px !important;
         font-size: 1.3rem;
-        padding: 6px 35px 6px 10px;
+        padding: 6px 35px 6px 10px !important;
     }
 
-    .search-form button svg {
-        width: 18px;
-        height: 18px;
+    .search-form input[type="search"]:focus {
+        width: 150px !important;
+        min-width: 150px !important;
+        max-width: 150px !important;
     }
 }
 
 @media (max-width: 480px) {
     .search-form {
-        width: 120px;
+        width: 120px !important;
+        height: 36px !important;
     }
 
     .search-form input[type="search"] {
+        width: 120px !important;
+        min-width: 120px !important;
+        max-width: 120px !important;
         font-size: 1.1rem;
-        padding: 5px 30px 5px 8px;
+        padding: 5px 30px 5px 8px !important;
     }
 
-    .search-form button svg {
-        width: 16px;
-        height: 16px;
-    }
-}
-
-/* MEDIA QUERY: RESPONSIVO */
-@media (max-width: 768px) {
-    .subtitulos {
-        font-size: 1.4rem;
-        gap: 15px;
-    }
-
-    .search-form:hover input[type="search"] {
-        width: 120px;
-    }
-
-    .prodcons {
-        height: 120px;
-        width: 30%;
+    .search-form input[type="search"]:focus {
+        width: 120px !important;
+        min-width: 120px !important;
+        max-width: 120px !important;
     }
 }
-
-/* Menú de hamburguesa y responsivo */
-/* Menú de hamburguesa */
-.hamburguesa {
-    display: none;
-    cursor: pointer;
-}
-
-.menu {
-    display: none;
-    position: absolute;
-    top: 80px;
-    right: 0;  /* Alinea el menú a la derecha */
-    background: #fff;
-    padding: 10px;
-    width: 200px; /* Ancho del menú */
-    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2); /* Sombra para dar efecto flotante */
-}
-
-/* Ajustes para pantallas medianas */
-@media (max-width: 1024px) {
-    .header_2 .subtitulos li a {
-        font-size: 14px;
-    }
-
-    .prodcons {
-        width: 220px;
-    }
-
-    .search-form input {
-        font-size: 14px;
-    }
-}
-
-/* Ajustes para pantallas pequeñas */
-@media (max-width: 768px) {
-    .header_2 .subtitulos li a {
-        font-size: 12px;
-    }
-
-    .prodcons {
-        width: 100px;
-    }
-
-    .search-form input {
-        font-size: 12px;
-    }
-}
-
-/* Ajustes para pantallas muy pequeñas */
-@media (max-width: 480px) {
-    .header_2 .subtitulos li a {
-        font-size: 10px;
-    }
-
-    .prodcons {
-        width: 100px;
-        height: 15%;
-    }
-
-    .search-form input {
-        font-size: 10px;
-    }
-}
-
-.nav-item a {
-    display: inline-block;
-    text-align: center;
-    font-size: 16px;
-    line-height: 1.2;
-    color: black;
-}
-
-.nav-item .arriba {
-    font-weight: bold;
-}
-
-.nav-item .abajo {
-    display: block;
-    font-size: 14px;
-    font-weight: normal;
-}
-
-@media (max-width: 768px) {
-    .nav-item a {
-        font-size: 14px;
-    }
-
-    .nav-item .abajo {
-        font-size: 12px;
-    }
-
-    .lupa svg {
-        width: 24px;
-        height: 24px;
-    }
-}
-
-@media (max-width: 480px) {
-    .nav-item a {
-        font-size: 12px;
-    }
-
-    .nav-item .abajo {
-        font-size: 10px;
-    }
-
-    .lupa svg {
-        width: 20px;
-        height: 20px;
-    }
-}
-
