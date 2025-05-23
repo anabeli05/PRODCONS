@@ -5,86 +5,8 @@ error_reporting(E_ALL);
 session_start();
 include '../Base de datos/conexion.php';
 
-// Si ya está logueado, redirigir al dashboard
-if (isset($_SESSION['Usuario_ID'])) {
-    header("Location: ../dashboard.php");
-    exit();
-}
-
-// --- REGISTRO ---
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
-    $nombre = $_POST['nombre'];
-    $correo = $_POST['email'];
-    $password = $_POST['password'];
-    $confirmar_password = $_POST['confirmar_password'];
-
-    if ($password !== $confirmar_password) {
-        $error = "Las contraseñas no coinciden";
-    } else {
-        $stmt = $conn->prepare("SELECT * FROM usuarios WHERE Correo = ?");
-        $stmt->bind_param("s", $correo);
-        $stmt->execute();
-        $resultado = $stmt->get_result();
-
-        if ($resultado->num_rows > 0) {
-            $error = "El correo ya está registrado";
-        } else {
-            $hash = password_hash($password, PASSWORD_DEFAULT);
-            $rol = "Usuario";
-            $stmt = $conn->prepare("INSERT INTO usuarios (Nombre, Correo, Contraseña, Rol) VALUES (?, ?, ?, ?)");
-            $stmt->bind_param("ssss", $nombre, $correo, $hash, $rol);
-            if ($stmt->execute()) {
-                $_SESSION['Usuario_ID'] = $stmt->insert_id;
-                $_SESSION['Nombre'] = $nombre;
-                $_SESSION['Rol'] = $rol;
-                header("Location: /PI2do/usuario/usuario.php");
-                exit();
-            } else {
-                $error = "Error al registrar el usuario";
-            }
-        }
-        $stmt->close();
-    }
-    $conn->close();
-    // IMPORTANTE: Detener la ejecución aquí para que no siga al login
-    exit();
-}
-
-// --- LOGIN ---
-if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['registro'])) {
-    $correo = $_POST['email'];
-    $password = $_POST['password'];
-
-    $stmt = $conn->prepare("SELECT * FROM usuarios WHERE Correo = ?");
-    $stmt->bind_param("s", $correo);
-    $stmt->execute();
-    $resultado = $stmt->get_result();
-
-    if ($resultado->num_rows === 1) {
-        $usuario = $resultado->fetch_assoc();
-        if (password_verify($password, $usuario['Contraseña'])) {
-            $_SESSION['Usuario_ID'] = $usuario['Usuario_ID'];
-            $_SESSION['Nombre'] = $usuario['Nombre'];
-            $_SESSION['Rol'] = $usuario['Rol'];
-
-            if ($usuario['Rol'] == 'Super Admin') {
-                header("Location: /PI2do/SuperAdmin/inicioSA.html");
-            } elseif ($usuario['Rol'] == 'Editor') {
-                header("Location: /PI2do/Editor/hola-admin.html");
-            } else {
-                header("Location: /PI2do/usuario/usuario.php");
-            }
-            exit();
-        } else {
-            $error = "Contraseña incorrecta";
-        }
-    } else {
-        $error = "Usuario no encontrado";
-    }
-    $stmt->close();
-    $conn->close();
-    exit();
-}
+// Mostrar mensaje de error si existe
+$error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
 ?>
 
 <!DOCTYPE html>
@@ -142,20 +64,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['registro'])) {
             <!-- ============================================= -->
             <div class="form" id="login-form">
                 <h1>INGRESAR USUARIO</h1>
-                <?php
-                if (isset($error)) {
-                    echo '<p style="color:red; text-align:center;">'.$error.'</p>';
-                }
-                if (isset($_SESSION['error'])) {
-                    echo '<p style="color:red; text-align:center;">'.$_SESSION['error'].'</p>';
-                    unset($_SESSION['error']);
-                }
-                ?>
-                <form action="login.php" method="POST">
+                <?php if ($error): ?>
+                    <div class="error-message">
+                        <?php echo htmlspecialchars($error); ?>
+                    </div>
+                <?php endif; ?>
+                <form method="POST" action="login_var.php">
                     <!-- Campo para el correo electrónico -->
                     <div class="buton">
                         <div class="input-area">
-                            <input type="email" name="email" placeholder="Correo Electrónico" required>
+                            <input type="email" placeholder="Correo Electrónico" name="Correo" required>
                             <i class="fas fa-envelope"></i>
                         </div>
                     </div>
@@ -163,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['registro'])) {
                     <!-- Campo para la contraseña -->
                     <div class="buton">
                         <div class="input-area">
-                            <input type="password" name="password" placeholder="Contraseña" required>
+                            <input type="password" placeholder="Contraseña" name="Contraseña" required>
                             <i class="fas fa-lock"></i>
                         </div>
                     </div>
@@ -180,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['registro'])) {
                     </div>
         
                     <!-- Botón de envío -->
-                    <input type="submit" value="INGRESAR"> 
+                    <input type="submit" name="boton_ingresar" value="INGRESAR"> 
                     
                     <!-- Enlace para alternar al formulario de registro -->
                     <div class="alternar-form">
@@ -194,37 +112,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['registro'])) {
             <!-- ============================================= -->
             <div class="form" id="registro-form" style="display: none;">
                 <h1>REGISTRAR USUARIO</h1>
-                <form action="login.php" method="POST">
-                    <input type="hidden" name="registro" value="1">
+                <form action="">
+                    <!-- Campo para el nombre completo -->
                     <div class="buton">
                         <div class="input-area">
-                            <input type="text" name="nombre" placeholder="Nombre Completo" required>
+                            <input type="text" placeholder="Nombre Completo" required>
                             <i class="fas fa-user"></i>
                         </div>
                     </div>
+
+                    <!-- Campo para el correo electrónico -->
                     <div class="buton">
                         <div class="input-area">
-                            <input type="email" name="email" placeholder="Correo Electrónico" required>
+                            <input type="email" placeholder="Correo Electrónico" required>
                             <i class="fas fa-envelope"></i>
                         </div>
                     </div>
+
+                    <!-- Campo para la contraseña -->
                     <div class="buton">
                         <div class="input-area">
-                            <input type="password" name="password" placeholder="Contraseña" required>
+                            <input type="password" placeholder="Contraseña" required>
                             <i class="fas fa-lock"></i>
                         </div>
                     </div>
+
+                    <!-- Campo para confirmar la contraseña -->
                     <div class="buton">
                         <div class="input-area">
-                            <input type="password" name="confirmar_password" placeholder="Confirmar Contraseña" required>
+                            <input type="password" placeholder="Confirmar Contraseña" required>
                             <i class="fas fa-lock"></i>
                         </div>
                     </div>
+
+                    <!-- Checkbox de términos y condiciones -->
                     <div class="terminos">
                         <input class="C" type="checkbox" required>
                         <label>Acepto los <a href="/PI2do/footer/parafooter/term-condi/term-condi.html">términos y condiciones</a></label>
                     </div>
-                    <input type="submit" value="REGISTRARSE">
+        
+                    <!-- Botón de envío -->
+                    <input type="submit" value="REGISTRARSE"> 
+                    
+                    <!-- Enlace para alternar al formulario de login -->
+                    <div class="alternar-form">
+                        <p>¿Ya tienes una cuenta? <a href="#" id="mostrar-login">Inicia sesión aquí</a></p>
+                    </div>
                 </form>
             </div>
             
@@ -313,69 +246,123 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['registro'])) {
             </div>
         </section>
     </section>
-    
-    <!-- ============================================= -->
-    <!-- SCRIPTS JAVASCRIPT -->
-    <!-- ============================================= -->
-    <script src="/PRODCONS/PI2do/Editor/1SideBar/barra-nav.js"></script>
+
     <script>
-        // Función para alternar entre formularios
-        function mostrarFormulario(idFormulario) {
-            // Ocultar todos los formularios primero
-            document.getElementById('login-form').style.display = 'none';
-            document.getElementById('registro-form').style.display = 'none';
-            document.getElementById('recuperacion-form').style.display = 'none';
-            document.getElementById('nueva-contrasena-form').style.display = 'none';
-            
-            // Mostrar el formulario solicitado
-            document.getElementById(idFormulario).style.display = 'block';
+    document.addEventListener('DOMContentLoaded', function() {
+        // Referencias a los formularios
+        const loginForm = document.getElementById('login-form');
+        const registroForm = document.getElementById('registro-form');
+        const recuperacionForm = document.getElementById('recuperacion-form');
+        const nuevaContrasenaForm = document.getElementById('nueva-contrasena-form');
+
+        // Referencias a los enlaces
+        const mostrarRegistro = document.getElementById('mostrar-registro');
+        const mostrarLogin = document.getElementById('mostrar-login');
+        const mostrarRecuperacion = document.getElementById('mostrar-recuperacion');
+        const volverLogin = document.getElementById('volver-login');
+        const volverLogin2 = document.getElementById('volver-login-2');
+
+        // Función para ocultar todos los formularios
+        function ocultarTodosLosFormularios() {
+            loginForm.style.display = 'none';
+            registroForm.style.display = 'none';
+            recuperacionForm.style.display = 'none';
+            nuevaContrasenaForm.style.display = 'none';
         }
-        
-        // Event listeners para los enlaces
-        document.getElementById('mostrar-registro').addEventListener('click', function(e) {
+
+        // Función para mostrar un formulario específico
+        function mostrarFormulario(formulario) {
+            ocultarTodosLosFormularios();
+            formulario.style.display = 'block';
+        }
+
+        // Event Listeners para los enlaces
+        mostrarRegistro.addEventListener('click', function(e) {
             e.preventDefault();
-            mostrarFormulario('registro-form');
-        });
-        
-        document.getElementById('mostrar-login').addEventListener('click', function(e) {
-            e.preventDefault();
-            mostrarFormulario('login-form');
-        });
-        
-        document.getElementById('mostrar-recuperacion').addEventListener('click', function(e) {
-            e.preventDefault();
-            mostrarFormulario('recuperacion-form');
-        });
-        
-        document.getElementById('volver-login').addEventListener('click', function(e) {
-            e.preventDefault();
-            mostrarFormulario('login-form');
+            mostrarFormulario(registroForm);
         });
 
-        document.getElementById('volver-login-2').addEventListener('click', function(e) {
+        mostrarLogin.addEventListener('click', function(e) {
             e.preventDefault();
-            mostrarFormulario('login-form');
+            mostrarFormulario(loginForm);
         });
 
-        // Simular envío de código y mostrar formulario de nueva contraseña
-        document.querySelector('#recuperacion-form form').addEventListener('submit', function(e) {
+        mostrarRecuperacion.addEventListener('click', function(e) {
             e.preventDefault();
-            mostrarFormulario('nueva-contrasena-form');
+            mostrarFormulario(recuperacionForm);
         });
 
-        // Efectos de hover para los botones de envío
-        const submitButtons = document.querySelectorAll('input[type="submit"]');
-        submitButtons.forEach(button => {
-            button.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-3px)';
-                this.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
-            });
-            
-            button.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = 'none';
-            });
+        volverLogin.addEventListener('click', function(e) {
+            e.preventDefault();
+            mostrarFormulario(loginForm);
         });
+
+        volverLogin2.addEventListener('click', function(e) {
+            e.preventDefault();
+            mostrarFormulario(loginForm);
+        });
+
+        // Validación de contraseñas en el formulario de registro
+        const registroPassword = registroForm.querySelector('input[placeholder="Contraseña"]');
+        const registroConfirmPassword = registroForm.querySelector('input[placeholder="Confirmar Contraseña"]');
+
+        registroConfirmPassword.addEventListener('input', function() {
+            if (this.value !== registroPassword.value) {
+                this.setCustomValidity('Las contraseñas no coinciden');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+        // Validación de contraseñas en el formulario de nueva contraseña
+        const nuevaPassword = nuevaContrasenaForm.querySelector('input[placeholder="Nueva Contraseña"]');
+        const nuevaConfirmPassword = nuevaContrasenaForm.querySelector('input[placeholder="Confirmar Nueva Contraseña"]');
+
+        nuevaConfirmPassword.addEventListener('input', function() {
+            if (this.value !== nuevaPassword.value) {
+                this.setCustomValidity('Las contraseñas no coinciden');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+        // Manejo del formulario de login
+        loginForm.querySelector('form').addEventListener('submit', function(e) {
+            // Removemos el preventDefault para permitir que el formulario se envíe
+            // e.preventDefault();
+            // Aquí iría la lógica de autenticación
+            console.log('Intentando iniciar sesión...');
+        });
+
+        // Manejo del formulario de registro
+        registroForm.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Aquí iría la lógica de registro
+            console.log('Intentando registrar usuario...');
+        });
+
+        // Manejo del formulario de recuperación
+        recuperacionForm.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Aquí iría la lógica de recuperación
+            console.log('Enviando código de recuperación...');
+            // Simular envío exitoso y mostrar formulario de nueva contraseña
+            mostrarFormulario(nuevaContrasenaForm);
+        });
+
+        // Manejo del formulario de nueva contraseña
+        nuevaContrasenaForm.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Aquí iría la lógica de cambio de contraseña
+            console.log('Cambiando contraseña...');
+            // Simular cambio exitoso y volver al login
+            mostrarFormulario(loginForm);
+        });
+    });
     </script>
+
+<?php
+    include 'login_var.php';
+?>
 </body>
 </html>
