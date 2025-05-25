@@ -108,12 +108,12 @@
                 ===================================================================== -->
                 <!-- Bandera principal visible - Puedes cambiar la imagen por defecto aquí -->
                 <div id="idiomaToggle">
-                    <img class="españa" id="banderaIdioma" src='/PRODCONS/PRODCONS/PI2do/imagenes/logos/espanol.png' alt="Idioma" onclick="alternarIdioma()">
+                    <img class="españa" id="banderaIdioma" src='/PRODCONS/PRODCONS/PI2do/imagenes/logos/espanol.png' alt="Idioma" onclick="alternarIdioma()" data-no-translate>
                 </div>
                 <!-- Opciones de banderas desplegables - Puedes cambiar las imágenes aquí -->
                 <div id="idiomasOpciones">
-                    <img class="ingles" src='/PRODCONS/PRODCONS/PI2do/imagenes/logos/ingles.png' onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés">
-                    <img class="españa" src='/PRODCONS/PRODCONS/PI2do/imagenes/logos/espanol.png' onclick="cambiarIdioma('espanol')" alt="Cambiar a español">
+                    <img class="ingles" src='/PRODCONS/PRODCONS/PI2do/imagenes/logos/ingles.png' onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés" data-no-translate>
+                    <img class="españa" src='/PRODCONS/PRODCONS/PI2do/imagenes/logos/espanol.png' onclick="cambiarIdioma('espanol')" alt="Cambiar a español" data-no-translate>
                 </div>
             </div>
         </div>
@@ -323,7 +323,7 @@
                 </div>
             </div>
             <?php endforeach; ?>
-            <?php include 'footer/Visitante/footer.php'; ?>
+            <?php include 'PRODCONS/PRODCONS/PI2do/footer/Visitante/footer.php'; ?>
         </div>
         <button class="prev">‹</button>
         <button class="next">›</button>
