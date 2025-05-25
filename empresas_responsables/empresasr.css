@@ -1,0 +1,544 @@
+html, body {
+    height: 100%;
+    /* margin: 0;
+    padding: 0; */
+    display: flex;
+    flex-direction: column;
+    /* font-family: Georgia, serif; */
+    background-color: white;
+    color: #040404;
+}
+
+.introduccion-section {
+    /* background-color: white;
+    color: black;
+    padding: 20px; */
+    text-align: center;
+    margin-top: 90px;
+    /* font-size: 25px;
+    max-width: 100%;
+    box-sizing: border-box; */
+}
+
+.introduccion-section h1 {
+    margin: 0 auto 20px;
+    font-size: 3rem;
+    text-align: center;
+    max-width: 95%;
+    margin-left: 5px;
+}
+
+.texto {
+    font-size: 2rem;
+    text-align: justify;
+    margin: 0 auto;
+    max-width: 95%;
+}
+
+.empresas_responsablesM {
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 35px;
+    max-width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+/* --- NUEVO BLOQUE FLEX RESPONSIVO EN COMPUTADORAS --- */
+.empresa-bloque {
+    display: block;
+    margin: 40px auto;
+    max-width: 95%;
+    box-sizing: border-box;
+}
+
+.empresa-bloque img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto 0 auto;
+    /* transform: none !important;
+    position: relative !important;
+    left: auto !important;
+    top: auto !important; */
+}
+
+.texto-empresa {
+    max-width: 100%;
+    margin-top: 10px;
+    text-align: justify;
+    font-size: 2rem;
+}
+
+/* Empresa nombre estilo */
+.cemex, .bimbo, .alsea,
+.unilever, .nestle, .walmartM, .sidi, .panga {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    max-width: 100%;
+    margin-left: 45%;
+    line-height: 100px;
+}
+
+.femsa{
+   font-size: 2.5rem;
+    margin-bottom: 10px;
+    max-width: 100%;
+    margin-left: 40%; 
+    line-height: 100px;
+}
+
+.grupo-modelo{
+   font-size: 2.5rem;
+    margin-bottom: 10px;
+    max-width: 100%;
+    margin-left: 42%; 
+    line-height: 100px;
+}
+
+.grupo-herdez{
+   font-size: 2.5rem;
+    margin-bottom: 10px;
+    max-width: 100%;
+    margin-left: 41.5%; 
+    line-height: 100px;
+}
+
+.empresasMPM{
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 35px;
+    max-width: 100%;
+    padding: 0 10px;
+    line-height: 35px;
+}
+
+.walmartM{
+   font-size: 2.5rem;
+    margin-bottom: 10px;
+    max-width: 100%;
+    margin-left: 39%; 
+    line-height: 100px;
+}
+
+.pepsico{
+   font-size: 2.5rem;
+    margin-bottom: 10px;
+    max-width: 100%;
+    margin-left: 40%; 
+    line-height: 100px;
+}
+
+.coca-colaM{
+   font-size: 2.5rem;
+    margin-bottom: 10px;
+    max-width: 100%;
+    margin-left: 40%; 
+    line-height: 100px;
+}
+
+
+
+/* Párrafos generales */
+.p1, .p2, .p3, .p4, .p5, .p6, .p7, .p8, .p9, .p10,
+.p11, .p12, .p13, .p14, .p15, .p16, .p17, .p18, .p19,
+.p20, .p21, .p22, .p23, .p24, .p25, .p26 {
+    max-width: 100%;
+    margin: 10px 0;
+    font-size: 2rem;
+    text-align: justify;
+    padding: 0 5px;
+    box-sizing: border-box;
+    line-height: 40px;
+    margin-left: 5%;
+}
+
+/* Imágenes */
+.img-cemex {
+    max-width:auto;
+    height: 250px;
+    display: block;
+   margin-left: 30%;
+}
+
+.img-bimbo {
+    max-width:auto;
+    height: 250px;
+    display: block;
+    margin-left: 38%;
+}
+
+.img-femsa {
+    max-width:auto;
+    height: 250px;
+    display: block;
+   margin-left: 38%;
+}
+
+.img-g_modelo {
+    max-width:auto;
+    height: 250px;
+    display: block;
+   margin-left: 42%;
+}
+
+.img-alsea {
+    max-width:auto;
+    height: 300px;
+    display: block;
+   margin-left: 41%;
+}
+
+.img-herdez {
+    max-width:auto;
+    height: 400px;
+    display: block;
+   margin-left: 39%;
+}
+
+.img-unilever {
+    max-width:auto;
+    height: 300px;
+    display: block;
+   margin-left: 41%;
+}
+
+.img-nestle {
+    max-width:auto;
+    height: 250px;
+    display: block;
+   margin-left: 38%;
+}
+
+.img-walmart {
+    max-width:auto;
+    height: 200px;
+    display: block;
+   margin-left: 34%;
+}
+
+.img-pepsico {
+    max-width:auto;
+    height: 400px;
+    display: block;
+   margin-left: 36%;
+}
+
+.img-ccm {
+    max-width:auto;
+    height: 300px;
+    display: block;
+   margin-left: 41%;
+}
+
+.img-sidi {
+    max-width:auto;
+    height: 300px;
+    display: block;
+   margin-left: 35%;
+}
+
+.img-panga {
+    max-width:auto;
+    height: 250px;
+    display: block;
+   margin-left: 37%;
+}
+/* --- Media Queries para tablet y móviles --- */
+
+@media screen and (max-width: 1024px) {
+    .introduccion-section {
+        margin-top: 90px;
+        font-size: 22px;
+        padding: 15px;
+    }
+
+    .introduccion-section h1 {
+        font-size: 2rem;
+        max-width: 90%;
+    }
+
+    .texto{
+        font-size: 1rem;
+    }
+
+    .empresas_responsablesM {
+        font-size: 22px;
+        line-height: 30px;
+    }
+
+    .cemex, .bimbo, .femsa, .grupo-modelo, .alsea, .grupo-herdez,
+    .unilever, .nestle, .walmartM, .pepsico, .coca-colaM, .sidi, .panga {
+        font-size: 2rem;
+        line-height: 40px;
+    }
+
+    .p1, .p2, .p3, .p4, .p5, .p6, .p7, .p8, .p9, .p10,
+    .p11, .p12, .p13, .p14, .p15, .p16, .p17, .p18, .p19,
+    .p20, .p21, .p22, .p23, .p24, .p25, .p26 {
+        font-size: 22px;
+        padding: 0 10px;
+        line-height: 30px;
+    }
+
+    .img-cemex, .img-walmart, .img-sidi {
+        max-width: 80%;
+        margin-top: 25px;
+        margin-left: 40%;
+    }
+
+    .img-bimbo{
+        margin-left: 60% !important;
+    }
+
+    .empresasMPM h1{
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 35px;
+    max-width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-left: 50%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .introduccion-section {
+        margin-top: 60px;
+        font-size: 20px;
+        padding: 10px;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .introduccion-section h1 {
+        font-size: 2rem;
+        max-width: 95%;
+    }
+
+    .empresas_responsablesM {
+        font-size: 1.5rem;
+        padding: 0 5px;
+    }
+
+    .cemex, .bimbo, .femsa, .grupo-modelo, .alsea, .grupo-herdez,
+    .unilever, .nestle, .walmartM, .pepsico, .coca-colaM, .sidi, .panga {
+        font-size: 1.5rem;
+    }
+
+    .p1, .p2, .p3, .p4, .p5, .p6, .p7, .p8, .p9, .p10,
+    .p11, .p12, .p13, .p14, .p15, .p16, .p17, .p18, .p19,
+    .p20, .p21, .p22, .p23, .p24, .p25, .p26 {
+        font-size: 1.2rem;
+        padding: 0 8px;
+    }
+
+    .img-cemex, .img-femsa, .img-g_modelo, .img-alsea,
+    .img-herdez, .img-nestle, .img-walmart, .img-pepsico, .img-sidi, .img-panga {
+        max-width: 100% !important;
+        margin-top: 20px;
+        margin-left: 4% !important;
+        margin-right: 0 !important;
+        position: static !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+        display: block;
+    }
+
+    .img-bimbo{
+         margin-left: 20% !important;
+    }
+
+    .img-femsa{
+        margin-left: 22% !important;
+    }
+
+    .img-g_modelo{
+        margin-left: 35% !important;
+    }
+
+    .img-herdez{
+        margin-left: 26% !important;
+    }
+
+    .img-unilever{
+        margin-left: 30% !important;
+    }
+
+    .img-alsea{
+        margin-left: 29% !important;
+    }
+
+    .img-nestle{
+        margin-left: 26% !important;
+    }
+
+    .img-walmart{
+        margin-left: 1% !important;
+    }
+
+    .img-pepsico{
+        margin-left: 18% !important;
+    }
+
+    .img-ccm{
+         margin-left: 29% !important;
+    }
+
+    .img-sidi{
+        margin-left: 11% !important;
+    }
+
+    .img-panga{
+        margin-left: 14% !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .introduccion-section {
+        font-size: 1rem;
+        margin-top: 80px;
+        padding: 8px;
+    }
+
+    .introduccion-section h1 {
+        font-size: 2rem;
+    }
+
+    .texto{
+        font-size: 1.2rem;
+    }
+
+    .empresas_responsablesM {
+        font-size: 1.2rem;
+        padding: 0 3px;
+    }
+
+    .cemex, .bimbo,.alsea,.nestle,.sidi, .panga {
+        font-size: 1.5rem;
+    }
+
+    .femsa{
+        font-size: 1.5rem;
+        margin-left: 26%; 
+    }
+
+    .grupo-modelo{
+        font-size: 1.5rem;
+        margin-left: 26%; 
+    }
+
+    .grupo-herdez{
+        font-size: 1.5rem;
+        margin-left: 29%; 
+    }
+
+    .empresasMPM{
+        font-size: 2rem;
+        margin-top: -100px;
+        text-align: center;
+        margin-left: 15px;
+    }
+
+    .unilever{
+        font-size: 1.5rem;
+        margin-left: 40%; 
+    }
+
+    .walmartM{
+        font-size: 1.5rem;
+        margin-left: 24%; 
+    }
+
+   .pepsico{
+        font-size: 1.5rem;
+        margin-left: 28%; 
+    }
+
+    .coca-colaM{
+        font-size: 1.5rem;
+        margin-left: 24%; 
+    }
+
+    .p1, .p2, .p3, .p4, .p5, .p6, .p7, .p8, .p9, .p10,
+    .p11, .p12, .p13, .p14, .p15, .p16, .p17, .p18, .p19,
+    .p20, .p21, .p22, .p23, .p24, .p25, .p26 {
+        font-size: 1.2rem;
+        padding: 0 5px;
+    }
+
+   .img-bimbo{
+     margin-left: 8% !important;
+     height: 200px;
+   }  
+   
+   .img-g_modelo{
+     margin-left: 20% !important;
+   }
+
+   .img-unilever{
+     margin-left: 15% !important;
+   }
+
+   .img-femsa{
+    margin-left: 9% !important;
+   }
+
+   .img-alsea{
+    margin-left: 12% !important;
+   }
+
+   .img-herdez{
+    margin-left: 12% !important;
+   }
+
+   .img-nestle{
+    margin-left: 10% !important;
+   }
+
+   .img-walmart{
+    margin-left: 11% !important;
+   }
+
+   .img-pepsico{
+    margin-left: 10% !important;
+   }
+
+   .img-ccm{
+    margin-left: 12% !important;
+   }
+
+   .img-panga{
+    margin-left: 6% !important;
+   }
+}
+
+/* --- NUEVO ESTILO PARA PANTALLAS GRANDES (FLEX LATERAL) --- */
+/* @media screen and (min-width: 1025px) {
+    .empresa-bloque {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        margin: 40px auto;
+        max-width: 90%;
+    }
+
+    .empresa-bloque img {
+        width: 40%;
+        height: auto;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .empresa-bloque .texto-empresa {
+        width: 55%;
+        text-align: justify;
+        font-size: 1rem;
+    }
+} */
