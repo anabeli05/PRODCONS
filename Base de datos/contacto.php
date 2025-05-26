@@ -65,7 +65,7 @@
                                 break;
                             case 'Editor':
                                 echo "<br>DEBUG: Redirigiendo a Editor<br>";
-                                header("location: ../Dashboard_Editores/inicio/hola-admin.html");
+                                header("location: ../Dashboard_Editores/inicio/inicio.php");
                                 break;
                             case 'Usuario':
                                 echo "<br>DEBUG: Redirigiendo a Usuario<br>";

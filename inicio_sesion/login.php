@@ -112,11 +112,11 @@ $error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
             <!-- ============================================= -->
             <div class="form" id="registro-form" style="display: none;">
                 <h1>REGISTRAR USUARIO</h1>
-                <form action="">
+                <form method="POST" action="registro.php">
                     <!-- Campo para el nombre completo -->
                     <div class="buton">
                         <div class="input-area">
-                            <input type="text" placeholder="Nombre Completo" required>
+                            <input type="text" placeholder="Nombre Completo" name="Nombre" required>
                             <i class="fas fa-user"></i>
                         </div>
                     </div>
@@ -124,7 +124,7 @@ $error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
                     <!-- Campo para el correo electrónico -->
                     <div class="buton">
                         <div class="input-area">
-                            <input type="email" placeholder="Correo Electrónico" required>
+                            <input type="email" placeholder="Correo Electrónico" name="Correo" required>
                             <i class="fas fa-envelope"></i>
                         </div>
                     </div>
@@ -132,7 +132,7 @@ $error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
                     <!-- Campo para la contraseña -->
                     <div class="buton">
                         <div class="input-area">
-                            <input type="password" placeholder="Contraseña" required>
+                            <input type="password" placeholder="Contraseña" name="Contraseña" required>
                             <i class="fas fa-lock"></i>
                         </div>
                     </div>
@@ -140,7 +140,7 @@ $error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
                     <!-- Campo para confirmar la contraseña -->
                     <div class="buton">
                         <div class="input-area">
-                            <input type="password" placeholder="Confirmar Contraseña" required>
+                            <input type="password" placeholder="Confirmar Contraseña" name="confirmar_password" required>
                             <i class="fas fa-lock"></i>
                         </div>
                     </div>
@@ -152,7 +152,7 @@ $error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
                     </div>
         
                     <!-- Botón de envío -->
-                    <input type="submit" value="REGISTRARSE"> 
+                    <input type="submit" name="registro" value="REGISTRARSE"> 
                     
                     <!-- Enlace para alternar al formulario de login -->
                     <div class="alternar-form">
@@ -332,13 +332,6 @@ $error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
             // e.preventDefault();
             // Aquí iría la lógica de autenticación
             console.log('Intentando iniciar sesión...');
-        });
-
-        // Manejo del formulario de registro
-        registroForm.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Aquí iría la lógica de registro
-            console.log('Intentando registrar usuario...');
         });
 
         // Manejo del formulario de recuperación
