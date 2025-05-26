@@ -67,5 +67,10 @@
 		}
 	}
 
+// Agrega esto al final del archivo para exponer $conn global
+if (!isset($conn)) {
+    $conexionObj = new Conexion();
+    $conexionObj->abrir_conexion();
+    $conn = $conexionObj->conexion;
+}
 ?>
- 

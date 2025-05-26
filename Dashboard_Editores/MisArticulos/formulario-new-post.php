@@ -1,6 +1,7 @@
 <?php
 session_start();
-include '../Base de datos/conexion.php';
+include '../../Base de datos/conexion.php';
+global $conn;
 
 // Verificar si el usuario está logueado
 if (!isset($_SESSION['Usuario_ID'])) {
@@ -81,11 +82,67 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_FILES['imagenes'] ?? null
     );
 
-    // Si no hay errores, procesar el formulario
+    $_SESSION['datos_formulario'] = [
+        'titulo' => $_POST['titulo'] ?? '',
+        'contenido' => $_POST['contenido'] ?? '',
+        'etiquetas' => $_POST['etiquetas'] ?? '',
+        'comentario_autor' => $_POST['comentario_autor'] ?? '',
+        'bibliografias' => $_POST['bibliografias'] ?? ''
+    ];
+
     if (empty($errores)) {
-        // Aquí iría la lógica para guardar el post en la base de datos
-        // Por ahora solo mostramos un mensaje de éxito
-        $_SESSION['mensaje'] = 'Post creado exitosamente';
+        $titulo = trim($_POST['titulo']);
+        $contenido = trim($_POST['contenido']);
+        $usuario_id = $_SESSION['Usuario_ID'];
+        $fecha_creacion = date('Y-m-d H:i:s');
+        $fecha_publicacion = date('Y-m-d'); // Usar la fecha actual
+        $estado = 'pendiente';
+        $motivo_rechazo = null;
+        $bibliografias = trim($_POST['bibliografias'] ?? '');
+
+        // Manejo de imágenes
+        $imagenes_ruta = [];
+        if (isset($_FILES['imagenes']) && isset($_FILES['imagenes']['tmp_name']) && is_array($_FILES['imagenes']['tmp_name'])) {
+            foreach ($_FILES['imagenes']['tmp_name'] as $key => $tmp_name) {
+                if ($_FILES['imagenes']['error'][$key] === 0) {
+                    $upload_dir = '../../uploads/';
+                    if (!is_dir($upload_dir)) {
+                        mkdir($upload_dir, 0777, true);
+                    }
+                    $nombre_archivo = basename($_FILES['imagenes']['name'][$key]);
+                    $ruta_destino = $upload_dir . uniqid() . '_' . $nombre_archivo;
+                    if (move_uploaded_file($tmp_name, $ruta_destino)) {
+                        $imagenes_ruta[] = $ruta_destino;
+                    }
+                }
+            }
+        }
+        $imagenes_json = json_encode($imagenes_ruta);
+
+        // Prepara el statement
+        $stmt = $conn->prepare("INSERT INTO articulos (Titulo, Contenido, Bibliografias, Usuario_ID, `Fecha de Publicacion`) VALUES (?, ?, ?, ?, ?)");
+        if (!$stmt) {
+            $_SESSION['errores'][] = "Error en prepare: " . $conn->error;
+            header('Location: formulario-new-post.php');
+            exit();
+        }
+
+        $stmt->bind_param(
+            "sssis",
+            $titulo,
+            $contenido,
+            $bibliografias,
+            $usuario_id,
+            $fecha_publicacion
+        );
+
+        if ($stmt->execute()) {
+            $_SESSION['mensaje'] = 'Post creado exitosamente';
+            unset($_SESSION['datos_formulario']);
+        } else {
+            $_SESSION['errores'][] = "Error al guardar el post: " . $stmt->error;
+        }
+        $stmt->close();
         header('Location: formulario-new-post.php');
         exit();
     } else {
@@ -109,6 +166,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src='../Dashboard/barra-nav.js' defer></script>
 </head>
 <body>
+    <?php if (isset($mensaje) && $mensaje): ?>
+        <script>
+            alert("<?php echo addslashes($mensaje); ?>");
+        </script>
+    <?php endif; ?>
+    <?php if (!empty($errores)): ?>
+        <script>
+            alert("<?php echo addslashes(implode('\n', $errores)); ?>");
+        </script>
+    <?php endif; ?>
+
     <header> 
         <div class="header-contenedor">
             <div class="principal"></div>
@@ -117,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <section class="logo"> 
         <div class="header_2">
-            <img class="prodcons" src='../imagenes/prodcon/logoSinfondo.png' alt="Logo">
+            <img class="prodcons" src='../../imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
             <div class="admin-controls">
                 <!-- Botón de búsqueda-->
@@ -269,6 +337,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" id="etiquetas" name="etiquetas" 
                        value="<?php echo isset($_SESSION['datos_formulario']['etiquetas']) ? htmlspecialchars($_SESSION['datos_formulario']['etiquetas']) : ''; ?>"
                        placeholder="Ej: medio ambiente, reciclaje, energía">
+            </div>
+
+            <div class="form-group">
+                <label for="bibliografias">Bibliografías:</label>
+                <textarea id="bibliografias" name="bibliografias" rows="3"
+                    placeholder="Referencias, fuentes, etc."><?php echo isset($_SESSION['datos_formulario']['bibliografias']) ? htmlspecialchars($_SESSION['datos_formulario']['bibliografias']) : ''; ?></textarea>
             </div>
       
             <div class="form-group">
