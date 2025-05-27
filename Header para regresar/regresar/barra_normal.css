@@ -5,32 +5,44 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.barra_left {
-    position: fixed; /* Fija la barra */
-    top: 0;
+.barra_left{
+    top: 0;/*que tan separado estara del inicio*/
     left: 0;
-    width: 100%; /* Ocupa el 100% del ancho de la pantalla */
-    background: rgb(225, 216, 204); /* Color de fondo */
+    width: 100%;/*anchura que abarcara de la pantalla*/
+    background: rgb(225, 216, 204);/*color del fondo*/
     display: flex;
-    justify-content: flex-start; /* Alinea la flecha a la izquierda */
-    align-items: center; /* Centra la flecha verticalmente */
-    padding-left: 20px; /* Un poco de espacio desde el borde izquierdo */
-    height: 50px; /* Altura de la barra */
-    border-bottom: 4px solid black; /* Borde inferior */
-    z-index: 10000;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 20px;/*indicaremos cuanto lo justificaremos a la derecha*/
+    border-bottom: 4px solid black;
+    position: fixed; /* Fija la barra */
+    right: 0;
+    height: 50px;
+}
+
+.flecha_left {
+    margin-left: 0;
+}
+
+.flecha_left a {
+    display: flex;
+    align-items: center;
+    height: 50px;
 }
 
 .flecha_left svg {
-    width: 30px; /* Tamaño de la flecha */
-    height: 30px; /* Ajusta el alto para que quede centrada */
-    fill: #000; /* Color del icono */
+    width: 32px;
+    height: 32px;
+    fill: #000;
     cursor: pointer;
+    margin: 0;
+    padding: 0;
+    transition: transform 0.2s;
 }
 
-        .flecha_left {
-            display: inline-block;
-            padding: 15px; /* Aumenta el área clickeable */
-            cursor: pointer;
-        }
+.flecha_left svg:hover {
+    transform: scale(1.1);
+    fill: #4CAF50;
+}
 
        

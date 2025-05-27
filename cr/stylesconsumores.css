@@ -46,15 +46,15 @@
     width: 64%;           /* Define el ancho */
     height: 620px;        /* Define la altura */
     object-fit: cover;    /* Ajusta la imagen sin deformarla */
-    margin-right: 578px;
-    margin-top: -35.3px;
+    margin-right: 560px;
+    margin-top: -31px;
     margin-top: 40px;
 }
 
 /* Ajustes para el cuadro */
 .cuadro-info {
     position: absolute;
-    top: 324.5px; /* Ajusta el cuadro arriba de la imagen*/
+    top: 304.8px; /* Ajusta el cuadro arriba de la imagen*/
     right: 9px;
     transform: translateY(-50%);/*Centrar el cuadro de manera horizontal*/
     height: 570px; /*la altura del cuadrado*/
@@ -237,96 +237,92 @@ h4 {
     transform: translateX(-22px)
 }
 
-/* Responsividad para dispositivos más pequeños (pantallas menores a 768px) */
+/* ======== Media Query para Tablets y móviles ======== */
 @media (max-width: 768px) {
     .sobrecont {
-        flex-direction: column; /* Coloca los elementos en columna */
-        align-items: center; /* Centra los elementos */
-        justify-content: center; /* Alinea los elementos verticalmente */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         margin: 10px auto;
     }
 
     .imagenp {
-        width: 90%; /* Ajusta el ancho de la imagen */
-        height: auto; /* Mantiene la proporción de la imagen */
-        margin-right: 0; /* Elimina el margen derecho */
-        margin-top: 10px; /* Añade algo de espacio arriba */
-    }
-
-    .cuadro-info {
-        position: static; /* Elimina el posicionamiento absoluto */
-        top: auto;
-        right: auto;
-        transform: none;
-        margin-top: 20px; /* Espaciado desde la imagen */
-        width: 90%; /* Ajusta el ancho */
-        height: auto; /* Ajusta la altura según el contenido */
-        padding: 20px; /* Ajusta el padding */
-    }
-
-    .title {
-        font-size: 24px; /* Ajusta el tamaño del título */
-        line-height: 32px;
-        text-align: center;
-    }
-
-    .texto {
-        font-size: 18px; /* Ajusta el tamaño del texto */
-        line-height: 26px;
-        width: 100%; /* Asegura que el texto ocupe todo el espacio */
-        text-align: justify;
-    }
-}
-
-/* Responsividad para dispositivos más pequeños (pantallas menores a 480px) */
-@media (max-width: 480px) {
-    .imagenp {
-        width: 100%; /* La imagen ocupará todo el ancho */
+        width: 90%;
         height: auto;
         margin-top: 10px;
     }
 
     .cuadro-info {
-        width: 100%; /* Hace que el cuadro de info ocupe todo el ancho */
-        padding: 15px; /* Ajusta el padding */
-        margin-top: 15px; /* Asegura un buen margen */
+        position: static;
+        top: auto;
+        right: auto;
+        transform: none;
+        margin-top: 20px;
+        width: 90%;
+        height: auto;
+        padding: 20px;
     }
 
     .title {
-        font-size: 20px; /* Ajusta el tamaño del título */
-        line-height: 28px;
+        font-size: 24px;
+        line-height: 32px;
         text-align: center;
     }
 
     .texto {
-        font-size: 16px; /* Ajusta el tamaño del texto */
+        font-size: 18px;
+        line-height: 26px;
+        width: 100%;
+        text-align: justify;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer1, .footer2, .footer3 {
+        margin: 10px 0;
+        width: 90%;
+        font-size: 16px;
         line-height: 24px;
+    }
+
+    .footer3 a {
+        margin-right: 0;
+        line-height: 30px;
+        display: block;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        transform: none;
+        margin-top: 20px;
     }
 }
 
-/* Estos estilos ya no son necesarios, puedes comentarlos o eliminarlos */
-/*
-.back-button { 
-    position: fixed; 
-    top: 20px; 
-    left: 20px; 
-    z-index: 1000; 
-} 
+/* ======== Media Query para móviles pequeños (menor a 480px) ======== */
+@media (max-width: 480px) {
+    .imagenp {
+        width: 103%;
+        margin-top: 0px;
+    }
 
-.back-button a { 
-    display: block; 
-    color: #333; 
-    transition: transform 0.3s ease; 
-} 
+    .cuadro-info {
+        width: 95%;
+        padding: 15px;
+        margin-top: 85px;
+        margin-right: 10px;
+    }
 
-.back-button svg { 
-    width: 30px; 
-    height: 30px; 
-    fill: currentColor; 
-} 
+    .title {
+        font-size: 20px;
+        line-height: 28px;
+    }
 
-.back-button a:hover { 
-    transform: translateX(-5px); 
-    color: #4CAF50; 
+    .texto {
+        font-size: 16px;
+        line-height: 24px;
+    }
 }
-*/
