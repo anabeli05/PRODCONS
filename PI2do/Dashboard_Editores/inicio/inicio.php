@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 // Verificar si el usuario está logueado
 if (!isset($_SESSION['Usuario_ID'])) {
     header('Location: ../../inicio_sesion/login.php');
@@ -40,16 +41,16 @@ try {
     $conexion->abrir_conexion();
     
     // Consulta para obtener los artículos más vistos del mes seleccionado
-    $sql = "SELECT p.id, p.titulo, p.contenido, p.fecha_creacion, p.visitas, 
-            GROUP_CONCAT(ip.ruta_imagen) as imagenes
-            FROM posts p 
-            LEFT JOIN imagenes_posts ip ON p.id = ip.post_id
-            WHERE MONTH(p.fecha_creacion) = ? 
-            AND YEAR(p.fecha_creacion) = ?
-            AND p.usuario_id = ?
-            GROUP BY p.id
-            ORDER BY p.visitas DESC 
-            LIMIT 6";
+    $sql = "SELECT a.ID_Articulo, a.Titulo, a.Contenido, a.`Fecha de Creacion`, 
+               GROUP_CONCAT(ia.Url_Imagen) as imagenes
+        FROM articulos a
+        LEFT JOIN imagenes_articulos ia ON a.ID_Articulo = ia.Articulo_ID
+        WHERE MONTH(a.`Fecha de Creacion`) = ? 
+          AND YEAR(a.`Fecha de Creacion`) = ?
+          AND a.Usuario_ID = ?
+        GROUP BY a.ID_Articulo
+        ORDER BY a.ID_Articulo DESC 
+        LIMIT 6";
             
     $stmt = $conexion->conexion->prepare($sql);
     $stmt->bind_param("ssi", $meses[$mes_seleccionado], $anio_actual, $editor_id);
@@ -75,11 +76,9 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODCONS - Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link href='hola-adminstyles.css' rel="stylesheet">
-    <!-- CSS DE HEADER-->
-    <link href='../Dashboard/sidebar    .css' rel="stylesheet">
-    <script src='../Dashboard/barra-nav.js' defer></script>
+    <link rel="stylesheet" href='styles.css'>
+  <!--  <link rel="stylesheet" href='/PRODCONS/PI2do/Dashboard_Editores/Dashboard/sidebar.css'>-->
+   <!-- <script src='/PRODCONS/PI2do/Dashboard_Editores/Dashboard/barra-nav.js' ?v=<?php echo time(); ?>' defer></script> -->
 </head>
 <body>
     <header> 
@@ -90,7 +89,7 @@ try {
 
     <section class="logo"> 
         <div class="header_2">
-            <img class="prodcons" src='../imagenes/prodcon/logoSinfondo.png' alt="Logo">
+            <img class="prodcons" src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
             <div class="admin-controls">
                 <!-- Botón de búsqueda-->
@@ -108,7 +107,7 @@ try {
                 </div>
 
                 <!--Botón de notificaciones-->
-                <a href='../Notibox/noti-box.php' class="notif-btn">
+                <a href='/PI2do/Dashboard_Editores/Notibox/noti-box.php' class="notif-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                         <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
@@ -122,67 +121,11 @@ try {
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 11l8 3l8 -3" />
                     </svg>
-                    <img src='../imagenes/logos/perfil.png' alt="Admin" class="admin-avatar">
+                    <img src='/PRODCONS/PI2do/imagenes/logos/perfil.png' alt="Admin" class="admin-avatar">
                 </div>
             </div>
 
-            <!----- sidebar ----->
-            <div class="admin-sidebar" id="adminSidebar">
-                <div class="sidebar-header">
-                    <h3>ADMIN</h3>
-                    <button class="close-sidebar">
-                        <img src='../imagenes/logos/perfil.png' alt="Admin" class="admin-avatar">
-                    </button>
-                </div>
-                
-                
-                <div class="sidebar-footer">
-                    <a href='../inicio_sesion/logout.php' class="logout-btn">Cerrar Sesión</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!---------Saludo Admin--------->
-    <section class="contenedor-principal">
-        <div class="rec-admin">
-            <div class="formato-txt">
-                <h2>¡Hola <?php echo htmlspecialchars($_SESSION['Nombre'] ?? 'Admin'); ?>!</h2>
-                <p>Un blog exitoso se construye post a post. ¡Sigue adelante!</p>
-                <a href='../MisArticulos/formulario-new-post.php'>
-                    <button class="new-post">ESCRIBE UN NUEVO POST</button>
-                </a>
-            </div>
-            <div class="admin-img">
-                <img src='../imagenes/logos/chicaLaptop.png'>
-            </div>
-        </div>
-
-        <div class="contenedor-articulo">
-            <div class="encabezado-articulos">
-                <h2>ARTICULOS MAS VISTOS</h2>
-                <!-------selector de meses------->
-                <div class="selector-meses">
-                    <form method="GET" action="">
-                        <select name="mes" id="selectorMes" class="estilo-selector" onchange="this.form.submit()">
-                            <?php
-                            $meses_nombres = [
-                                'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-                                'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
-                            ];
-                            foreach ($meses_nombres as $mes) {
-                                $selected = ($mes === $mes_seleccionado) ? 'selected' : '';
-                                echo "<option value=\"$mes\" $selected>" . ucfirst($mes) . "</option>";
-                            }
-                            ?>
-                        </select>
-                    </form>
-                    <svg class="flecha-personalizada" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 11l8 3l8 -3" />
-                    </svg>
-                </div>
-            </div>
-
+           
             <!-------ARTICULOS------>
             <div class="vista-articulos">
                 <?php
@@ -190,18 +133,18 @@ try {
                     $contador = 1;
                     foreach ($articulos as $articulo) {
                         $imagenes = explode(',', $articulo['imagenes']);
-                        $imagen_principal = !empty($imagenes[0]) ? $imagenes[0] : '/PI2do/Vista-Admin/img-vista-admin/default-post.jpg';
+                        $imagen_principal = !empty($imagenes[0]) ? '/PRODCONS/PI2do/imagenes/articulos/' . $imagenes[0] : '/PRODCONS/PI2do/Dashboard_Editores/img-vista-admin/default-post.jpg';
                         ?>
                         <div class="articulo" data-mes="<?php echo $mes_seleccionado; ?>">
                             <div class="numero"><?php echo str_pad($contador, 2, '0', STR_PAD_LEFT); ?></div>
                             <div class="contenido-articulo">
                                 <div class="imagen-articulo">
-                                    <img src="<?php echo htmlspecialchars($imagen_principal); ?>" alt="<?php echo htmlspecialchars($articulo['titulo']); ?>">
+                                    <img src="<?php echo htmlspecialchars($imagen_principal); ?>" alt="<?php echo htmlspecialchars($articulo['Titulo']); ?>">
                                 </div>
                                 <div class="texto-articulo">
-                                    <h3><?php echo htmlspecialchars($articulo['titulo']); ?></h3>
-                                    <p><?php echo htmlspecialchars(substr($articulo['contenido'], 0, 100)) . '...'; ?></p>
-                                    <span class="fecha">Publicado el <?php echo date('d \d\e F \d\e Y', strtotime($articulo['fecha_creacion'])); ?></span>
+                                    <h3><?php echo htmlspecialchars($articulo['Titulo']); ?></h3>
+                                    <p><?php echo htmlspecialchars(substr($articulo['Contenido'], 0, 100)) . '...'; ?></p>
+                                    <span class="fecha">Publicado el <?php echo date('d \d\e F \d\e Y', strtotime($articulo['Fecha de Creacion'])); ?></span>
                                 </div>
                             </div>
                         </div>
@@ -231,5 +174,7 @@ try {
             this.form.submit();
         });
     </script>
+
+   <!-- include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/PI2do/Dashboard_Editores/Dashboard/sidebar.php'; ?>  --->
 </body>
 </html> 
