@@ -49,3 +49,136 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
     $conn->close();
 }
 ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Configuración básica del documento -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRODCONS</title>
+    
+    <!-- Hojas de estilo -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="login.css" rel="stylesheet">
+    <!-- Iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- ============================================= -->
+    <!-- SECCIÓN DE ANIMACIÓN DE FONDO -->
+    <!-- ============================================= -->
+    <div class="background-animation">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+    
+    <!-- ============================================= -->
+    <!-- CABECERA PRINCIPAL -->
+    <!-- ============================================= -->
+    <header> 
+        <div class="header-contenedor">
+            <div class="principal"></div>
+        </div>
+    </header>
+
+    <!-- ============================================= -->
+    <!-- SECCIÓN DEL LOGO -->
+    <!-- ============================================= -->
+    <section class="logo"> 
+        <div class="header_2">
+            <a href="/">           
+                 <img class="prodcons" src="../imagenes/prodcon/logoSinfondo.png" alt="Logo"> 
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- CONTENIDO PRINCIPAL -->
+    <!-- ============================================= -->
+    <section class="contenedor-main">
+        <section class="wrapper">
+            <!-- ============================================= -->
+            <!-- FORMULARIO DE REGISTRO (visible por defecto) -->
+            <!-- ============================================= -->
+            <div class="form" id="registro-form">
+                <h1>REGISTRAR USUARIO</h1>
+                <form method="POST" action="registro.php">
+                    <!-- Campo para el nombre completo -->
+                    <div class="buton">
+                        <div class="input-area">
+                            <input type="text" placeholder="Nombre Completo" name="Nombre" required>
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+
+                    <!-- Campo para el correo electrónico -->
+                    <div class="buton">
+                        <div class="input-area">
+                            <input type="email" placeholder="Correo Electrónico" name="Correo" required>
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+
+                    <!-- Campo para la contraseña -->
+                    <div class="buton">
+                        <div class="input-area">
+                            <input type="password" placeholder="Contraseña" name="Contraseña" required>
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+
+                    <!-- Campo para confirmar la contraseña -->
+                    <div class="buton">
+                        <div class="input-area">
+                            <input type="password" placeholder="Confirmar Contraseña" name="confirmar_password" required>
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+
+                    <!-- Checkbox de términos y condiciones -->
+                    <div class="terminos">
+                        <input class="C" type="checkbox" required>
+                        <label>Acepto los <a href="/PRODCONS/footer/parafooter/term-condi/term-condi.html">términos y condiciones</a></label>
+                    </div>
+        
+                    <!-- Botón de envío -->
+                    <input type="submit" name="registro" value="REGISTRARSE"> 
+                    
+                    <!-- Enlace para alternar al formulario de login -->
+                    <div class="alternar-form">
+                        <p>¿Ya tienes una cuenta? <a href="login.php">Inicia sesión aquí</a></p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- ============================================= -->
+            <!-- CONTENEDOR DEL LOGO (lado derecho) -->
+            <!-- ============================================= -->
+            <div class="contenedor-logo">
+                <img src="../imagenes/login.png" alt="Imagen de fondo" class="bg-image">
+                <figure>
+                    <img src="../imagenes/prodcon/logoSinfondo.png" alt="Logo transparente" class="logo-portada">
+                </figure>
+            </div>
+        </section>
+    </section>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Validación de contraseñas en el formulario de registro
+        const registroPassword = document.querySelector('input[placeholder="Contraseña"]');
+        const registroConfirmPassword = document.querySelector('input[placeholder="Confirmar Contraseña"]');
+
+        registroConfirmPassword.addEventListener('input', function() {
+            if (this.value !== registroPassword.value) {
+                this.setCustomValidity('Las contraseñas no coinciden');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+    });
+    </script>
+</body>
+</html>
