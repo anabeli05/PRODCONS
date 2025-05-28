@@ -1,9 +1,9 @@
 <?php
 session_start();
-include '../../Base de datos/conexion.php';
+require_once '../../Base de datos/conexion.php';
 
 // Verificar si el usuario está logueado
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($_SESSION['Usuario_ID'])) {
     header('Location: ../inicio_sesion/login.php');
     exit();
 }
@@ -13,21 +13,35 @@ $orden = isset($_GET['orden']) ? $_GET['orden'] : 'desc';
 $orden_sql = $orden === 'asc' ? 'ASC' : 'DESC';
 $orden_icono = $orden === 'asc' ? '▲' : '▼';
 
+// Conexión MySQLi
+$conexion = new Conexion();
+$conexion->abrir_conexion();
+$conn = $conexion->conexion;
+
 // Obtener los posts del usuario
 try {
-    $stmt = $conn->prepare("
-        SELECT p.*, GROUP_CONCAT(ip.ruta_imagen) as imagenes 
-        FROM posts p 
-        LEFT JOIN imagenes_posts ip ON p.id = ip.post_id 
-        WHERE p.usuario_id = ? 
-        GROUP BY p.id 
-        ORDER BY p.fecha_creacion $orden_sql
-    ");
-    $stmt->execute([$_SESSION['usuario_id']]);
-    $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $sql = "
+        SELECT a.ID_Articulo, a.Titulo, a.Contenido, a.`Fecha de Creacion`, a.Estado,
+               GROUP_CONCAT(ia.Url_Imagen) as imagenes
+        FROM articulos a
+        LEFT JOIN imagenes_articulos ia ON a.ID_Articulo = ia.Articulo_ID
+        WHERE a.Usuario_ID = ?
+        GROUP BY a.ID_Articulo
+        ORDER BY a.`Fecha de Creacion` $orden_sql
+    ";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $_SESSION['Usuario_ID']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $posts = [];
+    while ($row = $result->fetch_assoc()) {
+        $posts[] = $row;
+    }
+    $stmt->close();
 } catch (Exception $e) {
     $error = 'Error al cargar los posts: ' . $e->getMessage();
 }
+$conexion->cerrar_conexion();
 ?>
 
 <!DOCTYPE html>
@@ -195,18 +209,18 @@ try {
                         <article class="articulo-card">
                             <div class="articulo-imagen">
                                 <?php if ($post['imagenes']): ?>
-                                    <img src="<?php echo explode(',', $post['imagenes'])[0]; ?>" alt="<?php echo htmlspecialchars($post['titulo']); ?>">
+                                    <img src="<?php echo '/PRODCONS/PI2do/imagenes/articulos/' . explode(',', $post['imagenes'])[0]; ?>" alt="<?php echo htmlspecialchars($post['Titulo']); ?>">
                                 <?php else: ?>
                                     <div class="no-imagen">Sin imagen</div>
                                 <?php endif; ?>
                             </div>
                             <div class="articulo-contenido">
-                                <h2><?php echo htmlspecialchars($post['titulo']); ?></h2>
-                                <p class="fecha"><?php echo date('d/m/Y', strtotime($post['fecha_creacion'])); ?></p>
-                                <p class="resumen"><?php echo substr(strip_tags($post['contenido']), 0, 150) . '...'; ?></p>
+                                <h2><?php echo htmlspecialchars($post['Titulo']); ?></h2>
+                                <p class="fecha"><?php echo date('d/m/Y', strtotime($post['Fecha de Creacion'])); ?></p>
+                                <p class="resumen"><?php echo substr(strip_tags($post['Contenido']), 0, 150) . '...'; ?></p>
                                 <div class="articulo-acciones">
-                                    <a href="editar-post.php?id=<?php echo $post['id']; ?>" class="btn-editar">Editar</a>
-                                    <button onclick="confirmarEliminar(<?php echo $post['id']; ?>)" class="btn-eliminar">Eliminar</button>
+                                    <a href="editar-post.php?id=<?php echo $post['ID_Articulo']; ?>" class="btn-editar">Editar</a>
+                                    <button onclick="confirmarEliminar(<?php echo $post['ID_Articulo']; ?>)" class="btn-eliminar">Eliminar</button>
                                 </div>
                             </div>
                         </article>

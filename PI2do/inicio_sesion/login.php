@@ -102,7 +102,7 @@ $error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
                     
                     <!-- Enlace para alternar al formulario de registro -->
                     <div class="alternar-form">
-                        <p>¿No tienes una cuenta? <a href="#" id="mostrar-registro">Regístrate aquí</a></p>
+                        <p>¿No tienes una cuenta? <a href="registro.php" id="mostrar-registro">Regístrate aquí</a></p>
                     </div>
                 </form>
             </div>

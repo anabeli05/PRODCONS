@@ -16,7 +16,7 @@ if (!isset($_SESSION['usuario'])) {
     <title>PRONCONS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link href="sidebar.css" rel="stylesheet">
+    <link href='sidebar.css' rel="stylesheet">
 
     <script src="barra-nav.js" defer></script>
 </head>
@@ -73,38 +73,38 @@ if (!isset($_SESSION['usuario'])) {
                 
                 <nav class="sidebar-menu">
 
-                <a href='../MisArticulos/mis-articulos.php'><!----cambiar la ruta a inicio---->
+                <a href='PRODCONS/PI2do/Dashboard_Editores/inicio/inicio.php'><!----cambiar la ruta a inicio---->
                         <span>Inicio</span>
                         <i class="fas fa-file-alt"></i>
                     </a>
 
-                <a href='../MisArticulos/mis-articulos.php'>
+                <a href='PRODCONS/PI2do/Dashboard_Editores/MisArticulos/mis-articulos.php'>
                         <span>Mis Artículos</span>
                         <i class="fas fa-file-alt"></i>
                     </a>
 
-                    <a href="../Crear nuevo post/formulario-new-post.php">
+                    <a href='PRODCONS/PI2do/Dashboard_Editores/Crear nuevo post/formulario-new-post.php'>
                         <span>Crear Post</span>
                         <i class="fas fa-edit"></i>
                     </a>
 
-                    <a href='../PostPlaneados/post-planeados.php'>
+                    <a href='PRODCONS/PI2do/Dashboard_Editores/PostPlaneados/post-planeados.php'>
                         <span>Post Planeados</span>
                         <i class="fas fa-calendar"></i>
                     </a>
                                         
-                    <a href='../Estadisticas/estadisticas-adm.php'>
+                    <a href='PRODCONS/PI2do/Dashboard_Editores/Estadisticas/estadisticas-adm.php'>
                         <span>Estadísticas</span>
                         <i class="fas fa-chart-bar"></i>
                     </a>
                     
-                    <a href='../Configuracion/config.php'>
+                    <a href='PRODCONS/PI2do/Dashboard_Editores/Configuracion/config.php'>
                         <span>Configuración</span>
                         <i class="fas fa-cog"></i>
                     </a>
                 
                 <div class="sidebar-footer">
-                    <a href='../../inicio_sesion/logout.php' class="logout-btn">
+                    <a href='PRODCONS/PI2do/Dashboard_Editores/inicio_sesion/logout.php' class="logout-btn">
                         Cerrar Sesión
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
