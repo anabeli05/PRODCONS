@@ -1,26 +1,44 @@
-let currentIndex = 0;
-const items = document.querySelectorAll('.carousel-item');
-const totalItems = items.length;
+// carrusel.js
+document.addEventListener('DOMContentLoaded', () => {
+  const carousel = document.querySelector('.carousel');
+  const prevBtn = document.querySelector('button.prev');
+  const nextBtn = document.querySelector('button.next');
+  
+  const itemWidth = document.querySelector('.carousel-item').offsetWidth + 20; // ancho + margen lateral
+  const visibleItemsCount = Math.floor(carousel.parentElement.offsetWidth / itemWidth);
+  const totalItems = carousel.children.length;
+  
+  let currentIndex = 0;
 
-document.querySelector('.next').addEventListener('click', function() {
-    if (currentIndex < totalItems - 1) {
-        currentIndex++;
-    } else {
-        currentIndex = 0;
-    }
+  function updateCarousel() {
+    // Limitar índice para no pasar el final ni antes del inicio
+    if (currentIndex < 0) currentIndex = 0;
+    if (currentIndex > totalItems - visibleItemsCount) currentIndex = totalItems - visibleItemsCount;
+    // Mover carousel con translateX negativo
+    carousel.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex--;
     updateCarousel();
-});
+  });
 
-document.querySelector('.prev').addEventListener('click', function() {
-    if (currentIndex > 0) {
-        currentIndex--;
-    } else {
-        currentIndex = totalItems - 1;
-    }
+  nextBtn.addEventListener('click', () => {
+    currentIndex++;
     updateCarousel();
-});
+  });
 
-function updateCarousel() {
-    const carousel = document.querySelector('.carousel');
-    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-}
+  // Opcional: deshabilitar botones al inicio o final
+  function updateButtons() {
+    prevBtn.disabled = currentIndex <= 0;
+    nextBtn.disabled = currentIndex >= totalItems - visibleItemsCount;
+  }
+
+  // Actualizar botones tras cada movimiento
+  prevBtn.addEventListener('click', updateButtons);
+  nextBtn.addEventListener('click', updateButtons);
+  updateButtons();
+
+  // Inicial
+  updateCarousel();
+});

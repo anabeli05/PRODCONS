@@ -131,16 +131,16 @@ body {
 }
 
  
-.footer3 li {
+/* .footer3 li {
   list-style-type: none;
   margin-top: 0;
-}
+} */
 
 .footer3 a {
   color: white;
   text-decoration: none;
   font-size: 14px;
-  line-height: 30px;
+  line-height: 35px;
   white-space: nowrap;
   margin-right: 0; /* Asegura que no haya margen a la derecha */
 }

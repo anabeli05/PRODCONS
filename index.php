@@ -49,8 +49,8 @@
 
       <!-- Opciones del menú -->
       <ul>
-        <li><a href='/PRODCONS/pr/produccionr.html'>PRODUCCIÓN RESPONSABLE</a></li>
-        <li><a href='/PRODCONS/cr/consumores.html'>CONSUMO RESPONSABLE</a></li>
+        <a href='/PRODCONS/pr/produccionr.html'>PRODUCCIÓN RESPONSABLE</a>
+        <a href='/PRODCONS/cr/consumores.html'>CONSUMO RESPONSABLE</a>
          <li>
           <form>
             <button id="btnLupa" class="lupa" aria-label="Abrir buscador" type="button">
@@ -124,8 +124,8 @@
             <img class="prodcons" src='/PRODCONS/imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
             <div class="subtitulos">
-                <li><a href='/PRODCONS/pr/produccionr.html'>PRODUCCIÓN RESPONSABLE</a></li>
-                <li><a href='/PRODCONS/cr/consumores.html'>CONSUMO RESPONSABLE</a></li>
+                <a href='/PRODCONS/pr/produccionr.html'>PRODUCCIÓN RESPONSABLE</a>
+                <a href='/PRODCONS/cr/consumores.html'>CONSUMO RESPONSABLE</a>
 
                 <form class="search-form">
                     <button class="lupa">
@@ -195,6 +195,11 @@
         </div>
         <img class="imagen-principal" src="/PRODCONS/imagenes/tractor.png" alt="Imagen Principal">
     </div>
+
+<!-- incluyo el carrusel -->
+    <?php include 'Carrusel/carrusel.php'; ?>
+    
+
     <h3 class="apubli"> MIRA MAS DE NUESTRO CONTENIDO </h3>
 
 
@@ -302,32 +307,9 @@
     </div>
 
     <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/footer/Visitante/footer.php'; ?>
+    <!-- <script src='/PRODCONS/Carrusel/carrusel.js'></script> -->
     <script src='/PRODCONS/Header visitantes/barra_principal.js'></script>
 </body>
 </html>
-    
-
-    <!-- <div class="carousel-container">
-        <div class="carousel">
-            <?php foreach ($publicaciones as $pub): ?>
-            <div class="carousel-item">
-                <div class="post-header">
-                    <img src="<?= $pub['imagen'] ?>" alt="<?= $pub['titulo'] ?>" class="post-img">
-                </div>
-                <div class="post-body">
-                    <h2><?= $pub['titulo'] ?></h2>
-                    <p class="descripcion"><?= $pub['descripcion'] ?></p>
-                    <a href="<?= $pub['link'] ?>" class="post-link">Leer más...</a>
-                    <span>Publicado el <?= $pub['fecha'] ?></span>
-                    <span>| <?= $pub['autor'] ?></span>
-                </div>
-            </div>
-            <?php endforeach; ?>
-            <?php include 'PRODCONS/footer/Visitante/footer.php'; ?>
-        </div>
-        <button class="prev">‹</button>
-        <button class="next">›</button>
-    </div> -->
-
 
 
