@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("/PI2do/BarrasNav/barra_normal.html")
+    fetch("/PRODCONS/BarrasNav/barra_normal.html")
         .then(response => {
             if (response.ok) {
                 console.log("Footer cargado exitosamente");

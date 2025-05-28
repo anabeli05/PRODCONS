@@ -11,13 +11,19 @@
     margin: 15px auto;
 }
 
-/* Estilo para el enlace "Olvidé contraseña" */
+.olvido-contrasena {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 .olvido-contrasena a {
     color: var(--verde-oscuro);
     text-decoration: none;
     font-size: 1.2rem;
     font-weight: 500;
     transition: all 0.2s ease;
+    margin-bottom: 5px;
 }
 
 .olvido-contrasena a:hover {

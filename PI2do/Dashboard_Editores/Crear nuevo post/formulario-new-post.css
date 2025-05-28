@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  background: white;
+}
+
+
+*, *:before, *:after { /*Se quita la barra de desplazamiento de abajo*/
+  box-sizing: inherit;
+}
+
+header{
+  width: 100%;
+  height: 50px; /* Reducido de 60px */
+  background: rgb(225, 216, 204);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header_2 {
+  width: 100%;
+  height: 80px; /* Reducido de 100px */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: white;
+  border-bottom: 2px solid black;
+  padding-left: 20px;
+}
+
+.prodcons {
+  height: 120px; /* Reducido de 150px */
+  max-width: 100%; /* Asegura que no se desborde */
+}
+
+/*-------BARRA DE NAVEGACION--------*/
+.admin-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: auto;
+}
+
+/* Botón de búsqueda */
+.search-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Barra de búsqueda */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 30px;
+  padding: 5px 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: absolute;
+  right: 200px;
+  width: 250px;
+  transition: all 0.3s ease;
+}
+
+.search-bar input {
+  border: none;
+  width: 100%;
+  padding: 8px;
+  outline: none;
+}
+
+.search-close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+/* Notificaciones */
+.notif-btn {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.notif-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #f44336;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Botón Admin */
+.admin-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 20px;
+  transition: background 0.2s;
+  font-size: 15px;
+}
+
+.admin-btn:hover {
+  background: #f5f5f5;
+}
+
+.admin-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/*--------Barra oculta------------*/
+.admin-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background: rgb(243, 231, 221);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /*elementos en columna*/
+}
+
+.sidebar-menu {
+  flex: 1; /*Ocupa todo el espacio restante*/
+  padding: 10px 0;
+}
+
+/*fijo en la parte inferior*/
+.sidebar-footer {
+  margin-top: auto; /*empuja el footer hacia abajo */
+  padding: 20px 0;
+  border-top: 1px solid #e0e0e0;
+}
+
+
+.logout-btn {
+  margin-top: auto;
+  width: 100%;
+  padding: 10px;
+  background-color: #758561;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: serif;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #57703a;
+}
+
+/*para mostrar elementos */
+.hidden {
+  display: none;
+}
+
+.active {
+  transform: translateX(0);
+}
+
+.sidebar-menu a {
+  display: flex;
+  justify-content:right; /* Alinea texto e icono a los extremos */
+  align-items: center;
+  padding: 12px 20px;
+  color: #333;
+  text-decoration: none;
+  font-size: 2rem;
+  transition: background 0.2s;
+}
+
+.sidebar-menu a:hover {
+  background: #f5f5f5;
+}
+
+.sidebar-menu svg {
+  margin-left: 15px; /* Espacio entre texto e icono */
+  margin-right: 0; /* Elimina margen derecho */
+}
+
+/* Estilo para el encabezado ADMIN */
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+  width: 100%;
+  text-align: right; /* Texto a la derecha */
+  padding-right: 10px;
+}
+
+.sidebar-header img{
+  height: 50px;
+  width: 50px;
+}
+
+/* imagen de usuario para cerrar */
+.close-sidebar { 
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/*------FORMULARIO-------*/
+
+.contenedor-formulario {
+  font-family: Arial, sans-serif;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+h1{
+  font-size: 20px;
+}
+
+label {
+  font-size: 13px;
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+input[type="text"],textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+input[type="file"] {
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #3c82f6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+ background-color: #2563eb;
+}

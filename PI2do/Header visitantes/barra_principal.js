@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Cargar barra principal
-    fetch('/PI2do/Header visitantes/barra_principal.html')
+    fetch('/PRODCONS/Header visitantes/barra_principal.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('barraPrincipal').innerHTML = data;
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
     // Cargar barra secundaria
-    fetch('/PI2do/Header visitantes/barra_secundaria.html')
+    fetch('/PRODCONS/Header visitantes/barra_secundaria.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('barraSecundaria').innerHTML = data;
