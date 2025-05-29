@@ -109,6 +109,7 @@ if (!isset($_SESSION['usuario'])) {
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </div>
+                </nav>
             </div>
         </div>
     </section>
