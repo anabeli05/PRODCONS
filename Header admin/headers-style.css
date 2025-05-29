@@ -1,0 +1,112 @@
+:root {
+    --negro: black;
+    --blanco: white;
+    --amarillo: #FFC107;
+    --azulito: #0097A7;
+    --cafe: rgb(90, 61, 61);
+    --beige: beige;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    font-family: 'Georgia';
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Krub', sans-serif;
+    font-family: 'Georgia';
+}
+
+/* HEADER PRINCIPAL */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: rgb(225, 216, 204);
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+    font-family: 'Georgia';
+}
+
+.header-contenedor{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 16.1px;
+    font-weight: bolder;
+    justify-content: flex-end;
+    padding: 2rem 0;
+}
+
+.principal {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 10px;
+}
+
+.navlink {
+    text-align: right;
+    color: #000;
+    display: flex;
+    text-align: center;
+    justify-content: flex-end;    
+}
+
+/* BANDERAS */
+#idiomasOpciones {
+    display: none;
+    position: absolute;
+    right: 2px;
+    background: rgb(225, 216, 204);
+    padding: 1px;
+    z-index: 100;
+}
+
+.españa,
+.ingles {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+/* LOGO */
+.prodcons {
+    height: 100px;
+    max-width: 100%;
+}
+
+/* SUBTITULOS */
+.subtitulos {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.subtitulos a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.subtitulos a:hover {
+    color: var(--azulito);
+}

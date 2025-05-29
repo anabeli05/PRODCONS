@@ -1,0 +1,100 @@
+.notificaciones {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f5f7fa;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.notifications-container {
+    width: 600px; /* más ancho */
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.date-label {
+    background-color: #f0f0f0;
+    padding: 14px 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #444;
+}
+
+.notification {
+    border-bottom: 1px solid #eee;
+    padding: 18px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+
+.like-icon {
+    font-size: 30px;
+    color: #e0245e;
+    margin-top: 5px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    background-size: cover;
+    background-position: center;
+}
+
+.content {
+    flex: 1;
+}
+
+.like-summary {
+    font-weight: bold;
+    color: #e0245e;
+    font-size: 18px;
+}
+
+.user-comment, .admin-comment,
+.status-rejected,.status-accepted {
+    font-size: 17px;
+    margin: 6px 0;
+}
+
+.admin-comment {
+    color: #007aff;
+    font-style: italic;
+}
+
+.status-rejected {
+    color: #d93025;
+    font-weight: bold;
+}
+
+.status-accepted {
+    color: #34a853;
+    font-weight: bold;
+}
+
+.time {
+    font-size: 14px;
+    color: #888;
+    margin-top: 4px;
+}
+
+.view-post-button {
+    display: inline-block;
+    margin-top: 6px;
+    background-color: #007BFF;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.view-post-button:hover {
+    background-color: #0056b3;
+}
