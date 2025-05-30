@@ -65,15 +65,15 @@
                                 break;
                             case 'Editor':
                                 echo "<br>DEBUG: Redirigiendo a Editor<br>";
-                                header("location: ../Dashboard_Editores/inicio/hola-admin.html");
+                                header("location: ../Dashboard_Editores/inicio/inicio.php");
                                 break;
                             case 'Usuario':
                                 echo "<br>DEBUG: Redirigiendo a Usuario<br>";
-                                header("location: ../Dashboard_Usuario/dashboard.php");
+                                header("location: ../Dashboard_Usuario/inicio.php");
                                 break;
                             default:
                                 echo "<br>DEBUG: Rol desconocido<br>";
-                                header("location: login.php?error=1");
+                                header("location: ../inicio_sesion/login.php?error=1");
                                 break;
                         }
                         exit();
@@ -85,13 +85,13 @@
                 }
                 
                 // Si llegamos aquí, las credenciales son incorrectas
-                header("location: login.php?error=1");
+                header("location: ../inicio_sesion/login.php?error=1");
                 exit();
                 
             } catch (Exception $e) {
                 error_log("Error en login: " . $e->getMessage());
                 echo "<br>DEBUG: Excepción capturada: " . $e->getMessage() . "<br>";
-                header("location: login.php?error=1");
+                header("location: ../inicio_sesion/login.php?error=1");
                 exit();
             } finally {
                 if (isset($stmt)) {

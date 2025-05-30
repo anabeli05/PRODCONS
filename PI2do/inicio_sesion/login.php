@@ -7,6 +7,10 @@ include '../Base de datos/conexion.php';
 
 // Mostrar mensaje de error si existe
 $error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
+
+// Mostrar mensaje de éxito si la contraseña se actualizó exitosamente
+$success_message = isset($_GET['success']) && $_GET['success'] == 'true' ? "Contraseña actualizada exitosamente" : "";
+
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +26,18 @@ $error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
     <link href="login.css" rel="stylesheet">
     <!-- Iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .error-message {
+            color: red;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .success-message {
+            color: green;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -69,6 +85,13 @@ $error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
                         <?php echo htmlspecialchars($error); ?>
                     </div>
                 <?php endif; ?>
+
+                <?php if ($success_message): ?>
+                    <div class="success-message">
+                        <?php echo htmlspecialchars($success_message); ?>
+                    </div>
+                <?php endif; ?>
+
                 <form method="POST" action="login_var.php">
                     <!-- Campo para el correo electrónico -->
                     <div class="buton">
@@ -93,7 +116,7 @@ $error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
                             <label>Recuérdame</label>
                         </div>
                         <div class="olvido-contrasena">
-                            <a href="#" id="mostrar-recuperacion">¿Olvidaste tu contraseña?</a>
+                            <a href='../inicio_sesion/codigo.php' id="mostrar-recuperacion">¿Olvidaste tu contraseña?</a>
                         </div>
                     </div>
         
@@ -107,80 +130,7 @@ $error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
                 </form>
             </div>
             
-            
-            <!-- ============================================= -->
-            <!-- FORMULARIO DE RECUPERACIÓN (oculto inicialmente) -->
-            <!-- ============================================= -->
-            <div class="form" id="recuperacion-form" style="display: none;">
-                <h1>RECUPERAR CONTRASEÑA</h1>
-                <form action="">
-                    <!-- Instrucciones -->
-                    <div class="instrucciones">
-                        <p>Ingresa tu correo electrónico y te enviaremos un código para restablecer tu contraseña.</p>
-                    </div>
-
-                    <!-- Campo para el correo electrónico -->
-                    <div class="buton">
-                        <div class="input-area">
-                            <input type="email" placeholder="Correo Electrónico" required>
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                    </div>
-
-                    <!-- Botón de envío -->
-                    <input type="submit" value="ENVIAR CÓDIGO"> 
-                    
-                    <!-- Enlace para volver al login -->
-                    <div class="alternar-form">
-                        <p>¿Recordaste tu contraseña? <a href="#" id="volver-login">Inicia sesión aquí</a></p>
-                    </div>
-                </form>
-            </div>
-            
-            <!-- ============================================= -->
-            <!-- FORMULARIO DE NUEVA CONTRASEÑA (oculto inicialmente) -->
-            <!-- ============================================= -->
-            <div class="form" id="nueva-contrasena-form" style="display: none;">
-                <h1>RESTABLECER CONTRASEÑA</h1>
-                <form action="">
-                    <!-- Instrucciones -->
-                    <div class="instrucciones">
-                        <p>Ingresa el código que recibiste y tu nueva contraseña.</p>
-                    </div>
-
-                    <!-- Campo para el código -->
-                    <div class="buton">
-                        <div class="input-area">
-                            <input type="text" placeholder="Código de verificación" required>
-                            <i class="fas fa-key"></i>
-                        </div>
-                    </div>
-
-                    <!-- Campo para la nueva contraseña -->
-                    <div class="buton">
-                        <div class="input-area">
-                            <input type="password" placeholder="Nueva Contraseña" required>
-                            <i class="fas fa-lock"></i>
-                        </div>
-                    </div>
-
-                    <!-- Campo para confirmar la nueva contraseña -->
-                    <div class="buton">
-                        <div class="input-area">
-                            <input type="password" placeholder="Confirmar Nueva Contraseña" required>
-                            <i class="fas fa-lock"></i>
-                        </div>
-                    </div>
-
-                    <!-- Botón de envío -->
-                    <input type="submit" value="CAMBIAR CONTRASEÑA"> 
-                    
-                    <!-- Enlace para volver al login -->
-                    <div class="alternar-form">
-                        <p>¿Recordaste tu contraseña? <a href="#" id="volver-login-2">Inicia sesión aquí</a></p>
-                    </div>
-                </form>
-            </div>
+           
             
             <!-- ============================================= -->
             <!-- CONTENEDOR DEL LOGO (lado derecho) -->
@@ -209,95 +159,73 @@ $error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
         const volverLogin = document.getElementById('volver-login');
         const volverLogin2 = document.getElementById('volver-login-2');
 
-        // Función para ocultar todos los formularios
+        // Función para mostrar un formulario específico
         function ocultarTodosLosFormularios() {
-            loginForm.style.display = 'none';
-            registroForm.style.display = 'none';
-            recuperacionForm.style.display = 'none';
-            nuevaContrasenaForm.style.display = 'none';
+            // Check if the elements exist before trying to access their style property
+            if (loginForm) loginForm.style.display = 'none';
+            if (registroForm) registroForm.style.display = 'none';
+            if (recuperacionForm) recuperacionForm.style.display = 'none';
+            if (nuevaContrasenaForm) nuevaContrasenaForm.style.display = 'none';
         }
 
         // Función para mostrar un formulario específico
         function mostrarFormulario(formulario) {
             ocultarTodosLosFormularios();
-            formulario.style.display = 'block';
+            if (formulario) formulario.style.display = 'block';
         }
 
         // Event Listeners para los enlaces
-        mostrarRegistro.addEventListener('click', function(e) {
-            e.preventDefault();
-            mostrarFormulario(registroForm);
-        });
+        if (mostrarRegistro) {
+            mostrarRegistro.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Assuming registroForm exists based on your HTML structure
+                mostrarFormulario(document.getElementById('registro-form'));
+            });
+        }
 
-        mostrarLogin.addEventListener('click', function(e) {
-            e.preventDefault();
-            mostrarFormulario(loginForm);
-        });
+        if (mostrarLogin) {
+            mostrarLogin.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Assuming loginForm exists
+                mostrarFormulario(document.getElementById('login-form'));
+            });
+        }
 
-        mostrarRecuperacion.addEventListener('click', function(e) {
-            e.preventDefault();
-            mostrarFormulario(recuperacionForm);
-        });
+        if (mostrarRecuperacion) {
+            mostrarRecuperacion.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Assuming recuperacionForm exists
+                mostrarFormulario(document.getElementById('recuperacion-form'));
+            });
+        }
 
-        volverLogin.addEventListener('click', function(e) {
-            e.preventDefault();
-            mostrarFormulario(loginForm);
-        });
+        if (volverLogin) {
+            volverLogin.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Assuming loginForm exists
+                mostrarFormulario(document.getElementById('login-form'));
+            });
+        }
 
-        volverLogin2.addEventListener('click', function(e) {
-            e.preventDefault();
-            mostrarFormulario(loginForm);
-        });
+        if (volverLogin2) {
+            volverLogin2.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Assuming loginForm exists
+                mostrarFormulario(document.getElementById('login-form'));
+            });
+        }
 
-        // Validación de contraseñas en el formulario de registro
-        const registroPassword = registroForm.querySelector('input[placeholder="Contraseña"]');
-        const registroConfirmPassword = registroForm.querySelector('input[placeholder="Confirmar Contraseña"]');
-
-        registroConfirmPassword.addEventListener('input', function() {
-            if (this.value !== registroPassword.value) {
-                this.setCustomValidity('Las contraseñas no coinciden');
-            } else {
-                this.setCustomValidity('');
-            }
-        });
-
-        // Validación de contraseñas en el formulario de nueva contraseña
-        const nuevaPassword = nuevaContrasenaForm.querySelector('input[placeholder="Nueva Contraseña"]');
-        const nuevaConfirmPassword = nuevaContrasenaForm.querySelector('input[placeholder="Confirmar Nueva Contraseña"]');
-
-        nuevaConfirmPassword.addEventListener('input', function() {
-            if (this.value !== nuevaPassword.value) {
-                this.setCustomValidity('Las contraseñas no coinciden');
-            } else {
-                this.setCustomValidity('');
-            }
-        });
 
         // Manejo del formulario de login
-        loginForm.querySelector('form').addEventListener('submit', function(e) {
-            // Removemos el preventDefault para permitir que el formulario se envíe
-            // e.preventDefault();
-            // Aquí iría la lógica de autenticación
-            console.log('Intentando iniciar sesión...');
-        });
+        if (loginForm) {
+            loginForm.querySelector('form').addEventListener('submit', function(e) {
+                // Removemos el preventDefault para permitir que el formulario se envíe
+                // e.preventDefault();
+                // Aquí iría la lógica de autenticación
+                console.log('Intentando iniciar sesión...');
+            });
+        }
 
-        // Manejo del formulario de recuperación
-        recuperacionForm.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Aquí iría la lógica de recuperación
-            console.log('Enviando código de recuperación...');
-            // Simular envío exitoso y mostrar formulario de nueva contraseña
-            mostrarFormulario(nuevaContrasenaForm);
-        });
-
-        // Manejo del formulario de nueva contraseña
-        nuevaContrasenaForm.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Aquí iría la lógica de cambio de contraseña
-            console.log('Cambiando contraseña...');
-            // Simular cambio exitoso y volver al login
-            mostrarFormulario(loginForm);
-        });
     });
     </script>
 

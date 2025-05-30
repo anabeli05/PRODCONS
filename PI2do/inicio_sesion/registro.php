@@ -138,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
                     <input type="submit" name="registro" value="REGISTRARSE"> 
                     <!-- Enlace para alternar al formulario de login -->
                     <div class="alternar-form">
-                        <p>¿Ya tienes una cuenta? <a href="login.php" id="mostrar-login">Inicia sesión aquí</a></p>
+                        <p>¿Ya tienes una cuenta? <a href='../inicio_sesion/login.php' id="mostrar-login">Inicia sesión aquí</a></p>
                     </div>
                 </form>
             </div>

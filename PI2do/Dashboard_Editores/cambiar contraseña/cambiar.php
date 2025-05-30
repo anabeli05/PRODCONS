@@ -3,7 +3,7 @@ session_start();
 include '../../Base de datos/conexion.php';
 
 // Verificar si el usuario está logueado
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($_SESSION['Usuario_ID'])) {
     header('Location: ../../inicio_sesion/login.php');
     exit();
 }
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validar la contraseña actual contra la base de datos
     if (empty($errores)) {
         $stmt = $conn->prepare("SELECT Contraseña FROM usuarios WHERE Usuario_ID = ?");
-        $stmt->bind_param("i", $_SESSION['usuario_id']);
+        $stmt->bind_param("i", $_SESSION['Usuario_ID']);
         $stmt->execute();
         $stmt->bind_result($hash_actual);
         if ($stmt->fetch()) {
@@ -59,8 +59,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errores)) {
         $hash_nueva = password_hash($newPassword, PASSWORD_DEFAULT);
         $stmt = $conn->prepare("UPDATE usuarios SET Contraseña = ? WHERE Usuario_ID = ?");
-        $stmt->bind_param("si", $hash_nueva, $_SESSION['usuario_id']);
+        $stmt->bind_param("si", $hash_nueva, $_SESSION['Usuario_ID']);
         if ($stmt->execute()) {
+            // Registrar el cambio en el historial
+            $usuario_id = $_SESSION['Usuario_ID'];
+            $accion = "Cambio de contraseña";
+            $fecha = date('Y-m-d H:i:s');
+            $stmt_hist = $conn->prepare("INSERT INTO historial_datos_usuario (Usuario_ID, Accion, Fecha) VALUES (?, ?, ?)");
+            $stmt_hist->bind_param("iss", $usuario_id, $accion, $fecha);
+            $stmt_hist->execute();
+            $stmt_hist->close();
+
             session_destroy();
             header('Location: ../../inicio_sesion/login.php?success=true');
             exit();
