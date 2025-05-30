@@ -107,59 +107,6 @@ $error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
                 </form>
             </div>
             
-            <!-- ============================================= -->
-            <!-- FORMULARIO DE REGISTRO (oculto inicialmente) -->
-            <!-- ============================================= -->
-            <div class="form" id="registro-form" style="display: none;">
-                <h1>REGISTRAR USUARIO</h1>
-                <form method="POST" action="registro.php">
-                    <!-- Campo para el nombre completo -->
-                    <div class="buton">
-                        <div class="input-area">
-                            <input type="text" placeholder="Nombre Completo" name="Nombre" required>
-                            <i class="fas fa-user"></i>
-                        </div>
-                    </div>
-
-                    <!-- Campo para el correo electrónico -->
-                    <div class="buton">
-                        <div class="input-area">
-                            <input type="email" placeholder="Correo Electrónico" name="Correo" required>
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                    </div>
-
-                    <!-- Campo para la contraseña -->
-                    <div class="buton">
-                        <div class="input-area">
-                            <input type="password" placeholder="Contraseña" name="Contraseña" required>
-                            <i class="fas fa-lock"></i>
-                        </div>
-                    </div>
-
-                    <!-- Campo para confirmar la contraseña -->
-                    <div class="buton">
-                        <div class="input-area">
-                            <input type="password" placeholder="Confirmar Contraseña" name="confirmar_password" required>
-                            <i class="fas fa-lock"></i>
-                        </div>
-                    </div>
-
-                    <!-- Checkbox de términos y condiciones -->
-                    <div class="terminos">
-                        <input class="C" type="checkbox" required>
-                        <label>Acepto los <a href="/PRODCONS/footer/parafooter/term-condi/term-condi.html">términos y condiciones</a></label>
-                    </div>
-        
-                    <!-- Botón de envío -->
-                    <input type="submit" name="registro" value="REGISTRARSE"> 
-                    
-                    <!-- Enlace para alternar al formulario de login -->
-                    <div class="alternar-form">
-                        <p>¿Ya tienes una cuenta? <a href="#" id="mostrar-login">Inicia sesión aquí</a></p>
-                    </div>
-                </form>
-            </div>
             
             <!-- ============================================= -->
             <!-- FORMULARIO DE RECUPERACIÓN (oculto inicialmente) -->

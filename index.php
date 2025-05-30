@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODCONS</title>
     <link rel="stylesheet" href="/PRODCONS/styles.css">
-    <link rel="stylesheet" href="/PRODCONS/footer/Visitante/footer.css">
+    <link rel="stylesheet" href="/PRODCONS/PI2do/footer/Visitante/footer.css">
     <link rel="stylesheet" href="/PRODCONS/articulos.css">
-    <link rel="stylesheet" href="/PRODCONS/Header visitantes/barra_principal.css">
+    <link rel="stylesheet" href="/PRODCONS/PI2do/Header visitantes/barra_principal.css">
 
     <!-- Google Cloud Translation API -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <!-- Script de traducción global -->
-    <script src='/PRODCONS/translate.js'></script>
+    <script src='translate.js'></script>
     <style>
         /* Estilos para la bandera de idioma */
         #banderaIdioma {
@@ -28,6 +28,16 @@
         
         #banderaIdioma:hover {
             transform: scale(1.1);
+        }
+
+        .carrusel-destacado {
+            width: 100%;
+            max-width: 900px;
+            margin: 40px auto 40px auto;
+            padding: 0 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 
@@ -44,13 +54,13 @@
 
       <!-- Logo dentro del menú -->
       <div class="mobile-logo">
-        <img src='/PRODCONS/imagenes/prodcon/logoSinfondo.png' alt="Logo" />
+        <img src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo" />
       </div>
 
       <!-- Opciones del menú -->
       <ul>
-        <a href='/PRODCONS/pr/produccionr.html'>PRODUCCIÓN RESPONSABLE</a>
-        <a href='/PRODCONS/cr/consumores.html'>CONSUMO RESPONSABLE</a>
+        <a href='/PRODCONS/PI2do/pr/produccionr.html'>PRODUCCIÓN RESPONSABLE</a>
+        <a href='/PRODCONS/PI2do/cr/consumores.html'>CONSUMO RESPONSABLE</a>
          <li>
           <form>
             <button id="btnLupa" class="lupa" aria-label="Abrir buscador" type="button">
@@ -100,7 +110,7 @@
     <header>
         <div class="header-contenedor">
             <div class="principal">
-                <a class="navlink" href='/PRODCONS/empresas_responsables/empresasr.html'>EMPRESAS RESPONSABLES</a>
+                <a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.html'>EMPRESAS RESPONSABLES</a>
 
                 <!-- =====================================================================
                 SELECTOR DE BANDERA PARA CAMBIO DE IDIOMA - PERSONALIZABLE
@@ -108,12 +118,7 @@
                 ===================================================================== -->
                 <!-- Bandera principal visible - Puedes cambiar la imagen por defecto aquí -->
                 <div id="idiomaToggle">
-                    <img class="españa" id="banderaIdioma" src='/PRODCONS/imagenes/logos/espanol.png' alt="Idioma" onclick="alternarIdioma()" data-no-translate>
-                </div>
-                <!-- Opciones de banderas desplegables - Puedes cambiar las imágenes aquí -->
-                <div id="idiomasOpciones">
-                    <img class="ingles" src='/PRODCONS/imagenes/logos/ingles.png' onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés" data-no-translate>
-                    <img class="españa" src='/PRODCONS/imagenes/logos/espanol.png' onclick="cambiarIdioma('espanol')" alt="Cambiar a español" data-no-translate>
+                    <img id="banderaIdioma" src='/PRODCONS/PI2do/imagenes/logos/espanol.png' alt="Idioma" onclick="alternarIdioma()" data-idioma="es">
                 </div>
             </div>
         </div>
@@ -121,11 +126,11 @@
 
     <section class="logo">
         <div class="header_2">
-            <img class="prodcons" src='/PRODCONS/imagenes/prodcon/logoSinfondo.png' alt="Logo">
+            <img class="prodcons" src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
             <div class="subtitulos">
-                <a href='/PRODCONS/pr/produccionr.html'>PRODUCCIÓN RESPONSABLE</a>
-                <a href='/PRODCONS/cr/consumores.html'>CONSUMO RESPONSABLE</a>
+                <a href='/PRODCONS/PI2do/pr/produccionr.html'>PRODUCCIÓN RESPONSABLE</a>
+                <a href='/PRODCONS/PI2do/cr/consumores.html'>CONSUMO RESPONSABLE</a>
 
                 <form class="search-form">
                     <button class="lupa">
@@ -160,8 +165,8 @@
             
             // Cambiar la imagen de la bandera - Puedes modificar las rutas si cambias las imágenes
             bandera.src = nuevoIdioma === 'ingles' 
-                ? '/PRODCONS/imagenes/logos/ingles.png' // Ruta a la imagen de la bandera inglesa
-                : '/PRODCONS/imagenes/logos/espanol.png'; // Ruta a la imagen de la bandera española
+                ? '/PRODCONS/PI2do/imagenes/logos/ingles.png' // Ruta a la imagen de la bandera inglesa
+                : '/PRODCONS/PI2do/imagenes/logos/espanol.png'; // Ruta a la imagen de la bandera española
             
             // Realizar la traducción - NO MODIFICAR esta línea
             translateContent(nuevoIdioma === 'ingles' ? 'en' : 'es');
@@ -176,8 +181,8 @@
             if (savedLanguage) {
                 const bandera = document.getElementById('banderaIdioma');
                 bandera.src = savedLanguage === 'en' 
-                    ? '/PRODCONS/imagenes/logos/ingles.png' 
-                    : '/PRODCONS/imagenes/logos/espanol.png';
+                    ? '/PRODCONS/PI2do/imagenes/logos/ingles.png' 
+                    : '/PRODCONS/PI2do/imagenes/logos/espanol.png';
                 translateContent(savedLanguage);
             }
         });
@@ -193,11 +198,13 @@
             <p>Somos una organización dedicada a cuidar del medio ambiente, aplicándolo en nuestra vida diaria y
                 promoviendo a los demás a hacerlo para el bienestar de todos.</p>
         </div>
-        <img class="imagen-principal" src="/PRODCONS/imagenes/tractor.png" alt="Imagen Principal">
+        <img class="imagen-principal" src="/PRODCONS/PI2do/imagenes/tractor.png" alt="Imagen Principal">
     </div>
 
-<!-- incluyo el carrusel -->
-    <?php include 'Carrusel/carrusel.php'; ?>
+<!-- Carrusel destacado -->
+<section class="carrusel-destacado">
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/PI2do/Carrusel/carrusel.php'; ?>
+</section>
     
 
     <h3 class="apubli"> MIRA MAS DE NUESTRO CONTENIDO </h3>
@@ -212,7 +219,7 @@
                 <div class="post-body">
                     <h2>Menos plásticos mas vida</h2>
                     <p class="descripcion">El plástico nos rodea: en casa, en tiendas y hasta en los océanos. Con pequeñas decisiones, podemos reducir su uso y hacer la diferencia. ¿Listo para cambiar hábitos y ayudar al planeta? </p>
-                    <a href='/PRODCONS/postWeb/articulo1.html' class="post-link">Leer más...</a>
+                    <a href='/PI2do/postWeb/articulo1.html' class="post-link">Leer más...</a>
                     <span>Publicado el 14 de febrero del 2025 </span>
                     <span>| Juan Pablo Mancilla Rodriguez</span>
                 </div>
@@ -225,7 +232,7 @@
                 <div class="post-body">
                     <h2>Tu puedes hacer la diferencia</h2>
                     <p>Cada elección cuenta. Adoptar hábitos más sostenibles en el día a día no solo reduce nuestra huella ecológica, sino que inspira un cambio real en la sociedad. ¿Te animas a dar el primer paso?</p>
-                    <a href='/PRODCONS/postWeb/articulo2.html' class="post-link">Leer más...</a>
+                    <a href='/PI2do/postWeb/articulo2.html' class="post-link">Leer más...</a>
                     <span>Publicado el 19 de Febrero del 2025 </span>
                     <span>| Yureni Elizabeth Sierra Aguilar </span>
                 </div>
@@ -244,7 +251,7 @@
                 <div class="post-body">
                     <h2>La Revolución de la Moda Sostenible </h2>
                     <p class="descripcion">La industria de la moda es poderosa, pero también contaminante. Apostar por opciones sostenibles es clave para un futuro más limpio. ¿Sabes cómo tu ropa puede marcar la diferencia?</p>
-                    <a href='/PRODCONS/postWeb/articulo3.html' class="post-link">Leer más...</a>
+                    <a href='/PI2do/postWeb/articulo3.html' class="post-link">Leer más...</a>
                     <span>Publicado el 19 de Febrero del 2025</span>
                     <span> | Daniel Sahid Barroso Alvarez </span>
                 </div>
@@ -258,7 +265,7 @@
 
                     <h2>Crea tu propio huerto y sus ventajas</h2>
                     <p class="descripcion">Cultivar tus propios alimentos te da frescura, control y una alimentación más sana. Además, reduces residuos y cuidas el medioambiente. ¿Te animas a empezar tu propio huerto? </p>
-                    <a href='/PRODCONS/postWeb/articulo4.html' class="post-link">Leer más...</a>
+                    <a href='/PI2do/postWeb/articulo4.html' class="post-link">Leer más...</a>
                     <span>Publicado el 20 de Febrero del 2025 </span>
                     <span>| Xiomara Anabeli Cobian Ramirez</span>
                 </div>
@@ -271,7 +278,7 @@
                 <div class="post-body">
                     <h2>Reduciendo residuos en el hogar</h2>
                     <p class="descripcion">Consumimos sin medida, sin pensar en el impacto. Es momento de tomar decisiones responsables y reducir nuestra huella ecológica. Cada elección cuenta. ¿Qué harás hoy por un futuro más verde? </p>
-                    <a href='/PRODCONS/postWeb/articulo5.html' class="post-link">Leer más...</a>
+                    <a href='/PI2do/postWeb/articulo5.html' class="post-link">Leer más...</a>
                     <span>Publicado el 21 de Febrero del 2025 </span>
                     <span>| Fernando Benitez Astudillo</span>
                 </div>
@@ -285,7 +292,7 @@
 
                     <h2>Consumo Digital y Producción Responsable</h2>
                     <p class="descripcion">El consumo digital impacta el planeta más de lo que imaginas. Optar por prácticas responsables en tecnología puede hacer una gran diferencia. ¿Sabes cómo reducir tu impacto digital?</p>
-                    <a href='/PRODCONS/postWeb/articulo6.html' class="post-link">Leer más...</a>
+                    <a href='/PI2do/postWeb/articulo6.html' class="post-link">Leer más...</a>
                     <span>Publicado el 21 de Febrero del 2025 </span>
                     <span>| Isabela Monserrat Vidrio Camarena</span>
 
@@ -306,9 +313,9 @@
         </div>
     </div>
 
-    <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/footer/Visitante/footer.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/PI2do/footer/Visitante/footer.php'; ?>
     <!-- <script src='/PRODCONS/Carrusel/carrusel.js'></script> -->
-    <script src='/PRODCONS/Header visitantes/barra_principal.js'></script>
+    <script src='/PRODCONS/PI2do/Header visitantes/barra_principal.js'></script>
 </body>
 </html>
 

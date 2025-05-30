@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
 
     $hash = password_hash($password, PASSWORD_DEFAULT);
     $rol = "Usuario";
+    
     $stmt = $conn->prepare("INSERT INTO usuarios (Nombre, Correo, Contraseña, Rol) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("ssss", $nombre, $correo, $hash, $rol);
 
@@ -63,44 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
     <!-- Iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
-<body>
-    <!-- ============================================= -->
-    <!-- SECCIÓN DE ANIMACIÓN DE FONDO -->
-    <!-- ============================================= -->
-    <div class="background-animation">
-        <div class="circle circle-1"></div>
-        <div class="circle circle-2"></div>
-        <div class="circle circle-3"></div>
-    </div>
-    
-    <!-- ============================================= -->
-    <!-- CABECERA PRINCIPAL -->
-    <!-- ============================================= -->
-    <header> 
-        <div class="header-contenedor">
-            <div class="principal"></div>
-        </div>
-    </header>
-
-    <!-- ============================================= -->
-    <!-- SECCIÓN DEL LOGO -->
-    <!-- ============================================= -->
-    <section class="logo"> 
-        <div class="header_2">
-            <a href="/">           
-                 <img class="prodcons" src="../imagenes/prodcon/logoSinfondo.png" alt="Logo"> 
-            </a>
-        </div>
-    </section>
-
-    <!-- ============================================= -->
-    <!-- CONTENIDO PRINCIPAL -->
-    <!-- ============================================= -->
-    <section class="contenedor-main">
-        <section class="wrapper">
             <!-- ============================================= -->
-            <!-- FORMULARIO DE REGISTRO (visible por defecto) -->
+            <!-- FORMULARIO DE REGISTRO -->
             <!-- ============================================= -->
             <div class="form" id="registro-form">
                 <h1>REGISTRAR USUARIO</h1>
@@ -148,14 +113,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
                     
                     <!-- Enlace para alternar al formulario de login -->
                     <div class="alternar-form">
-                        <p>¿Ya tienes una cuenta? <a href="login.php">Inicia sesión aquí</a></p>
+                        <p>¿Ya tienes una cuenta? <a href="#" id="mostrar-login">Inicia sesión aquí</a></p>
                     </div>
                 </form>
             </div>
-
-            <!-- ============================================= -->
-            <!-- CONTENEDOR DEL LOGO (lado derecho) -->
-            <!-- ============================================= -->
+            
             <div class="contenedor-logo">
                 <img src="../imagenes/login.png" alt="Imagen de fondo" class="bg-image">
                 <figure>
@@ -166,19 +128,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
     </section>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Validación de contraseñas en el formulario de registro
-        const registroPassword = document.querySelector('input[placeholder="Contraseña"]');
-        const registroConfirmPassword = document.querySelector('input[placeholder="Confirmar Contraseña"]');
-
-        registroConfirmPassword.addEventListener('input', function() {
-            if (this.value !== registroPassword.value) {
-                this.setCustomValidity('Las contraseñas no coinciden');
-            } else {
-                this.setCustomValidity('');
-            }
-        });
-    });
-    </script>
-</body>
-</html>
+            

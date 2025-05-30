@@ -201,10 +201,25 @@ function cambiarIdioma(idioma) {
  */
 function alternarIdioma() {
     const bandera = document.getElementById('banderaIdioma');
-    const idiomaActual = bandera.src.includes('ingles.png') ? 'ingles' : 'espanol';
-    const nuevoIdioma = idiomaActual === 'ingles' ? 'espanol' : 'ingles';
-    
-    cambiarIdioma(nuevoIdioma);
+    let idiomaActual = bandera.getAttribute('data-idioma') || 'es';
+    let nuevoIdioma, nuevaBandera;
+
+    if (idiomaActual === 'es') {
+        nuevoIdioma = 'en';
+        nuevaBandera = '/PRODCONS/PI2do/imagenes/logos/ingles.png';
+    } else {
+        nuevoIdioma = 'es';
+        nuevaBandera = '/PRODCONS/PI2do/imagenes/logos/espanol.png';
+    }
+
+    bandera.src = nuevaBandera;
+    bandera.setAttribute('data-idioma', nuevoIdioma);
+
+    // Llama a la función de traducción
+    translateContent(nuevoIdioma);
+
+    // Guarda la preferencia
+    localStorage.setItem('preferredLanguage', nuevoIdioma);
 }
 
 // =====================================================================
@@ -217,32 +232,11 @@ function alternarIdioma() {
  * y establece los manejadores de eventos para los controles de idioma.
  */
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Cargar el idioma preferido del usuario desde localStorage
-    const savedLanguage = localStorage.getItem('preferredLanguage');
-    if (savedLanguage) {
-        // Si tenemos preferencia guardada, usar cambiarIdioma para actualizar la interfaz completa
-        cambiarIdioma(savedLanguage === 'en' ? 'ingles' : 'espanol');
-    }
-    
-    // 2. Inicializar el toggle de idioma para las páginas principales
-    const idiomaToggle = document.getElementById('idiomaToggle');
-    const opciones = document.getElementById('idiomasOpciones');
-    
-    if (idiomaToggle && opciones) {
-        idiomaToggle.addEventListener('click', () => {
-            opciones.style.display = opciones.style.display === 'block' ? 'none' : 'block';
-        });
-    }
-    
-    // 3. Agregar eventos click a las imágenes de idioma
-    const banderaIngles = document.querySelector('.ingles');
-    const banderaEspanol = document.querySelector('.españa');
-    
-    if (banderaIngles) {
-        banderaIngles.addEventListener('click', () => cambiarIdioma('ingles'));
-    }
-    
-    if (banderaEspanol) {
-        banderaEspanol.addEventListener('click', () => cambiarIdioma('espanol'));
-    }
+    const bandera = document.getElementById('banderaIdioma');
+    const savedLanguage = localStorage.getItem('preferredLanguage') || 'es';
+    bandera.src = savedLanguage === 'en'
+        ? '/PRODCONS/PI2do/imagenes/logos/ingles.png'
+        : '/PRODCONS/PI2do/imagenes/logos/espanol.png';
+    bandera.setAttribute('data-idioma', savedLanguage);
+    translateContent(savedLanguage);
 }); 
