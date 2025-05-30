@@ -3,7 +3,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
-;
 // Ensure the database connection is included
 include '../Base de datos/conexion.php';
 
@@ -64,6 +63,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
     <!-- Iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+<body>
+    <!-- ============================================= -->
+    <!-- SECCIÓN DE ANIMACIÓN DE FONDO -->
+    <!-- ============================================= -->
+    <div class="background-animation">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+    <!-- ============================================= -->
+    <!-- CABECERA PRINCIPAL -->
+    <!-- ============================================= -->
+    <header> 
+        <div class="header-contenedor">
+            <div class="principal"></div>
+        </div>
+    </header>
+    <!-- ============================================= -->
+    <!-- SECCIÓN DEL LOGO -->
+    <!-- ============================================= -->
+    <section class="logo"> 
+        <div class="header_2">
+            <a href="/">           
+                 <img class="prodcons" src="../imagenes/prodcon/logoSinfondo.png" alt="Logo"> 
+            </a>
+        </div>
+    </section>
+    <!-- ============================================= -->
+    <!-- CONTENIDO PRINCIPAL -->
+    <!-- ============================================= -->
+    <section class="contenedor-main">
+        <section class="wrapper">
             <!-- ============================================= -->
             <!-- FORMULARIO DE REGISTRO -->
             <!-- ============================================= -->
@@ -77,7 +108,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
                             <i class="fas fa-user"></i>
                         </div>
                     </div>
-
                     <!-- Campo para el correo electrónico -->
                     <div class="buton">
                         <div class="input-area">
@@ -85,7 +115,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
                             <i class="fas fa-envelope"></i>
                         </div>
                     </div>
-
                     <!-- Campo para la contraseña -->
                     <div class="buton">
                         <div class="input-area">
@@ -93,7 +122,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
                             <i class="fas fa-lock"></i>
                         </div>
                     </div>
-
                     <!-- Campo para confirmar la contraseña -->
                     <div class="buton">
                         <div class="input-area">
@@ -101,23 +129,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
                             <i class="fas fa-lock"></i>
                         </div>
                     </div>
-
                     <!-- Checkbox de términos y condiciones -->
                     <div class="terminos">
                         <input class="C" type="checkbox" required>
                         <label>Acepto los <a href="/PRODCONS/footer/parafooter/term-condi/term-condi.html">términos y condiciones</a></label>
                     </div>
-        
                     <!-- Botón de envío -->
                     <input type="submit" name="registro" value="REGISTRARSE"> 
-                    
                     <!-- Enlace para alternar al formulario de login -->
                     <div class="alternar-form">
-                        <p>¿Ya tienes una cuenta? <a href="#" id="mostrar-login">Inicia sesión aquí</a></p>
+                        <p>¿Ya tienes una cuenta? <a href="login.php" id="mostrar-login">Inicia sesión aquí</a></p>
                     </div>
                 </form>
             </div>
-            
+            <!-- ============================================= -->
+            <!-- CONTENEDOR DEL LOGO (lado derecho) -->
+            <!-- ============================================= -->
             <div class="contenedor-logo">
                 <img src="../imagenes/login.png" alt="Imagen de fondo" class="bg-image">
                 <figure>
@@ -126,6 +153,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
             </div>
         </section>
     </section>
-
     <script>
+    // Validación de contraseñas en el formulario de registro
+    document.addEventListener('DOMContentLoaded', function() {
+        const registroForm = document.getElementById('registro-form');
+        const registroPassword = registroForm.querySelector('input[placeholder="Contraseña"]');
+        const registroConfirmPassword = registroForm.querySelector('input[placeholder="Confirmar Contraseña"]');
+        registroConfirmPassword.addEventListener('input', function() {
+            if (this.value !== registroPassword.value) {
+                this.setCustomValidity('Las contraseñas no coinciden');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+    });
+    </script>
+</body>
+</html>
             
