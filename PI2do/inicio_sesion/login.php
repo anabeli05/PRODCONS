@@ -1,15 +1,33 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+include_once 'log_utils.php';
+
+// Configuración de errores (ahora en log_utils.php)
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+
+// Crear archivo de log (ahora en log_utils.php)
+// $logFile = __DIR__ . '/debug.log';
+// file_put_contents($logFile, "Iniciando sesión: " . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
+
+// Función para escribir en el log (ahora en log_utils.php)
+// function writeLog($message) {
+//     global $logFile;
+//     file_put_contents($logFile, $message . "\n", FILE_APPEND);
+// }
+
+writeLog("DEBUG: Iniciando proceso de login");
+
 session_start();
 include '../Base de datos/conexion.php';
 
 // Mostrar mensaje de error si existe
 $error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
+writeLog("DEBUG: Error message: " . $error);
 
 // Mostrar mensaje de éxito si la contraseña se actualizó exitosamente
 $success_message = isset($_GET['success']) && $_GET['success'] == 'true' ? "Contraseña actualizada exitosamente" : "";
+writeLog("DEBUG: Success message: " . $success_message);
 
 ?>
 
