@@ -143,7 +143,7 @@ writeLog("DEBUG: Success message: " . $success_message);
                     
                     <!-- Enlace para alternar al formulario de registro -->
                     <div class="alternar-form">
-                        <p>¿No tienes una cuenta? <a href="registro.php" id="mostrar-registro">Regístrate aquí</a></p>
+                        <p>¿No tienes una cuenta? <a href='/PRODCONS/PI2do/inicio_sesion/registro.php' id="mostrar-registro">Regístrate aquí</a></p>
                     </div>
                 </form>
             </div>
@@ -193,13 +193,13 @@ writeLog("DEBUG: Success message: " . $success_message);
         }
 
         // Event Listeners para los enlaces
-        if (mostrarRegistro) {
-            mostrarRegistro.addEventListener('click', function(e) {
-                e.preventDefault();
-                // Assuming registroForm exists based on your HTML structure
-                mostrarFormulario(document.getElementById('registro-form'));
-            });
-        }
+        // if (mostrarRegistro) {
+        //     mostrarRegistro.addEventListener('click', function(e) {
+        //         e.preventDefault();
+        //         // Assuming registroForm exists based on your HTML structure
+        //         mostrarFormulario(document.getElementById('registro-form'));
+        //     });
+        // }
 
         if (mostrarLogin) {
             mostrarLogin.addEventListener('click', function(e) {
