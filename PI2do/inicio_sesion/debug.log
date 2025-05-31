@@ -428,3 +428,26 @@ DEBUG: Duplicate email found.
 DEBUG: Exception caught: Error: El correo ya está registrado
 --- Nuevo Log de Sesión: 2025-05-31 20:27:10 ---
 DEBUG PHP: Script registro.php started. Error: Error: El correo ya está registrado
+--- Nuevo Log de Sesión: 2025-06-01 00:01:06 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: 
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-01 00:01:14 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: 
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-01 00:01:16 ---
+DEBUG PHP: Script registro.php started. Error: None
+--- Nuevo Log de Sesión: 2025-06-01 00:01:50 ---
+DEBUG PHP: Script registro.php started. Error: None
+DEBUG: Checking for duplicate email: sierrayureni@gmail.com
+--- Nuevo Log de Sesión: 2025-06-01 00:01:54 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: 
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-01 00:02:16 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: sierrayureni@gmail.com
+DEBUG: Contraseña recibida: 12345678
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
