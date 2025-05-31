@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
     if ($stmt->execute()) {
         $_SESSION['Nombre'] = $nombre;
         $_SESSION['Rol'] = $rol;
-        header("Location: /PRODCONS/usuario/usuario.php");
+        header("Location: /PRODCONS/Dashboard_Usuario/usuario.php");
         exit();
     } else {
         die("Error: No se pudo registrar el usuario");

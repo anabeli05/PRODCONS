@@ -6,6 +6,8 @@
         public function login($correo, $password)
         {
             echo "<br>DEBUG: Entrando a login()<br>";
+            echo "<br>DEBUG: Correo recibido: " . htmlspecialchars($correo) . "<br>";
+            echo "<br>DEBUG: Contraseña recibida: " . htmlspecialchars($password) . "<br>";
             try {
                 // Abrir conexión
                 $this->abrir_conexion();
@@ -25,8 +27,23 @@
 
                 if ($row = $resultado->fetch_assoc()) {
                     echo "<br>DEBUG: Usuario encontrado<br>";
+                    echo "<br>DEBUG: Contraseña en BD: " . htmlspecialchars($row['Contraseña']) . "<br>";
                     // Verificar contraseña
-                    if ($row['Contraseña'] == $password) {
+                    $password_in_db = $row['Contraseña'];
+                    $password_match = false;
+
+                    // Verificar si la contraseña en la base de datos parece ser un hash (ej: bcrypt)
+                    if (str_starts_with($password_in_db, '$2y$')) {
+                        // Es un hash, usar password_verify
+                        echo "<br>DEBUG: Verificando contraseña hasheada<br>";
+                        $password_match = password_verify($password, $password_in_db);
+                    } else {
+                        // No es un hash conocido, usar comparación directa (texto plano)
+                        echo "<br>DEBUG: Verificando contraseña en texto plano<br>";
+                        $password_match = ($password_in_db == $password);
+                    }
+
+                    if ($password_match) {
                         echo "<br>DEBUG: Contraseña correcta<br>";
                         // Si el usuario está inactivo, reactivarlo
                         if (isset($row['activo']) && $row['activo'] == 0) {
@@ -69,7 +86,7 @@
                                 break;
                             case 'Usuario':
                                 echo "<br>DEBUG: Redirigiendo a Usuario<br>";
-                                header("location: ../Dashboard_Usuario/inicio.php");
+                                header("location: ../Dashboard_Usuario/inicio/usuario.php");
                                 break;
                             default:
                                 echo "<br>DEBUG: Rol desconocido<br>";
@@ -79,18 +96,25 @@
                         exit();
                     } else {
                         echo "<br>DEBUG: Contraseña incorrecta<br>";
+                        // Agregar log aquí si la contraseña es incorrecta
+                        writeLog("DEBUG: Contraseña incorrecta para usuario: " . $correo);
                     }
                 } else {
                     echo "<br>DEBUG: Usuario no encontrado<br>";
+                    // Agregar log aquí si el usuario no es encontrado
+                    writeLog("DEBUG: Usuario no encontrado con correo: " . $correo);
                 }
                 
                 // Si llegamos aquí, las credenciales son incorrectas
+                // Este header se ejecutará si el usuario no es encontrado o la contraseña es incorrecta
+                writeLog("DEBUG: Redirigiendo a login con error=1");
                 header("location: ../inicio_sesion/login.php?error=1");
                 exit();
                 
             } catch (Exception $e) {
                 error_log("Error en login: " . $e->getMessage());
                 echo "<br>DEBUG: Excepción capturada: " . $e->getMessage() . "<br>";
+                writeLog("DEBUG: Excepción en login: " . $e->getMessage());
                 header("location: ../inicio_sesion/login.php?error=1");
                 exit();
             } finally {
