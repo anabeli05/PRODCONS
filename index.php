@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODCONS</title>
     <link rel="stylesheet" href="/PRODCONS/styles.css">
-    <link rel="stylesheet" href="/PRODCONS/PI2do/footer/Visitante/footer.css">
+    <link rel="stylesheet" href="/PRODCONS/footer/footer/footer.css">
     <link rel="stylesheet" href="/PRODCONS/articulos.css">
     <link rel="stylesheet" href="/PRODCONS/PI2do/Header visitantes/barra_principal.css">
 
@@ -107,22 +107,83 @@
         }
     </script>
 
-    <header>
-        <div class="header-contenedor">
-            <div class="principal">
-                <a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.html'>EMPRESAS RESPONSABLES</a>
+<header>
+    <div class="header-contenedor">
+        <div class="principal">
+            <a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.html'>EMPRESAS RESPONSABLES</a>
 
-                <!-- =====================================================================
-                SELECTOR DE BANDERA PARA CAMBIO DE IDIOMA - PERSONALIZABLE
-                Estos elementos controlan la selección de idioma en la página principal
-                ===================================================================== -->
-                <!-- Bandera principal visible - Puedes cambiar la imagen por defecto aquí -->
-                <div id="idiomaToggle">
-                    <img id="banderaIdioma" src='/PRODCONS/PI2do/imagenes/logos/espanol.png' alt="Idioma" onclick="alternarIdioma()" data-idioma="es">
-                </div>
-            </div>
+            <button id="btnIdioma" class="idioma-text" aria-label="Cambiar idioma" type="button">IDIOMA</button>
+            <a href="/PRODCONS/inicio_sesion/login.php" class="link-login">INICIAR SESIÓN</a>
         </div>
-    </header>
+    </div>
+</header>
+
+<style>
+.link-login {
+    color: #000000; /* Negro */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.link-login:hover {
+    color: #000000; /* Mantener negro al hacer hover */
+    text-decoration: none;
+}
+
+.idioma-text {
+    color: #000000; /* Negro */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    font-size: 16.1px;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.idioma-text:hover {
+    color: #000000; /* Mantener negro al hacer hover */
+}
+
+.idioma-text:focus {
+    outline: none;
+    box-shadow: none;
+}
+</style>
+
+<script>
+function updateIdiomaButtonText(lang) {
+    const btnIdioma = document.getElementById('btnIdioma');
+    if (!btnIdioma) return;
+    if (lang === 'es') {
+        btnIdioma.textContent = 'IDIOMA';
+    } else if (lang === 'en') {
+        btnIdioma.textContent = 'LANGUAGE';
+    }
+}
+
+document.getElementById('btnIdioma').addEventListener('click', function() {
+    const currentLang = localStorage.getItem('preferredLanguage') || 'es';
+    const newLang = currentLang === 'es' ? 'en' : 'es';
+    localStorage.setItem('preferredLanguage', newLang);
+    translateContent(newLang);
+    updateIdiomaButtonText(newLang);
+});
+
+// Update button text on page load based on saved language
+document.addEventListener('DOMContentLoaded', function() {
+    const savedLanguage = localStorage.getItem('preferredLanguage') || 'es';
+    updateIdiomaButtonText(savedLanguage);
+});
+</script>
 
     <section class="logo">
         <div class="header_2">
@@ -313,9 +374,11 @@
         </div>
     </div>
 
-    <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/PI2do/footer/Visitante/footer.php'; ?>
-    <!-- <script src='/PRODCONS/Carrusel/carrusel.js'></script> -->
-    <script src='/PRODCONS/PI2do/Header visitantes/barra_principal.js'></script>
+
+
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/footer/footer/footer.php'; ?>
+    <script src='/PRODCONS/Header visitantes/barra_principal.js'></script>
+
 </body>
 </html>
 
