@@ -10,13 +10,13 @@
         </div>
         
         <!-- Columna 3: Enlaces legales -->
-        <div class="footer2" style="flex:1; margin:15px; min-width:100px; line-height:15px; font-size:18px; font-family:Georgia; margin-top:5px; text-align:left;">
-            <ul class="ulfooter" style="list-style-type:none; padding:0; margin:0;">
-             <a class="lf" style="margin-bottom:12px;" class="af" href='/PRODCONS/PI2do/parafooter/avisos/avisos.html' style="text-decoration:none; color:white; font-size:14px; line-height:25px;">Avisos De Privacidad</a></li>
-             <a class="lf" style="margin-bottom:12px;" class="af" href='/PRODCONS/PI2do/parafooter/politicas/politica.html' style="text-decoration:none; color:white; font-size:14px; line-height:25px;">Política De Sostenibilidad</a></li> 
-             <a class="lf" style="margin-bottom:12px;" class="af" href='/PRODCONS/PI2do/parafooter/term-condi/term-condi.html' style="text-decoration:none; color:white; font-size:14px; line-height:25px;">Términos Y Condiciones</a></li> 
-            </ul>
-        </div>
+       <div style="flex:1; min-width:150px; margin:15px 0; text-align:left; font-size:14px; line-height:1.8; color:white; text-decoration:none; cursor:pointer;">
+      <ul style="list-style:none; padding:0; margin:0;">
+        <li><a href="/PRODCONS/PI2do/parafooter/avisos/avisos.html" style="color:white; text-decoration:none; cursor:pointer;">Avisos De Privacidad</a></li>
+        <li><a href="/PRODCONS/PI2do/parafooter/politicas/politica.html" style="color:white; text-decoration:none; cursor:pointer;">Política De Sostenibilidad</a></li>
+        <li><a href="/PRODCONS/PI2do/parafooter/term-condi/term-condi.html" style="color:white; text-decoration:none; cursor:pointer;">Términos Y Condiciones</a></li>
+      </ul>
+    </div>
         
         <!-- Columna 4: Correo + Botones -->
         <div class="footer3" style="flex:1; margin:15px; min-width:100px; line-height:15px; margin-top:5px; display:flex; flex-direction:column; align-items:flex-end; margin-right:40px; padding-right:15px;">
