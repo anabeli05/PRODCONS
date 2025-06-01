@@ -86,9 +86,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
             $_SESSION['Nombre'] = $nombre;
             $_SESSION['Rol'] = $rol;
             $_SESSION['Estado'] = $estado;
-            $_SESSION['registro_success'] = "Registro exitoso. Redirigiendo al dashboard...";
-            // header("Location: /PRODCONS/PI2do/Dashboard_Usuario/Inicio/usuario.php");
-            // exit();
+            $_SESSION['registro_success'] = "Registro exitoso.";
+            // Redirigir a la página de bienvenida
+            header("Location: https://localhost/PRODCONS/PI2do/Bienvenida/Bienvenida.html");
+            exit();
         } else {
             throw new Exception("Error: No se pudo registrar el usuario");
         }

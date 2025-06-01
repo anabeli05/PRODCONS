@@ -1,10 +1,6 @@
 <?php
-session_start();
-var_dump($_SESSION); // <-- Esto mostrará el contenido de la sesión
-if (!isset($_SESSION['Rol']) || $_SESSION['Rol'] != 'Usuario') {
-    header("Location: /PRODCONS/inicio_sesion/login.php ");
-    exit();
-}
+// Incluir el archivo de verificación
+include '../inicio_sesion/verificar_registro.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
