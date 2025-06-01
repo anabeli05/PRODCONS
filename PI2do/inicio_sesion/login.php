@@ -21,9 +21,25 @@ writeLog("DEBUG: Iniciando proceso de login");
 session_start();
 include '../Base de datos/conexion.php';
 
-// Mostrar mensaje de error si existe
-$error = isset($_GET['error']) ? "Credenciales incorrectas" : "";
-writeLog("DEBUG: Error message: " . $error);
+// Manejo de mensajes de error/success
+if (isset($_SESSION['login_error'])) {
+    $error = $_SESSION['login_error'];
+    unset($_SESSION['login_error']);
+} elseif (isset($_SESSION['login_success'])) {
+    $success = $_SESSION['login_success'];
+    unset($_SESSION['login_success']);
+} else {
+    $error = null;
+    $success = null;
+}
+
+// Si hay error en la URL, establecer el mensaje de error
+if (isset($_GET['error'])) {
+    $_SESSION['login_error'] = "Error: Credenciales incorrectas";
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+writeLog("DEBUG: Error message: " . (isset($error) ? $error : "None"));
 
 // Mostrar mensaje de éxito si la contraseña se actualizó exitosamente
 $success_message = isset($_GET['success']) && $_GET['success'] == 'true' ? "Contraseña actualizada exitosamente" : "";
@@ -45,15 +61,28 @@ writeLog("DEBUG: Success message: " . $success_message);
     <!-- Iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Estilos para mensajes de error y éxito */
         .error-message {
-            color: red;
-            margin-bottom: 15px;
-            text-align: center;
+            font-size: 16px;
+            color: #800020; /* Color vino */
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 4px;
+            background-color: #f8d7da;
+            font-weight: 600; /* Texto más grueso */
+            letter-spacing: 0.5px; /* Espaciado entre letras */
         }
+        
         .success-message {
-            color: green;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
             margin-bottom: 15px;
+            font-weight: 600; /* Texto más grueso */
+            letter-spacing: 0.5px; /* Espaciado entre letras */
             text-align: center;
+            font-weight: bold;
         }
     </style>
 </head>

@@ -1,44 +1,6 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-if (!isset($_SESSION['Usuario_ID']) || $_SESSION['Rol'] !== 'Super Admin') {
-    header('Location: ../../inicio_sesion/login.php');
-    exit();
-}
-
-// Conexión a la base de datos
-require_once __DIR__ . '/../../Base de datos/conexion.php';
-$conexion = new Conexion();
-
-try {
-    $conexion->abrir_conexion();
-    $mes_seleccionado = isset($_GET['mes']) ? $_GET['mes'] : 'febrero';
-    $meses = [
-        'enero' => '01', 'febrero' => '02', 'marzo' => '03', 'abril' => '04',
-        'mayo' => '05', 'junio' => '06', 'julio' => '07', 'agosto' => '08',
-        'septiembre' => '09', 'octubre' => '10', 'noviembre' => '11', 'diciembre' => '12'
-    ];
-    $anio_actual = date('Y');
-    $query = "SELECT id, titulo, contenido, imagen, fecha_publicacion, vistas 
-              FROM articulos 
-              WHERE MONTH(fecha_publicacion) = ? 
-              AND YEAR(fecha_publicacion) = ?
-              ORDER BY vistas DESC 
-              LIMIT 6";
-    $stmt = $conexion->conexion->prepare($query);
-    $stmt->bind_param("ss", $meses[$mes_seleccionado], $anio_actual);
-    $stmt->execute();
-    $resultado = $stmt->get_result();
-    $hay_articulos = $resultado->num_rows > 0;
-} catch (Exception $e) {
-    error_log("Error en inicioSA: " . $e->getMessage());
-    $hay_articulos = false;
-} finally {
-    if (isset($conexion)) {
-        $conexion->cerrar_conexion();
-    }
-}
+// Incluir el archivo de verificación
+include '../inicio_sesion/verificar_registro.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
