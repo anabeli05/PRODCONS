@@ -451,3 +451,66 @@ DEBUG: Correo recibido: sierrayureni@gmail.com
 DEBUG: Contraseña recibida: 12345678
 DEBUG: Clase Contacto cargada
 DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-01 08:16:06 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: 
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-01 08:16:10 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: 
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-01 08:16:40 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: sierrayureni@gmail.com
+DEBUG: Contraseña recibida: 123456789
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Contraseña incorrecta para usuario: sierrayureni@gmail.com
+DEBUG: Redirigiendo a login con error=1
+--- Nuevo Log de Sesión: 2025-06-01 08:16:40 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Credenciales incorrectas
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-01 08:16:47 ---
+DEBUG PHP: Script registro.php started. Error: None
+--- Nuevo Log de Sesión: 2025-06-01 08:17:10 ---
+DEBUG PHP: Script registro.php started. Error: None
+DEBUG: Checking for duplicate email: sierrayureni@gmail.com
+DEBUG: Duplicate email found.
+DEBUG: Exception caught: Error: El correo ya está registrado
+--- Nuevo Log de Sesión: 2025-06-01 08:17:10 ---
+DEBUG PHP: Script registro.php started. Error: Error: El correo ya está registrado
+--- Nuevo Log de Sesión: 2025-06-01 08:17:15 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: 
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-01 08:17:42 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: sierrayureni@gmail.com
+DEBUG: Contraseña recibida: 12345678
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-01 08:18:34 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: 
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-01 08:18:41 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: 
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-01 08:18:49 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: 
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-01 08:18:54 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: 
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-01 08:26:38 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: 
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-01 08:57:59 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: 
+DEBUG: Success message: 

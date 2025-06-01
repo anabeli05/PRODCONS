@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="avisospriv.css">
+  <link rel="stylesheet" href="/PRODCONS/PI2do/footer/parafooter/AvisoPriv/avisospriv.css">
   <title>Aviso de Privacidad - PRODCONDS</title>
 </head>
 <body>

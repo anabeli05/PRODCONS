@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Términos y Condiciones - PRODCONDS</title>
-  <link rel="stylesheet" href="term-condi.css">
+  <link rel="stylesheet" href="/PRODCONS/PI2do/footer/parafooter/term-condi/term-condi.css">
 </head>
 
 <body>

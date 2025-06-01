@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/PRODCONS/footer/footer/footer.css">
 <footer class="footer" style="padding-bottom:0; margin-bottom:0;">
     <div class="footer-container" style="padding-bottom:0; margin-bottom:0;">
         <!-- Columna 1: Logo -->
@@ -10,14 +11,15 @@
         </div>
         
         <!-- Columna 3: Enlaces legales -->
-        <div class="footer2" style="flex:1; margin:15px; min-width:100px; line-height:15px; font-size:18px; font-family:Georgia; margin-top:5px; text-align:left;">
-            <ul class="ulfooter" style="list-style-type:none; padding:0; margin:0;">
-                <li style="margin-bottom:12px;"><a class="lf af" href='/PRODCONS/footer/parafooter/AvisoPriv/avisospriv.php' style="text-decoration:none; color:white; font-size:14px; line-height:25px;">Avisos De Privacidad</a></li>
-                <li style="margin-bottom:12px;"><a class="lf af" href='/PRODCONS/footer/parafooter/politicas/politica.php' style="text-decoration:none; color:white; font-size:14px; line-height:25px;">Política De Sostenibilidad</a></li> 
-                <li style="margin-bottom:12px;"><a class="lf af" href='/PRODCONS/footer/parafooter/term-condi/term-condi.php' style="text-decoration:none; color:white; font-size:14px; line-height:25px;">Términos Y Condiciones</a></li> 
+        <div class="footer2">
+            <ul>
+               <a href="/PRODCONS/PI2do/footer/parafooter/AvisoPriv/avisospriv.html">Avisos De Privacidad</a>
+               <a href="/PRODCONS/PI2do/footer/parafooter/politicas/politica.html">Política De Sostenibilidad</a>
+               <a href="/PRODCONS/PI2do/footer/parafooter/term-condi/term-condi.html">Términos Y Condiciones</a>
             </ul>
         </div>
-        
+
+
         <!-- Columna 4: Correo -->
         <div class="footer3" style="flex:1; margin:0 15px 0 15px; min-width:100px; line-height:15px; margin-top:-50px; display:flex; flex-direction:column; align-items:flex-end; margin-right:40px; padding-right:15px;">
             <p class="cfooter" style="font-size:15px; text-align:right; font-family:Georgia; margin-bottom:15px; font-weight:normal; color:#fbfbfb;">prodcons@gmail.com</p>

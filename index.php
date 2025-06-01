@@ -79,7 +79,7 @@
       </ul>
     </nav>
 
-    <script>
+    <!-- <script>
       const btnLupa = document.getElementById('btnLupa');
       const barraBusqueda = document.getElementById('barraBusqueda');
 
@@ -89,7 +89,7 @@
           barraBusqueda.focus();
         }
       });
-    </script>
+    </script> -->
 
     <script>
         function toggleMenu() {
@@ -111,9 +111,20 @@
     <div class="header-contenedor">
         <div class="principal">
             <a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.html'>EMPRESAS RESPONSABLES</a>
-
-            <button id="btnIdioma" class="idioma-text" aria-label="Cambiar idioma" type="button">IDIOMA</button>
-            <a href="/PRODCONS/inicio_sesion/login.php" class="link-login">INICIAR SESIÓN</a>
+            <a href="/PRODCONS/PI2do/inicio_sesion/login.php" class="link-login">INICIAR SESIÓN</a>
+             <!-- =====================================================================
+                SELECTOR DE BANDERA PARA CAMBIO DE IDIOMA - PERSONALIZABLE
+                Estos elementos controlan la selección de idioma en la página principal
+                ===================================================================== -->
+                <!-- Bandera principal visible - Puedes cambiar la imagen por defecto aquí -->
+                <div id="idiomaToggle">
+                    <img class="españa" id="banderaIdioma" src="./PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
+                </div>
+                <!-- Opciones de banderas desplegables - Puedes cambiar las imágenes aquí -->
+                <div id="idiomasOpciones">
+                    <img class="ingles" src="./PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés">
+                    <img class="españa" src="./PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español">
+                </div>
         </div>
     </div>
 </header>
@@ -374,6 +385,86 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 
+     <script>
+        // Script para activar/desactivar la barra de búsqueda
+        const btnLupa = document.getElementById('btnLupa');
+        const barraBusqueda = document.getElementById('barraBusqueda');
+
+        btnLupa.addEventListener('click', () => {
+            barraBusqueda.classList.toggle('activa');
+            if (barraBusqueda.classList.contains('activa')) {
+                barraBusqueda.focus();
+            }
+        });
+
+        // Función para normalizar y eliminar acentos
+        function normalizeText(text) {
+            return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        }
+
+        // Función para escapar caracteres especiales de regex
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        // Función para resaltar texto
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            const safeTerm = escapeRegExp(searchTerm);
+            const regex = new RegExp(`(${safeTerm})`, 'gi');
+            return text.replace(regex, '<span class="search-highlight">$1</span>');
+        }
+
+        // Función de búsqueda mejorada
+        function searchArticles(searchTerm) {
+            const articles = document.querySelectorAll('.post');
+            const normalizedSearch = normalizeText(searchTerm.trim());
+
+            if (!normalizedSearch) {
+                // Si no hay término de búsqueda, mostrar todos los artículos
+                articles.forEach(article => {
+                    article.style.display = 'block';
+                    const title = article.querySelector('h2');
+                    const description = article.querySelector('.descripcion');
+                    if (title) title.innerHTML = title.textContent;
+                    if (description) description.innerHTML = description.textContent;
+                });
+                return;
+            }
+
+            articles.forEach(article => {
+                const title = article.querySelector('h2');
+                const description = article.querySelector('.descripcion');
+                if (!title) return;
+                const titleText = title.textContent;
+                const descriptionText = description ? description.textContent : '';
+                const normalizedTitle = normalizeText(titleText);
+                const normalizedDescription = normalizeText(descriptionText);
+                const content = normalizedTitle + ' ' + normalizedDescription;
+
+                if (content.includes(normalizedSearch)) {
+                    article.style.display = 'block';
+                    // Resaltar el texto que coincide
+                    title.innerHTML = highlightText(titleText, searchTerm);
+                    if (description) {
+                        description.innerHTML = highlightText(descriptionText, searchTerm);
+                    }
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+        }
+
+        // Agregar event listeners para ambos buscadores
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInputs = document.querySelectorAll('input[type="search"], input[type="text"]');
+            searchInputs.forEach(input => {
+                input.addEventListener('input', (e) => {
+                    searchArticles(e.target.value);
+                });
+            });
+        });
+    </script>
 
 
     <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/footer/footer/footer.php'; ?>
