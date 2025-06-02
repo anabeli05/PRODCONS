@@ -92,7 +92,7 @@ try {
     </div>
     <ul class="nav-links">
         <li>
-            <a href="../inicio/inicioSA.php" class="active">
+            <a href="../inicio/inicioSA.php">
                 <i class="fas fa-home"></i>
                 <span class="link_name">Inicio</span>
             </a>

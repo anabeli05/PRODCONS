@@ -107,11 +107,11 @@ if (!isset($_SESSION['csrf_token'])) {
                                         <?php echo ucfirst($editor['estado']); ?>
                                     </span>
                                 </td>
-                                <td class="actions">
-                                    <a href="editar-editor.php?id=<?php echo $editor['Usuario_ID']; ?>" 
+                                <td class="actions"><!--Boton de editar
+                                    <a href="editar-editor.php?id=<//?php echo $editor['Usuario_ID']; ?>" 
                                        class="btn-edit" title="Editar">
                                         <i class="fas fa-edit"></i>
-                                    </a>
+                                    </a>-->
                                     <button onclick="confirmarEliminacion(<?php echo $editor['Usuario_ID']; ?>)" 
                                             class="btn-delete" title="Eliminar">
                                         <i class="fas fa-trash"></i>
