@@ -55,7 +55,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuración - PRONCONS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href='../../Dashboard_Editores/Dashboard/sidebar.css'>
+    <link rel="stylesheet" href='../Dashboard/sidebar.css'>
     <style>
         .config-container {
             max-width: 800px;
@@ -78,6 +78,7 @@ try {
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            font-size: 20px;
         }
         .btn {
             padding: 10px 20px;
@@ -85,21 +86,26 @@ try {
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s; /* Transición suave para el cambio de color */
+
         }
         .btn-primary {
-            background: #007bff;
-            color: white;
+            background:rgb(23, 201, 52);
+            color: black;
         }
         .btn-warning {
-            background: #ffc107;
-            color: #000;
+            background:rgb(17, 182, 8);
+            color: black;
         }
         .btn-danger {
             background: #dc3545;
             color: white;
         }
         .mt-4 {
-            margin-top: 1.5rem;
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
         }
         .alert {
             padding: 10px;
@@ -116,10 +122,27 @@ try {
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
+        .button-container {
+            display: flex;
+            gap: 10px; /* Espacio entre los botones */
+            margin-top: 20px;
+            justify-content: center;
+            /*display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            /*max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;*/
+            box-shadow: 0 6px 12px rgb(0 0 0 / 0.1);
+        }
     </style>
     <script src="barra-nav.js" defer></script>
 </head>
 <body>
+        <!--Head er importado-->
+    <?php include('../Dashboard/sidebar.php'); ?>
 
 
     <div class="config-container">
@@ -151,17 +174,25 @@ try {
                     <img src="<?php echo htmlspecialchars($usuario['Foto de Perfil']); ?>" alt="Foto de perfil actual" style="max-width: 200px; margin-top: 10px;">
                 <?php endif; ?>
             </div>
+            
+            <div class="button-container">
+             <a href="../cambiar contraseña/cambiar_contraseña.php" class="btn btn-warning" aria-label="Cambiar Contraseña">
+                    Cambiar Contraseña
+                </a>    
+            <button type="submit" name="actualizar_perfil" class="btn btn-primary" aria-label="Actualizar Perfil">
+                    Actualizar Perfil
+                </button>
+            </div>
 
-            <button type="submit" name="actualizar_perfil" class="btn btn-primary">Actualizar Perfil</button>
+
+            
         </form>
 
-        <div class="mt-4">
-            <a href="../cambiar contraseña/cambiar_contraseña.php" class="btn btn-warning">Cambiar Contraseña</a>
-        </div>
-
+        
+<!--
         <div class="mt-4">
             <button id="cancelarSuscripcion" class="btn btn-danger">Cancelar Suscripción</button>
-        </div>
+        </div>-->
     </div>
 
     <script>

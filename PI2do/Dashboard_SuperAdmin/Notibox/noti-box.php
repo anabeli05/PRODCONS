@@ -1,66 +1,119 @@
 <?php 
 session_start();
-include '../../Base de datos/conexion.php';
 
-// Verificar que el usuario esté autenticado y sea SuperAdmin
+// Verificar sesión y rol
 if (!isset($_SESSION['Usuario_ID']) || !isset($_SESSION['Rol'])) {
     header('Location: /PRODCONS/PI2do/inicio_sesion/login.php');
     exit();
 }
 
-if ($_SESSION['Rol'] !== 'SuperAdmin') {
+if ($_SESSION['Rol'] !== 'Super Admin') {
     header('Location: /PRODCONS/PI2do/inicio_sesion/login.php?error=acceso_denegado');
     exit();
 }
 
+// Inicializar variables
 $Usuario_ID = $_SESSION['Usuario_ID'];
+$error = '';
+$articulos_pendientes = [];
 
-// Obtener artículos pendientes de revisión
-$stmt_pendientes = $conn->prepare("SELECT a.*, u.Nombre as autor_nombre 
-                                 FROM articulos a 
-                                 JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID 
-                                 WHERE a.Estado = 'pendiente' 
-                                 ORDER BY a.Fecha DESC");
-$stmt_pendientes->execute();
-$articulos_pendientes = $stmt_pendientes->fetchAll(PDO::FETCH_ASSOC);
-
-// Procesar la acción de aceptar/rechazar artículo
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion']) && isset($_POST['ID_Articulo'])) {
-    $articulo_id = $_POST['ID_Articulo'];
-    $accion = $_POST['accion'];
-    $mensaje = $_POST['mensaje'] ?? '';
-
-    if ($accion === 'aceptar') {
-        // Actualizar estado del artículo
-        $stmt_update = $conn->prepare("UPDATE articulos SET Estado = 'publicado' WHERE ID_Articulo = ?");
-        $stmt_update->execute([$articulo_id]);
-
-        // Crear notificación para el editor
-        $stmt_notif = $conn->prepare("INSERT INTO noti_box (Usuario_ID, Mensaje, Fecha, Leido) 
-                                    SELECT Usuario_ID, 'Tu artículo ha sido aprobado y publicado', NOW(), 0 
-                                    FROM articulos WHERE ID_Articulo = ?");
-        $stmt_notif->execute([$articulo_id]);
-
-    } elseif ($accion === 'rechazar') {
-        if (empty($mensaje)) {
-            $error = "Debes proporcionar un motivo para el rechazo.";
-        } else {
-            // Actualizar estado del artículo
-            $stmt_update = $conn->prepare("UPDATE articulos SET Estado = 'rechazado' WHERE ID_Articulo = ?");
-            $stmt_update->execute([$articulo_id]);
-
-            // Crear notificación para el editor
-            $stmt_notif = $conn->prepare("INSERT INTO noti_box (Usuario_ID, Mensaje, Fecha, Leido) 
-                                        SELECT Usuario_ID, ?, NOW(), 0 
-                                        FROM articulos WHERE ID_Articulo = ?");
-            $mensaje_notif = "Tu artículo ha sido rechazado. Motivo: " . $mensaje;
-            $stmt_notif->execute([$mensaje_notif, $articulo_id]);
-        }
+try {
+    // Incluir y conectar
+    require_once '../../../Base de datos/conexion.php';
+    $conexion = new Conexion();
+    $conexion->abrir_conexion();
+    
+    // Obtener artículos pendientes
+    $sql = "SELECT a.*, u.Nombre as autor_nombre 
+            FROM articulos a 
+            JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID 
+            WHERE a.Estado = 'pendiente' 
+            ORDER BY a.Fecha de Creacion DESC";
+    
+    $result = $conexion->ejecutar_consulta($sql);
+    if ($result) {
+        $articulos_pendientes = $result->fetch_all(MYSQLI_ASSOC);
+    } else {
+        throw new Exception("Error en la consulta: " . $conexion->conexion->error);
     }
 
-    // Redirigir para evitar reenvío del formulario
-    header('Location: ' . $_SERVER['PHP_SELF']);
-    exit();
+    // Procesar la acción de aceptar/rechazar artículo
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion']) && isset($_POST['ID_Articulo'])) {
+        $articulo_id = $_POST['ID_Articulo'];
+        $accion = $_POST['accion'];
+        $mensaje = $_POST['mensaje'] ?? '';
+
+        if ($accion === 'aceptar') {
+            // Actualizar estado del artículo
+            $sql = "UPDATE articulos SET Estado = 'publicado' WHERE ID_Articulo = ?";
+            $stmt = $conexion->conexion->prepare($sql);
+            if ($stmt) {
+                $stmt->bind_param("i", $articulo_id);
+                $stmt->execute();
+                $stmt->close();
+            } else {
+                throw new Exception("Error actualizando el estado del artículo: " . $conexion->conexion->error);
+            }
+
+            // Crear notificación para el editor
+            $sql = "INSERT INTO noti_box (Usuario_ID, Mensaje, Fecha, Leido) 
+                    SELECT Usuario_ID, 'Tu artículo ha sido aprobado y publicado', NOW(), 0 
+                    FROM articulos WHERE ID_Articulo = ?";
+            $stmt = $conexion->conexion->prepare($sql);
+            if ($stmt) {
+                $stmt->bind_param("i", $articulo_id);
+                $stmt->execute();
+                $stmt->close();
+            } else {
+                throw new Exception("Error creando la notificación: " . $conexion->conexion->error);
+            }
+            }
+        } elseif ($accion === 'rechazar') {
+            if (empty($mensaje)) {
+                $error = "Debes proporcionar un motivo para el rechazo.";
+            } else {
+                // Actualizar estado del artículo
+                $sql = "UPDATE articulos SET Estado = 'rechazado' WHERE ID_Articulo = ?";
+                $stmt = $conexion->conexion->prepare($sql);
+                if ($stmt) {
+                    $stmt->bind_param("i", $articulo_id);
+                    $stmt->execute();
+                    $stmt->close();
+
+                    // Crear notificación para el editor
+                    $sql = "INSERT INTO noti_box (Usuario_ID, Mensaje, Fecha, Leido) 
+                            SELECT Usuario_ID, ?, NOW(), 0 
+                            FROM articulos WHERE ID_Articulo = ?";
+                    $stmt = $conexion->conexion->prepare($sql);
+                    if ($stmt) {
+                        $mensaje_notif = "Tu artículo ha sido rechazado. Motivo: " . $mensaje;
+                        $stmt->bind_param("si", $mensaje_notif, $articulo_id);
+                        $stmt->execute();
+                        $stmt->close();
+                    }
+                }
+            }
+        }
+
+        // Redirigir para evitar reenvío del formulario
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit();
+    }
+} catch (Exception $e) {
+    error_log("Error en noti-box.php: " . $e->getMessage());
+    $error = "Error de base de datos: " . $e->getMessage();
+} finally {
+    if (isset($conexion)) {
+        $conexion->cerrar_conexion();
+    }
+}
+} catch (Exception $e) {
+    error_log("Error en noti-box.php: " . $e->getMessage());
+    $error = "Error de base de datos: " . $e->getMessage();
+} finally {
+    if (isset($conexion)) {
+        $conexion->cerrar_conexion();
+    }
 }
 ?>
 

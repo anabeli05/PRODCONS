@@ -23,7 +23,7 @@
 
 .form-group {
     margin-bottom: 20px;
-    font-size: 1.5rem; /*Para medir el tamaño de la letra debajo del registro*/
+    font-size: 20px; /*Para medir el tamaño de la letra debajo del registro*/
 }
 
 .form-group label {
