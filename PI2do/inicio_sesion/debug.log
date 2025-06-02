@@ -568,3 +568,47 @@ DEBUG: Iniciando proceso de login
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: Error: Credenciales incorrectas
 DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 12:02:01 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 12:02:03 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 12:02:08 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xiomicob2005@outlook.com
+DEBUG: Contraseña recibida: Prodcons12345
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-02 13:05:35 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 13:05:38 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 13:05:39 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 13:05:39 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 13:05:48 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: rvuelvas@ucol.mx
+DEBUG: Contraseña recibida: Prodcor2024
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-02 13:05:59 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 13:36:05 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
