@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 // Verificar si el usuario está logueado
 if (!isset($_SESSION['Usuario_ID'])) {
     header('Location: ../../inicio_sesion/login.php');
@@ -76,9 +75,15 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODCONS - Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href='styles.css'>
-  <!--  <link rel="stylesheet" href='/PRODCONS/PI2do/Dashboard_Editores/Dashboard/sidebar.css'>-->
-   <!-- <script src='/PRODCONS/PI2do/Dashboard_Editores/Dashboard/barra-nav.js' ?v=<?php echo time(); ?>' defer></script> -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="hola-adminstyles.css"> <!-- nada, todo esta ahora en TaildwindCSS -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- CSS DE HEADER-->
+    <link rel="stylesheet" href='../Dashboard/sidebar.css'>
+    <script src='../Dashboard/barra-nav.js' defer></script>
 </head>
 <body>
     <header> 
@@ -89,7 +94,7 @@ try {
 
     <section class="logo"> 
         <div class="header_2">
-            <img class="prodcons" src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo">
+            <img class="prodcons" src='../../imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
             <div class="admin-controls">
                 <!-- Botón de búsqueda-->
@@ -107,7 +112,7 @@ try {
                 </div>
 
                 <!--Botón de notificaciones-->
-                <a href='/PI2do/Dashboard_Editores/Notibox/noti-box.php' class="notif-btn">
+                <a href='/PRODCONS/PI2do/Dashboard_Editores/Notibox/noti-box.php' class="notif-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                         <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
@@ -125,7 +130,99 @@ try {
                 </div>
             </div>
 
-           
+            <!-- Sidebar -->
+            <div class="admin-sidebar" id="adminSidebar">
+                <div class="sidebar-header">
+                    <h3>ADMIN</h3>
+                    <button class="close-sidebar">
+                        <img src='../../imagenes/logos/perfil.png' alt="Admin" class="admin-avatar">
+                    </button>
+                </div>
+                
+                <nav class="sidebar-menu">
+
+                <a href='../inicio/inicio.php'><!----cambiar la ruta a inicio---->
+                        <span>Inicio</span>
+                        <i class="fas fa-file-alt"></i>
+                    </a>
+
+                <a href='../MisArticulos/mis-articulos.php'>
+                        <span>Mis Artículos</span>
+                        <i class="fas fa-file-alt"></i>
+                    </a>
+
+                    <a href="../Crear nuevo post/formulario-new-post.php">
+                        <span>Crear Post</span>
+                        <i class="fas fa-edit"></i>
+                    </a>
+
+                    <a href='../PostPlaneados/post-planeados.php'>
+                        <span>Post Planeados</span>
+                        <i class="fas fa-calendar"></i>
+                    </a>
+                                        
+                    <a href='../Estadisticas/estadisticas-adm.php'>
+                        <span>Estadísticas</span>
+                        <i class="fas fa-chart-bar"></i>
+                    </a>
+                    
+                    <a href='../Configuracion/configuracion.php'>
+                        <span>Configuración</span>
+                        <i class="fas fa-cog"></i>
+                    </a>
+                
+                <div class="sidebar-footer">
+                    <a href='../../inicio_sesion/logout.php' class="logout-btn">
+                        Cerrar Sesión
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!---------Saludo Admin--------->
+    <section class="w-full max-w-[1200px] mx-auto my-[10px] px-5 flex flex-col items-center">
+        <div class="relative w-[90%] max-w-[900px] h-[250px] p-[30px] flex flex-wrap justify-between items-start bg-[#9fd984] rounded-[40px]">
+            <div class="flex-1 min-w-[300px] p-5 m-0">
+              <h2 class="text-[clamp(28px,3vw,40px)] mb-[15px] font-bold">¡Hola <?php echo htmlspecialchars($_SESSION['Nombre'] ?? 'Admin'); ?>!</h2>
+                <p class="text-[clamp(13px,1.5vw,15px)] mb-5">Un blog exitoso se construye post a post. ¡Sigue adelante!</p>
+                <a href='../MisArticulos/formulario-new-post.php'>
+                    <button class="w-1/2 min-w-[150px] h-20 border-none rounded-[30px] bg-[#1b641b] text-white font-semibold text-[clamp(14px,1.5vw,16px)] cursor-pointer transition duration-300 mt-[25px] hover:bg-[#145014]">ESCRIBE UN NUEVO POST</button>
+                </a>
+            </div>
+            <div class="w-[35%] h-full flex justify-center items-center p-[15px]">
+                <img src='/PRODCONS/PI2do/imagenes/chicaLaptop.png' class="max-h-[200px] h-[280px] w-auto object-contain">
+            </div>
+        </div>
+        
+        <!-- contenedor articulos -->
+        <div class="w-[90%] max-w-[900px] bg-[#f8f9fa] rounded-[15px] p-[30px] mt-[30px] shadow-[0_2px_10px_rgba(0,0,0,0.08)]">
+            <div class="flex justify-between items-center mb-[25px] flex-wrap gap-[15px]">
+                <h2 class="text-[2rem] text-[#333] mb-[25px] text-left font-bold uppercase tracking-[1px]">ARTICULOS MAS VISTOS</h2>
+                <!-------selector de meses------->
+                <div class="relative">
+                    <form method="GET" action="">
+                        <select name="mes" id="selectorMes" onchange="this.form.submit()" class="appearance-none px-[15px] pr-[35px] py-[10px] border-none rounded-[30px] bg-white font-sans text-[15px] text-[#333] cursor-pointer outline-none transition-all duration-300 hover:shadow-[0_0_0_3px_rgba(76,175,80,0.2)]">
+                            <?php
+                            $meses_nombres = [
+                                'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+                                'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+                            ];
+                            foreach ($meses_nombres as $mes) {
+                                $selected = ($mes === $mes_seleccionado) ? 'selected' : '';
+                                echo "<option value=\"$mes\" $selected>" . ucfirst($mes) . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </form>
+                    <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none transition-transform duration-300 peer-focus:rotate-180 text-[#242524]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 11l8 3l8 -3" />
+                    </svg>
+                </div>
+            </div>
+
             <!-------ARTICULOS------>
             <div class="vista-articulos">
                 <?php
@@ -133,18 +230,18 @@ try {
                     $contador = 1;
                     foreach ($articulos as $articulo) {
                         $imagenes = explode(',', $articulo['imagenes']);
-                        $imagen_principal = !empty($imagenes[0]) ? '/PRODCONS/PI2do/imagenes/articulos/' . $imagenes[0] : '/PRODCONS/PI2do/Dashboard_Editores/img-vista-admin/default-post.jpg';
+                        $imagen_principal = !empty($imagenes[0]) ? $imagenes[0] : '/PI2do/Vista-Admin/img-vista-admin/default-post.jpg';
                         ?>
-                        <div class="articulo" data-mes="<?php echo $mes_seleccionado; ?>">
-                            <div class="numero"><?php echo str_pad($contador, 2, '0', STR_PAD_LEFT); ?></div>
-                            <div class="contenido-articulo">
-                                <div class="imagen-articulo">
-                                    <img src="<?php echo htmlspecialchars($imagen_principal); ?>" alt="<?php echo htmlspecialchars($articulo['Titulo']); ?>">
+                        <div class="flex items-center mb-[25px] gap-[15px]" data-mes="<?php echo $mes_seleccionado; ?>">
+                            <div class="text-[3rem] font-bold text-[#242524] min-w-[40px] pt-[5px]"><?php echo str_pad($contador, 2, '0', STR_PAD_LEFT); ?></div>
+                            <div class="flex gap-[20px] w-full items-center">
+                                <div class="w-[180px] h-[120px] min-w-[180px] rounded-[8px] overflow-hidden shadow-[0_3px_6px_rgba(0,0,0,0.1)]">
+                                    <img src="<?php echo htmlspecialchars($imagen_principal); ?>" alt="<?php echo htmlspecialchars($articulo['Titulo']); ?>" class="w-full h-full object-cover transition-transform duration-400 ease-in-out hover:scale-[1.03]">
                                 </div>
-                                <div class="texto-articulo">
-                                    <h3><?php echo htmlspecialchars($articulo['Titulo']); ?></h3>
-                                    <p><?php echo htmlspecialchars(substr($articulo['Contenido'], 0, 100)) . '...'; ?></p>
-                                    <span class="fecha">Publicado el <?php echo date('d \d\e F \d\e Y', strtotime($articulo['Fecha de Creacion'])); ?></span>
+                                <div class="flex-1 pr-[10px]">
+                                    <h3 class="font-serif text-[2rem] text-[#333] mb-2"><?php echo htmlspecialchars($articulo['Titulo']); ?></h3>
+                                    <p class="text-[0.95rem] text-[#555] mb-2 leading-[1.5]"><?php echo htmlspecialchars(substr($articulo['Contenido'], 0, 100)) . '...'; ?></p>
+                                    <span  class="text-[1rem] italic text-black">Publicado el <?php echo date('d \d\e F \d\e Y', strtotime($articulo['Fecha de Creacion'])); ?></span>
                                 </div>
                             </div>
                         </div>
@@ -152,7 +249,7 @@ try {
                         $contador++;
                     }
                 } else {
-                    echo '<div class="no-articulos">No hay artículos disponibles para este mes.</div>';
+                    echo '<div class="text-2xl text-center mt-5 text-gray-600" >No hay artículos disponibles para este mes.</div>';
                 }
                 ?>
             </div>
@@ -174,7 +271,5 @@ try {
             this.form.submit();
         });
     </script>
-
-   <!-- include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/PI2do/Dashboard_Editores/Dashboard/sidebar.php'; ?>  --->
 </body>
-</html> 
+</html>
