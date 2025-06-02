@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 <?php
 session_start();
 
@@ -41,6 +43,7 @@ $stmt->close();
 // Cerrar la conexión al finalizar el script
 $conexion->cerrar_conexion();
 ?>
+>>>>>>> 531efa144f31615cde8b897078fd6aa363450be7
 <!DOCTYPE html>
 <html lang="es">
 
@@ -48,15 +51,16 @@ $conexion->cerrar_conexion();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODCONS</title>
-    <link rel="stylesheet" href="/PRODCONS/PI2do/Dashboard_Usuario/usuario.css">
-    <link rel="stylesheet" href="/PRODCONS/PI2do/footer/Visitante/footer.css">
-    <link rel="stylesheet" href="/PRODCONS/PI2do/articulos.css">
-    <link href="/PRODCONS/PI2do/Header visitantes/barra_principal.css" rel="stylesheet">
+    <link rel="stylesheet" href="/PRODCONS/styles.css">
+    <link rel="stylesheet" href="/PRODCONS/footer/footer/footer.css">
+    <link rel="stylesheet" href="/PRODCONS/articulos.css">
+    <link rel="stylesheet" href="/PRODCONS/PI2do/Header visitantes/barra_principal.css">
+
     <!-- Google Cloud Translation API -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <!-- Script de traducción global -->
-    <script src="traslate.js"></script>
+    <script src='translate.js'></script>
     <style>
         /* Estilos para la bandera de idioma */
         #banderaIdioma {
@@ -71,227 +75,180 @@ $conexion->cerrar_conexion();
         #banderaIdioma:hover {
             transform: scale(1.1);
         }
-        
-        /* Estilos para likes y comentarios */
-        .post-footer {
-            display: flex;
-            align-items: center;
-            margin: 10px 0;
-        }
-        
-        .interaction-buttons {
-            display: flex;
-            margin-left: 15px;
-            align-items: center;
-        }
-        
-        .like-button-small, .comment-toggle-small {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            padding: 0;
-            margin: 0 5px;
-            color: #666;
-            font-size: 12px;
-        }
-        
-        .like-button-small svg, .comment-toggle-small svg {
-            margin-right: 3px;
-        }
-        
-        .like-button-small:hover, .like-button-small.liked {
-            color: #e74c3c;
-        }
-        
-        .comment-toggle-small:hover {
-            color: #3498db;
-        }
-        
-        .comments-section {
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            padding: 10px;
-            margin: 10px 0;
-        }
-        
-        .existing-comments {
-            max-height: 200px;
-            overflow-y: auto;
-            margin-bottom: 10px;
-        }
-        
-        .comment {
-            background-color: white;
-            border-radius: 5px;
-            padding: 8px;
-            margin-bottom: 8px;
-        }
-        
-        .comment-author {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .comment-date {
-            font-size: 0.8em;
-            color: #777;
-        }
-        
-        .add-comment textarea {
+
+        .carrusel-destacado {
             width: 100%;
-            min-height: 60px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 8px;
-            resize: vertical;
-        }
-        
-        .add-comment button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        
-        .add-comment button:hover {
-            background-color: #45a049;
+            max-width: 900px;
+            margin: 40px auto 40px auto;
+            padding: 0 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
+
 </head>
 
 <body>
-    <!-- Menú hamburguesa (solo en móviles) -->
-    <div class="mobile-menu-container">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-            <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
-        </div>
-        <nav class="mobile-menu" id="mobileMenu">
-            <div class="close-icon" onclick="toggleMenu()">
-                <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
+
+    <!-- Botón hamburguesa (solo en móviles) -->
+    <div class="hamburger-icon" onclick="toggleMenu()">☰</div>
+
+    <!-- Menú hamburguesa lateral -->
+    <nav class="mobile-menu" id="mobileMenu">
+      <div class="close-icon" onclick="toggleMenu()">✖</div>
+
+      <!-- Logo dentro del menú -->
+      <div class="mobile-logo">
+        <img src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo" />
+      </div>
+
+      <!-- Opciones del menú -->
+      <ul>
+<a href='/PRODCONS/PI2do/pr/produccionr.php'>PRODUCCIÓN RESPONSABLE</a>
+<a href='/PRODCONS/PI2do/cr/consumores.php'>CONSUMO RESPONSABLE</a>
+         <li>
+          <form>
+            <button id="btnLupa" class="lupa" aria-label="Abrir buscador" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"
+                   stroke-width="1.5">
+                <circle cx="10" cy="10" r="7"></circle>
+                <line x1="21" y1="21" x2="15" y2="15"></line>
+              </svg>
+            </button>
+            <div class="buscador-container">
+              <input type="text" id="barraBusqueda" class="barra-busqueda" placeholder="Buscar..." />
             </div>
-            <div class="mobile-menu-content">
-                <ul>
-                    <li><a href='/PRODCONS/PI2do/pr/produccionr.html'>PRODUCCIÓN RESPONSABLE</a></li>
-                    <li><a href='/PRODCONS/PI2do/cr/consumores.html'>CONSUMO RESPONSABLE</a></li>
-                    <li>
-                        <form class="search-form">
-                            <button class="lupa" type="button">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                    <circle cx="11" cy="11" r="8"></circle>
-                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                </svg>
-                            </button>
-                            <input type="search" placeholder="Buscar..." />
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
+          </form>
+        </li>
+      </ul>
+    </nav>
 
-    <style>
-        /* Estilos para la hamburguesa solo en móviles */
-        .mobile-menu-container {
-            display: none;
+    <!-- <script>
+      const btnLupa = document.getElementById('btnLupa');
+      const barraBusqueda = document.getElementById('barraBusqueda');
+
+      btnLupa.addEventListener('click', () => {
+        barraBusqueda.classList.toggle('activa');
+        if (barraBusqueda.classList.contains('activa')) {
+          barraBusqueda.focus();
         }
-
-        @media (max-width: 768px) {
-            .mobile-menu-container {
-                display: block;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                z-index: 1000;
-            }
-
-            .hamburger-icon {
-                padding: 1rem;
-                background: #fff;
-                cursor: pointer;
-            }
-
-            .menu-icon {
-                width: 24px;
-                height: 24px;
-            }
-
-            .mobile-menu {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100vh;
-                background: #fff;
-                transition: 0.3s;
-                padding: 2rem;
-            }
-
-            .mobile-menu.active {
-                left: 0;
-            }
-
-            .close-icon {
-                text-align: right;
-                margin-bottom: 2rem;
-                cursor: pointer;
-            }
-
-            .mobile-menu-content ul {
-                list-style: none;
-                padding: 0;
-            }
-
-            .mobile-menu-content li {
-                margin-bottom: 1rem;
-            }
-        }
-    </style>
+      });
+    </script> -->
 
     <script>
         function toggleMenu() {
             const menu = document.getElementById("mobileMenu");
+            const burger = document.querySelector(".hamburger-icon");
+            
             menu.classList.toggle("active");
+
+            // Ocultar hamburguesa si el menú está activo
+            if (menu.classList.contains("active")) {
+                burger.style.display = "none";
+            } else {
+                burger.style.display = "block";
+            }
         }
     </script>
 
-    <header>
-        <div class="header-contenedor">
-            <div class="principal">
-                <a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.html'>EMPRESAS RESPONSABLES</a>
-
-                <!-- =====================================================================
+<header>
+    <div class="header-contenedor">
+        <div class="principal">
+<a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.php'>EMPRESAS RESPONSABLES</a>
+            <a href="/PRODCONS/PI2do/inicio_sesion/login.php" class="link-login">INICIAR SESIÓN</a>
+             <!-- =====================================================================
                 SELECTOR DE BANDERA PARA CAMBIO DE IDIOMA - PERSONALIZABLE
                 Estos elementos controlan la selección de idioma en la página principal
                 ===================================================================== -->
                 <!-- Bandera principal visible - Puedes cambiar la imagen por defecto aquí -->
                 <div id="idiomaToggle">
-                    <img id="banderaIdioma" src='/PRODCONS/PI2do/imagenes/logos/espanol.png' alt="Idioma" onclick="alternarIdioma()" data-idioma="es">
+<img class="españa" id="banderaIdioma" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
                 </div>
-            </div>
+                <!-- Opciones de banderas desplegables - Puedes cambiar las imágenes aquí -->
+                <div id="idiomasOpciones">
+<img class="ingles" src="/PRODCONS/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés">
+<img class="españa" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español">
+                </div>
         </div>
-    </header>
+    </div>
+</header>
+
+<style>
+.link-login {
+    color: #000000; /* Negro */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.link-login:hover {
+    color: #000000; /* Mantener negro al hacer hover */
+    text-decoration: none;
+}
+
+.idioma-text {
+    color: #000000; /* Negro */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    font-size: 16.1px;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.idioma-text:hover {
+    color: #000000; /* Mantener negro al hacer hover */
+}
+
+.idioma-text:focus {
+    outline: none;
+    box-shadow: none;
+}
+</style>
+
+<script>
+function updateIdiomaButtonText(lang) {
+    const btnIdioma = document.getElementById('btnIdioma');
+    if (!btnIdioma) return;
+    if (lang === 'es') {
+        btnIdioma.textContent = 'IDIOMA';
+    } else if (lang === 'en') {
+        btnIdioma.textContent = 'LANGUAGE';
+    }
+}
+
+document.getElementById('btnIdioma').addEventListener('click', function() {
+    const currentLang = localStorage.getItem('preferredLanguage') || 'es';
+    const newLang = currentLang === 'es' ? 'en' : 'es';
+    localStorage.setItem('preferredLanguage', newLang);
+    translateContent(newLang);
+    updateIdiomaButtonText(newLang);
+});
+
+// Update button text on page load based on saved language
+document.addEventListener('DOMContentLoaded', function() {
+    const savedLanguage = localStorage.getItem('preferredLanguage') || 'es';
+    updateIdiomaButtonText(savedLanguage);
+});
+</script>
 
     <section class="logo">
         <div class="header_2">
             <img class="prodcons" src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
             <div class="subtitulos">
-                <li><a href="/PRODCONS/PI2do/pr/produccionr.html">PRODUCCIÓN RESPONSABLE</a></li>
-                <li><a href="/PRODCONS/PI2do/cr/consumores.html">CONSUMO RESPONSABLE</a></li>
+<a href='/PRODCONS/PI2do/pr/produccionr.php'>PRODUCCIÓN RESPONSABLE</a>
+<a href='/PRODCONS/PI2do/cr/consumores.php'>CONSUMO RESPONSABLE</a>
 
                 <form class="search-form">
                     <button class="lupa">
@@ -308,66 +265,51 @@ $conexion->cerrar_conexion();
         </div>
     </section>
 
-
-    <!-- Menú de hamburguesa -->
-    <div class="menu" id="menu">
-        <ul>
-            <li><a href="/PRODCONS/PI2do/pr/produccionr.html" onclick="setActive(this)">PRODUCCION RESPONSABLE</a></li>
-            <li><a href="/PRODCONS/PI2do/cr/consumores.html" onclick="setActive(this)">CONSUMO RESPONSABLE</a></li>
-            <li><a href="#">Lupa de búsqueda</a></li>
-        </ul>
-    </div>
-
     <script>
-        // Toggle para la visibilidad del menú de hamburguesa
-        function toggleMenu() {
-            const menu = document.getElementById("menu");
-            menu.classList.toggle("active");
-        }
-
-        // Función para alternar entre idiomas
+        
+        // =====================================================================
+        // FUNCIONES DE CONTROL DE IDIOMA - MODIFICAR CON PRECAUCIÓN
+        // =====================================================================
+        
+        /**
+         * Función para alternar entre idiomas al hacer clic en la bandera principal
+         * Esta función cambia la imagen de la bandera y realiza la traducción
+         * MODIFICAR SOLO si necesitas cambiar la apariencia o comportamiento
+         */
         function alternarIdioma() {
             const bandera = document.getElementById('banderaIdioma');
-            const idiomaActual = bandera.getAttribute('data-idioma');
-            const nuevoIdioma = idiomaActual === 'es' ? 'en' : 'es';
+            const idiomaActual = bandera.src.includes('ingles.png') ? 'ingles' : 'espanol';
+            const nuevoIdioma = idiomaActual === 'ingles' ? 'espanol' : 'ingles';
             
-            // Cambiar la imagen de la bandera
-            bandera.src = nuevoIdioma === 'en' 
-                ? "/PRODCONS/PI2do/imagenes/logos/ingles.png" 
-                : "/PRODCONS/PI2do/imagenes/logos/espanol.png";
+            // Cambiar la imagen de la bandera - Puedes modificar las rutas si cambias las imágenes
+            bandera.src = nuevoIdioma === 'ingles' 
+                ? '/PRODCONS/PI2do/imagenes/logos/ingles.png' // Ruta a la imagen de la bandera inglesa
+                : '/PRODCONS/PI2do/imagenes/logos/espanol.png'; // Ruta a la imagen de la bandera española
             
-            // Actualizar el atributo data-idioma
-            bandera.setAttribute('data-idioma', nuevoIdioma);
+            // Realizar la traducción - NO MODIFICAR esta línea
+            translateContent(nuevoIdioma === 'ingles' ? 'en' : 'es');
             
-            // Realizar la traducción
-            translateContent(nuevoIdioma);
-            
-            // Guardar preferencia
-            localStorage.setItem('preferredLanguage', nuevoIdioma);
+            // Guardar la preferencia en localStorage - NO MODIFICAR esta línea
+            localStorage.setItem('preferredLanguage', nuevoIdioma === 'ingles' ? 'en' : 'es');
         }
-        
-        // Cargar idioma al inicio
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedLanguage = localStorage.getItem('preferredLanguage') || 'es';
-            const bandera = document.getElementById('banderaIdioma');
-            bandera.src = savedLanguage === 'en' 
-                ? "/PRODCONS/PI2do/imagenes/logos/ingles.png" 
-                : "/PRODCONS/PI2do/imagenes/logos/espanol.png";
-            bandera.setAttribute('data-idioma', savedLanguage);
-            
-            // Iniciar traducción
-            translateContent(savedLanguage);
-        });
 
-        // Función de traducción
-        function translateContent(lang) {
-            // Aquí iría la lógica de traducción
-            // Puedes usar la API de Google Cloud Translation o cualquier otro método
-            console.log('Traduciendo al idioma:', lang);
-        }
+        // Cargar el idioma guardado al iniciar la página - NO MODIFICAR
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('preferredLanguage');
+            if (savedLanguage) {
+                const bandera = document.getElementById('banderaIdioma');
+                bandera.src = savedLanguage === 'en' 
+                    ? '/PRODCONS/PI2do/imagenes/logos/ingles.png' 
+                    : '/PRODCONS/PI2do/imagenes/logos/espanol.png';
+                translateContent(savedLanguage);
+            }
+        });
     </script>
 
+    
 
+    <!-- Contenido principal -->
+    <main class="main-content">
     <div class="sobrecont">
         <div class="cuadro-info">
             <h2>BLOG</h2>
@@ -377,12 +319,41 @@ $conexion->cerrar_conexion();
         <img class="imagen-principal" src="/PRODCONS/PI2do/imagenes/tractor.png" alt="Imagen Principal">
     </div>
 
+<!-- Carrusel destacado -->
+<section class="carrusel-destacado">
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/PI2do/Carrusel/carrusel.php'; ?>
+</section>
+    
 
     <h3 class="apubli"> MIRA MAS DE NUESTRO CONTENIDO </h3>
 
 
     <section class="post-list">
         <div class="content">
+<<<<<<< HEAD
+            <article class="post">
+                <div class="post-header">
+                    <div class="post-img-1"></div> 
+                </div>
+                <div class="post-body">
+                    <h2>Menos plásticos mas vida</h2>
+                    <p class="descripcion">El plástico nos rodea: en casa, en tiendas y hasta en los océanos. Con pequeñas decisiones, podemos reducir su uso y hacer la diferencia. ¿Listo para cambiar hábitos y ayudar al planeta? </p>
+                    <div class="post-footer">
+<a href='/PRODCONS/PI2do/postWeb/articulo1.php' class="post-link">Leer más...</a>
+                        <div class="interaction-buttons">
+                            <button class="like-button-small" onclick="likePost(1)" title="Me gusta">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                </svg>
+                                <span id="likes-count-1">0</span>
+                            </button>
+                            <button class="comment-toggle-small" onclick="toggleComments(1)" title="Comentarios">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+                                    <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                                </svg>
+                                <span id="comments-count-1">0</span>
+                            </button>
+=======
             <?php if (empty($publicaciones)): ?>
                 <p>No hay publicaciones disponibles en este momento.</p>
             <?php else: ?>
@@ -396,6 +367,7 @@ $conexion->cerrar_conexion();
                             ?>
                             <div class="post-img-placeholder"></div> <?php // Placeholder for image
                             ?>
+>>>>>>> 531efa144f31615cde8b897078fd6aa363450be7
                         </div>
                         <div class="post-body">
                             <h2><?php echo htmlspecialchars($post['Titulo']); ?></h2>
@@ -431,12 +403,317 @@ $conexion->cerrar_conexion();
                             <span>Publicado el <?php echo htmlspecialchars($post['Fecha de Creacion']); ?> </span>
                             <span>| <?php echo htmlspecialchars($post['autor_nombre']); ?> </span>
                         </div>
+<<<<<<< HEAD
+                        <div class="add-comment">
+                            <textarea id="comment-input-1" placeholder="Escribe tu comentario..."></textarea>
+                            <button onclick="addComment(1)">Publicar</button>
+                        </div>
+                    </div>
+                    <span>Publicado el 14 de febrero del 2025 </span>
+                    <span>| Juan Pablo Mancilla Rodriguez</span>
+                </div>
+            </article>
+
+            <article class="post">
+                <div class="post-header">
+                    <div class="post-img-2"></div>
+                </div>
+                <div class="post-body">
+                    <h2>Tu puedes hacer la diferencia</h2>
+                    <p>Cada elección cuenta. Adoptar hábitos más sostenibles en el día a día no solo reduce nuestra huella ecológica, sino que inspira un cambio real en la sociedad. ¿Te animas a dar el primer paso?</p>
+                    <div class="post-footer">
+<a href='/PRODCONS/PI2do/postWeb/articulo2.php' class="post-link">Leer más...</a>
+                        <div class="interaction-buttons">
+                            <button class="like-button-small" onclick="likePost(2)" title="Me gusta">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                </svg>
+                                <span id="likes-count-2">0</span>
+                            </button>
+                            <button class="comment-toggle-small" onclick="toggleComments(2)" title="Comentarios">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+                                    <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                                </svg>
+                                <span id="comments-count-2">0</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="comments-section" id="comments-section-2" style="display: none;">
+                        <div class="existing-comments" id="existing-comments-2">
+                            <!-- Los comentarios se mostrarán aquí -->
+                        </div>
+                        <div class="add-comment">
+                            <textarea id="comment-input-2" placeholder="Escribe tu comentario..."></textarea>
+                            <button onclick="addComment(2)">Publicar</button>
+                        </div>
+                    </div>
+                    <span>Publicado el 19 de Febrero del 2025 </span>
+                    <span>| Yureni Elizabeth Sierra Aguilar </span>
+                </div>
+                <div>
+
+                    
+                </div>
+
+                
+            </article>
+
+            <article class="post">
+                <div class="post-header">
+                    <div class="post-img-3"></div>
+                </div>
+                <div class="post-body">
+                    <h2>La Revolución de la Moda Sostenible </h2>
+                    <p class="descripcion">La industria de la moda es poderosa, pero también contaminante. Apostar por opciones sostenibles es clave para un futuro más limpio. ¿Sabes cómo tu ropa puede marcar la diferencia?</p>
+                    <div class="post-footer">
+<a href='/PRODCONS/PI2do/postWeb/articulo3.php' class="post-link">Leer más...</a>
+                        <div class="interaction-buttons">
+                            <button class="like-button-small" onclick="likePost(3)" title="Me gusta">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                </svg>
+                                <span id="likes-count-3">0</span>
+                            </button>
+                            <button class="comment-toggle-small" onclick="toggleComments(3)" title="Comentarios">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+                                    <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                                </svg>
+                                <span id="comments-count-3">0</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="comments-section" id="comments-section-3" style="display: none;">
+                        <div class="existing-comments" id="existing-comments-3">
+                            <!-- Los comentarios se mostrarán aquí -->
+                        </div>
+                        <div class="add-comment">
+                            <textarea id="comment-input-3" placeholder="Escribe tu comentario..."></textarea>
+                            <button onclick="addComment(3)">Publicar</button>
+                        </div>
+                    </div>
+                    <span>Publicado el 19 de Febrero del 2025</span>
+                    <span> | Daniel Sahid Barroso Alvarez </span>
+                </div>
+            </article>
+
+            <article class="post">
+                <div class="post-header">
+                    <div class="post-img-4"></div>
+                </div>
+                <div class="post-body">
+                    <h2>Crea tu propio huerto y sus ventajas</h2>
+                    <p class="descripcion">Cultivar tus propios alimentos te da frescura, control y una alimentación más sana. Además, reduces residuos y cuidas el medioambiente. ¿Te animas a empezar tu propio huerto? </p>
+                    <div class="post-footer">
+<a href='/PRODCONS/PI2do/postWeb/articulo4.php' class="post-link">Leer más...</a>
+                        <div class="interaction-buttons">
+                            <button class="like-button-small" onclick="likePost(4)" title="Me gusta">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                </svg>
+                                <span id="likes-count-4">0</span>
+                            </button>
+                            <button class="comment-toggle-small" onclick="toggleComments(4)" title="Comentarios">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+                                    <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                                </svg>
+                                <span id="comments-count-4">0</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="comments-section" id="comments-section-4" style="display: none;">
+                        <div class="existing-comments" id="existing-comments-4">
+                            <!-- Los comentarios se mostrarán aquí -->
+                        </div>
+                        <div class="add-comment">
+                            <textarea id="comment-input-4" placeholder="Escribe tu comentario..."></textarea>
+                            <button onclick="addComment(4)">Publicar</button>
+                        </div>
+                    </div>
+                    <span>Publicado el 20 de Febrero del 2025 </span>
+                    <span>| Xiomara Anabeli Cobian Ramirez</span>
+                </div>
+            </article>
+
+            <article class="post">
+                <div class="post-header">
+                    <div class="post-img-5"></div>
+                </div>
+                <div class="post-body">
+                    <h2>Reduciendo residuos en el hogar</h2>
+                    <p class="descripcion">Consumimos sin medida, sin pensar en el impacto. Es momento de tomar decisiones responsables y reducir nuestra huella ecológica. Cada elección cuenta. ¿Qué harás hoy por un futuro más verde? </p>
+                    <div class="post-footer">
+<a href='/PRODCONS/PI2do/postWeb/articulo5.php' class="post-link">Leer más...</a>
+                        <div class="interaction-buttons">
+                            <button class="like-button-small" onclick="likePost(5)" title="Me gusta">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                </svg>
+                                <span id="likes-count-5">0</span>
+                            </button>
+                            <button class="comment-toggle-small" onclick="toggleComments(5)" title="Comentarios">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+                                    <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                                </svg>
+                                <span id="comments-count-5">0</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="comments-section" id="comments-section-5" style="display: none;">
+                        <div class="existing-comments" id="existing-comments-5">
+                            <!-- Los comentarios se mostrarán aquí -->
+                        </div>
+                        <div class="add-comment">
+                            <textarea id="comment-input-5" placeholder="Escribe tu comentario..."></textarea>
+                            <button onclick="addComment(5)">Publicar</button>
+                        </div>
+                    </div>
+                    <span>Publicado el 21 de Febrero del 2025 </span>
+                    <span>| Fernando Benitez Astudillo</span>
+                </div>
+            </article>
+
+            <article class="post">
+                <div class="post-header">
+                    <div class="post-img-6"></div>
+                </div>
+                <div class="post-body">
+                    <h2>Consumo Digital y Producción Responsable</h2>
+                    <p class="descripcion">El consumo digital impacta el planeta más de lo que imaginas. Optar por prácticas responsables en tecnología puede hacer una gran diferencia. ¿Sabes cómo reducir tu impacto digital?</p>
+<a href='/PRODCONS/PI2do/postWeb/articulo6.php' class="post-link">Leer más...</a>
+                    <div class="interaction-buttons">
+                        <button class="like-button-small" onclick="likePost(6)" title="Me gusta">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                            </svg>
+                            <span id="likes-count-6">0</span>
+                        </button>
+                        <button class="comment-toggle-small" onclick="toggleComments(6)" title="Comentarios">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+                                <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                            </svg>
+                            <span id="comments-count-6">0</span>
+                        </button>
+                    </div>
+                    <div class="comments-section" id="comments-section-6" style="display: none;">
+                        <div class="existing-comments" id="existing-comments-6">
+                            <!-- Los comentarios se mostrarán aquí -->
+                        </div>
+                        <div class="add-comment">
+                            <textarea id="comment-input-6" placeholder="Escribe tu comentario..."></textarea>
+                            <button onclick="addComment(6)">Publicar</button>
+                        </div>
+                    </div>
+                    <span>Publicado el 21 de Febrero del 2025 </span>
+                    <span>| Isabela Monserrat Vidrio Camarena</span>
+                </div>
+            </article>
+=======
                     </article>
                 <?php endforeach; ?>
             <?php endif; ?>
+>>>>>>> 531efa144f31615cde8b897078fd6aa363450be7
         </div>
     </section>
+    </main>
 
+<<<<<<< HEAD
+    <!-- Banner de Cookies -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <p>Utilizamos cookies para mejorar tu experiencia en nuestro sitio web. Al hacer clic en "Aceptar todas", aceptas el uso de todas las cookies. Sin embargo, puedes visitar "Configuración de cookies" para proporcionar un consentimiento controlado.</p>
+            <div class="cookie-buttons">
+                <button id="rejectCookies" class="cookie-btn reject-btn">Rechazar</button>
+                <button id="acceptCookies" class="cookie-btn accept-btn">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+     <script>
+        // Script para activar/desactivar la barra de búsqueda
+        const btnLupa = document.getElementById('btnLupa');
+        const barraBusqueda = document.getElementById('barraBusqueda');
+
+        btnLupa.addEventListener('click', () => {
+            barraBusqueda.classList.toggle('activa');
+            if (barraBusqueda.classList.contains('activa')) {
+                barraBusqueda.focus();
+            }
+        });
+
+        // Función para normalizar y eliminar acentos
+        function normalizeText(text) {
+            return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        }
+
+        // Función para escapar caracteres especiales de regex
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        // Función para resaltar texto
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            const safeTerm = escapeRegExp(searchTerm);
+            const regex = new RegExp(`(${safeTerm})`, 'gi');
+            return text.replace(regex, '<span class="search-highlight">$1</span>');
+        }
+
+        // Función de búsqueda mejorada
+        function searchArticles(searchTerm) {
+            const articles = document.querySelectorAll('.post');
+            const normalizedSearch = normalizeText(searchTerm.trim());
+
+            if (!normalizedSearch) {
+                // Si no hay término de búsqueda, mostrar todos los artículos
+                articles.forEach(article => {
+                    article.style.display = 'block';
+                    const title = article.querySelector('h2');
+                    const description = article.querySelector('.descripcion');
+                    if (title) title.innerHTML = title.textContent;
+                    if (description) description.innerHTML = description.textContent;
+                });
+                return;
+            }
+
+            articles.forEach(article => {
+                const title = article.querySelector('h2');
+                const description = article.querySelector('.descripcion');
+                if (!title) return;
+                const titleText = title.textContent;
+                const descriptionText = description ? description.textContent : '';
+                const normalizedTitle = normalizeText(titleText);
+                const normalizedDescription = normalizeText(descriptionText);
+                const content = normalizedTitle + ' ' + normalizedDescription;
+
+                if (content.includes(normalizedSearch)) {
+                    article.style.display = 'block';
+                    // Resaltar el texto que coincide
+                    title.innerHTML = highlightText(titleText, searchTerm);
+                    if (description) {
+                        description.innerHTML = highlightText(descriptionText, searchTerm);
+                    }
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+        }
+
+        // Agregar event listeners para ambos buscadores
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInputs = document.querySelectorAll('input[type="search"], input[type="text"]');
+            searchInputs.forEach(input => {
+                input.addEventListener('input', (e) => {
+                    searchArticles(e.target.value);
+                });
+            });
+        });
+    </script>
+
+
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/footer/footer/footer.php'; ?>
+    <script src='/PRODCONS/Header visitantes/barra_principal.js'></script>
+
+=======
     
 
     <!-- <div class="carousel-container">
@@ -826,6 +1103,11 @@ $conexion->cerrar_conexion();
     // document.addEventListener('DOMContentLoaded', function() { ... });
 
 </script>
+>>>>>>> 531efa144f31615cde8b897078fd6aa363450be7
 </body>
-
 </html>
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 531efa144f31615cde8b897078fd6aa363450be7

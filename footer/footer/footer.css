@@ -7,36 +7,16 @@
   padding: 0;
   box-sizing: border-box;
   position: relative;
-  padding-bottom: 44px; /* más espacio para el copyright */
+  padding-bottom: 44px;
   flex-shrink: 0;
   border-top: none !important;
   box-shadow: none !important;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.main-content {
-  flex: 1 0 auto;
-  min-height: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
 .footer-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   max-width: 2500px;
   margin: 0 auto;
   flex-wrap: wrap;
@@ -50,26 +30,21 @@ body {
   height: auto;
   margin-bottom: 5.5px;
   margin-left: 40px;
-  margin-right: 0; /* Elimina margen derecho */
-  box-shadow: none;
-  border-radius: 0;
+  margin-right: 0;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  min-width: unset !important;
 }
-  /* Excepción para la imagen del logo */
-  .prodcons2 {
-    box-shadow: none !important; /* Asegura que no tenga sombra */
-    border-radius: 0 !important; /* Asegura que no tenga bordes redondeados */
-    min-width: unset; /* Anula el min-width para esta imagen */
-  }
-  
+
 /* Columna 2: Sobre Nosotros */
 .footer-center {
   max-width: 500px;
   padding: 0;
   text-align: left;
   line-height: 18px;
-  padding-top: 0; /* Quita espacio arriba */
+  padding-top: 0;
   margin-right: 40px;
-  margin-left: 0; /* Quita margen izquierdo */
+  margin-left: 0;
 }
 
 .footer-center h4 {
@@ -97,33 +72,34 @@ body {
   min-width: 120px;
   font-size: 18px;
   font-family: Georgia;
-  margin-top: -40px; /* Sube la columna para alinear con el correo */
+  margin-top: -40px;
   text-align: left;
 }
 
-.footer2 li {
-  list-style-type: none;
-  margin-bottom: 12px; /* Un poco más de espacio entre enlaces */
+.footer-links-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-.footer2 a {
+.footer-links-vertical a {
+  display: block;
   text-decoration: none;
-  transition: color 0.3s ease;
   color: white;
   font-size: 15px;
   line-height: 22px;
   font-family: Georgia, serif;
-  
+  transition: color 0.3s ease;
 }
 
-.footer2 a:hover {
+.footer-links-vertical a:hover {
   color: #d8d8d8;
 }
 
-/* Columna 4: Correo + Botones */
+/* Columna 4: Correo */
 .footer3 {
   line-height: 15px;
-  margin-top: -60px; /* Sube la columna de correo y botones */
+  margin-top: -60px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -131,19 +107,13 @@ body {
   padding-right: 15px;
 }
 
- 
-/* .footer3 li {
-  list-style-type: none;
-  margin-top: 0;
-} */
-
 .footer3 a {
   color: white;
   text-decoration: none;
   font-size: 14px;
   line-height: 35px;
   white-space: nowrap;
-  margin-right: 0; /* Asegura que no haya margen a la derecha */
+  margin-right: 0;
 }
 
 .cfooter {
@@ -155,49 +125,11 @@ body {
   color: #fbfbfb;
 }
 
-.footer-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.af {
+  color: white !important;
 }
 
-.footer-btn {
-  display: block;
-  padding: 6px 0;
-  background: #676262;
-  color: #fff !important;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: bold;
-  text-align: center;
-  text-transform: uppercase;
-  text-decoration: none;
-  width: 120px;
-  margin-left: auto;
-  transition: background 0.3s;
-}
-
-.footer-btn:hover {
-  background: #218c3a;
-}
-
-/* Copyright */
-.footer-bottom {
-  width: 100%;
-  text-align: right;
-  color: #fff;
-  font-size: 15px;
-  font-family: Georgia, serif;
-  padding: 6px 40px 6px 0; /* Reducido el padding vertical */
-  background: #0a4e1a;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  box-sizing: border-box;
-}
-
-/* Adaptación responsiva */
+/* Footer responsive */
 @media (max-width: 900px) {
   .footer-container {
     flex-direction: column;
@@ -205,6 +137,7 @@ body {
     padding: 18px 0 12px 0;
     gap: 0;
   }
+  
   .footer-center, .footer2, .footer3 {
     width: 100%;
     text-align: center;
@@ -212,23 +145,20 @@ body {
     padding: 0;
     max-width: 100%;
   }
+  
   .footer3 {
     align-items: center;
   }
-  .footer-bottom {
-    text-align: center;
-    padding-right: 0;
+  
+  .footer2 {
+    margin-top: 0;
   }
+  
+  .footer-links-vertical {
+    align-items: center;
+  }
+  
   .prodcons2 {
     margin-left: 0;
   }
-}
-
-/* Fix para páginas cortas */
-.site-footer {
-  background: #0B4F14 !important;
-}
-
-.af, .footer-btn {
-  color: white !important;
 }

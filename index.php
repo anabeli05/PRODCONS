@@ -59,8 +59,8 @@
 
       <!-- Opciones del menú -->
       <ul>
-        <a href='/PRODCONS/PI2do/pr/produccionr.html'>PRODUCCIÓN RESPONSABLE</a>
-        <a href='/PRODCONS/PI2do/cr/consumores.html'>CONSUMO RESPONSABLE</a>
+<a href='/PRODCONS/PI2do/pr/produccionr.php'>PRODUCCIÓN RESPONSABLE</a>
+        <a href='/PRODCONS/PI2do/cr/consumores.php'>CONSUMO RESPONSABLE</a>
          <li>
           <form>
             <button id="btnLupa" class="lupa" aria-label="Abrir buscador" type="button">
@@ -110,7 +110,7 @@
 <header>
     <div class="header-contenedor">
         <div class="principal">
-            <a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.html'>EMPRESAS RESPONSABLES</a>
+<a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.php'>EMPRESAS RESPONSABLES</a>
             <a href="/PRODCONS/PI2do/inicio_sesion/login.php" class="link-login">INICIAR SESIÓN</a>
              <!-- =====================================================================
                 SELECTOR DE BANDERA PARA CAMBIO DE IDIOMA - PERSONALIZABLE
@@ -201,8 +201,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <img class="prodcons" src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
             <div class="subtitulos">
-                <a href='/PRODCONS/PI2do/pr/produccionr.html'>PRODUCCIÓN RESPONSABLE</a>
-                <a href='/PRODCONS/PI2do/cr/consumores.html'>CONSUMO RESPONSABLE</a>
+<a href='/PRODCONS/PI2do/pr/produccionr.php'>PRODUCCIÓN RESPONSABLE</a>
+                <a href='/PRODCONS/PI2do/cr/consumores.php'>CONSUMO RESPONSABLE</a>
 
                 <form class="search-form">
                     <button class="lupa">
@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="post-body">
                     <h2>Menos plásticos mas vida</h2>
                     <p class="descripcion">El plástico nos rodea: en casa, en tiendas y hasta en los océanos. Con pequeñas decisiones, podemos reducir su uso y hacer la diferencia. ¿Listo para cambiar hábitos y ayudar al planeta? </p>
-                    <a href='/PRODCONS/PI2do/postWeb/articulo1.html' class="post-link">Leer más...</a>
+<a href='/PRODCONS/PI2do/postWeb/articulo1.php' class="post-link">Leer más...</a>
                     <span>Publicado el 14 de febrero del 2025 </span>
                     <span>| Juan Pablo Mancilla Rodriguez</span>
                 </div>
@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="post-body">
                     <h2>Tu puedes hacer la diferencia</h2>
                     <p>Cada elección cuenta. Adoptar hábitos más sostenibles en el día a día no solo reduce nuestra huella ecológica, sino que inspira un cambio real en la sociedad. ¿Te animas a dar el primer paso?</p>
-                    <a href='/PRODCONS/PI2do/postWeb/articulo2.html' class="post-link">Leer más...</a>
+<a href='/PRODCONS/PI2do/postWeb/articulo2.php' class="post-link">Leer más...</a>
                     <span>Publicado el 19 de Febrero del 2025 </span>
                     <span>| Yureni Elizabeth Sierra Aguilar </span>
                 </div>
@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="post-body">
                     <h2>La Revolución de la Moda Sostenible </h2>
                     <p class="descripcion">La industria de la moda es poderosa, pero también contaminante. Apostar por opciones sostenibles es clave para un futuro más limpio. ¿Sabes cómo tu ropa puede marcar la diferencia?</p>
-                    <a href='/PRODCONS/PI2do/postWeb/articulo3.html' class="post-link">Leer más...</a>
+<a href='/PRODCONS/PI2do/postWeb/articulo3.php' class="post-link">Leer más...</a>
                     <span>Publicado el 19 de Febrero del 2025</span>
                     <span> | Daniel Sahid Barroso Alvarez </span>
                 </div>
@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     <h2>Crea tu propio huerto y sus ventajas</h2>
                     <p class="descripcion">Cultivar tus propios alimentos te da frescura, control y una alimentación más sana. Además, reduces residuos y cuidas el medioambiente. ¿Te animas a empezar tu propio huerto? </p>
-                    <a href='/PRODCONS/PI2do/postWeb/articulo4.html' class="post-link">Leer más...</a>
+<a href='/PRODCONS/PI2do/postWeb/articulo4.php' class="post-link">Leer más...</a>
                     <span>Publicado el 20 de Febrero del 2025 </span>
                     <span>| Xiomara Anabeli Cobian Ramirez</span>
                 </div>
@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="post-body">
                     <h2>Reduciendo residuos en el hogar</h2>
                     <p class="descripcion">Consumimos sin medida, sin pensar en el impacto. Es momento de tomar decisiones responsables y reducir nuestra huella ecológica. Cada elección cuenta. ¿Qué harás hoy por un futuro más verde? </p>
-                    <a href='/PRODCONS/PI2do/postWeb/articulo5.html' class="post-link">Leer más...</a>
+<a href='/PRODCONS/PI2do/postWeb/articulo5.php' class="post-link">Leer más...</a>
                     <span>Publicado el 21 de Febrero del 2025 </span>
                     <span>| Fernando Benitez Astudillo</span>
                 </div>
@@ -364,7 +364,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     <h2>Consumo Digital y Producción Responsable</h2>
                     <p class="descripcion">El consumo digital impacta el planeta más de lo que imaginas. Optar por prácticas responsables en tecnología puede hacer una gran diferencia. ¿Sabes cómo reducir tu impacto digital?</p>
-                    <a href='/PRODCONS/PI2do/postWeb/articulo6.html' class="post-link">Leer más...</a>
+<a href='/PRODCONS/PI2do/postWeb/articulo6.php' class="post-link">Leer más...</a>
                     <span>Publicado el 21 de Febrero del 2025 </span>
                     <span>| Isabela Monserrat Vidrio Camarena</span>
 
