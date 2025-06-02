@@ -4,12 +4,12 @@ include '../../Base de datos/conexion.php';
 
 // Verificar que el usuario esté autenticado y sea SuperAdmin
 if (!isset($_SESSION['Usuario_ID']) || !isset($_SESSION['Rol'])) {
-    header('Location: PI2do/inicio_sesion/login.php');
+    header('Location: /PRODCONS/PI2do/inicio_sesion/login.php');
     exit();
 }
 
 if ($_SESSION['Rol'] !== 'SuperAdmin') {
-    header('Location: PI2do/inicio_sesion/login.php?error=acceso_denegado');
+    header('Location: /PRODCONS/PI2do/inicio_sesion/login.php?error=acceso_denegado');
     exit();
 }
 
