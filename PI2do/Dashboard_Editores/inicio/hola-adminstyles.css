@@ -233,6 +233,9 @@ html, body {
     line-height: 1.5;
 }
 
-.no-articulos{
-    font-size: 1px;
+.no-articulos {
+    font-size: 2em; /* Ajusta este valor según necesites */
+    text-align: center;
+    margin-top: 20px;
+    color: #555;
 }

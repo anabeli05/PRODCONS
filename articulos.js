@@ -23,4 +23,4 @@ document.addEventListener("DOMContentLoaded", function(e){
 
     aplicarAlturas();
 });
-<a href="articulos.html">Leer más...</a>
+<a href="/articulos.html">Leer más...</a>

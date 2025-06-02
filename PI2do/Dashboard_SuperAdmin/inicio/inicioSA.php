@@ -20,11 +20,11 @@ try {
         'septiembre' => '09', 'octubre' => '10', 'noviembre' => '11', 'diciembre' => '12'
     ];
     $anio_actual = date('Y');
-    $query = "SELECT id, titulo, contenido, imagen, fecha_publicacion, vistas 
+    $query = "SELECT ID_Articulo, Titulo, Contenido, Imagen, Fecha, Vistas 
               FROM articulos 
-              WHERE MONTH(fecha_publicacion) = ? 
-              AND YEAR(fecha_publicacion) = ?
-              ORDER BY vistas DESC 
+              WHERE MONTH(Fecha) = ? 
+              AND YEAR(Fecha) = ?
+              ORDER BY Vistas DESC 
               LIMIT 6";
     $stmt = $conexion->conexion->prepare($query);
     $stmt->bind_param("ss", $meses[$mes_seleccionado], $anio_actual);
@@ -52,44 +52,15 @@ try {
     <script src='../Dashboard/barra-nav.js' defer></script>
 </head>
 <body>
-    <header> 
-        <div class="header-contenedor">
-            <div class="principal"></div>
-        </div>
-    </header>
 
-    <section class="logo"> 
-        <div class="header_2">
-            <img class="prodcons" src="../../imagenes/prodcon/logoSinfondo.png" alt="Logo">
-            <div class="admin-controls">
-                <button class="search-toggle-btn">
-                    <i class="fas fa-search"></i>
-                </button>
-                <div class="search-bar hidden">
-                    <input type="text" placeholder="Buscar...">
-                    <button class="search-close-btn">&times;</button>
-                </div>
-                <button class="notif-btn">
-                    <i class="fas fa-bell"></i>
-                    <span class="notif-badge">1</span>
-                </button>
-                <div class="admin-btn" id="sidebarToggle">
-                    <span>Admin</span>
-                    <i class="fas fa-chevron-down"></i>
-                    <img src="../../imagenes/logos/perfil.png" alt="Admin" class="admin-avatar">
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!--Head er importado-->
     <?php include('../Dashboard/sidebar.php'); ?>
 
     <section class="contenedor-principal">
         <div class="rec-admin">
             <div class="formato-txt">
-                <h2>¡Hola Admin!</h2>
+                <h2>¡Hola SuperAdmin!</h2>
                 <p>Un blog exitoso se construye post a post. ¡Sigue adelante!</p>
-                <button class="new-post">ESCRIBE UN NUEVO POST</button>
             </div>
             <div class="admin-img">
                 <img src="../../imagenes/chicaLaptop.png" alt="Admin Ilustración">
@@ -143,19 +114,6 @@ try {
             </div>
         </div>
     </section>
+    <div id="overlay" class="hidden"></div>
 </body>
-<script>
-// Mostrar/ocultar sidebar al hacer clic en la foto de perfil
-const sidebar = document.querySelector('.sidebar');
-const sidebarToggle = document.getElementById('sidebarToggle');
-if (sidebar && sidebarToggle) {
-    sidebar.style.transition = 'transform 0.3s';
-    sidebar.style.transform = 'translateX(-100%)';
-    let sidebarVisible = false;
-    sidebarToggle.addEventListener('click', function() {
-        sidebarVisible = !sidebarVisible;
-        sidebar.style.transform = sidebarVisible ? 'translateX(0)' : 'translateX(-100%)';
-    });
-}
-</script>
 </html>
