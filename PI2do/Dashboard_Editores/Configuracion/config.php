@@ -1,6 +1,15 @@
 <?php
 session_start();
-include '../../Base de datos/conexion.php';
+require_once '../../Base de datos/conexion.php';
+
+// Crear instancia de la clase Conexion
+$conexion = new Conexion();
+$conn = $conexion->abrir_conexion();
+
+// Verificar si la conexión se estableció correctamente
+if (!$conn) {
+    die("Error al conectar a la base de datos");
+}
 
 // Definir rutas constantes
 define('LOGIN_PATH', '../../inicio_sesion/login.php');
@@ -230,8 +239,12 @@ function obtenerInfoUsuario($conn) {
     }
 }
 
-// Obtener información del usuario para mostrar en la página
-$infoUsuario = obtenerInfoUsuario($conn);
+try {
+    $infoUsuario = obtenerInfoUsuario($conn);
+} catch (Exception $e) {
+    error_log("Error al obtener información del usuario: " . $e->getMessage());
+    $infoUsuario = ['Nombre' => 'ADMIN', 'Foto_Perfil' => null];
+}
 $nombreUsuario = $infoUsuario['Nombre'] ?? 'ADMIN';
 $fotoPerfil = $infoUsuario['Foto_Perfil'] ? '../imagenes/perfiles/' . $infoUsuario['Foto_Perfil'] : '../imagenes/logos/perfil.png';
 $numNotificaciones = obtenerNumeroNotificaciones($conn);

@@ -2,14 +2,47 @@
 session_start();
 include '../../Base de datos/conexion.php';
 
-// Unificar variable de sesión
-if (!isset($_SESSION['usuario_id'])) {
+// Definir rutas constantes
+define('LOGIN_PATH', '../../inicio_sesion/login.php');
+define('PROFILE_IMAGES_DIR', '../imagenes/perfiles/');
+
+// Verificar sesión y rol en una sola función
+function verificarAcceso() {
+    // Normalizar ID de usuario
     if (isset($_SESSION['Usuario_ID'])) {
         $_SESSION['usuario_id'] = $_SESSION['Usuario_ID'];
         unset($_SESSION['Usuario_ID']);
-    } else {
-        header('Location: ../../inicio_sesion/login.php');
+    }
+    
+    // Verificar si el usuario está logueado y tiene el rol correcto
+    if (!isset($_SESSION['usuario_id']) || !isset($_SESSION['Rol']) || $_SESSION['Rol'] !== 'Editor') {
+        header('Location: ' . LOGIN_PATH);
         exit();
+    }
+}
+
+// Ejecutar verificación
+verificarAcceso();
+
+// Verificar directorio de imágenes
+if (!file_exists(PROFILE_IMAGES_DIR)) {
+    mkdir(PROFILE_IMAGES_DIR, 0755, true);
+}
+
+// Función para obtener número de notificaciones
+function obtenerNumeroNotificaciones($conn) {
+    try {
+        $stmt = $conn->prepare("SELECT COUNT(*) as total FROM notificaciones WHERE Usuario_ID = ? AND Leida = 0");
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta");
+        }
+        $stmt->bind_param("i", $_SESSION['usuario_id']);
+        $stmt->execute();
+        $resultado = $stmt->get_result()->fetch_assoc();
+        return $resultado['total'] ?? 0;
+    } catch (Exception $e) {
+        error_log("Error al obtener notificaciones: " . $e->getMessage());
+        return 0;
     }
 }
 
@@ -50,25 +83,56 @@ function cambiarContrasena($nuevaPassword, $confirmarPassword, $conn) {
 
 // Función para cambiar foto de perfil
 function cambiarFotoPerfil($archivo, $conn) {
-    $directorio = "../imagenes/perfiles/";
+    if (!is_uploaded_file($archivo['tmp_name'])) {
+        return ['success' => false, 'message' => 'Error en la subida del archivo'];
+    }
+
+    if (!is_writable(PROFILE_IMAGES_DIR)) {
+        return ['success' => false, 'message' => 'Error de permisos en el directorio de imágenes'];
+    }
+
     $nombreArchivo = $_SESSION['usuario_id'] . "_" . time() . "_" . basename($archivo['name']);
     $ext = strtolower(pathinfo($nombreArchivo, PATHINFO_EXTENSION));
     $permitidas = ['jpg', 'jpeg', 'png', 'gif'];
+    
+    // Validación más estricta
     if (!in_array($ext, $permitidas)) {
         return ['success' => false, 'message' => 'Solo se permiten imágenes JPG, PNG o GIF.'];
     }
+    
+    // Verificar el tipo MIME
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $mimeType = finfo_file($finfo, $archivo['tmp_name']);
+    finfo_close($finfo);
+    
+    $mimePermitidos = ['image/jpeg', 'image/png', 'image/gif'];
+    if (!in_array($mimeType, $mimePermitidos)) {
+        return ['success' => false, 'message' => 'Tipo de archivo no permitido.'];
+    }
+    
     if ($archivo['size'] > 2 * 1024 * 1024) { // 2MB
         return ['success' => false, 'message' => 'La imagen no debe superar los 2MB.'];
     }
-    if (move_uploaded_file($archivo['tmp_name'], $directorio . $nombreArchivo)) {
-        // Actualizar en la base de datos
-        $stmt = $conn->prepare("UPDATE usuarios SET Foto_Perfil = ? WHERE Usuario_ID = ?");
-        $stmt->bind_param("si", $nombreArchivo, $_SESSION['usuario_id']);
-        if ($stmt->execute()) {
-            return ['success' => true, 'message' => 'Foto de perfil actualizada', 'url' => $directorio . $nombreArchivo];
+    
+    $rutaCompleta = PROFILE_IMAGES_DIR . $nombreArchivo;
+    
+    try {
+        if (move_uploaded_file($archivo['tmp_name'], $rutaCompleta)) {
+            // Actualizar en la base de datos
+            $stmt = $conn->prepare("UPDATE usuarios SET Foto_Perfil = ? WHERE Usuario_ID = ?");
+            if (!$stmt) {
+                throw new Exception("Error en la preparación de la consulta");
+            }
+            $stmt->bind_param("si", $nombreArchivo, $_SESSION['usuario_id']);
+            if ($stmt->execute()) {
+                return ['success' => true, 'message' => 'Foto de perfil actualizada', 'url' => $rutaCompleta];
+            }
         }
+        return ['success' => false, 'message' => 'Error al subir la foto'];
+    } catch (Exception $e) {
+        error_log("Error al actualizar foto de perfil: " . $e->getMessage());
+        return ['success' => false, 'message' => 'Error al procesar la imagen'];
     }
-    return ['success' => false, 'message' => 'Error al subir la foto'];
 }
 
 // Función para cambiar nombre de usuario
@@ -82,6 +146,42 @@ function cambiarNombreUsuario($nuevoNombre, $conn) {
         return ['success' => true, 'message' => 'Nombre actualizado correctamente'];
     } else {
         return ['success' => false, 'message' => 'Error al actualizar el nombre'];
+    }
+}
+
+// Función para cancelar suscripción
+function cancelarSuscripcion($conn) {
+    try {
+        // Primero verificamos si el usuario tiene una suscripción activa
+        $stmt = $conn->prepare("SELECT Estado FROM usuarios WHERE Usuario_ID = ?");
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta");
+        }
+        $stmt->bind_param("i", $_SESSION['usuario_id']);
+        $stmt->execute();
+        $resultado = $stmt->get_result()->fetch_assoc();
+        
+        if (!$resultado || $resultado['Estado'] !== 'activo') {
+            return ['success' => false, 'message' => 'No tienes una suscripción activa para cancelar'];
+        }
+
+        // Actualizamos el estado de la suscripción
+        $stmt = $conn->prepare("UPDATE usuarios SET Estado = 'inactivo', Fecha_Cancelacion = NOW() WHERE Usuario_ID = ?");
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta");
+        }
+        $stmt->bind_param("i", $_SESSION['usuario_id']);
+        
+        if ($stmt->execute()) {
+            // Destruimos la sesión
+            session_destroy();
+            return ['success' => true, 'message' => 'Suscripción cancelada exitosamente'];
+        } else {
+            throw new Exception("Error al cancelar la suscripción");
+        }
+    } catch (Exception $e) {
+        error_log("Error al cancelar suscripción: " . $e->getMessage());
+        return ['success' => false, 'message' => 'Error al procesar la cancelación'];
     }
 }
 
@@ -107,20 +207,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         case 'cambiar_nombre':
             echo json_encode(cambiarNombreUsuario($_POST['nombre'], $conn));
             break;
+        case 'cancelar_suscripcion':
+            echo json_encode(cancelarSuscripcion($conn));
+            break;
     }
     exit();
 }
 
 // Función para obtener información del usuario
 function obtenerInfoUsuario($conn) {
-    $stmt = $conn->prepare("SELECT Nombre, Foto_Perfil FROM usuarios WHERE Usuario_ID = ?");
-    $stmt->bind_param("i", $_SESSION['usuario_id']);
-    $stmt->execute();
-    return $stmt->get_result()->fetch_assoc();
+    try {
+        $stmt = $conn->prepare("SELECT Nombre, Foto_Perfil FROM usuarios WHERE Usuario_ID = ?");
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta");
+        }
+        $stmt->bind_param("i", $_SESSION['usuario_id']);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    } catch (Exception $e) {
+        error_log("Error al obtener información del usuario: " . $e->getMessage());
+        return ['Nombre' => 'ADMIN', 'Foto_Perfil' => null];
+    }
 }
 
 // Obtener información del usuario para mostrar en la página
 $infoUsuario = obtenerInfoUsuario($conn);
+$nombreUsuario = $infoUsuario['Nombre'] ?? 'ADMIN';
+$fotoPerfil = $infoUsuario['Foto_Perfil'] ? '../imagenes/perfiles/' . $infoUsuario['Foto_Perfil'] : '../imagenes/logos/perfil.png';
+$numNotificaciones = obtenerNumeroNotificaciones($conn);
 ?>
 
 
@@ -176,73 +290,23 @@ $infoUsuario = obtenerInfoUsuario($conn);
                         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                         <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                     </svg>
-                    <span class="notif-badge">1</span>
+                    <?php if ($numNotificaciones > 0): ?>
+                    <span class="notif-badge"><?php echo $numNotificaciones; ?></span>
+                    <?php endif; ?>
                 </a>
 
                 <!-- Botón Admin con avatar -->
                 <div class="admin-btn">
-                    <span>Admin</span>
+                    <span><?php echo htmlspecialchars($nombreUsuario); ?></span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 11l8 3l8 -3" />
                     </svg>
-                    <img src='../imagenes/logos/perfil.png' alt="Admin" class="admin-avatar">
+                    <img src='<?php echo htmlspecialchars($fotoPerfil); ?>' alt="Admin" class="admin-avatar">
                 </div>
             </div>
 
-            <!----- sidebar ----->
-            <div class="admin-sidebar" id="adminSidebar">
-                <div class="sidebar-header">
-                    <h3>ADMIN</h3>
-                    <button class="close-sidebar">
-                        <img src='../imagenes/logos/perfil.png' alt="Admin" class="admin-avatar">
-                    </button>
-                </div>
-                
-                <nav class="sidebar-menu">
-                    <a href='../MisArticulos/mis-articulos.php'>
-                        <span>Mis Artículos</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                            <polyline points="14 2 14 8 20 8"/>
-                            <line x1="16" y1="13" x2="8" y2="13"/>
-                            <line x1="16" y1="17" x2="8" y2="17"/>
-                            <polyline points="10 9 9 9 8 9"/>
-                        </svg>
-                    </a>
-                    
-                    <a href='../Configuracion/config.php'>
-                        <span>Configuración</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                        </svg>
-                    </a>
-                    
-                    <a href='../PostPlaneados/post-planeados.php'>
-                        <span>Post Planeados</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                            <line x1="16" y1="2" x2="16" y2="6"/>
-                            <line x1="8" y1="2" x2="8" y2="6"/>
-                            <line x1="3" y1="10" x2="21" y2="10"/>
-                        </svg>
-                    </a>
-                    
-                    <a href='../Estadisticas/estadisticas-adm.php'>
-                        <span>Estadísticas</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="12" y1="20" x2="12" y2="10"/>
-                            <line x1="18" y1="20" x2="18" y2="4"/>
-                            <line x1="6" y1="20" x2="6" y2="16"/>
-                        </svg>
-                    </a>
-                </nav>
-                
-                <div class="sidebar-footer">
-                    <button class="logout-btn">Cerrar Sesión</button>
-                </div>
-
-            </div>
+            <!-- El sidebar se importa desde el archivo externo -->
+            <?php include('../Dashboard/sidebar.php'); ?>
 
         </div>
     </section>
@@ -257,13 +321,13 @@ $infoUsuario = obtenerInfoUsuario($conn);
                 <div class="section-title">Perfil</div>
                 <div class="profile-item">
                   <label for="avatarInput" class="avatar-selector">
-                    <img src='../imagenes/logos/perfil.png' alt="Admin" class="admin-avatar" />
+                    <img src='<?php echo htmlspecialchars($fotoPerfil); ?>' alt="Admin" class="admin-avatar" />
                     <p>Foto de perfil</p>
                   </label>
 
                   <div class="nombre-container">
                     <label for="username" class="profile-label">Nombre:</label>
-                    <input type="text" id="username" name="username" value="ADMIN" class="profile-name-input" />
+                    <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($nombreUsuario); ?>" class="profile-name-input" />
                   </div>
                   <input type="file" id="avatarInput" name="avatar" accept="image/*" style="display: none;" />
                   
@@ -301,9 +365,17 @@ $infoUsuario = obtenerInfoUsuario($conn);
                  </svg>
                  <a href='../Cambiar contraseña/cambiar.php' class="change-password">Cambiar Contraseña</a>
               </div>
+
+              <div class="security-item">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="lock-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                 </svg>
+                 <button class="cancel-subscription" onclick="confirmarCancelacion()">Cancelar Suscripción</button>
+              </div>
             </div>
 
-            <button class="logout-button">Cerrar Sesión</button>
+            <button class="logout-button" onclick="window.location.href='../../inicio sesion/logout.php'">Cerrar Sesión</button>
         </div>
     </div>
 
@@ -351,7 +423,7 @@ $infoUsuario = obtenerInfoUsuario($conn);
                 .then(data => {
                     mostrarFeedback(data.message, data.success);
                     if (data.success && data.url) {
-                        document.querySelector('.admin-avatar').src = data.url;
+                        actualizarImagenPerfil(data.url);
                     }
                 });
         });
@@ -374,6 +446,66 @@ $infoUsuario = obtenerInfoUsuario($conn);
                 .then(res => res.json())
                 .then(data => mostrarFeedback(data.message, data.success));
         });
+    }
+
+    // Actualizar la imagen de perfil en todos los lugares cuando se cambia
+    function actualizarImagenPerfil(url) {
+        document.querySelectorAll('.admin-avatar').forEach(img => {
+            img.src = url;
+        });
+    }
+
+    // Mejorar el manejo del selector de idioma
+    document.getElementById('idiomas').addEventListener('change', function() {
+        const form = document.getElementById('form-idioma');
+        const formData = new FormData(form);
+        
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            if (response.ok) {
+                window.location.reload();
+            }
+        });
+    });
+
+    // Función para cerrar sesión
+    function cerrarSesion() {
+        if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
+            window.location.href = '../../inicio sesion/logout.php';
+        }
+    }
+
+    // Agregar evento de cierre de sesión a todos los botones de logout
+    document.querySelectorAll('.logout-btn, .logout-button').forEach(btn => {
+        btn.addEventListener('click', cerrarSesion);
+    });
+
+    // Función para confirmar y procesar la cancelación de suscripción
+    function confirmarCancelacion() {
+        if (confirm('¿Estás seguro de que deseas cancelar tu suscripción? Esta acción no se puede deshacer.')) {
+            const formData = new FormData();
+            formData.append('action', 'cancelar_suscripcion');
+            
+            fetch('config.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                mostrarFeedback(data.message, data.success);
+                if (data.success) {
+                    // Redirigir al login después de 2 segundos
+                    setTimeout(() => {
+                        window.location.href = '../../inicio_sesion/login.php';
+                    }, 2000);
+                }
+            })
+            .catch(error => {
+                mostrarFeedback('Error al procesar la solicitud', false);
+            });
+        }
     }
     </script>
 
