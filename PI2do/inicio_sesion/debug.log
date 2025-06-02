@@ -253,13 +253,10 @@ DEBUG: Success message:
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: 
 DEBUG: Success message: 
-
-
---- Nuevo Log de Sesión: 2025-06-02 15:18:14 ---
+--- Nuevo Log de Sesión: 2025-05-31 17:15:10 ---
 DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
+DEBUG: Error message: 
 DEBUG: Success message: 
-<<<<<<< HEAD
 --- Nuevo Log de Sesión: 2025-05-31 17:22:28 ---
 --- Nuevo Log de Sesión: 2025-05-31 17:23:07 ---
 DEBUG: Checking for duplicate email: xiomicob2005@outlook.com
@@ -593,99 +590,31 @@ DEBUG: Objeto Contacto creado
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
 DEBUG: Success message: 
-=======
---- Nuevo Log de Sesión: 2025-06-02 15:38:19 ---
+--- Nuevo Log de Sesión: 2025-06-02 13:12:36 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
 DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-06-02 15:38:36 ---
+--- Nuevo Log de Sesión: 2025-06-02 13:13:01 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: sierrayureni@gmail.com
+DEBUG: Contraseña recibida: 12345678
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-02 13:15:29 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 13:17:48 ---
 DEBUG: Botón de ingreso presionado
 DEBUG: Correo recibido: ysierra@ucol.mx
 DEBUG: Contraseña recibida: Prodcons12344
 DEBUG: Clase Contacto cargada
 DEBUG: Objeto Contacto creado
---- Nuevo Log de Sesión: 2025-06-02 15:59:22 ---
+--- Nuevo Log de Sesión: 2025-06-02 13:19:54 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
 DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-06-02 15:59:27 ---
-DEBUG: Botón de ingreso presionado
-DEBUG: Correo recibido: rvuelvas@ucol.mx
-DEBUG: Contraseña recibida: Prodcor2024
-DEBUG: Clase Contacto cargada
-DEBUG: Objeto Contacto creado
---- Nuevo Log de Sesión: 2025-06-02 16:09:42 ---
+--- Nuevo Log de Sesión: 2025-06-02 13:20:22 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
 DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-06-02 16:09:45 ---
-DEBUG: Botón de ingreso presionado
-DEBUG: Correo recibido: rvuelvas@ucol.mx
-DEBUG: Contraseña recibida: Prodcor2024
-DEBUG: Clase Contacto cargada
-DEBUG: Objeto Contacto creado
---- Nuevo Log de Sesión: 2025-06-02 16:17:37 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
-DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-06-02 16:20:09 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
-DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-06-02 16:20:15 ---
-DEBUG: Botón de ingreso presionado
-DEBUG: Correo recibido: xcobian@ucol.mx
-DEBUG: Contraseña recibida: anabeli05
-DEBUG: Clase Contacto cargada
-DEBUG: Objeto Contacto creado
---- Nuevo Log de Sesión: 2025-06-02 16:32:53 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
-DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-06-02 16:32:57 ---
-DEBUG: Botón de ingreso presionado
-DEBUG: Correo recibido: rvuelvas@ucol.mx
-DEBUG: Contraseña recibida: Prodcor2024
-DEBUG: Clase Contacto cargada
-DEBUG: Objeto Contacto creado
---- Nuevo Log de Sesión: 2025-06-02 16:35:45 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
-DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-06-02 16:35:51 ---
-DEBUG: Botón de ingreso presionado
-DEBUG: Correo recibido: xiomicob2005@outlook.com
-DEBUG: Contraseña recibida: Prodcons12345
-DEBUG: Clase Contacto cargada
-DEBUG: Objeto Contacto creado
---- Nuevo Log de Sesión: 2025-06-02 16:39:46 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
-DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-06-02 16:39:50 ---
-DEBUG: Botón de ingreso presionado
-DEBUG: Correo recibido: xiomicob2005@outlook.com
-DEBUG: Contraseña recibida: Prodcons12345
-DEBUG: Clase Contacto cargada
-DEBUG: Objeto Contacto creado
---- Nuevo Log de Sesión: 2025-06-02 16:39:54 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
-DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-06-02 16:43:23 ---
-DEBUG: Botón de ingreso presionado
-DEBUG: Correo recibido: xiomicob2005@outlook.com
-DEBUG: Contraseña recibida: Prodcons12345
-DEBUG: Clase Contacto cargada
-DEBUG: Objeto Contacto creado
---- Nuevo Log de Sesión: 2025-06-02 16:43:45 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
-DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-06-02 16:45:52 ---
-DEBUG: Botón de ingreso presionado
-DEBUG: Correo recibido: xiomicob2005@outlook.com
-DEBUG: Contraseña recibida: Prodcons12345
-DEBUG: Clase Contacto cargada
-DEBUG: Objeto Contacto creado
->>>>>>> 531efa144f31615cde8b897078fd6aa363450be7
