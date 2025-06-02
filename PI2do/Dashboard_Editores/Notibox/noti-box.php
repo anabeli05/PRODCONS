@@ -58,6 +58,7 @@ $stmt->close();
     <!-- CSS Y JS DE HEADER-->
     <link href='/PRODCONS/PI2do/Dashboard_Editores/Dashboard/sidebar.css' rel="stylesheet">
     <script src='/PRODCONS/PI2do/Dashboard_Editores/Dashboard/barra-nav.js' defer></script>
+
     <style>
         .notification-badge {
             position: absolute;
@@ -93,6 +94,7 @@ $stmt->close();
     </style>
 </head>
 <body>
+
 
     <header> 
         <div class="header-contenedor">
@@ -190,6 +192,7 @@ $stmt->close();
     </section>
 
     <!-- NOTIFICACIONES -->
+
     <section class="notificaciones">
         <div class="notifications-container">
             <div class="notifications-header">
