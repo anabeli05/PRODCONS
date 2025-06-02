@@ -58,46 +58,17 @@ if (!isset($_SESSION['csrf_token'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="Editores.css">
     <link rel="stylesheet" href="../Dashboard/sidebar.css">
-    <script src='../Dashboard/barra-nav.js' defer></script>
 </head>
 <body>
-    <header> 
-        <div class="header-contenedor">
-            <div class="principal"></div>
-        </div>
-    </header>
+    
 
-    <section class="logo"> 
-        <div class="header_2">
-            <img class="prodcons" src="../../imagenes/prodcon/logoSinfondo.png" alt="Logo">
-            <div class="admin-controls">
-                <button class="search-toggle-btn">
-                    <i class="fas fa-search"></i>
-                </button>
-                <div class="search-bar hidden">
-                    <input type="text" placeholder="Buscar...">
-                    <button class="search-close-btn">&times;</button>
-                </div>
-                <button class="notif-btn">
-                    <i class="fas fa-bell"></i>
-                    <span class="notif-badge">1</span>
-                </button>
-                <div class="admin-btn" id="sidebarToggle">
-                    <span>Admin</span>
-                    <i class="fas fa-chevron-down"></i>
-                    <img src="../../imagenes/logos/perfil.png" alt="Admin" class="admin-avatar">
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <?php include '../Dashboard/sidebar.php'; ?>
 
     <div class="contenedor-principal">
-        <div class="header">
+        <div class="header_1">
             <h1>Gestión de Editores</h1>
-            <a href="../Registro de Editores/registro.php" class="btn-add">
-                <i class="fas fa-user-plus"></i> Nuevo Editor
             </a>
         </div>
 
@@ -136,11 +107,11 @@ if (!isset($_SESSION['csrf_token'])) {
                                         <?php echo ucfirst($editor['estado']); ?>
                                     </span>
                                 </td>
-                                <td class="actions">
-                                    <a href="editar-editor.php?id=<?php echo $editor['Usuario_ID']; ?>" 
+                                <td class="actions"><!--Boton de editar
+                                    <a href="editar-editor.php?id=<//?php echo $editor['Usuario_ID']; ?>" 
                                        class="btn-edit" title="Editar">
                                         <i class="fas fa-edit"></i>
-                                    </a>
+                                    </a>-->
                                     <button onclick="confirmarEliminacion(<?php echo $editor['Usuario_ID']; ?>)" 
                                             class="btn-delete" title="Eliminar">
                                         <i class="fas fa-trash"></i>
