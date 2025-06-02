@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODCONS</title>
     <link rel="stylesheet" href="/PRODCONS/styles.css">
-    <link rel="stylesheet" href="/PRODCONS/PI2do/footer/Visitante/footer.css">
+    <link rel="stylesheet" href="/PRODCONS/footer/footer/footer.css">
     <link rel="stylesheet" href="/PRODCONS/articulos.css">
     <link rel="stylesheet" href="/PRODCONS/PI2do/Header visitantes/barra_principal.css">
 
@@ -79,7 +79,7 @@
       </ul>
     </nav>
 
-    <script>
+    <!-- <script>
       const btnLupa = document.getElementById('btnLupa');
       const barraBusqueda = document.getElementById('barraBusqueda');
 
@@ -89,7 +89,7 @@
           barraBusqueda.focus();
         }
       });
-    </script>
+    </script> -->
 
     <script>
         function toggleMenu() {
@@ -107,22 +107,94 @@
         }
     </script>
 
-    <header>
-        <div class="header-contenedor">
-            <div class="principal">
-                <a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.html'>EMPRESAS RESPONSABLES</a>
-
-                <!-- =====================================================================
+<header>
+    <div class="header-contenedor">
+        <div class="principal">
+            <a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.html'>EMPRESAS RESPONSABLES</a>
+            <a href="/PRODCONS/PI2do/inicio_sesion/login.php" class="link-login">INICIAR SESIÓN</a>
+             <!-- =====================================================================
                 SELECTOR DE BANDERA PARA CAMBIO DE IDIOMA - PERSONALIZABLE
                 Estos elementos controlan la selección de idioma en la página principal
                 ===================================================================== -->
                 <!-- Bandera principal visible - Puedes cambiar la imagen por defecto aquí -->
                 <div id="idiomaToggle">
-                    <img id="banderaIdioma" src='/PRODCONS/PI2do/imagenes/logos/espanol.png' alt="Idioma" onclick="alternarIdioma()" data-idioma="es">
+                    <img class="españa" id="banderaIdioma" src="./PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
                 </div>
-            </div>
+                <!-- Opciones de banderas desplegables - Puedes cambiar las imágenes aquí -->
+                <div id="idiomasOpciones">
+                    <img class="ingles" src="./PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés">
+                    <img class="españa" src="./PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español">
+                </div>
         </div>
-    </header>
+    </div>
+</header>
+
+<style>
+.link-login {
+    color: #000000; /* Negro */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.link-login:hover {
+    color: #000000; /* Mantener negro al hacer hover */
+    text-decoration: none;
+}
+
+.idioma-text {
+    color: #000000; /* Negro */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    font-size: 16.1px;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.idioma-text:hover {
+    color: #000000; /* Mantener negro al hacer hover */
+}
+
+.idioma-text:focus {
+    outline: none;
+    box-shadow: none;
+}
+</style>
+
+<script>
+function updateIdiomaButtonText(lang) {
+    const btnIdioma = document.getElementById('btnIdioma');
+    if (!btnIdioma) return;
+    if (lang === 'es') {
+        btnIdioma.textContent = 'IDIOMA';
+    } else if (lang === 'en') {
+        btnIdioma.textContent = 'LANGUAGE';
+    }
+}
+
+document.getElementById('btnIdioma').addEventListener('click', function() {
+    const currentLang = localStorage.getItem('preferredLanguage') || 'es';
+    const newLang = currentLang === 'es' ? 'en' : 'es';
+    localStorage.setItem('preferredLanguage', newLang);
+    translateContent(newLang);
+    updateIdiomaButtonText(newLang);
+});
+
+// Update button text on page load based on saved language
+document.addEventListener('DOMContentLoaded', function() {
+    const savedLanguage = localStorage.getItem('preferredLanguage') || 'es';
+    updateIdiomaButtonText(savedLanguage);
+});
+</script>
 
     <section class="logo">
         <div class="header_2">
@@ -219,7 +291,7 @@
                 <div class="post-body">
                     <h2>Menos plásticos mas vida</h2>
                     <p class="descripcion">El plástico nos rodea: en casa, en tiendas y hasta en los océanos. Con pequeñas decisiones, podemos reducir su uso y hacer la diferencia. ¿Listo para cambiar hábitos y ayudar al planeta? </p>
-                    <a href='/PI2do/postWeb/articulo1.html' class="post-link">Leer más...</a>
+                    <a href='/PRODCONS/PI2do/postWeb/articulo1.html' class="post-link">Leer más...</a>
                     <span>Publicado el 14 de febrero del 2025 </span>
                     <span>| Juan Pablo Mancilla Rodriguez</span>
                 </div>
@@ -232,7 +304,7 @@
                 <div class="post-body">
                     <h2>Tu puedes hacer la diferencia</h2>
                     <p>Cada elección cuenta. Adoptar hábitos más sostenibles en el día a día no solo reduce nuestra huella ecológica, sino que inspira un cambio real en la sociedad. ¿Te animas a dar el primer paso?</p>
-                    <a href='/PI2do/postWeb/articulo2.html' class="post-link">Leer más...</a>
+                    <a href='/PRODCONS/PI2do/postWeb/articulo2.html' class="post-link">Leer más...</a>
                     <span>Publicado el 19 de Febrero del 2025 </span>
                     <span>| Yureni Elizabeth Sierra Aguilar </span>
                 </div>
@@ -251,7 +323,7 @@
                 <div class="post-body">
                     <h2>La Revolución de la Moda Sostenible </h2>
                     <p class="descripcion">La industria de la moda es poderosa, pero también contaminante. Apostar por opciones sostenibles es clave para un futuro más limpio. ¿Sabes cómo tu ropa puede marcar la diferencia?</p>
-                    <a href='/PI2do/postWeb/articulo3.html' class="post-link">Leer más...</a>
+                    <a href='/PRODCONS/PI2do/postWeb/articulo3.html' class="post-link">Leer más...</a>
                     <span>Publicado el 19 de Febrero del 2025</span>
                     <span> | Daniel Sahid Barroso Alvarez </span>
                 </div>
@@ -265,7 +337,7 @@
 
                     <h2>Crea tu propio huerto y sus ventajas</h2>
                     <p class="descripcion">Cultivar tus propios alimentos te da frescura, control y una alimentación más sana. Además, reduces residuos y cuidas el medioambiente. ¿Te animas a empezar tu propio huerto? </p>
-                    <a href='/PI2do/postWeb/articulo4.html' class="post-link">Leer más...</a>
+                    <a href='/PRODCONS/PI2do/postWeb/articulo4.html' class="post-link">Leer más...</a>
                     <span>Publicado el 20 de Febrero del 2025 </span>
                     <span>| Xiomara Anabeli Cobian Ramirez</span>
                 </div>
@@ -278,7 +350,7 @@
                 <div class="post-body">
                     <h2>Reduciendo residuos en el hogar</h2>
                     <p class="descripcion">Consumimos sin medida, sin pensar en el impacto. Es momento de tomar decisiones responsables y reducir nuestra huella ecológica. Cada elección cuenta. ¿Qué harás hoy por un futuro más verde? </p>
-                    <a href='/PI2do/postWeb/articulo5.html' class="post-link">Leer más...</a>
+                    <a href='/PRODCONS/PI2do/postWeb/articulo5.html' class="post-link">Leer más...</a>
                     <span>Publicado el 21 de Febrero del 2025 </span>
                     <span>| Fernando Benitez Astudillo</span>
                 </div>
@@ -292,7 +364,7 @@
 
                     <h2>Consumo Digital y Producción Responsable</h2>
                     <p class="descripcion">El consumo digital impacta el planeta más de lo que imaginas. Optar por prácticas responsables en tecnología puede hacer una gran diferencia. ¿Sabes cómo reducir tu impacto digital?</p>
-                    <a href='/PI2do/postWeb/articulo6.html' class="post-link">Leer más...</a>
+                    <a href='/PRODCONS/PI2do/postWeb/articulo6.html' class="post-link">Leer más...</a>
                     <span>Publicado el 21 de Febrero del 2025 </span>
                     <span>| Isabela Monserrat Vidrio Camarena</span>
 
@@ -313,9 +385,91 @@
         </div>
     </div>
 
-    <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/PI2do/footer/Visitante/footer.php'; ?>
-    <!-- <script src='/PRODCONS/Carrusel/carrusel.js'></script> -->
-    <script src='/PRODCONS/PI2do/Header visitantes/barra_principal.js'></script>
+     <script>
+        // Script para activar/desactivar la barra de búsqueda
+        const btnLupa = document.getElementById('btnLupa');
+        const barraBusqueda = document.getElementById('barraBusqueda');
+
+        btnLupa.addEventListener('click', () => {
+            barraBusqueda.classList.toggle('activa');
+            if (barraBusqueda.classList.contains('activa')) {
+                barraBusqueda.focus();
+            }
+        });
+
+        // Función para normalizar y eliminar acentos
+        function normalizeText(text) {
+            return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        }
+
+        // Función para escapar caracteres especiales de regex
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        // Función para resaltar texto
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            const safeTerm = escapeRegExp(searchTerm);
+            const regex = new RegExp(`(${safeTerm})`, 'gi');
+            return text.replace(regex, '<span class="search-highlight">$1</span>');
+        }
+
+        // Función de búsqueda mejorada
+        function searchArticles(searchTerm) {
+            const articles = document.querySelectorAll('.post');
+            const normalizedSearch = normalizeText(searchTerm.trim());
+
+            if (!normalizedSearch) {
+                // Si no hay término de búsqueda, mostrar todos los artículos
+                articles.forEach(article => {
+                    article.style.display = 'block';
+                    const title = article.querySelector('h2');
+                    const description = article.querySelector('.descripcion');
+                    if (title) title.innerHTML = title.textContent;
+                    if (description) description.innerHTML = description.textContent;
+                });
+                return;
+            }
+
+            articles.forEach(article => {
+                const title = article.querySelector('h2');
+                const description = article.querySelector('.descripcion');
+                if (!title) return;
+                const titleText = title.textContent;
+                const descriptionText = description ? description.textContent : '';
+                const normalizedTitle = normalizeText(titleText);
+                const normalizedDescription = normalizeText(descriptionText);
+                const content = normalizedTitle + ' ' + normalizedDescription;
+
+                if (content.includes(normalizedSearch)) {
+                    article.style.display = 'block';
+                    // Resaltar el texto que coincide
+                    title.innerHTML = highlightText(titleText, searchTerm);
+                    if (description) {
+                        description.innerHTML = highlightText(descriptionText, searchTerm);
+                    }
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+        }
+
+        // Agregar event listeners para ambos buscadores
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInputs = document.querySelectorAll('input[type="search"], input[type="text"]');
+            searchInputs.forEach(input => {
+                input.addEventListener('input', (e) => {
+                    searchArticles(e.target.value);
+                });
+            });
+        });
+    </script>
+
+
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/footer/footer/footer.php'; ?>
+    <script src='/PRODCONS/Header visitantes/barra_principal.js'></script>
+
 </body>
 </html>
 

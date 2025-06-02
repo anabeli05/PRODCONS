@@ -1,0 +1,234 @@
+/* Estructura principal */
+.footer {
+  background: #0a4e1a;
+  color: white;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  padding-bottom: 44px; /* más espacio para el copyright */
+  flex-shrink: 0;
+  border-top: none !important;
+  box-shadow: none !important;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1 0 auto;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 2500px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 20px 0 0 0;
+}
+
+/* Columna 1: Logo */
+.prodcons2 {
+  width: 250px;
+  height: auto;
+  margin-bottom: 5.5px;
+  margin-left: 40px;
+  margin-right: 0; /* Elimina margen derecho */
+  box-shadow: none;
+  border-radius: 0;
+}
+  /* Excepción para la imagen del logo */
+  .prodcons2 {
+    box-shadow: none !important; /* Asegura que no tenga sombra */
+    border-radius: 0 !important; /* Asegura que no tenga bordes redondeados */
+    min-width: unset; /* Anula el min-width para esta imagen */
+  }
+  
+/* Columna 2: Sobre Nosotros */
+.footer-center {
+  max-width: 500px;
+  padding: 0;
+  text-align: left;
+  line-height: 18px;
+  padding-top: 0; /* Quita espacio arriba */
+  margin-right: 40px;
+  margin-left: 0; /* Quita margen izquierdo */
+}
+
+.footer-center h4 {
+  font-size: 26px;
+  margin-bottom: 26px;
+  font-family: 'Georgia';
+  color: white;
+  text-align: left;
+}
+
+.footer1 {
+  flex: 1;
+  text-align: justify;
+  font-size: 16px;
+  line-height: 26px;
+  font-family: Georgia;
+  max-width: 400px;
+  color: white;
+  margin: 0 auto;
+}
+
+/* Columna 3: Enlaces legales */
+.footer2 {
+  line-height: 15px;
+  min-width: 120px;
+  font-size: 18px;
+  font-family: Georgia;
+  margin-top: -40px; /* Sube la columna para alinear con el correo */
+  text-align: left;
+}
+
+.footer2 li {
+  list-style-type: none;
+  margin-bottom: 12px; /* Un poco más de espacio entre enlaces */
+}
+
+.footer2 a {
+  text-decoration: none;
+  transition: color 0.3s ease;
+  color: white;
+  font-size: 15px;
+  line-height: 22px;
+  font-family: Georgia, serif;
+  
+}
+
+.footer2 a:hover {
+  color: #d8d8d8;
+}
+
+/* Columna 4: Correo + Botones */
+.footer3 {
+  line-height: 15px;
+  margin-top: -60px; /* Sube la columna de correo y botones */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 20px;
+  padding-right: 15px;
+}
+
+ 
+/* .footer3 li {
+  list-style-type: none;
+  margin-top: 0;
+} */
+
+.footer3 a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 35px;
+  white-space: nowrap;
+  margin-right: 0; /* Asegura que no haya margen a la derecha */
+}
+
+.cfooter {
+  font-size: 18px;
+  text-align: right;
+  font-family: Georgia;
+  margin-bottom: 15px;
+  font-weight: normal;
+  color: #fbfbfb;
+}
+
+.footer-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-btn {
+  display: block;
+  padding: 6px 0;
+  background: #676262;
+  color: #fff !important;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  width: 120px;
+  margin-left: auto;
+  transition: background 0.3s;
+}
+
+.footer-btn:hover {
+  background: #218c3a;
+}
+
+/* Copyright */
+.footer-bottom {
+  width: 100%;
+  text-align: right;
+  color: #fff;
+  font-size: 15px;
+  font-family: Georgia, serif;
+  padding: 6px 40px 6px 0; /* Reducido el padding vertical */
+  background: #0a4e1a;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+}
+
+/* Adaptación responsiva */
+@media (max-width: 900px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 0 12px 0;
+    gap: 0;
+  }
+  .footer-center, .footer2, .footer3 {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+    padding: 0;
+    max-width: 100%;
+  }
+  .footer3 {
+    align-items: center;
+  }
+  .footer-bottom {
+    text-align: center;
+    padding-right: 0;
+  }
+  .prodcons2 {
+    margin-left: 0;
+  }
+}
+
+/* Fix para páginas cortas */
+.site-footer {
+  background: #0B4F14 !important;
+}
+
+.af, .footer-btn {
+  color: white !important;
+}
