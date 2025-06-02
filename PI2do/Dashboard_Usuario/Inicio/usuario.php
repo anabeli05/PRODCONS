@@ -75,7 +75,7 @@ $conexion->cerrar_conexion();
         #banderaIdioma:hover {
             transform: scale(1.1);
         }
-
+        
         .carrusel-destacado {
             width: 100%;
             max-width: 900px;
@@ -101,7 +101,7 @@ $conexion->cerrar_conexion();
       <!-- Logo dentro del menú -->
       <div class="mobile-logo">
         <img src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo" />
-      </div>
+        </div>
 
       <!-- Opciones del menú -->
       <ul>
@@ -115,15 +115,15 @@ $conexion->cerrar_conexion();
                    stroke-width="1.5">
                 <circle cx="10" cy="10" r="7"></circle>
                 <line x1="21" y1="21" x2="15" y2="15"></line>
-              </svg>
-            </button>
+                                </svg>
+                            </button>
             <div class="buscador-container">
               <input type="text" id="barraBusqueda" class="barra-busqueda" placeholder="Buscar..." />
             </div>
-          </form>
-        </li>
-      </ul>
-    </nav>
+                        </form>
+                    </li>
+                </ul>
+        </nav>
 
     <!-- <script>
       const btnLupa = document.getElementById('btnLupa');
@@ -153,12 +153,12 @@ $conexion->cerrar_conexion();
         }
     </script>
 
-<header>
-    <div class="header-contenedor">
-        <div class="principal">
+    <header>
+        <div class="header-contenedor">
+            <div class="principal">
 <a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.php'>EMPRESAS RESPONSABLES</a>
             <a href="/PRODCONS/PI2do/inicio_sesion/login.php" class="link-login">INICIAR SESIÓN</a>
-             <!-- =====================================================================
+                <!-- =====================================================================
                 SELECTOR DE BANDERA PARA CAMBIO DE IDIOMA - PERSONALIZABLE
                 Estos elementos controlan la selección de idioma en la página principal
                 ===================================================================== -->
@@ -171,9 +171,9 @@ $conexion->cerrar_conexion();
 <img class="ingles" src="/PRODCONS/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés">
 <img class="españa" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español">
                 </div>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 
 <style>
 .link-login {
@@ -297,16 +297,16 @@ document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener('DOMContentLoaded', function() {
             const savedLanguage = localStorage.getItem('preferredLanguage');
             if (savedLanguage) {
-                const bandera = document.getElementById('banderaIdioma');
-                bandera.src = savedLanguage === 'en' 
+            const bandera = document.getElementById('banderaIdioma');
+            bandera.src = savedLanguage === 'en' 
                     ? '/PRODCONS/PI2do/imagenes/logos/ingles.png' 
                     : '/PRODCONS/PI2do/imagenes/logos/espanol.png';
-                translateContent(savedLanguage);
+            translateContent(savedLanguage);
             }
         });
     </script>
 
-    
+
 
     <!-- Contenido principal -->
     <main class="main-content">
@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <section class="carrusel-destacado">
     <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/PI2do/Carrusel/carrusel.php'; ?>
 </section>
-    
+
 
     <h3 class="apubli"> MIRA MAS DE NUESTRO CONTENIDO </h3>
 
@@ -411,7 +411,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <span>Publicado el 14 de febrero del 2025 </span>
                     <span>| Juan Pablo Mancilla Rodriguez</span>
-                </div>
+                        </div>
             </article>
 
             <article class="post">

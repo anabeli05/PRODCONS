@@ -20,11 +20,11 @@ try {
         'septiembre' => '09', 'octubre' => '10', 'noviembre' => '11', 'diciembre' => '12'
     ];
     $anio_actual = date('Y');
-    $query = "SELECT id, titulo, contenido, imagen, fecha_publicacion, vistas 
+    $query = "SELECT ID_Articulo, Titulo, Contenido, Imagen, Fecha, Vistas 
               FROM articulos 
-              WHERE MONTH(fecha_publicacion) = ? 
-              AND YEAR(fecha_publicacion) = ?
-              ORDER BY vistas DESC 
+              WHERE MONTH(Fecha) = ? 
+              AND YEAR(Fecha) = ?
+              ORDER BY Vistas DESC 
               LIMIT 6";
     $stmt = $conexion->conexion->prepare($query);
     $stmt->bind_param("ss", $meses[$mes_seleccionado], $anio_actual);
