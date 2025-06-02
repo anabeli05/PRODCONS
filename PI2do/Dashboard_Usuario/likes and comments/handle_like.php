@@ -11,13 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // Verificar si el usuario está logueado
-if (!isset($_SESSION['Usuario_ID']) && !isset($_SESSION['usuario_id'])) { // Verificar ambos posibles nombres de sesión
-     echo json_encode(['success' => false, 'message' => 'Usuario no autenticado.']);
-     exit();
+if (!isset($_SESSION['Usuario_ID'])) {
+    echo json_encode(['success' => false, 'message' => 'Usuario no autenticado.']);
+    exit();
 }
 
 // Normalizar el ID del usuario logueado
-$usuario_id_logueado = $_SESSION['Usuario_ID'] ?? $_SESSION['usuario_id'];
+$usuario_id_logueado = $_SESSION['Usuario_ID'];
 
 // Obtener el ID del post desde la solicitud POST
 $post_id = filter_input(INPUT_POST, 'post_id', FILTER_VALIDATE_INT);
@@ -39,7 +39,7 @@ if ($conn->connect_error) {
 
 try {
     // 1. Verificar si el usuario ya ha dado like a este post
-    $stmt = $conn->prepare("SELECT id FROM likes WHERE post_id = ? AND usuario_id = ?");
+    $stmt = $conn->prepare("SELECT id FROM likes WHERE ID_Articulo = ? AND Usuario_ID = ?");
     if (!$stmt) {
         throw new Exception("Error preparando consulta de verificación de like: " . $conn->error);
     }
@@ -56,7 +56,7 @@ try {
     $stmt->close();
 
     // 2. Insertar el nuevo like
-    $stmt = $conn->prepare("INSERT INTO likes (post_id, usuario_id) VALUES (?, ?)");
+    $stmt = $conn->prepare("INSERT INTO likes (ID_Articulo, Usuario_ID, fecha) VALUES (?, ?, NOW())");
     if (!$stmt) {
         throw new Exception("Error preparando consulta de inserción de like: " . $conn->error);
     }
@@ -64,47 +64,31 @@ try {
     $stmt->execute();
     $stmt->close();
 
-    // 3. Obtener el ID del editor propietario del post y el título del post
-    $stmt = $conn->prepare("SELECT usuario_id, Titulo FROM posts WHERE id = ?"); // Asumiendo que la tabla se llama 'posts' y tiene columnas 'usuario_id' y 'Titulo'
-     if (!$stmt) {
-         throw new Exception("Error preparando consulta para obtener info del post: " . $conn->error);
-     }
-     $stmt->bind_param("i", $post_id);
-     $stmt->execute();
-     $result = $stmt->get_result();
-     $post_info = $result->fetch_assoc();
-     $stmt->close();
+    // 3. Obtener información del artículo y el usuario para la notificación
+    $stmt = $conn->prepare("SELECT a.Usuario_ID, a.Titulo, u.Nombre 
+                           FROM articulos a 
+                           JOIN usuarios u ON u.Usuario_ID = ? 
+                           WHERE a.ID_Articulo = ?");
+    if (!$stmt) {
+        throw new Exception("Error preparando consulta para obtener información: " . $conn->error);
+    }
+    $stmt->bind_param("ii", $usuario_id_logueado, $post_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $info = $result->fetch_assoc();
+    $stmt->close();
 
-     if ($post_info && $post_info['usuario_id']) {
-         $editor_id = $post_info['usuario_id'];
-         $post_titulo = $post_info['Titulo'] ?? 'una publicación'; // Fallback si no hay título
-
-         // 4. Insertar notificación para el editor
-         // Obtener el nombre del usuario que dio like para el mensaje de notificación
-         $stmt_user_like = $conn->prepare("SELECT Nombre FROM usuarios WHERE Usuario_ID = ?");
-         if (!$stmt_user_like) {
-             throw new Exception("Error preparando consulta para obtener nombre de usuario: " . $conn->error);
-         }
-         $stmt_user_like->bind_param("i", $usuario_id_logueado);
-         $stmt_user_like->execute();
-         $result_user_like = $stmt_user_like->get_result();
-         $user_like_info = $result_user_like->fetch_assoc();
-         $stmt_user_like->close();
-
-         $nombre_usuario_like = $user_like_info['Nombre'] ?? 'Alguien';
-
-         $mensaje_notificacion = "$nombre_usuario_like le ha dado 'Me gusta' a tu publicación '$post_titulo'.";
-
-         $stmt_notif = $conn->prepare("INSERT INTO notificaciones (usuario_id, tipo, mensaje, post_id, fecha) VALUES (?, ?, ?, ?, NOW())");
-         if (!$stmt_notif) {
-             throw new Exception("Error preparando consulta de inserción de notificación: " . $conn->error);
-         }
-         $tipo_notificacion = 'like';
-         $stmt_notif->bind_param("issi", $editor_id, $tipo_notificacion, $mensaje_notificacion, $post_id);
-         $stmt_notif->execute();
-         $stmt_notif->close();
-     }
-
+    if ($info) {
+        // 4. Insertar notificación
+        $mensaje = $info['Nombre'] . " le ha dado 'Me gusta' a tu publicación '" . $info['Titulo'] . "'";
+        $stmt = $conn->prepare("INSERT INTO noti_box (Usuario_ID, Mensaje, Fecha, Leido) VALUES (?, ?, NOW(), 0)");
+        if (!$stmt) {
+            throw new Exception("Error preparando consulta de notificación: " . $conn->error);
+        }
+        $stmt->bind_param("is", $info['Usuario_ID'], $mensaje);
+        $stmt->execute();
+        $stmt->close();
+    }
 
     // Si todo fue bien
     echo json_encode(['success' => true, 'message' => 'Me gusta registrado.']);
