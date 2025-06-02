@@ -55,6 +55,12 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuración - PRONCONS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href='../../Dashboard_Editores/Dashboard/sidebar.css'>
+    <link rel="stylesheet" href='../../Dashboard_Editores/Configuracion/configuracion.css'>
+    
+    
+    <link rel="stylesheet" href='../Dashboard/sidebar.css'>
+    <script src="../Dashboard/barra-nav.js" defer></script>
     <link rel="stylesheet" href='../Dashboard/sidebar.css'>
     <style>
         .config-container {
@@ -147,14 +153,19 @@ try {
 
     <div class="config-container">
         <h1>Configuración de Perfil</h1>
-        
-        <?php if (isset($mensaje)): ?>
-            <div class="alert alert-success"><?php echo $mensaje; ?></div>
-        <?php endif; ?>
-        
-        <?php if (isset($error)): ?>
-            <div class="alert alert-danger"><?php echo $error; ?></div>
-        <?php endif; ?>
+    </div>
+
+    <div class="main-content">
+        <div class="secciones">
+            <div class="section-title">Perfil</div>
+
+            <?php if (isset($mensaje)): ?>
+                <div class="alert alert-success"><?php echo $mensaje; ?></div>
+            <?php endif; ?>
+
+            <?php if (isset($error)): ?>
+                <div class="alert alert-danger"><?php echo $error; ?></div>
+            <?php endif; ?>
 
         <form method="POST" action="" enctype="multipart/form-data">
             <div class="form-group">
@@ -194,6 +205,26 @@ try {
             <button id="cancelarSuscripcion" class="btn btn-danger">Cancelar Suscripción</button>
         </div>-->
     </div>
+
+    <div class="seccion-sesion">
+        <div class="seguridad-contenido">
+            <div class="section-title">Seguridad</div>
+
+            <div class="security-item">
+                <svg xmlns="http://www.w3.org/2000/svg" class="lock-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <a href="../cambiar contraseña/cambiar.php" class="change-password">Cambiar Contraseña</a>
+            </div>
+        </div>
+
+        <button id="cancelarSuscripcion" class="logout-button">Cancelar Suscripción</button>
+    </div>
+</div>
+
+
+
 
     <script>
         document.getElementById('cancelarSuscripcion').addEventListener('click', function() {
