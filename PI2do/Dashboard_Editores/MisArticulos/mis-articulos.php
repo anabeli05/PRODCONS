@@ -51,13 +51,14 @@ $conexion->cerrar_conexion();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODCONS - Mis Articulos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link href='mis-articulos.css' rel="stylesheet">
     
+    <!--Javascript y Css HEADER-->
     <link href='../Dashboard/sidebar.css' rel="stylesheet">
-  
-    <!--javascript-->
     <script src='../Dashboard/barra-nav.js' defer></script>
+
+    <!-- Tailwind CSS y font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <header> 
@@ -68,7 +69,7 @@ $conexion->cerrar_conexion();
 
     <section class="logo"> 
         <div class="header_2">
-            <img class="prodcons" src='../imagenes/prodcon/logoSinfondo.png' alt="Logo">
+            <img class="prodcons" src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
             <div class="admin-controls">
                 <!-- Botón de búsqueda-->
@@ -86,7 +87,7 @@ $conexion->cerrar_conexion();
                 </div>
 
                 <!--Botón de notificaciones-->
-                <a href='../Dashboard_Editores/Notibox/noti-box.php' class="notif-btn">
+                <a href='/PRODCONS/PI2do/Dashboard_Editores/Notibox/noti-box.php' class="notif-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                         <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
@@ -96,76 +97,71 @@ $conexion->cerrar_conexion();
 
                 <!-- Botón Admin con avatar -->
                 <div class="admin-btn">
-                    <span>Admin</span>
+                    <span><?php echo htmlspecialchars($_SESSION['Nombre'] ?? 'Admin'); ?></span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 11l8 3l8 -3" />
                     </svg>
-                    <img src='../imagenes/logos/perfil.png' alt="Admin" class="admin-avatar">
+                    <img src='/PRODCONS/PI2do/imagenes/logos/perfil.png' alt="Admin" class="admin-avatar">
                 </div>
             </div>
 
-            <!----- sidebar ----->
+            <!-- Sidebar -->
             <div class="admin-sidebar" id="adminSidebar">
                 <div class="sidebar-header">
                     <h3>ADMIN</h3>
                     <button class="close-sidebar">
-                        <img src='../imagenes/logos/perfil.png' alt="Admin" class="admin-avatar">
+                        <img src='../../imagenes/logos/perfil.png' alt="Admin" class="admin-avatar">
                     </button>
                 </div>
                 
                 <nav class="sidebar-menu">
-                    <a href='mis-articulos.php'>
+
+                <a href='../inicio/inicio.php'><!----cambiar la ruta a inicio---->
+                        <span>Inicio</span>
+                        <i class="fas fa-file-alt"></i>
+                    </a>
+
+                <a href='../MisArticulos/mis-articulos.php'>
                         <span>Mis Artículos</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                            <polyline points="14 2 14 8 20 8"/>
-                            <line x1="16" y1="13" x2="8" y2="13"/>
-                            <line x1="16" y1="17" x2="8" y2="17"/>
-                            <polyline points="10 9 9 9 8 9"/>
-                        </svg>
+                        <i class="fas fa-file-alt"></i>
                     </a>
-                    
-                    <a href='../Configuracion/config.php'>
-                        <span>Configuración</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                        </svg>
+
+                    <a href="../Crear nuevo post/formulario-new-post.php">
+                        <span>Crear Post</span>
+                        <i class="fas fa-edit"></i>
                     </a>
-                    
+
                     <a href='../PostPlaneados/post-planeados.php'>
                         <span>Post Planeados</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                            <line x1="16" y1="2" x2="16" y2="6"/>
-                            <line x1="8" y1="2" x2="8" y2="6"/>
-                            <line x1="3" y1="10" x2="21" y2="10"/>
-                        </svg>
+                        <i class="fas fa-calendar"></i>
                     </a>
-                    
+                                        
                     <a href='../Estadisticas/estadisticas-adm.php'>
                         <span>Estadísticas</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="12" y1="20" x2="12" y2="10"/>
-                            <line x1="18" y1="20" x2="18" y2="4"/>
-                            <line x1="6" y1="20" x2="6" y2="16"/>
-                        </svg>
+                        <i class="fas fa-chart-bar"></i>
                     </a>
-                </nav>
+                    
+                    <a href='../Configuracion/configuracion.php'>
+                        <span>Configuración</span>
+                        <i class="fas fa-cog"></i>
+                    </a>
                 
                 <div class="sidebar-footer">
-                    <button class="logout-btn">Cerrar Sesión</button>
+                    <a href='../../inicio_sesion/logout.php' class="logout-btn">
+                        Cerrar Sesión
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
                 </div>
-
+                </nav>
             </div>
-
         </div>
     </section>
 
-    <div class="contenedor-mis-articulos">
-        <div class="header-articulos">
-            <h1>Mis Artículos</h1>
-            <a href="formulario-new-post.php" class="btn-nuevo-post">
+    <!-- MIs Articulos -->
+    <div class="font-sans m-20 bg-[#fdfdfd]">
+        <div class="flex justify-between items-center mb-5">
+            <h1 class="text-[28px] font-semibold m-0">Mis Artículos</h1>
+            <a href="/PRODCONS/PI2do/Dashboard_Editores/MisArticulos/formulario-new-post.php" class="flex items-center gap-2 bg-[#31a6c0] text-white text-[15px] font-bold py-2 px-5 rounded-[15px] cursor-pointer hover:bg-[#27899f]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -173,15 +169,15 @@ $conexion->cerrar_conexion();
                 Crear Nuevo Post
             </a>
         </div>
-        <div class="ordenar-wrapper">
-            <a href="?orden=<?php echo $orden === 'desc' ? 'asc' : 'desc'; ?>" class="ordenar">
-                ORDENAR POR RECIENTES <span><?php echo $orden_icono; ?></span>
+        <div class="flex justify-end mt-[-10px] mb-5 mr-5">
+            <a href="?orden=<?php echo $orden === 'desc' ? 'asc' : 'desc'; ?>" class="flex items-center gap-1 bg-[#a6d78e] text-black font-bold text-[16px] py-3 px-5 cursor-pointer hover:bg-[#5f9f51] mr-5">
+                ORDENAR POR RECIENTES <span class="text-[10px] transition-transform hover:scale-110"><?php echo $orden_icono; ?></span>
             </a>
         </div>        
         
-        <div class="contenedor-principal">
+        <div class="max-w-[900px] mx-auto">
             <?php if (isset($_SESSION['mensaje'])): ?>
-                <div class="mensaje-exito">
+                <div class="bg-[#dff0d8] text-[#3c763d] p-4 rounded mb-4">
                     <?php 
                     echo $_SESSION['mensaje'];
                     unset($_SESSION['mensaje']);
@@ -190,7 +186,7 @@ $conexion->cerrar_conexion();
             <?php endif; ?>
 
             <?php if (isset($_SESSION['error'])): ?>
-                <div class="mensaje-error">
+                <div class="bg-[#f2dede] text-[#a94442] p-4 rounded mb-4">
                     <?php 
                     echo $_SESSION['error'];
                     unset($_SESSION['error']);
@@ -200,27 +196,27 @@ $conexion->cerrar_conexion();
 
             <div class="grid-articulos">
                 <?php if (empty($posts)): ?>
-                    <div class="no-articulos">
-                        <p>No tienes artículos publicados aún.</p>
-                        <a href="formulario-new-post.php" class="btn-nuevo-post">Crear mi primer artículo</a>
+                    <div class="text-2xl text-center mt-5 text-gray-600">
+                        <p class="text-[#666] mb-4">No tienes artículos publicados aún.</p>
+                        <a href="formulario-new-post.php" class="inline-block px-6 py-3 bg-green-600 text-white rounded hover:bg-green-700 transition">Crear mi primer artículo</a>
                     </div>
                 <?php else: ?>
                     <?php foreach ($posts as $post): ?>
-                        <article class="articulo-card">
-                            <div class="articulo-imagen">
+                        <article class="bg-[#fceee3] rounded-[12px] p-5 flex w-full max-w-[700px] shadow-md mb-3 gap-3">
+                            <div class="w-[200px] h-[140px] flex-shrink-0">
                                 <?php if ($post['imagenes']): ?>
-                                    <img src="<?php echo '/PRODCONS/PI2do/imagenes/articulos/' . explode(',', $post['imagenes'])[0]; ?>" alt="<?php echo htmlspecialchars($post['Titulo']); ?>">
+                                    <img src="<?php echo '/PRODCONS/PI2do/imagenes/articulos/' . explode(',', $post['imagenes'])[0]; ?>" alt="<?php echo htmlspecialchars($post['Titulo']); ?>" class="w-full h-full object-cover rounded-md">
                                 <?php else: ?>
-                                    <div class="no-imagen">Sin imagen</div>
+                                    <div class="w-full h-full bg-[#f5f5f5] flex items-center justify-center text-[#666]">Sin imagen</div>
                                 <?php endif; ?>
                             </div>
-                            <div class="articulo-contenido">
-                                <h2><?php echo htmlspecialchars($post['Titulo']); ?></h2>
-                                <p class="fecha"><?php echo date('d/m/Y', strtotime($post['Fecha de Creacion'])); ?></p>
-                                <p class="resumen"><?php echo substr(strip_tags($post['Contenido']), 0, 150) . '...'; ?></p>
-                                <div class="articulo-acciones">
-                                    <a href="editar-post.php?id=<?php echo $post['ID_Articulo']; ?>" class="btn-editar">Editar</a>
-                                    <button onclick="confirmarEliminar(<?php echo $post['ID_Articulo']; ?>)" class="btn-eliminar">Eliminar</button>
+                            <div class="p-6">
+                                <h2 class="m-0 text-[18px] font-bold font-serif"><?php echo htmlspecialchars($post['Titulo']); ?></h2>
+                                <p class="text-[12px] text-gray-500"><?php echo date('d/m/Y', strtotime($post['Fecha de Creacion'])); ?></p>
+                                <p class="text-[14px] text-gray-700"><?php echo substr(strip_tags($post['Contenido']), 0, 150) . '...'; ?></p>
+                                <div class="flex gap-4 mt-3">
+                                    <a href="editar-post.php?id=<?php echo $post['ID_Articulo']; ?>" class="px-4 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition">Editar</a>
+                                    <button onclick="confirmarEliminar(<?php echo $post['ID_Articulo']; ?>)" class="px-4 py-2 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition">Eliminar</button>
                                 </div>
                             </div>
                         </article>
@@ -228,14 +224,14 @@ $conexion->cerrar_conexion();
                 <?php endif; ?>
             </div>
             
-            <div class="motivacion-container">
-                <div class="motivacion">
-                    <p>Sigue creando post, informa al mundo de los nuevos sucesos!</p>
-                    <a href='formulario-new-post.php' class="mas">+</a>
-                    <img src='../imagenes/plantita.png' class="decoracion hojas-izq" width="80">
-                    <img src='../imagenes/planta.png' class="decoracion hojas-der" width="80">
+            <div class="flex items-end gap-[120px] mt-10 max-w-[895px] relative">
+                <div class="w-[120%] bg-[#ece9e5] mr-[35px] rounded-[12px] p-[25px_40px] pt-[60px] relative flex-grow min-h-[150px] flex flex-col justify-center items-center">
+                    <p class="m-0 mb-5 text-[15px] text-gray-800 max-w-[80%] z-[1] text-center">Sigue creando post, informa al mundo de los nuevos sucesos!</p>
+                    <a href='formulario-new-post.php' class="pb-5 bg-[#b1dcaa] rounded-full w-[50px] h-[50px] text-[50px] font-bold text-green-900 cursor-pointer z-[2] transition-transform duration-200 flex items-center justify-center hover:scale-110">+</a>
+                    <img src='/PRODCONS/PI2do/imagenes/plantita.png' class="absolute z-0 left-[15px] top-[25px]" width="80">
+                    <img src='/PRODCONS/PI2do/imagenes/planta.png' class="absolute z-0 right-[15px] top-[25px]" width="80">
                 </div>
-                    <img src='../imagenes/maceta-verde.png' class="maceta" width="80">
+                    <img src='/PRODCONS/PI2do/imagenes/maceta-verde.png' class="w-[125px] -mr-[90px]" width="80">
             </div>
             
         </div>
