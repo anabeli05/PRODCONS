@@ -1,17 +1,10 @@
 .main-content {
-    margin-left: 250px;
+    margin-left: auto;
     padding: 20px;
     background-color: #f5f6fa;
     min-height: 100vh;
 }
 
-.header {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-}
 
 .header h1 {
     color: #2c3e50;
@@ -30,6 +23,7 @@
 
 .form-group {
     margin-bottom: 20px;
+    font-size: 1.5rem; /*Para medir el tamaño de la letra debajo del registro*/
 }
 
 .form-group label {
@@ -44,7 +38,7 @@
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 20px;
     transition: border-color 0.3s ease;
 }
 
