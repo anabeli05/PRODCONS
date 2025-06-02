@@ -163,7 +163,7 @@ writeLog("DEBUG: Success message: " . $success_message);
                             <label>Recuérdame</label>
                         </div>
                         <div class="olvido-contrasena">
-                            <a href='../inicio_sesion/codigo.php' id="mostrar-recuperacion">¿Olvidaste tu contraseña?</a>
+                            <a href='../inicio_sesion/codigo.php'>¿Olvidaste tu contraseña?</a>
                         </div>
                     </div>
         
@@ -238,13 +238,13 @@ writeLog("DEBUG: Success message: " . $success_message);
             });
         }
 
-        if (mostrarRecuperacion) {
-            mostrarRecuperacion.addEventListener('click', function(e) {
-                e.preventDefault();
-                // Assuming recuperacionForm exists
-                mostrarFormulario(document.getElementById('recuperacion-form'));
-            });
-        }
+        //if (mostrarRecuperacion) {
+        //    mostrarRecuperacion.addEventListener('click', function(e) {
+        //        e.preventDefault();
+        //        // Assuming recuperacionForm exists
+        //        mostrarFormulario(document.getElementById('recuperacion-form'));
+        //    });
+        //}
 
         if (volverLogin) {
             volverLogin.addEventListener('click', function(e) {
