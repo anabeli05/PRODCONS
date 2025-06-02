@@ -1,12 +1,13 @@
-<?php // ?>
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menos Plásticos, Más Vida</title>
-    <link rel="stylesheet" href="/PRODCONS/postWeb/code.css">
-    <link rel="stylesheet" href="/PRODCONS/footer/Visitante/footer.css">
+    <link rel="stylesheet" href="/PRODCONS/PI2do/postWeb/code.css">
     
     <!-- =====================================================================
     SCRIPTS DE TRADUCCIÓN - REQUERIDOS
@@ -26,10 +27,10 @@
     </style>
 </head>
 <body>
-    <!-- Barra para regresar a la página principal -->
+    <!-- Barra para regresar -->
     <section class="barra_left">
         <i class="flecha_left">
-            <a href="/PRODCONS/index.php" title="Regresar a la página principal">
+<a href="/PRODCONS/PI2do/Dashboard_Usuario/Inicio/usuario.php" title="Regresar a la página principal">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
                 </svg>
@@ -55,7 +56,7 @@
                 <p>El plástico está por todas partes: en nuestras casas, en los supermercados, incluso en nuestros océanos. Aunque es un material práctico, su impacto en el medio ambiente es devastador. La buena noticia es que podemos hacer algo al respecto. Con pequeñas decisiones conscientes, podemos reducir significativamente nuestro uso de plásticos y contribuir a un mundo más limpio. ¿Listo para empezar?</p>
             </div>
             <div class="imagenes">
-                <img src="/PRODCONS/imagenes/personaBotella.png" alt="Persona con botella reutilizable" class="imagen-primera">
+                <img src="/PRODCONS/PI2do/imagenes/personaBotella.png" alt="Persona con botella reutilizable" class="imagen-primera">
             </div>
         </div>
     </section>
@@ -95,33 +96,33 @@
             </ul>
         </section>
     </main>
+
     <!-- Footer convertido en section -->
--    <section class="footer-section">
--        <div class="contenedor-imagenes">
--            <div class="texto">
--                <p>Reducir el uso de plásticos no es solo una tendencia; es una necesidad urgente. No se trata de ser perfecto, sino de tomar pequeños pasos hacia un estilo de vida más consciente. Desde llevar tus propias bolsas al supermercado hasta decirle adiós a los popotes de plástico, cada acción cuenta. Juntos podemos construir un mundo donde el plástico no sea un problema, sino una excepción. ¿Qué cambio harás hoy?</p>
--                <p><strong>Dato curioso:</strong> Se estima que cada año terminan en los océanos más de 8 millones de toneladas de plástico. ¡Reducir su uso puede salvar a miles de animales marinos!</p>
--            </div>
--            <div class="imagenes">
--                <img src="/PRODCONS/imagenes/bolsaProtcons.png" alt="Bolsa reutilizable Protcons">
--                <div class="publicado">PUBLICADO EL 14 FEBRERO DEL 2025   |
--                       POR JUAN PABLO MANCILLA RODRIGUEZ</div>
--            </div>
--        </div>
--    </section>
--
--    <!-- Nueva sección para el autor y bibliografías -->
--    <section class="autor-bibliografias">
--    
--        <h3>Bibliografías</h3>
--        <ul>
--            <li>Ritchie, H., & Roser, M. (2018). Plastic pollution. Our World in Data. Recuperado de <a href="https://ourworldindata.org/plastic-pollution">https://ourworldindata.org/plastic-pollution</a></li>
--            <li>Secretaría de Medio Ambiente y Recursos Naturales. (s.f.). Estrategias para reducir el uso de plásticos. Recuperado de <a href="https://www.gob.mx/semarnat">https://www.gob.mx/semarnat</a></li>
--            <li>Greenpeace México. (s.f.). Cómo reducir el uso de plásticos de un solo uso. Recuperado de <a href="https://www.greenpeace.org/mexico">https://www.greenpeace.org/mexico</a></li>
--            <li>Plastic Pollution Coalition. (s.f.). Guía para reducir el uso de plásticos. Recuperado de <a href="https://www.plasticpollutioncoalition.org">https://www.plasticpollutioncoalition.org</a></li>
--            <li>OpenAI. (2023). ChatGPT (versión febrero 2023) Modelo de lenguaje. <a href="https://chat.openai.com">https://chat.openai.com</a></li>
--        </ul>
--    </section>
+    <section class="footer-section">
+        <div class="contenedor-imagenes">
+            <div class="texto">
+                <p>Reducir el uso de plásticos no es solo una tendencia; es una necesidad urgente. No se trata de ser perfecto, sino de tomar pequeños pasos hacia un estilo de vida más consciente. Desde llevar tus propias bolsas al supermercado hasta decirle adiós a los popotes de plástico, cada acción cuenta. Juntos podemos construir un mundo donde el plástico no sea un problema, sino una excepción. ¿Qué cambio harás hoy?</p>
+                <p><strong>Dato curioso:</strong> Se estima que cada año terminan en los océanos más de 8 millones de toneladas de plástico. ¡Reducir su uso puede salvar a miles de animales marinos!</p>
+            </div>
+            <div class="imagenes">
+                <img src="/PRODCONS/PI2do/imagenes/bolsaProtcons.png" alt="Bolsa reutilizable Protcons">
+                <div class="publicado">PUBLICADO EL 14 FEBRERO DEL 2025   |
+                       POR JUAN PABLO MANCILLA RODRIGUEZ</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva sección para el autor y bibliografías -->
+    <section class="autor-bibliografias">
+        <h3>Bibliografías</h3>
+        <ul>
+            <li>Ritchie, H., & Roser, M. (2018). Plastic pollution. Our World in Data. Recuperado de <a href="https://ourworldindata.org/plastic-pollution">https://ourworldindata.org/plastic-pollution</a></li>
+            <li>Secretaría de Medio Ambiente y Recursos Naturales. (s.f.). Estrategias para reducir el uso de plásticos. Recuperado de <a href="https://www.gob.mx/semarnat">https://www.gob.mx/semarnat</a></li>
+            <li>Greenpeace México. (s.f.). Cómo reducir el uso de plásticos de un solo uso. Recuperado de <a href="https://www.greenpeace.org/mexico">https://www.greenpeace.org/mexico</a></li>
+            <li>Plastic Pollution Coalition. (s.f.). Guía para reducir el uso de plásticos. Recuperado de <a href="https://www.plasticpollutioncoalition.org">https://www.plasticpollutioncoalition.org</a></li>
+            <li>OpenAI. (2023). ChatGPT (versión febrero 2023) Modelo de lenguaje. <a href="https://chat.openai.com">https://chat.openai.com</a></li>
+        </ul>
+    </section>
 
 <!-- =====================================================================
 SCRIPT PARA ACTUALIZAR BOTONES DE IDIOMA - NO MODIFICAR
@@ -165,6 +166,7 @@ Este script mantiene sincronizada la interfaz de idioma
     };
 </script>
 
-<?php include '../footer/Visitante/footer.php'; ?>
+<?php include '/xampp/htdocs/PRODCONS/PI2do/footer/Visitante/footer.php'; ?>
+
 </body>
 </html>

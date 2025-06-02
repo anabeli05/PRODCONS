@@ -12,11 +12,11 @@
         
         <!-- Columna 3: Enlaces legales -->
         <div class="footer2">
-            <ul>
-               <a href="/PRODCONS/PI2do/footer/parafooter/AvisoPriv/avisospriv.html">Avisos De Privacidad</a>
-               <a href="/PRODCONS/PI2do/footer/parafooter/politicas/politica.html">Política De Sostenibilidad</a>
-               <a href="/PRODCONS/PI2do/footer/parafooter/term-condi/term-condi.html">Términos Y Condiciones</a>
-            </ul>
+            <div class="footer-links-vertical">
+               <a href="/PRODCONS/PI2do/footer/parafooter/AvisoPriv/avisospriv.php">Avisos De Privacidad</a>
+               <a href="/PRODCONS/PI2do/footer/parafooter/politicas/politica.php">Política De Sostenibilidad</a>
+               <a href="/PRODCONS/PI2do/footer/parafooter/term-condi/term-condi.php">Términos Y Condiciones</a>
+            </div>
         </div>
 
 
