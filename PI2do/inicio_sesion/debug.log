@@ -689,6 +689,7 @@ DEBUG: Contraseña recibida: Prodcons12345
 DEBUG: Clase Contacto cargada
 DEBUG: Objeto Contacto creado
 >>>>>>> 531efa144f31615cde8b897078fd6aa363450be7
+<<<<<<< Updated upstream
 --- Nuevo Log de Sesión: 2025-06-02 17:30:08 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
@@ -697,5 +698,97 @@ DEBUG: Success message:
 DEBUG: Botón de ingreso presionado
 DEBUG: Correo recibido: ysierra@ucol.mx
 DEBUG: Contraseña recibida: Prodcons12344
+=======
+--- Nuevo Log de Sesión: 2025-06-02 17:08:38 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Tu cuenta no está registrada, por favor regístrate
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 17:08:45 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: jmancilla1@ucol.mx
+DEBUG: Contraseña recibida: 123456789
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-02 17:16:50 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 17:16:52 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: jmancilla1@ucol.mx
+DEBUG: Contraseña recibida: 123456789
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-02 17:18:43 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 17:18:46 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: jmancilla1@ucol.mx
+DEBUG: Contraseña recibida: 123456789
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-02 17:19:09 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 17:28:31 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 17:28:33 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: jmancilla1@ucol.mx
+DEBUG: Contraseña recibida: 123456789
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-02 17:56:11 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 17:56:14 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: jmancilla1@ucol.mx
+DEBUG: Contraseña recibida: 123456789
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-02 18:31:30 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 18:31:34 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: jmancilla1@ucol.mx
+DEBUG: Contraseña recibida: 123456789
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-02 18:36:04 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Tu cuenta no está registrada, por favor regístrate
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 18:40:03 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 18:40:05 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: jmancilla1@ucol.mx
+DEBUG: Contraseña recibida: 123456789
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-02 18:40:20 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Tu cuenta no está registrada, por favor regístrate
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 18:43:19 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 18:43:21 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: jmancilla1@ucol.mx
+DEBUG: Contraseña recibida: 123456789
+>>>>>>> Stashed changes
 DEBUG: Clase Contacto cargada
 DEBUG: Objeto Contacto creado
