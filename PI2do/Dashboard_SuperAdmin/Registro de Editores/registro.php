@@ -98,10 +98,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Registro de Editor - PRODCONS</title>
     <link rel="stylesheet" href="registro.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../Dashboard/sidebar.css">
 </head>
 <body>
     <?php include '../Dashboard/sidebar.php'; ?>
 
+    <section>
     <div class="main-content">
         <div class="header">
             <h1>Registro de Nuevo Editor</h1>
@@ -162,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </form>
     </div>
-
+</section>
     <script>
     // Validación de contraseñas en tiempo real
     document.getElementById('confirm_password').addEventListener('input', function() {

@@ -47,7 +47,39 @@ try {
     $conexion->cerrar_conexion();
 }
 ?>
-<div class="sidebar">
+    <header> 
+        <div class="header-contenedor">
+            <div class="principal"></div>
+        </div>
+    </header>
+<section class="logo"> 
+        <div class="header_2">
+            <img class="prodcons" src="../../imagenes/prodcon/logoSinfondo.png" alt="Logo">
+            <div class="admin-controls">
+                <button class="search-toggle-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="search-bar hidden">
+                    <input type="text" placeholder="Buscar...">
+                    <button class="search-close-btn">&times;</button>
+                </div>
+                <button class="notif-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notif-badge">1</span>
+                </button>
+                <div class="admin-btn" id="sidebarToggle">
+                    <span>SuperAdmin</span>
+                    <i class="fas fa-chevron-down"></i>
+                    <img src="../../imagenes/logos/perfil.png" alt="Admin" class="admin-avatar">
+                </div>
+            </div>
+        </div>
+</section>
+<div class="sidebar" id="sidebar" aria-hidden="true">
+<div id="close-btn" style="text-align: right; padding: 10px; cursor: pointer;">
+  <i class="fas fa-times"></i>
+</div>
+    
     <div class="profile-details">
         <img src="<?php echo $admin_foto; ?>" alt="<?php echo $admin_nombre; ?>" class="profile-img">
         <div class="name-job">
@@ -57,7 +89,6 @@ try {
     </div>
     <div class="logo-details">
         <img src="../../imagenes/prodcon/logoSinfondo.png" alt="Logo" class="logo-img">
-        <span class="logo_name">PRODCONS</span>
     </div>
     <ul class="nav-links">
         <li>
@@ -104,3 +135,33 @@ try {
         </li>
     </ul>
 </div>
+<div id="overlay" class="sidebar-overlay hidden"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.getElementById('sidebarToggle');
+  const closeBtn = document.getElementById('close-btn');
+  const overlay = document.getElementById('overlay');
+
+  if (!sidebar || !toggleBtn || !closeBtn || !overlay) {
+    console.warn('Elementos necesarios para la barra lateral no encontrados.');
+    return;
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.add('active');
+    overlay.classList.remove('hidden');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+    overlay.classList.add('hidden');
+  });
+
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+    overlay.classList.add('hidden');
+  });
+});
+</script>
