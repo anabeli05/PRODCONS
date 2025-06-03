@@ -350,18 +350,97 @@ ul {
     align-items: center;
     padding: 18px 0 12px 0;
     gap: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box;
   }
   .footer-center, .footer2, .footer3 {
-    width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
     text-align: center;
-    margin: 10px 0;
-    padding: 0;
-    max-width: 100%;
+    margin: 10px 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box;
   }
   .footer3 {
     align-items: center;
   }
   .prodcons2 {
     margin-left: 0;
+    margin-top: 5px;
+  }
+}
+
+/* Móviles pequeños (max-width: 480px) */
+/* Para tablets y móviles medianos */
+@media (max-width: 768px) {
+  .contenedor-imagenes {
+    flex-direction: column;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100% !important;
+  }
+
+  .texto, .imagenes {
+    flex: none;
+    width: 100% !important;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .imagenes {
+    display: flex;
+    flex-wrap: wrap;       /* Permite que las imágenes se acomoden en varias filas */
+    justify-content: center;
+    gap: 10px;             /* Espacio entre imágenes */
+  }
+
+  .imagenes img {
+    width: 100%;           /* Que cada imagen ocupe el 100% del contenedor imagenes */
+    max-width: 300px;      /* Máximo para que no se agrande demasiado */
+    height: auto;
+  }
+
+  .imagen-grande {
+    max-width: 100%;
+    margin: 10px 0;
+  }
+}
+
+/* Para móviles pequeños */
+@media (max-width: 480px) {
+  .contenedor-imagenes {
+    flex-direction: column;
+    align-items: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 100% !important;
+  }
+
+  .texto, .imagenes {
+    flex: none;
+    width: 100%;
+  }
+
+  .imagenes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .imagenes img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .imagen-grande {
+    max-width: 100%;
+    margin: 10px 0;
   }
 }

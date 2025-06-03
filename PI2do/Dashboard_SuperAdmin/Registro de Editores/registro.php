@@ -125,17 +125,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             
             <div class="form-group">
-                <label for="nombre">Nombre:</label>
+                <label for="nombre">Nombre Completo:</label>
                 <input type="text" id="nombre" name="nombre" required
                        value="<?php echo htmlspecialchars($_POST['nombre'] ?? ''); ?>">
             </div>
-
+            <!--
             <div class="form-group">
                 <label for="apellido">Apellido:</label>
                 <input type="text" id="apellido" name="apellido" required
                        value="<?php echo htmlspecialchars($_POST['apellido'] ?? ''); ?>">
             </div>
-
+        -->
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required

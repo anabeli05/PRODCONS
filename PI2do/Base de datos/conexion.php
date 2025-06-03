@@ -41,25 +41,19 @@
 			}
 		}
 
-		public function ejecutar_sentencia(){
+		public function ejecutar_consulta($sql) {
 			try {
+				echo "DEBUG: Sentencia SQL: " . htmlspecialchars($sql) . "<br>";
 				$this->abrir_conexion();
-				$bandera = $this->conexion->query($this->sentencia);
-				if (!$bandera) {
+				echo "DEBUG: Conexión establecida<br>";
+				$result = $this->conexion->query($sql);
+				echo "DEBUG: Consulta ejecutada<br>";
+				if (!$result) {
+					echo "DEBUG: Error en la consulta: " . $this->conexion->error . "<br>";
 					throw new Exception("Error en la consulta: " . $this->conexion->error);
 				}
 				$this->cerrar_conexion(); 
-				return $bandera;
-			} catch (Exception $e) {
-				error_log("Error en ejecutar_sentencia: " . $e->getMessage());
-				throw $e;
-			}
-		}
-
-		public function obtener_sentencia(){
-			try {
-				$this->abrir_conexion();
-				$result = $this->conexion->query($this->sentencia);
+				echo "DEBUG: Consulta exitosa<br>";
 				if (!$result) {
 					throw new Exception("Error en la consulta: " . $this->conexion->error);
 				}

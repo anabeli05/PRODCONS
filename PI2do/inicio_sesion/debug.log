@@ -697,46 +697,80 @@ DEBUG: Correo recibido: ysierra@ucol.mx
 DEBUG: Contraseña recibida: Prodcons12344
 DEBUG: Clase Contacto cargada
 DEBUG: Objeto Contacto creado
-
---- Nuevo Log de Sesión: 2025-06-02 18:27:57 ---
+--- Nuevo Log de Sesión: 2025-06-02 17:55:57 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
 DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-06-02 18:27:59 ---
+--- Nuevo Log de Sesión: 2025-06-02 17:56:16 ---
 DEBUG: Botón de ingreso presionado
 DEBUG: Correo recibido: ysierra@ucol.mx
 DEBUG: Contraseña recibida: Prodcons12344
 DEBUG: Clase Contacto cargada
 DEBUG: Objeto Contacto creado
---- Nuevo Log de Sesión: 2025-06-02 18:37:58 ---
+--- Nuevo Log de Sesión: 2025-06-02 17:56:20 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
 DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-06-02 18:38:00 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
-DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-06-02 18:38:06 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
-DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-06-02 18:38:59 ---
+--- Nuevo Log de Sesión: 2025-06-02 17:56:23 ---
 DEBUG: Botón de ingreso presionado
-DEBUG: Correo recibido: ysierra@ucol.mx
-DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Correo recibido: xiomicob2005@outlook.com
+DEBUG: Contraseña recibida: Prodcons12345
 DEBUG: Clase Contacto cargada
 DEBUG: Objeto Contacto creado
---- Nuevo Log de Sesión: 2025-06-02 19:18:24 ---
+--- Nuevo Log de Sesión: 2025-06-02 17:56:31 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-02 17:56:31 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 17:56:35 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xiomicob2005@outlook.com
+DEBUG: Contraseña recibida: Prodcons12345
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-02 17:56:40 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-02 17:56:40 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-02 17:58:44 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xiomicob2005@outlook.com
+DEBUG: Contraseña recibida: Prodcons12345
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-02 17:58:52 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
 DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-06-02 19:18:26 ---
+--- Nuevo Log de Sesión: 2025-06-02 17:58:55 ---
 DEBUG: Botón de ingreso presionado
-DEBUG: Correo recibido: ysierra@ucol.mx
-DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Correo recibido: xiomicob2005@outlook.com
+DEBUG: Contraseña recibida: Prodcons12345
 DEBUG: Clase Contacto cargada
 DEBUG: Objeto Contacto creado
-
+--- Nuevo Log de Sesión: 2025-06-03 02:21:07 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-03 02:21:16 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xcobian@ucol.mx
+DEBUG: Contraseña recibida: anabeli05
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-03 03:01:49 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-03 03:01:55 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xcobian@ucol.mx
+DEBUG: Contraseña recibida: anabeli05
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
 --- Nuevo Log de Sesión: 2025-06-03 06:35:21 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None

@@ -63,10 +63,10 @@ try {
                     <input type="text" placeholder="Buscar...">
                     <button class="search-close-btn">&times;</button>
                 </div>
-                <button class="notif-btn">
-                    <i class="fas fa-bell"></i>
+                <a href="../Notibox/noti-box.php" class="notif-btn" aria-label="Notificaciones">
+                    <i class="fas fa-bell" aria-hidden="true"></i>
                     <span class="notif-badge">1</span>
-                </button>
+                </a>
                 <div class="admin-btn" id="sidebarToggle">
                     <span>SuperAdmin</span>
                     <i class="fas fa-chevron-down"></i>
@@ -109,7 +109,7 @@ try {
                 <span class="link_name">Registrar Editor</span>
             </a>
         </li>
-        <li>
+        <li><!--
             <a href="../Estadisticas/estadisticas-adm.php">
                 <i class="fas fa-chart-bar"></i>
                 <span class="link_name">Estadísticas</span>
@@ -118,9 +118,8 @@ try {
         <li>
             <a href="../Notibox/noti-box.php">
                 <i class="fas fa-bell"></i>
-                <span class="link_name">Notificaciones</span>
             </a>
-        </li>
+        </li>-->
         <li>
             <a href="../Configuracion/configuracion.php">
                 <i class="fas fa-key"></i>
@@ -144,24 +143,43 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeBtn = document.getElementById('close-btn');
   const overlay = document.getElementById('overlay');
 
-  if (!sidebar || !toggleBtn || !closeBtn || !overlay) {
-    console.warn('Elementos necesarios para la barra lateral no encontrados.');
-    return;
-  }
-
-  toggleBtn.addEventListener('click', () => {
+  function openSidebar() {
     sidebar.classList.add('active');
     overlay.classList.remove('hidden');
-  });
+    sidebar.setAttribute('aria-hidden', 'false');
+  }
 
-  closeBtn.addEventListener('click', () => {
+  function closeSidebar() {
     sidebar.classList.remove('active');
     overlay.classList.add('hidden');
+    sidebar.setAttribute('aria-hidden', 'true');
+  }
+
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (sidebar.classList.contains('active')) {
+      closeSidebar();
+    } else {
+      openSidebar();
+    }
+  });
+
+  closeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeSidebar();
   });
 
   overlay.addEventListener('click', () => {
-    sidebar.classList.remove('active');
-    overlay.classList.add('hidden');
+    closeSidebar();
+  });
+
+  // Cerrar la barra lateral al hacer clic fuera de ella
+  document.addEventListener('click', (event) => {
+    if (sidebar.classList.contains('active') &&
+        !sidebar.contains(event.target) &&
+        !toggleBtn.contains(event.target)) {
+      closeSidebar();
+    }
   });
 });
 </script>
