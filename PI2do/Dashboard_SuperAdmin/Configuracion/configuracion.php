@@ -55,17 +55,15 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuración - PRONCONS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href='../../Dashboard_Editores/Dashboard/sidebar.css'>
     <link rel="stylesheet" href='../../Dashboard_Editores/Configuracion/configuracion.css'>
     
     
     <link rel="stylesheet" href='../Dashboard/sidebar.css'>
-    <script src="../Dashboard/barra-nav.js" defer></script>
-    <link rel="stylesheet" href='../Dashboard/sidebar.css'>
+    <script src="../Dashboard/barra-nav-copy.js" defer></script>
     <style>
         .config-container {
-            max-width: 800px;
-            margin: 20px auto;
+            max-width: 100%;
+            margin: 34px;
             padding: 20px;
             background: #fff;
             border-radius: 8px;
@@ -144,7 +142,6 @@ try {
             box-shadow: 0 6px 12px rgb(0 0 0 / 0.1);
         }
     </style>
-    <script src="barra-nav.js" defer></script>
 </head>
 <body>
         <!--Head er importado-->
@@ -205,7 +202,7 @@ try {
             <button id="cancelarSuscripcion" class="btn btn-danger">Cancelar Suscripción</button>
         </div>-->
     </div>
-
+<!--
     <div class="seccion-sesion">
         <div class="seguridad-contenido">
             <div class="section-title">Seguridad</div>
@@ -220,12 +217,12 @@ try {
         </div>
 
         <button id="cancelarSuscripcion" class="logout-button">Cancelar Suscripción</button>
-    </div>
+    </div>-->
 </div>
 
 
 
-
+<!--
     <script>
         document.getElementById('cancelarSuscripcion').addEventListener('click', function() {
             if (confirm('¿Estás seguro de que deseas cancelar tu suscripción? Se enviará una notificación al SuperAdmin para su aprobación.')) {
@@ -252,6 +249,6 @@ try {
                 });
             }
         });
-    </script>
+    </script>-->
 </body>
 </html> 

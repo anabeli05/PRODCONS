@@ -17,45 +17,24 @@ $Usuario_ID = $_SESSION['Usuario_ID'];
 $error = '';
 $articulos_pendientes = [];
 
-// Inicializar la conexión
-$conexion = new Conexion();
 try {
+    // Incluir y conectar
+    require_once '../../Base de datos/conexion.php';
+    $conexion = new Conexion();
     $conexion->abrir_conexion();
-    $conn = $conexion->conexion;
-
-    // Obtener artículos pendientes de revisión
-    $stmt_pendientes = $conn->prepare("SELECT a.*, u.Nombre as autor_nombre 
-                                     FROM articulos a 
-                                     JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID 
-                                     WHERE a.Estado = 'pendiente' 
-                                     ORDER BY a.`Fecha de Creacion` DESC");
     
-    if ($stmt_pendientes) {
-        $stmt_pendientes->execute();
-        
-        // En lugar de fetchAll, usar bind_result y fetch para MySQLi
-        $articulos_pendientes = [];
-        $stmt_pendientes->bind_result($ID_Articulo, $Titulo, $Contenido, $Bibliografias, $Usuario_ID_Art, $Fecha_de_Creacion, $Fecha_de_Publicacion, $Estado, $Motivo_de_Rechazo, $autor_nombre); // Vincula todas las columnas seleccionadas
-
-        while ($stmt_pendientes->fetch()) {
-            // Construye el array asociativo manualmente
-            $articulos_pendientes[] = [
-                'ID_Articulo' => $ID_Articulo,
-                'Titulo' => $Titulo,
-                'Contenido' => $Contenido,
-                'Bibliografias' => $Bibliografias,
-                'Usuario_ID' => $Usuario_ID_Art, // Usar un nombre de variable diferente si ya usaste $Usuario_ID
-                'Fecha de Creacion' => $Fecha_de_Creacion,
-                'Fecha de Publicacion' => $Fecha_de_Publicacion,
-                'Estado' => $Estado,
-                'Motivo de Rechazo' => $Motivo_de_Rechazo,
-                'autor_nombre' => $autor_nombre
-            ];
-        }
-        $stmt_pendientes->close();
+    // Obtener artículos pendientes
+    $sql = "SELECT a.*, u.Nombre as autor_nombre 
+            FROM articulos a 
+            JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID 
+            WHERE a.Estado = 'pendiente' 
+            ORDER BY a.Fecha de Creacion DESC";
+    
+    $result = $conexion->ejecutar_consulta($sql);
+    if ($result) {
+        $articulos_pendientes = $result->fetch_all(MYSQLI_ASSOC);
     } else {
-         // Manejar error en la preparación de la consulta
-         throw new Exception("Error preparando la consulta de artículos pendientes: " . $conn->error);
+        throw new Exception("Error en la consulta: " . $conexion->conexion->error);
     }
 
     // Procesar la acción de aceptar/rechazar artículo
@@ -64,63 +43,54 @@ try {
         $accion = $_POST['accion'];
         $mensaje = $_POST['mensaje'] ?? '';
 
-        // Re-abrir conexión si se cerró en el finally del bloque de arriba
-         // Esto depende de cómo manejes la conexión en tu clase Conexion
-         // Si la clase mantiene la conexión abierta, no necesitas re-abrirla.
-         // Si la cierra, necesitarás re-abrirla aquí para las operaciones POST.
-         // Asumiendo que la conexión puede haberse cerrado, la re-abrimos:
-         $conexion->abrir_conexion();
-         $conn = $conexion->conexion;
-
         if ($accion === 'aceptar') {
             // Actualizar estado del artículo
-            $stmt_update = $conn->prepare("UPDATE articulos SET Estado = 'publicado' WHERE ID_Articulo = ?");
-            if ($stmt_update) {
-                 $stmt_update->bind_param("i", $articulo_id);
-                 $stmt_update->execute();
-                 $stmt_update->close();
+            $sql = "UPDATE articulos SET Estado = 'publicado' WHERE ID_Articulo = ?";
+            $stmt = $conexion->conexion->prepare($sql);
+            if ($stmt) {
+                $stmt->bind_param("i", $articulo_id);
+                $stmt->execute();
+                $stmt->close();
             } else {
-                throw new Exception("Error preparando la actualización de estado: " . $conn->error);
+                throw new Exception("Error actualizando el estado del artículo: " . $conexion->conexion->error);
             }
 
             // Crear notificación para el editor
-            $stmt_notif = $conn->prepare("INSERT INTO noti_box (Usuario_ID, Mensaje, Fecha, Leido) 
-                                        SELECT Usuario_ID, 'Tu artículo ha sido aprobado y publicado', NOW(), 0 
-                                        FROM articulos WHERE ID_Articulo = ?");
-            if ($stmt_notif) {
-                $stmt_notif->bind_param("i", $articulo_id);
-                $stmt_notif->execute();
-                $stmt_notif->close();
+            $sql = "INSERT INTO noti_box (Usuario_ID, Mensaje, Fecha, Leido) 
+                    SELECT Usuario_ID, 'Tu artículo ha sido aprobado y publicado', NOW(), 0 
+                    FROM articulos WHERE ID_Articulo = ?";
+            $stmt = $conexion->conexion->prepare($sql);
+            if ($stmt) {
+                $stmt->bind_param("i", $articulo_id);
+                $stmt->execute();
+                $stmt->close();
             } else {
-                 throw new Exception("Error preparando la inserción de notificación (aceptar): " . $conn->error);
+                throw new Exception("Error creando la notificación: " . $conexion->conexion->error);
             }
-
         } elseif ($accion === 'rechazar') {
             if (empty($mensaje)) {
                 $error = "Debes proporcionar un motivo para el rechazo.";
             } else {
                 // Actualizar estado del artículo
-                $stmt_update = $conn->prepare("UPDATE articulos SET Estado = 'rechazado' WHERE ID_Articulo = ?");
-                 if ($stmt_update) {
-                    $stmt_update->bind_param("i", $articulo_id);
-                    $stmt_update->execute();
-                    $stmt_update->close();
-                 } else {
-                     throw new Exception("Error preparando la actualización de estado (rechazar): " . $conn->error);
-                 }
+                $sql = "UPDATE articulos SET Estado = 'rechazado' WHERE ID_Articulo = ?";
+                $stmt = $conexion->conexion->prepare($sql);
+                if ($stmt) {
+                    $stmt->bind_param("i", $articulo_id);
+                    $stmt->execute();
+                    $stmt->close();
 
-                // Crear notificación para el editor
-                $stmt_notif = $conn->prepare("INSERT INTO noti_box (Usuario_ID, Mensaje, Fecha, Leido) 
-                                            SELECT Usuario_ID, ?, NOW(), 0 
-                                            FROM articulos WHERE ID_Articulo = ?");
-                 if ($stmt_notif) {
-                    $mensaje_notif = "Tu artículo ha sido rechazado. Motivo: " . $mensaje;
-                    $stmt_notif->bind_param("si", $mensaje_notif, $articulo_id);
-                    $stmt_notif->execute();
-                    $stmt_notif->close();
-                 } else {
-                     throw new Exception("Error preparando la inserción de notificación (rechazar): " . $conn->error);
-                 }
+                    // Crear notificación para el editor
+                    $sql = "INSERT INTO noti_box (Usuario_ID, Mensaje, Fecha, Leido) 
+                            SELECT Usuario_ID, ?, NOW(), 0 
+                            FROM articulos WHERE ID_Articulo = ?";
+                    $stmt = $conexion->conexion->prepare($sql);
+                    if ($stmt) {
+                        $mensaje_notif = "Tu artículo ha sido rechazado. Motivo: " . $mensaje;
+                        $stmt->bind_param("si", $mensaje_notif, $articulo_id);
+                        $stmt->execute();
+                        $stmt->close();
+                    }
+                }
             }
         }
 
