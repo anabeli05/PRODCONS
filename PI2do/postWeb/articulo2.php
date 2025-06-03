@@ -8,92 +8,14 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tu puedes hacer la diferencia</title>
     <link rel="stylesheet" href="/PRODCONS/PI2do/postWeb/code2.css">
+    <link rel="stylesheet" href="/PRODCONS/PI2do/header_post/header_post.css">
     
     <!-- Scripts de traducción -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <script src="/PRODCONS/translate.js"></script>
     
-    <style>
-        .language-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 10px 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1003;
-            font-family: Arial, sans-serif;
-        }
-        
-        .language-toggle p {
-            margin: 0 0 8px 0;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        
-        .language-toggle .language-buttons {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .language-toggle button {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: #f0f0f0;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        
-        .language-toggle button:hover {
-            background-color: #e0e0e0;
-        }
-        
-        .language-toggle button.active {
-            background-color: #4CAF50;
-            color: white;
-        }
-        
-        .close-button {
-            position: absolute;
-            top: 0;
-            right: 0;
-            font-size: 8px;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            color: #bbb;
-            padding: 6px 8px;
-            line-height: 1;
-            opacity: 0.7;
-            z-index: 1004;
-        }
-        
-        .close-button:hover {
-            color: #999;
-            opacity: 0.9;
-        }
-
-        .imagenes-articulo2 {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-        
-        .imagenes-articulo2 img {
-            width: 350px;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-            object-fit: cover;
-            background: #fff;
-        }
-    </style>
+   
 </head>
 <body>
     <!-- Barra para regresar -->
@@ -108,14 +30,14 @@ session_start();
     </section>
 
     <!-- Selector de idioma -->
-    <div class="language-toggle" id="language-toggle">
+    <!-- <div class="language-toggle" id="language-toggle">
         <button class="close-button" id="close-language-toggle" onclick="document.getElementById('language-toggle').style.display='none'">✕</button>
         <p id="toggle-text">¿Cambiar idioma?</p>
         <div class="language-buttons">
             <button id="btn-es" onclick="cambiarIdioma('espanol')" class="active">Español</button>
             <button id="btn-en" onclick="cambiarIdioma('ingles')">English</button>
         </div>
-    </div>
+    </div> -->
 
     <!-- Contenido principal -->
     <section class="header-section">

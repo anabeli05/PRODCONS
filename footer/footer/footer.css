@@ -42,7 +42,7 @@
   padding: 0;
   text-align: left;
   line-height: 18px;
-  padding-top: 0;
+  padding-top: 35px;
   margin-right: 40px;
   margin-left: 0;
 }
@@ -53,6 +53,7 @@
   font-family: 'Georgia';
   color: white;
   text-align: left;
+   margin-top: 35px;
 }
 
 .footer1 {
@@ -72,7 +73,7 @@
   min-width: 120px;
   font-size: 18px;
   font-family: Georgia;
-  margin-top: -40px;
+  margin-top: 35px;
   text-align: left;
 }
 
@@ -99,7 +100,7 @@
 /* Columna 4: Correo */
 .footer3 {
   line-height: 15px;
-  margin-top: -60px;
+  margin-top: 35px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -114,6 +115,7 @@
   line-height: 35px;
   white-space: nowrap;
   margin-right: 0;
+   margin-top: 35px;
 }
 
 .cfooter {
@@ -123,6 +125,7 @@
   margin-bottom: 15px;
   font-weight: normal;
   color: #fbfbfb;
+   margin-top: 83px;
 }
 
 .af {

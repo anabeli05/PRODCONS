@@ -1,0 +1,292 @@
+:root {
+    --negro: black;
+    --blanco: white;
+    --amarillo: #FFC107;
+    --azulito: #0097A7;
+    --cafe: rgb(90, 61, 61);
+    --beige: beige;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    font-family: 'Georgia';
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Krub', sans-serif;
+    font-family: 'Georgia';
+}
+
+/* HEADER PRINCIPAL */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: rgb(225, 216, 204);
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+    font-family: 'Georgia';
+}
+
+.header-contenedor{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 16.1px;
+    font-weight: bolder;
+    justify-content: flex-end;  /* Alinea todo el contenido a la derecha */
+    padding: 2rem 0;
+}
+
+.principal {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 10px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family:Arial, Helvetica, sans-serif;/*define el tipo de letra que sera utilizada*/
+
+}
+
+.navlink {
+    text-align: right;
+    color: #000;
+    display: flex;
+    text-align: center;
+    justify-content: flex-end;    
+}
+
+/* BANDERAS */
+#idiomasOpciones 
+#idiomaToggle{
+    display: none;
+    position: absolute;
+    /* top: 65px; */
+    right: 2px;
+    background: rgb(225, 216, 204);
+    /* border: 1px solid #000; */
+    border-radius: 5px;
+    padding: 1px;
+    z-index: 100;
+}
+
+.españa,
+.ingles {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+/* LOGO */
+.prodcons {
+    height: auto; /* Altura del logo */
+    position: fixed; /* Hace que el logo se quede fijo */
+    left: 0; /* Alinea el logo a la izquierda */
+    display: flex;
+    align-items: center; /* Centra el logo verticalmente */
+    justify-content: center; /* Centra el logo horizontalmente */
+    width: 9%; /* Ajusta el tamaño del logo */
+    z-index: 10; /* Asegura que el logo esté por encima de otros elementos */
+    max-width: 100%;
+}
+
+.logo {
+    width: 100%; /* Ajusta el logo al 100% del contenedor */
+    height: auto; /* Mantiene la proporción del logo */
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .prodcons {
+        width: 13%; /* Ajusta el tamaño del logo en pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .prodcons {
+        width: 8%; /* Ajusta el tamaño del logo para pantallas muy pequeñas */ 
+    }
+}
+
+/* SEGUNDA BARRA */
+.header_2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-bottom: 4px solid black;
+    padding: 15px 20px;
+    position: fixed;
+    top: 50px;
+    z-index: 8;
+    height: 80px;
+    font-family: 'Georgia';
+    width: 100%;
+}
+
+/* SUBTÍTULOS */
+.subtitulos {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+    width: 100%;
+    font-family: 'Georgia';
+}
+
+.subtitulos li {
+    list-style: none;
+}
+
+.subtitulos a {
+    text-decoration: none;
+    color: black;
+    position: relative;
+}
+
+.subtitulos a::after {
+    content: '';
+    position: absolute;
+    bottom: -5.3px;
+    left: 0;
+    width: 100%;
+    height: 7px;
+    background-color: rgb(12, 115, 12);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.subtitulos a:hover::after,
+.subtitulos a:focus::after,
+.subtitulos a:active::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Responsivo sin cambios en width fijo */
+@media (max-width: 768px) {
+
+    .subtitulos{
+        font-size: 15px;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .prodcons{
+        height: auto;
+        width: 140px;
+    }
+    
+}
+
+/* barra_normal.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.flecha_left {
+    position: fixed;   /* Siempre visible */
+    top: 10px;         /* Distancia desde arriba */
+    left: 20px;        /* Distancia desde la izquierda */
+    z-index: 9999;     /* Encima de otros elementos */
+    display: flex;
+    align-items: center;
+}
+
+.flecha_left a {
+    display: flex;
+    align-items: center;
+}
+
+.flecha_left svg {
+    width: 32px;
+    height: 32px;
+    fill: #000;
+    cursor: pointer;
+    transition: transform 0.2s, fill 0.2s;
+}
+
+.flecha_left svg:hover {
+    transform: scale(1.1);
+    fill: #4CAF50; /* Verde al pasar el mouse */
+}
+
+.flecha_left svg:active {
+    fill: #2E7D32; /* Verde más oscuro al presionar */
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .prodcons {
+        width: 13%; /* Ajuste ligero para el logo */
+        height: auto;
+    }
+
+    .subtitulos {
+        font-size: 1.5rem; /* Usar rem para mejor escalabilidad */
+        gap: 15px; /* Reducir espacio entre subtítulos */
+        justify-content: flex-end;
+    }
+
+    /* Flecha izquierda SVG un poco más pequeña */
+    .flecha_left svg {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .prodcons {
+        width: 10%; /* Ajuste para pantallas muy pequeñas */
+        height: auto;
+        max-width: 140px; /* Mantener máximo ancho */
+    }
+
+    .subtitulos {
+        font-size: 1.3rem;
+        gap: 10px;
+        justify-content: flex-end;
+        flex-wrap: wrap; /* Permitir que subtítulos bajen si no caben */
+    }
+
+    /* Flecha izquierda SVG más pequeña */
+    .flecha_left svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .navlink{
+        font-size: 13px;
+        margin-left: 45px;
+    }
+}
