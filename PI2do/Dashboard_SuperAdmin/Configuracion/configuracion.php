@@ -55,99 +55,14 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuración - PRONCONS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href='../../Dashboard_Editores/Dashboard/sidebar.css'>
     <link rel="stylesheet" href='../../Dashboard_Editores/Configuracion/configuracion.css'>
     
     
     <link rel="stylesheet" href='../Dashboard/sidebar.css'>
-    <script src="../Dashboard/barra-nav.js" defer></script>
-    <link rel="stylesheet" href='../Dashboard/sidebar.css'>
-    <style>
-        .config-container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 20px;
-        }
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            text-decoration: none;
-            transition: background-color 0.3s; /* Transición suave para el cambio de color */
-
-        }
-        .btn-primary {
-            background:rgb(23, 201, 52);
-            color: black;
-        }
-        .btn-warning {
-            background:rgb(17, 182, 8);
-            color: black;
-        }
-        .btn-danger {
-            background: #dc3545;
-            color: white;
-        }
-        .mt-4 {
-            margin-top: 1rem;
-            display: flex;
-            gap: 1rem;
-        }
-        .alert {
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-        }
-        .alert-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        .alert-danger {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        .button-container {
-            display: flex;
-            gap: 10px; /* Espacio entre los botones */
-            margin-top: 20px;
-            justify-content: center;
-            /*display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-            /*max-width: 400px;
-            margin: 0 auto;
-            background: white;
-            padding: 1.5rem;
-            border-radius: 0.5rem;*/
-            box-shadow: 0 6px 12px rgb(0 0 0 / 0.1);
-        }
-    </style>
-    <script src="barra-nav.js" defer></script>
+    <script src="../Dashboard/barra-nav-copy.js" defer></script>
 </head>
 <body>
-        <!--Head er importado-->
+        <!--Header importado-->
     <?php include('../Dashboard/sidebar.php'); ?>
 
 
@@ -167,91 +82,60 @@ try {
                 <div class="alert alert-danger"><?php echo $error; ?></div>
             <?php endif; ?>
 
-        <form method="POST" action="" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="Nombre">Nombre:</label>
-                <input type="text" id="Nombre" name="Nombre" value="<?php echo htmlspecialchars($usuario['Nombre'] ?? ''); ?>" required>
-            </div>
+        <div class="form-container">
+            <form method="POST" action="" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="Nombre">Nombre:</label>
+                    <input type="text" id="Nombre" name="Nombre" value="<?php echo htmlspecialchars($usuario['Nombre'] ?? ''); ?>" required>
+                </div>
 
-            <div class="form-group">
-                <label for="Contraseña">Contraseña:</label>
-                <input type="password" id="Contraseña" name="Contraseña" value="<?php echo htmlspecialchars($usuario['Contraseña'] ?? ''); ?>" required>
-            </div>
+                <div class="form-group">
+                    <label for="Contraseña">Contraseña:</label>
+                    <div class="password-container">
+                        <input type="password" id="Contraseña" name="Contraseña" value="<?php echo htmlspecialchars($usuario['Contraseña'] ?? ''); ?>" required>
+                        <span class="toggle-password" onclick="togglePasswordVisibility()">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label for="Foto de Perfil">Foto de Perfil:</label>
-                <input type="file" id="Foto de Perfil" name="Foto de Perfil" accept="image/*">
-                <?php if (!empty($usuario['Foto de Perfil'])): ?>
-                    <img src="<?php echo htmlspecialchars($usuario['Foto de Perfil']); ?>" alt="Foto de perfil actual" style="max-width: 200px; margin-top: 10px;">
-                <?php endif; ?>
-            </div>
-            
-            <div class="button-container">
-             <a href="../cambiar contraseña/cambiar_contraseña.php" class="btn btn-warning" aria-label="Cambiar Contraseña">
-                    Cambiar Contraseña
-                </a>    
-            <button type="submit" name="actualizar_perfil" class="btn btn-primary" aria-label="Actualizar Perfil">
-                    Actualizar Perfil
-                </button>
-            </div>
-
-
-            
+                <div class="form-group">
+                    <label for="Foto de Perfil">Foto de Perfil:</label>
+                    <input type="file" id="Foto de Perfil" name="Foto de Perfil" accept="image/*">
+                    <?php if (!empty($usuario['Foto de Perfil'])): ?>
+                        <img src="<?php echo htmlspecialchars($usuario['Foto de Perfil']); ?>" alt="Foto de perfil actual" style="max-width: 200px; margin-top: 10px;">
+                    <?php endif; ?>
+                </div>
+                
+                <div class="button-container">
+                    <button type="button" onclick="window.location.href='../cambiar contraseña/cambiar.php'" class="btn btn-warning" aria-label="Cambiar Contraseña">
+                        Cambiar Contraseña
+                    </button>    
+                    <button type="submit" name="actualizar_perfil" class="btn btn-primary" aria-label="Actualizar Perfil">
+                        Actualizar Perfil
+                    </button>
+                </div>
+            </form>
+        </div>  
         </form>
-
-        
-<!--
-        <div class="mt-4">
-            <button id="cancelarSuscripcion" class="btn btn-danger">Cancelar Suscripción</button>
-        </div>-->
-    </div>
-
-    <div class="seccion-sesion">
-        <div class="seguridad-contenido">
-            <div class="section-title">Seguridad</div>
-
-            <div class="security-item">
-                <svg xmlns="http://www.w3.org/2000/svg" class="lock-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                </svg>
-                <a href="../cambiar contraseña/cambiar.php" class="change-password">Cambiar Contraseña</a>
-            </div>
-        </div>
-
-        <button id="cancelarSuscripcion" class="logout-button">Cancelar Suscripción</button>
     </div>
 </div>
 
-
-
-
-    <script>
-        document.getElementById('cancelarSuscripcion').addEventListener('click', function() {
-            if (confirm('¿Estás seguro de que deseas cancelar tu suscripción? Se enviará una notificación al SuperAdmin para su aprobación.')) {
-                fetch('../Notibox/notificar_superadmin.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        mensaje: 'El Editor ha solicitado cancelar su suscripción. Por favor, revisa y aprueba o rechaza la solicitud.'
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Se ha enviado una solicitud al SuperAdmin para cancelar tu suscripción.');
-                    } else {
-                        alert('Error al enviar la solicitud. Por favor, intenta de nuevo.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error al enviar la solicitud. Por favor, intenta de nuevo.');
-                });
-            }
-        });
-    </script>
+<script>
+    function togglePasswordVisibility() {
+        const passwordInput = document.getElementById('Contraseña');
+        const toggleIcon = document.querySelector('.toggle-password i');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
+        }
+    }
+</script>
 </body>
 </html> 
