@@ -593,7 +593,6 @@ DEBUG: Objeto Contacto creado
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
 DEBUG: Success message: 
-=======
 --- Nuevo Log de Sesión: 2025-06-02 15:38:19 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
@@ -688,7 +687,6 @@ DEBUG: Correo recibido: xiomicob2005@outlook.com
 DEBUG: Contraseña recibida: Prodcons12345
 DEBUG: Clase Contacto cargada
 DEBUG: Objeto Contacto creado
->>>>>>> 531efa144f31615cde8b897078fd6aa363450be7
 --- Nuevo Log de Sesión: 2025-06-02 17:30:08 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
@@ -771,5 +769,15 @@ DEBUG: Success message:
 DEBUG: Botón de ingreso presionado
 DEBUG: Correo recibido: xcobian@ucol.mx
 DEBUG: Contraseña recibida: anabeli05
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-03 06:35:21 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+DEBUG: Success message: 
+--- Nuevo Log de Sesión: 2025-06-03 06:35:22 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
 DEBUG: Clase Contacto cargada
 DEBUG: Objeto Contacto creado

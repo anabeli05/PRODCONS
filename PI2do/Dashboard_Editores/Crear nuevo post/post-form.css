@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  background: rgb(212, 203, 195);
+}
+
+.seccion {
+  margin-bottom: 40px;
+  padding: 25px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.intro {
+  background-color: #f0f9ff;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+input[type="file"] {
+  margin-top: 10px;
+}
+
+.bloque {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.agregar {
+  margin-top: 15px;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.agregar:hover {
+  background-color: #45a049;
+}
+
+  .submit-btn {
+  background-color: #3c82f6;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #2563eb;
+}
+
+/*------FORMULARIO-------*/
+.contenedor-formulario {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: white;
+}
+
+h1 {
+  font-size: 20px;
+}
+label {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+textarea {
+  overflow: hidden; /* Elimina la scrollbar */
+  resize: none; /* Evita que el usuario cambie el tamaño */
+}
+
+input[type="file"] {
+  margin-top: 10px;
+}
+
+.publicacion button{
+  margin-top: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #314b94;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.publicacion button:hover {
+  background-color: #2252b3;
+}
