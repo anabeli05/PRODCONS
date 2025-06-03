@@ -106,6 +106,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODCONS</title>
     <style>
+        /* Estilos de la barra de navegación */
+        .barra-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: rgb(225, 216, 204);
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding-left: 20px;
+            border-bottom: 4px solid black;
+            z-index: 1000;
+        }
+        
+        .flecha-nav {
+            margin-left: 0;
+        }
+        
+        .flecha-nav a {
+            display: flex;
+            align-items: center;
+            height: 50px;
+        }
+        
+        .flecha-nav svg {
+            width: 32px;
+            height: 32px;
+            fill: #000;
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            transition: transform 0.2s;
+        }
+        
+        .flecha-nav svg:hover {
+            transform: scale(1.1);
+            fill: #4CAF50;
+        }
+        
+        /* Ajuste para el contenido principal */
+        .contenedor-main {
+            margin-top: 70px;
+        }
+        
+        /* Estilos existentes */
         .error, .success {
             padding: 15px;
             margin: 15px 0;
@@ -114,24 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
             text-align: center;
             animation: fadeIn 0.5s ease-in-out;
         }
-
-        .input-area input:valid {
-            border-color: #155724;
-            box-shadow: 0 0 0 2px rgba(21, 87, 36, 0.2);
-        }
-
-        .input-area input:invalid::-webkit-validation-bubble-message {
-            background-color: #f8d7da;
-            color: #dc3545;
-            font-size: 14px;
-            padding: 10px;
-            border-radius: 4px;
-        }
-
-        .input-area input:invalid::-webkit-validation-bubble-arrow {
-            border-color: #dc3545;
-        }
-
+        
         .error {
             background-color: #f8d7da;
             border: none;
@@ -142,64 +172,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
             border-radius: 8px;
             font-weight: bold;
         }
-
-        .error-message {
-            font-size: 16px;
-            color: #800020;
-            margin: 5px 0;
-            padding: 8px;
-            border-radius: 4px;
-            background-color: #f8d7da;
-        }
-
+        
         .success {
             background-color: #d4edda;
             border: 2px solid #155724;
             color: #155724;
             box-shadow: 0 2px 4px rgba(21, 87, 36, 0.1);
         }
-
-        .error-message {
-            color: #dc3545;
-            font-size: 10px;
-            margin-top: 5px;
-            padding: 0;
-            text-align: center; 
-            width: 100%;
-            box-sizing: border-box;
-        }
-
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .back-arrow {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            font-size: 32px;
-            cursor: pointer;
-            color: #333;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 15px;
-            border-radius: 50%;
-            z-index: 1000;
-            transition: all 0.3s ease;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .back-arrow:hover {
-            background: rgba(255, 255, 255, 1);
-            transform: scale(1.1);
-        }
-        
-        .back-arrow i {
-            display: block;
         }
     </style>
     <link rel="stylesheet" href="css/styles.css">
@@ -207,10 +190,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Flecha de regreso -->
-    <div class="back-arrow" onclick="window.history.back();">
-        <i class="fas fa-arrow-left"></i>
-    </div>
+    <!-- Barra de navegación -->
+    <nav class="barra-nav">
+        <div class="flecha-nav">
+            <a onclick="window.history.back()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+                    <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+                </svg>
+            </a>
+        </div>
+    </nav>
 
     <div class="background-animation">
         <div class="circle circle-1"></div>

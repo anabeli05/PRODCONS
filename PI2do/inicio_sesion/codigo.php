@@ -62,10 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['correo'])) {
         $mail->set('X-Mailer', 'PHP/' . phpversion());
         $mail->set('X-PHP-Originating-Script', get_current_user() . ':' . __FILE__);
         
-        // Habilitar depuración
-        $mail->SMTPDebug = 2;
-        $mail->Debugoutput = 'html';
-        
         // Remitente y destinatario
         $mail->setFrom('fernandobenitezastudillo@gmail.com', 'Sistema PRODCONS');
         $mail->addAddress($correo);
@@ -87,127 +83,141 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['correo'])) {
         // Enviar correo
         $mail->send();
         
-        // Limpiar la salida
-        ob_end_clean();
-        
-        // Verificar si la redirección funciona
-        if (!headers_sent()) {
-            header("Location: nueva_contraseña.php");
-            exit();
-        } else {
-            echo "<script>window.location.href='nueva_contraseña.php';</script>";
-        }
+        // Redireccionar
+        header("Location: nueva_contraseña.php");
+        exit();
         
     } catch (Exception $e) {
         $_SESSION['error'] = "Error al enviar el correo: " . $e->getMessage();
         header("Location: codigo.php");
         exit();
     }
-} else {
-    // Si no es una solicitud POST, mostramos el formulario
-    ?>
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PRODCONS - Recuperar Contraseña</title>
-        <link rel="stylesheet" href="css/styles.css">
-        <link href="login.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <style>
-            .error-message {
-                color: #dc3545;
-                margin-bottom: 15px;
-                text-align: center;
-                font-weight: bold;
-            }
-            .back-arrow {
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                font-size: 24px;
-                color: #333;
-                cursor: pointer;
-                z-index: 1000;
-                background: rgba(255, 255, 255, 0.7);
-                border-radius: 50%;
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s ease;
-            }
-            .back-arrow:hover {
-                background: rgba(255, 255, 255, 0.9);
-                transform: scale(1.1);
-            }
-        </style>
-    </head>
-    <body>
-        <!-- Flecha de retroceso -->
-        <div class="back-arrow" onclick="window.history.back();">
-            <i class="fas fa-arrow-left"></i>
-        </div>
-
-        <div class="background-animation">
-            <div class="circle circle-1"></div>
-            <div class="circle circle-2"></div>
-            <div class="circle circle-3"></div>
-        </div>
-        
-        <section class="contenedor-main">
-            <section class="wrapper">
-                <div class="form" id="recuperacion-form">
-                    <h1>RECUPERAR CONTRASEÑA</h1>
-                    
-                    <!-- Mostrar mensaje de error si existe -->
-                    <?php if ($error): ?>
-                        <div class="error-message">
-                            <?php echo htmlspecialchars($error); ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <div class="instrucciones">
-                        <p>Ingresa tu correo electrónico gmail y te enviaremos un código para restablecer tu contraseña.</p>
-                    </div>
-
-                    <form action="" method="POST">
-                        <div class="buton">
-                            <div class="input-area">
-                                <input type="email" name="correo" placeholder="Correo Electrónico" required>
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                        </div>
-
-                        <div class="buton">
-                            <input type="submit" value="ENVIAR CÓDIGO">
-                        </div>
-                        
-                        <div class="alternar-form">
-                            <p>¿Recordaste tu contraseña? <a href="../inicio_sesion/login.php" id="volver-login">Inicia sesión aquí</a></p>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="contenedor-logo">
-                    <img src="../imagenes/login.png" alt="Imagen de fondo" class="bg-image">
-                    <figure>
-                        <img src="../imagenes/prodcon/logoSinfondo.png" alt="Logo transparente" class="logo-portada">
-                    </figure>
-                </div>
-            </section>
-        </section>
-
-        <script>
-            // Función para manejar el clic en la flecha de retroceso
-            document.querySelector('.back-arrow').addEventListener('click', function() {
-                window.history.back();
-            });
-        </script>
-    </body>
-    </html>
-    <?php
 }
 ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRODCONS - Recuperar Contraseña</title>
+    <style>
+        /* Estilos de la barra de navegación */
+        .barra-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: rgb(225, 216, 204);
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding-left: 20px;
+            border-bottom: 4px solid black;
+            z-index: 1000;
+        }
+        
+        .flecha-nav {
+            margin-left: 0;
+        }
+        
+        .flecha-nav a {
+            display: flex;
+            align-items: center;
+            height: 50px;
+        }
+        
+        .flecha-nav svg {
+            width: 32px;
+            height: 32px;
+            fill: #000;
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            transition: transform 0.2s;
+        }
+        
+        .flecha-nav svg:hover {
+            transform: scale(1.1);
+            fill: #4CAF50;
+        }
+        
+        /* Ajuste para el contenido principal */
+        .contenedor-main {
+            margin-top: 70px;
+        }
+        
+        /* Estilos existentes */
+        .error-message {
+            color: #dc3545;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="login.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="barra-nav">
+        <div class="flecha-nav">
+            <a onclick="window.history.back()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+                    <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="background-animation">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+    
+    <section class="contenedor-main">
+        <section class="wrapper">
+            <div class="form" id="recuperacion-form">
+                <h1>RECUPERAR CONTRASEÑA</h1>
+                
+                <!-- Mostrar mensaje de error si existe -->
+                <?php if ($error): ?>
+                    <div class="error-message">
+                        <?php echo htmlspecialchars($error); ?>
+                    </div>
+                <?php endif; ?>
+
+                <div class="instrucciones">
+                    <p>Ingresa tu correo electrónico gmail y te enviaremos un código para restablecer tu contraseña.</p>
+                </div>
+
+                <form action="" method="POST">
+                    <div class="buton">
+                        <div class="input-area">
+                            <input type="email" name="correo" placeholder="Correo Electrónico" required>
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+
+                    <div class="buton">
+                        <input type="submit" value="ENVIAR CÓDIGO">
+                    </div>
+                    
+                    <div class="alternar-form">
+                        <p>¿Recordaste tu contraseña? <a href="../inicio_sesion/login.php" id="volver-login">Inicia sesión aquí</a></p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="contenedor-logo">
+                <img src="../imagenes/login.png" alt="Imagen de fondo" class="bg-image">
+                <figure>
+                    <img src="../imagenes/prodcon/logoSinfondo.png" alt="Logo transparente" class="logo-portada">
+                </figure>
+            </div>
+        </section>
+    </section>
+</body>
+</html>
