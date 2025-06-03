@@ -63,10 +63,10 @@ try {
                     <input type="text" placeholder="Buscar...">
                     <button class="search-close-btn">&times;</button>
                 </div>
-                <button class="notif-btn">
-                    <i class="fas fa-bell"></i>
+                <a href="../Notibox/noti-box.php" class="notif-btn" aria-label="Notificaciones">
+                    <i class="fas fa-bell" aria-hidden="true"></i>
                     <span class="notif-badge">1</span>
-                </button>
+                </a>
                 <div class="admin-btn" id="sidebarToggle">
                     <span>SuperAdmin</span>
                     <i class="fas fa-chevron-down"></i>
@@ -109,7 +109,7 @@ try {
                 <span class="link_name">Registrar Editor</span>
             </a>
         </li>
-        <li>
+        <li><!--
             <a href="../Estadisticas/estadisticas-adm.php">
                 <i class="fas fa-chart-bar"></i>
                 <span class="link_name">Estadísticas</span>
@@ -118,9 +118,8 @@ try {
         <li>
             <a href="../Notibox/noti-box.php">
                 <i class="fas fa-bell"></i>
-                <span class="link_name">Notificaciones</span>
             </a>
-        </li>
+        </li>-->
         <li>
             <a href="../Configuracion/configuracion.php">
                 <i class="fas fa-key"></i>
