@@ -10,9 +10,26 @@ if (!isset($_SESSION['Usuario_ID']) || !isset($_SESSION['Rol']) || $_SESSION['Ro
 }
 
 // Incluir el archivo de verificación
-include '../inicio_sesion/verificar_registro.php';
+
 include '../../Base de datos/conexion.php'; // Incluir el archivo de conexión
 
+function traducirMesEspanol($mesIngles) {
+    $meses = [
+        'January' => 'Enero',
+        'February' => 'Febrero',
+        'March' => 'Marzo',
+        'April' => 'Abril',
+        'May' => 'Mayo',
+        'June' => 'Junio',
+        'July' => 'Julio',
+        'August' => 'Agosto',
+        'September' => 'Septiembre',
+        'October' => 'Octubre',
+        'November' => 'Noviembre',
+        'December' => 'Diciembre'
+    ];
+    return $meses[$mesIngles] ?? $mesIngles; // Devuelve el mes traducido o el original si no se encuentra
+}
 // Crear instancia de Conexion y obtener la conexión
 $conexion = new Conexion();
 $conexion->abrir_conexion(); // Llamar a abrir_conexion() para establecer la conexión
@@ -23,12 +40,15 @@ if (!$conn) {
     die("Error de conexión a la base de datos.");
 }
 
-// Obtener los posts publicados desde la base de datos
-$stmt = $conn->prepare("SELECT a.*, u.nombre as autor_nombre 
-                       FROM articulos a 
-                       JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID 
-                       WHERE a.Estado = 'publicado' 
-                       ORDER BY a.`Fecha de Creacion` DESC");
+// Obtener los posts publicados desde la base de datos - Updated query to match index.php
+$stmt = $conn->prepare("SELECT a.*, u.Nombre as autor_nombre, 
+                               GROUP_CONCAT(ia.Url_Imagen) as imagenes
+                               FROM articulos a 
+                               JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID 
+                               LEFT JOIN imagenes_articulos ia ON a.ID_Articulo = ia.Articulo_ID
+                               WHERE a.Estado = 'Publicado' 
+                               GROUP BY a.ID_Articulo
+                               ORDER BY a.`Fecha de Publicacion` DESC");
 
 if (!$stmt) {
     die("Error en la preparación de la consulta de artículos: " . $conn->error);
@@ -225,21 +245,12 @@ $conexion->cerrar_conexion();
         }
     </script>
 
-<<<<<<< Updated upstream
     <header>
         <div class="header-contenedor">
             <div class="principal">
 <a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.php'>EMPRESAS RESPONSABLES</a>
-            <a href="/PRODCONS/PI2do/inicio_sesion/login.php" class="link-login">INICIAR SESIÓN</a>
-                <!-- =====================================================================
-=======
-<header>
-    <div class="header-contenedor">
-        <div class="principal">
-<a class="navlink" href='/PRODCONS/PI2do/Dashboard_Usuario/empresas_responsables/empresasr.php'>EMPRESAS RESPONSABLES</a>
             <a href="/PRODCONS/PI2do/inicio_sesion/logout.php" class="link-login">CERRAR SESIÓN</a>
              <!-- =====================================================================
->>>>>>> Stashed changes
                 SELECTOR DE BANDERA PARA CAMBIO DE IDIOMA - PERSONALIZABLE
                 Estos elementos controlan la selección de idioma en la página principal
                 ===================================================================== -->
@@ -387,11 +398,70 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     </script>
 
-<<<<<<< Updated upstream
+    <section class="logo">
+        <div class="header_2">
+            <img class="prodcons" src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
+            <div class="subtitulos">
+<a href='/PRODCONS/PI2do/Dashboard_Usuario/pr/produccionr.php'>PRODUCCIÓN RESPONSABLE</a>
+<a href='/PRODCONS/PI2do/Dashboard_Usuario/cr/consumores.php'>CONSUMO RESPONSABLE</a>
 
-=======
->>>>>>> Stashed changes
+                <form class="search-form">
+                    <button class="lupa">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"
+                            stroke-width="1.5">
+                            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+                            <path d="M21 21l-6 -6"></path>
+                        </svg>
+                    </button>
+                    <input type="search" placeholder="Buscar..." />
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        
+        // =====================================================================
+        // FUNCIONES DE CONTROL DE IDIOMA - MODIFICAR CON PRECAUCIÓN
+        // =====================================================================
+        
+        /**
+         * Función para alternar entre idiomas al hacer clic en la bandera principal
+         * Esta función cambia la imagen de la bandera y realiza la traducción
+         * MODIFICAR SOLO si necesitas cambiar la apariencia o comportamiento
+         */
+        function alternarIdioma() {
+            const bandera = document.getElementById('banderaIdioma');
+            const idiomaActual = bandera.src.includes('ingles.png') ? 'ingles' : 'espanol';
+            const nuevoIdioma = idiomaActual === 'ingles' ? 'espanol' : 'ingles';
+            
+            // Cambiar la imagen de la bandera - Puedes modificar las rutas si cambias las imágenes
+            bandera.src = nuevoIdioma === 'ingles' 
+                ? '/PRODCONS/PI2do/imagenes/logos/ingles.png' // Ruta a la imagen de la bandera inglesa
+                : '/PRODCONS/PI2do/imagenes/logos/espanol.png'; // Ruta a la imagen de la bandera española
+            
+            // Realizar la traducción - NO MODIFICAR esta línea
+            translateContent(nuevoIdioma === 'ingles' ? 'en' : 'es');
+            
+            // Guardar la preferencia en localStorage - NO MODIFICAR esta línea
+            localStorage.setItem('preferredLanguage', nuevoIdioma === 'ingles' ? 'en' : 'es');
+        }
+
+        // Cargar el idioma guardado al iniciar la página - NO MODIFICAR
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('preferredLanguage');
+            if (savedLanguage) {
+            const bandera = document.getElementById('banderaIdioma');
+            bandera.src = savedLanguage === 'en' 
+                    ? '/PRODCONS/PI2do/imagenes/logos/ingles.png' 
+                    : '/PRODCONS/PI2do/imagenes/logos/espanol.png';
+            translateContent(savedLanguage);
+            }
+        });
+    </script>
+
     <!-- Contenido principal -->
     <main class="main-content">
     <div class="sobrecont">
@@ -405,300 +475,192 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- Carrusel destacado -->
 <section class="carrusel-destacado">
-    <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/PI2do/Carrusel/carrusel.php'; ?>
-</section>
-<<<<<<< Updated upstream
-
-
-=======
+    <?php 
     
->>>>>>> Stashed changes
+    // Re-fetch publications for the carousel to include like/comment counts if needed, 
+    // or pass them from the main query if it already fetches them.
+    // For simplicity, assuming the included carrusel.php already fetches necessary data
+    // and modifying its loop to include interaction buttons.
+    // Alternatively, if carrusel.php is only for the visual structure, 
+    // we might need to duplicate the loop here with interaction buttons.
+    // Given the user's request is to 'annex' the icons to the carousel *in usuario.php*,
+    // it is safer to assume the latter and add the loop with buttons here.
+
+    // Fetching data again specifically for the carousel section
+    $conexion_carousel = new Conexion();
+    $conexion_carousel->abrir_conexion();
+    $conn_carousel = $conexion_carousel->conexion;
+
+    $publicaciones_carousel = [];
+    $sql_carousel = "SELECT a.Titulo as Titulo, a.Contenido as descripcion, a.ID_Articulo as ID_Articulo, 
+                     a.`Fecha de Publicacion` as Fecha, u.Nombre as autor_nombre, 
+                     ia.Url_Imagen as imagen_principal 
+                     FROM articulos a 
+                     JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID 
+                     LEFT JOIN imagenes_articulos ia ON a.ID_Articulo = ia.Articulo_ID AND ia.Orden_Imagen = 1
+                     WHERE a.Estado = 'Publicado' 
+                     ORDER BY a.`Fecha de Publicacion` DESC LIMIT 10";
+    $result_carousel = $conn_carousel->query($sql_carousel);
+
+    if ($result_carousel && $result_carousel->num_rows > 0) {
+        while ($row_carousel = $result_carousel->fetch_assoc()) {
+            $publicaciones_carousel[] = $row_carousel;
+        }
+    }
+    $conexion_carousel->cerrar_conexion();
+    
+    ?>
+    <!-- Duplicating carousel structure to add interaction buttons -->
+    <div class="carousel-container">
+        <div class="carousel">
+            <?php if (!empty($publicaciones_carousel)): ?>
+                <?php foreach ($publicaciones_carousel as $pub): 
+                    $imagen_principal_carousel = $pub['imagen_principal'] ?? '/PRODCONS/PI2do/imagenes/default-post.jpg';
+                ?>
+                    <div class="carousel-item post" data-post-id="<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>">
+                        <div class="post-header">
+                            <img src="/PRODCONS/PI2do/imagenes/articulos/<?= htmlspecialchars($imagen_principal_carousel) ?>" alt="<?= htmlspecialchars($pub['Titulo'] ?? '') ?>" class="post-img">
+                        </div>
+                        <div class="post-body">
+                            <h2><?= htmlspecialchars($pub['Titulo'] ?? '') ?></h2>
+                            <p class="descripcion"><?php 
+                                $descripcion = htmlspecialchars($pub['descripcion'] ?? '');
+                                // Truncar descripción a aproximadamente 401 caracteres si es más larga
+                                if (strlen($descripcion) > 401) {
+                                    $descripcion = substr($descripcion, 0, 401) . '...';
+                                }
+                                echo $descripcion;
+                            ?></p>
+
+                            <div class="post-footer">
+                                <div class="post-actions">
+                                    <a href="/PRODCONS/PI2do/Dashboard_Usuario/postWeb user/articulo.php?id=<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>" class="post-link">Ver más...</a>
+                                    <div class="interaction-buttons">
+                                        <button class="like-button-small" data-post-id="<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>" title="Me gusta">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                            </svg>
+                                            <span class="likes-count">0</span>
+                                        </button>
+                                        <button class="comment-toggle-small" data-post-id="<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>" title="Comentarios">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+                                                <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                                            </svg>
+                                            <span class="comments-count">0</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="comments-section" style="display: none;">
+                                <div class="existing-comments">
+                                    <!-- Los comentarios se mostrarán aquí via AJAX -->
+                                </div>
+                                <div class="add-comment">
+                                    <textarea placeholder="Escribe tu comentario..."></textarea>
+                                    <button>Publicar</button>
+                                </div>
+                            </div>
+                            
+                            <span style="font-size: 12px; line-height: 1.2;">Publicado el <?php 
+                                $fecha_timestamp = strtotime($pub['Fecha'] ?? '');
+                                if ($fecha_timestamp !== false) {
+                                    $dia = date('d', $fecha_timestamp);
+                                    $mes_ingles = date('F', $fecha_timestamp);
+                                    $mes_espanol = traducirMesEspanol($mes_ingles);
+                                    $año = date('Y', $fecha_timestamp);
+                                    echo htmlspecialchars("$dia de $mes_espanol de $año");
+                                } else {
+                                    echo "Fecha desconocida";
+                                }
+                            ?></span>
+                            <span>| Por   <?= htmlspecialchars($pub['autor_nombre'] ?? '') ?></span>
+
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="no-posts">
+                    <p>No hay publicaciones disponibles en este momento. ¡Vuelve pronto!</p>
+                </div>
+            <?php endif; ?>
+        </div>
+        <button class="prev" aria-label="Publicación anterior">‹</button>
+        <button class="next" aria-label="Publicación siguiente">›</button>
+    </div>
+</section>
+
     <h3 class="apubli"> MIRA MAS DE NUESTRO CONTENIDO </h3>
 
     <section class="post-list">
         <div class="content">
-            <?php foreach ($publicaciones as $post): ?>
-                <article class="post" data-post-id="<?php echo htmlspecialchars($post['ID_Articulo']); ?>">
+            <?php foreach ($publicaciones as $post): 
+                // Check if images data is available before exploding
+                $imagenes_string = $post['imagenes'] ?? '';
+                $imagenes = !empty($imagenes_string) ? explode(',', $imagenes_string) : [];
+                $imagen_principal = !empty($imagenes[0]) ? $imagenes[0] : '/PRODCONS/PI2do/imagenes/default-post.jpg';
+            ?>
+                <article class="post" data-post-id="<?php echo htmlspecialchars($post['ID_Articulo'] ?? ''); ?>">
                     <div class="post-header">
-                        <div class="post-img-placeholder"></div>
+                        <img src="<?php echo htmlspecialchars($imagen_principal); ?>" alt="<?php echo htmlspecialchars($post['Titulo'] ?? ''); ?>" class="post-img">
                     </div>
                     <div class="post-body">
-                        <h2><?php echo htmlspecialchars($post['Titulo']); ?></h2>
-                        <p class="descripcion"><?php echo htmlspecialchars($post['Contenido']); ?></p>
-                    <div class="post-footer">
-                        <div class="post-actions">
-                            <a href="/PRODCONS/PI2do/Dashboard_Usuario/postWeb user/articulo.php?id=<?php echo htmlspecialchars($post['ID_Articulo']); ?>" class="post-link">Leer más...</a>
-                            <div class="interaction-buttons">
-                                <button class="like-button-small" data-post-id="<?php echo htmlspecialchars($post['ID_Articulo']); ?>" title="Me gusta">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                                    </svg>
-                                    <span class="likes-count">0</span>
-                                </button>
-                                <button class="comment-toggle-small" data-post-id="<?php echo htmlspecialchars($post['ID_Articulo']); ?>" title="Comentarios">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
-                                        <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
-                                    </svg>
-                                    <span class="comments-count">0</span>
-                                </button>
+                        <h2><?php echo htmlspecialchars($post['Titulo'] ?? ''); ?></h2>
+                        <p class="descripcion"><?php 
+                            $contenido = htmlspecialchars($post['Contenido'] ?? '');
+                            // Truncar contenido a aproximadamente 401 caracteres para coincidir con el carrusel
+                            if (strlen($contenido) > 401) {
+                                $contenido = substr($contenido, 0, 401) . '...';
+                            }
+                            echo $contenido;
+                        ?></p>
+                        
+                        <div class="post-footer">
+                            <div class="post-actions">
+                                <a href="/PRODCONS/PI2do/Dashboard_Usuario/postWeb user/articulo.php?id=<?php echo htmlspecialchars($post['ID_Articulo'] ?? ''); ?>" class="post-link">Leer más...</a>
+                                <div class="interaction-buttons">
+                                    <button class="like-button-small" data-post-id="<?php echo htmlspecialchars($post['ID_Articulo'] ?? ''); ?>" title="Me gusta">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                        </svg>
+                                        <span class="likes-count">0</span>
+                                    </button>
+                                    <button class="comment-toggle-small" data-post-id="<?php echo htmlspecialchars($post['ID_Articulo'] ?? ''); ?>" title="Comentarios">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+                                            <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                                        </svg>
+                                        <span class="comments-count">0</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
                         <div class="comments-section" style="display: none;">
                             <div class="existing-comments">
-                                <!-- Los comentarios se mostrarán aquí -->
+                                <!-- Los comentarios se mostrarán aquí via AJAX -->
                             </div>
                             <div class="add-comment">
                                 <textarea placeholder="Escribe tu comentario..."></textarea>
                                 <button>Publicar</button>
                             </div>
                         </div>
-                        <span>Publicado el <?php echo htmlspecialchars($post['Fecha de Creacion']); ?></span>
-                        <span>| <?php echo htmlspecialchars($post['autor_nombre']); ?></span>
+
+                        <span style="font-size: 12px; line-height: 1.2;">Publicado el <?php 
+                            $fecha_timestamp = strtotime($post['Fecha de Publicacion'] ?? '');
+                            if ($fecha_timestamp !== false) {
+                                $dia = date('d', $fecha_timestamp);
+                                $mes_ingles = date('F', $fecha_timestamp);
+                                $mes_espanol = traducirMesEspanol($mes_ingles);
+                                $año = date('Y', $fecha_timestamp);
+                                echo htmlspecialchars("$dia de $mes_espanol de $año");
+                            } else {
+                                echo "Fecha desconocida";
+                            }
+                        ?></span>
+                        <span>| Por <?php echo htmlspecialchars($post['autor_nombre'] ?? ''); ?></span>
                     </div>
                 </article>
             <?php endforeach; ?>
-
-            <!-- Static articles -->
-            <article class="post">
-                <div class="post-header">
-                    <div class="post-img-1"></div> 
-                </div>
-                <div class="post-body">
-                    <h2>Menos plásticos mas vida</h2>
-                    <p class="descripcion">El plástico nos rodea: en casa, en tiendas y hasta en los océanos. Con pequeñas decisiones, podemos reducir su uso y hacer la diferencia. ¿Listo para cambiar hábitos y ayudar al planeta?</p>
-                    <div class="post-footer">
-                        <div class="post-actions">
-                            <a href='/PRODCONS/PI2do/Dashboard_Usuario/postWeb user/articulo1.php' class="post-link">Leer más...</a>
-                            <div class="interaction-buttons">
-                                <button class="like-button-small" onclick="likePost(1)" title="Me gusta">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                                    </svg>
-                                    <span id="likes-count-1">0</span>
-                                </button>
-                                <button class="comment-toggle-small" onclick="toggleComments(1)" title="Comentarios">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
-                                        <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
-                                    </svg>
-                                    <span id="comments-count-1">0</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comments-section" id="comments-section-1" style="display: none;">
-                        <div class="existing-comments" id="existing-comments-1">
-                            <!-- Los comentarios se mostrarán aquí -->
-                        </div>
-                        <div class="add-comment">
-                            <textarea id="comment-input-1" placeholder="Escribe tu comentario..."></textarea>
-                            <button onclick="addComment(1)">Publicar</button>
-                        </div>
-                    </div>
-                    <span>Publicado el 14 de febrero del 2025</span>
-                    <span>| Juan Pablo Mancilla Rodriguez</span>
-                        </div>
-            </article>
-
-            <article class="post">
-                <div class="post-header">
-                    <div class="post-img-2"></div>
-                </div>
-                <div class="post-body">
-                    <h2>Tu puedes hacer la diferencia</h2>
-                    <p>Cada elección cuenta. Adoptar hábitos más sostenibles en el día a día no solo reduce nuestra huella ecológica, sino que inspira un cambio real en la sociedad. ¿Te animas a dar el primer paso?</p>
-                    <div class="post-footer">
-                        <div class="post-actions">
-                            <a href='/PRODCONS/PI2do/Dashboard_Usuario/postWeb user/articulo2.php' class="post-link">Leer más...</a>
-                            <div class="interaction-buttons">
-                                <button class="like-button-small" onclick="likePost(2)" title="Me gusta">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                                    </svg>
-                                    <span id="likes-count-2">0</span>
-                                </button>
-                                <button class="comment-toggle-small" onclick="toggleComments(2)" title="Comentarios">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
-                                        <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
-                                    </svg>
-                                    <span id="comments-count-2">0</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comments-section" id="comments-section-2" style="display: none;">
-                        <div class="existing-comments" id="existing-comments-2">
-                            <!-- Los comentarios se mostrarán aquí -->
-                        </div>
-                        <div class="add-comment">
-                            <textarea id="comment-input-2" placeholder="Escribe tu comentario..."></textarea>
-                            <button onclick="addComment(2)">Publicar</button>
-                        </div>
-                    </div>
-                    <span>Publicado el 19 de Febrero del 2025</span>
-                    <span>| Yureni Elizabeth Sierra Aguilar</span>
-                </div>
-            </article>
-
-            <article class="post">
-                <div class="post-header">
-                    <div class="post-img-3"></div>
-                </div>
-                <div class="post-body">
-                    <h2>La Revolución de la Moda Sostenible</h2>
-                    <p class="descripcion">La industria de la moda es poderosa, pero también contaminante. Apostar por opciones sostenibles es clave para un futuro más limpio. ¿Sabes cómo tu ropa puede marcar la diferencia?</p>
-                    <div class="post-footer">
-                        <div class="post-actions">
-                            <a href='/PRODCONS/PI2do/Dashboard_Usuario/postWeb user/articulo3.php' class="post-link">Leer más...</a>
-                            <div class="interaction-buttons">
-                                <button class="like-button-small" onclick="likePost(3)" title="Me gusta">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                                    </svg>
-                                    <span id="likes-count-3">0</span>
-                                </button>
-                                <button class="comment-toggle-small" onclick="toggleComments(3)" title="Comentarios">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
-                                        <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
-                                    </svg>
-                                    <span id="comments-count-3">0</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comments-section" id="comments-section-3" style="display: none;">
-                        <div class="existing-comments" id="existing-comments-3">
-                            <!-- Los comentarios se mostrarán aquí -->
-                        </div>
-                        <div class="add-comment">
-                            <textarea id="comment-input-3" placeholder="Escribe tu comentario..."></textarea>
-                            <button onclick="addComment(3)">Publicar</button>
-                        </div>
-                    </div>
-                    <span>Publicado el 19 de Febrero del 2025</span>
-                    <span>| Daniel Sahid Barroso Alvarez</span>
-                </div>
-            </article>
-
-            <article class="post">
-                <div class="post-header">
-                    <div class="post-img-4"></div>
-                </div>
-                <div class="post-body">
-                    <h2>Crea tu propio huerto y sus ventajas</h2>
-                    <p class="descripcion">Cultivar tus propios alimentos te da frescura, control y una alimentación más sana. Además, reduces residuos y cuidas el medioambiente. ¿Te animas a empezar tu propio huerto?</p>
-                    <div class="post-footer">
-                        <div class="post-actions">
-                            <a href='/PRODCONS/PI2do/Dashboard_Usuario/postWeb user/articulo4.php' class="post-link">Leer más...</a>
-                            <div class="interaction-buttons">
-                                <button class="like-button-small" onclick="likePost(4)" title="Me gusta">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                                    </svg>
-                                    <span id="likes-count-4">0</span>
-                                </button>
-                                <button class="comment-toggle-small" onclick="toggleComments(4)" title="Comentarios">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
-                                        <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
-                                    </svg>
-                                    <span id="comments-count-4">0</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comments-section" id="comments-section-4" style="display: none;">
-                        <div class="existing-comments" id="existing-comments-4">
-                            <!-- Los comentarios se mostrarán aquí -->
-                        </div>
-                        <div class="add-comment">
-                            <textarea id="comment-input-4" placeholder="Escribe tu comentario..."></textarea>
-                            <button onclick="addComment(4)">Publicar</button>
-                        </div>
-                    </div>
-                    <span>Publicado el 20 de Febrero del 2025</span>
-                    <span>| Xiomara Anabeli Cobian Ramirez</span>
-                </div>
-            </article>
-
-            <article class="post">
-                <div class="post-header">
-                    <div class="post-img-5"></div>
-                </div>
-                <div class="post-body">
-                    <h2>Reduciendo residuos en el hogar</h2>
-                    <p class="descripcion">Consumimos sin medida, sin pensar en el impacto. Es momento de tomar decisiones responsables y reducir nuestra huella ecológica. Cada elección cuenta. ¿Qué harás hoy por un futuro más verde?</p>
-                    <div class="post-footer">
-                        <div class="post-actions">
-                            <a href='/PRODCONS/PI2do/Dashboard_Usuario/postWeb user/articulo5.php' class="post-link">Leer más...</a>
-                            <div class="interaction-buttons">
-                                <button class="like-button-small" onclick="likePost(5)" title="Me gusta">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                                    </svg>
-                                    <span id="likes-count-5">0</span>
-                                </button>
-                                <button class="comment-toggle-small" onclick="toggleComments(5)" title="Comentarios">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
-                                        <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
-                                    </svg>
-                                    <span id="comments-count-5">0</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comments-section" id="comments-section-5" style="display: none;">
-                        <div class="existing-comments" id="existing-comments-5">
-                            <!-- Los comentarios se mostrarán aquí -->
-                        </div>
-                        <div class="add-comment">
-                            <textarea id="comment-input-5" placeholder="Escribe tu comentario..."></textarea>
-                            <button onclick="addComment(5)">Publicar</button>
-                        </div>
-                    </div>
-                    <span>Publicado el 21 de Febrero del 2025</span>
-                    <span>| Fernando Benitez Astudillo</span>
-                </div>
-            </article>
-
-            <article class="post">
-                <div class="post-header">
-                    <div class="post-img-6"></div>
-                </div>
-                <div class="post-body">
-                    <h2>Consumo Digital y Producción Responsable</h2>
-                    <p class="descripcion">El consumo digital impacta el planeta más de lo que imaginas. Optar por prácticas responsables en tecnología puede hacer una gran diferencia. ¿Sabes cómo reducir tu impacto digital?</p>
-                    <div class="post-footer">
-                        <div class="post-actions">
-                            <a href='/PRODCONS/PI2do/Dashboard_Usuario/postWeb user/articulo6.php' class="post-link">Leer más...</a>
-                            <div class="interaction-buttons">
-                                <button class="like-button-small" onclick="likePost(6)" title="Me gusta">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                                    </svg>
-                                    <span id="likes-count-6">0</span>
-                                </button>
-                                <button class="comment-toggle-small" onclick="toggleComments(6)" title="Comentarios">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
-                                        <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
-                                    </svg>
-                                    <span id="comments-count-6">0</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comments-section" id="comments-section-6" style="display: none;">
-                        <div class="existing-comments" id="existing-comments-6">
-                            <!-- Los comentarios se mostrarán aquí -->
-                        </div>
-                        <div class="add-comment">
-                            <textarea id="comment-input-6" placeholder="Escribe tu comentario..."></textarea>
-                            <button onclick="addComment(6)">Publicar</button>
-                        </div>
-                    </div>
-                    <span>Publicado el 21 de Febrero del 2025</span>
-                    <span>| Isabela Monserrat Vidrio Camarena</span>
-                </div>
-            </article>
         </div>
     </section>
     </main>
@@ -800,6 +762,33 @@ document.addEventListener('DOMContentLoaded', function() {
         function likePost(articleId) {
             console.log('Like post:', articleId);
             // Implementar lógica de likes aquí
+            
+            // AJAX call to handle_like.php
+            fetch('/PRODCONS/PI2do/Dashboard_Usuario/likes and comments/handle_like.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'article_id=' + articleId
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update like count on the page
+                    const likesCountSpan = document.querySelector(`article[data-post-id="${articleId}"] .likes-count`);
+                    if (likesCountSpan) {
+                        likesCountSpan.textContent = data.likes;
+                    }
+                    // Optional: Change heart icon color/style
+                } else {
+                    console.error('Error liking post:', data.message);
+                    alert('Error: ' + data.message); // Show error to user
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('Hubo un error al procesar tu solicitud de like.'); // Generic error message
+            });
         }
 
         function toggleComments(articleId) {
@@ -824,7 +813,34 @@ document.addEventListener('DOMContentLoaded', function() {
             
             console.log('Add comment for article:', articleId, 'Content:', commentText);
             // Implementar lógica de comentarios aquí
-            commentInput.value = '';
+
+            // AJAX call to handle_comment.php
+            fetch('/PRODCONS/PI2do/Dashboard_Usuario/likes and comments/handle_comment.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'article_id=' + articleId + '&comment=' + encodeURIComponent(commentText)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Add the new comment to the comments section
+                    const existingCommentsDiv = document.querySelector(`article[data-post-id="${articleId}"] .existing-comments`);
+                    if (existingCommentsDiv) {
+                        const newCommentHtml = `<p><strong>${data.author}:</strong> ${htmlspecialchars(commentText)}</p>`; // Assuming author name is returned or handled server-side
+                        existingCommentsDiv.innerHTML += newCommentHtml; // Append new comment
+                    }
+                    commentInput.value = ''; // Clear the input field
+                } else {
+                    console.error('Error adding comment:', data.message);
+                    alert('Error: ' + data.message); // Show error to user
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('Hubo un error al publicar tu comentario.'); // Generic error message
+            });
         }
     </script>
 
