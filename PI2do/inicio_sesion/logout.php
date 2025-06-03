@@ -1,13 +1,8 @@
 <?php
 session_start();
-
-// Destruir todas las variables de sesión
-$_SESSION = array();
-
-// Destruir la sesión
+session_unset();
 session_destroy();
-
-// Redirigir al index.php
-header("Location: /PRODCONS/index.php");
+header('Location: ../inicio_sesion/login.php');
 exit();
-?>
+
+?> 
