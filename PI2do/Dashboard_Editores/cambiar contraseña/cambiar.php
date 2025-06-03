@@ -50,28 +50,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $conexion->abrir_conexion();
             $conn = $conexion->conexion;
 
-            $stmt = $conn->prepare("SELECT Contraseña FROM usuarios WHERE Usuario_ID = ?");
+        $stmt = $conn->prepare("SELECT Contraseña FROM usuarios WHERE Usuario_ID = ?");
             if (!$stmt) {
                  throw new Exception("Error preparando consulta: " . $conn->error);
             }
             $stmt->bind_param("i", $Usuario_ID);
-            $stmt->execute();
-            $stmt->bind_result($hash_actual);
+        $stmt->execute();
+        $stmt->bind_result($hash_actual);
             
-            if ($stmt->fetch()) {
-                if (!password_verify($currentPassword, $hash_actual)) {
-                    $errores[] = 'La contraseña actual es incorrecta';
+        if ($stmt->fetch()) {
+            if (!password_verify($currentPassword, $hash_actual)) {
+                $errores[] = 'La contraseña actual es incorrecta';
                 } else if ($newPassword === $currentPassword) { // Validar también si la nueva es igual a la actual después de verificar la actual
                      $errores[] = 'La nueva contraseña debe ser diferente a la actual';
-                }
-            } else {
-                $errores[] = 'Usuario no encontrado en la base de datos'; // Esto no debería pasar si está logueado, pero es una seguridad
             }
-            $stmt->close();
-
-            // Si no hay errores, proceder con el cambio de contraseña
-            if (empty($errores)) {
-                $hash_nueva = password_hash($newPassword, PASSWORD_DEFAULT);
+        } else {
+                $errores[] = 'Usuario no encontrado en la base de datos'; // Esto no debería pasar si está logueado, pero es una seguridad
+        }
+        $stmt->close();
+    
+    // Si no hay errores, proceder con el cambio de contraseña
+    if (empty($errores)) {
+        $hash_nueva = password_hash($newPassword, PASSWORD_DEFAULT);
                 $stmt_update = $conn->prepare("UPDATE usuarios SET Contraseña = ? WHERE Usuario_ID = ?");
                 if (!$stmt_update) {
                     throw new Exception("Error preparando actualización: " . $conn->error);
@@ -80,13 +80,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 if ($stmt_update->execute()) {
                     // Registrar el cambio en el historial (opcional)
-                    $accion = "Cambio de contraseña";
-                    $fecha = date('Y-m-d H:i:s');
-                    $stmt_hist = $conn->prepare("INSERT INTO historial_datos_usuario (Usuario_ID, Accion, Fecha) VALUES (?, ?, ?)");
+            $accion = "Cambio de contraseña";
+            $fecha = date('Y-m-d H:i:s');
+            $stmt_hist = $conn->prepare("INSERT INTO historial_datos_usuario (Usuario_ID, Accion, Fecha) VALUES (?, ?, ?)");
                      if ($stmt_hist) {
                          $stmt_hist->bind_param("iss", $Usuario_ID, $accion, $fecha);
-                         $stmt_hist->execute();
-                         $stmt_hist->close();
+            $stmt_hist->execute();
+            $stmt_hist->close();
                      }
 
                     // Opcional: Cerrar sesión después de cambiar contraseña por seguridad
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     
                     $mensaje_exito = 'Contraseña actualizada exitosamente.';
 
-                } else {
+        } else {
                     $errores[] = 'Error al actualizar la contraseña en la base de datos.';
                 }
                  if ($stmt_update) $stmt_update->close();
@@ -148,51 +148,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <section class="contenedor-main">
         <section class="wrapper">
             <div class="form" id="cambiar-password-form">
-                <h1>CAMBIAR CONTRASEÑA</h1>
-                
+        <h1>CAMBIAR CONTRASEÑA</h1>
+        
                 <?php if (!empty($errores)): ?>
-                    <?php foreach ($errores as $error): ?>
-                        <div class="error-message"><?php echo htmlspecialchars($error); ?></div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-
+            <?php foreach ($errores as $error): ?>
+                <div class="error-message"><?php echo htmlspecialchars($error); ?></div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        
                 <?php if ($mensaje_exito): ?>
                     <div class="success-message"><?php echo htmlspecialchars($mensaje_exito); ?></div>
                 <?php endif; ?>
 
-                <div class="instrucciones">
-                    <p>Ingresa tu contraseña actual y tu nueva contraseña.</p>
-                </div>
+            <div class="instrucciones">
+                <p>Ingresa tu contraseña actual y tu nueva contraseña.</p>
+            </div>
 
                 <form action="" method="POST">
-                    <div class="buton">
-                        <div class="input-area">
+            <div class="buton">
+                <div class="input-area">
                             <input type="password" name="currentPassword" placeholder="Contraseña Actual" required>
-                            <i class="fas fa-lock"></i>
-                        </div>
-                    </div>
-
-                    <div class="buton">
-                        <div class="input-area">
-                            <input type="password" name="nueva_password" placeholder="Nueva Contraseña" required>
-                            <i class="fas fa-lock"></i>
-                        </div>
-                    </div>
-
-                    <div class="buton">
-                        <div class="input-area">
-                            <input type="password" name="confirmar_password" placeholder="Confirmar Nueva Contraseña" required>
-                            <i class="fas fa-lock"></i>
-                        </div>
-                    </div>
-        
-                    <input type="submit" value="CAMBIAR CONTRASEÑA">
-                    
-                    <div class="alternar-form">
-                        <p><a href="../../Dashboard_Editores/inicio/inicio.php">Volver al Panel de Editor</a></p>
-                    </div>
-                </form>
+                    <i class="fas fa-lock"></i>
+                </div>
             </div>
+
+            <div class="buton">
+                <div class="input-area">
+                            <input type="password" name="nueva_password" placeholder="Nueva Contraseña" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+            </div>
+
+            <div class="buton">
+                <div class="input-area">
+                            <input type="password" name="confirmar_password" placeholder="Confirmar Nueva Contraseña" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+            </div>
+
+            <input type="submit" value="CAMBIAR CONTRASEÑA">
+            
+            <div class="alternar-form">
+                        <p><a href="../../Dashboard_Editores/inicio/inicio.php">Volver al Panel de Editor</a></p>
+            </div>
+        </form>
+    </div>
 
             <div class="contenedor-logo">
                 <img src="../../imagenes/login.png" alt="Imagen de fondo" class="bg-image">

@@ -4,6 +4,9 @@ session_start();
 ini_set('log_errors', '1');
 // ini_set('error_log', '/path/to/your/php-error.log'); // <<-- Reemplaza con la ruta a tu archivo de log
 
+// Establecer la localización a español para mostrar nombres de meses correctamente
+setlocale(LC_TIME, 'es_ES', 'es_ES.utf8', 'es');
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/Base de datos/conexion.php'; // Ruta absoluta a tu archivo de conexión
 
 $article = null;
@@ -54,28 +57,39 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $article ? htmlspecialchars($article['Titulo']) : 'Artículo no encontrado'; ?> - PRODCONS</title>
-    <link rel="stylesheet" href="/PRODCONS/PI2do/postWeb/code.css"> <!-- Estilos postWeb -->
-    <link rel="stylesheet" href="/PRODCONS/PI2do/Header visitantes/barra_principal.css">
-    <link rel="stylesheet" href="/PRODCONS/footer/footer/footer.css">
-
-    <!-- Google Cloud Translation API -->
+    <link rel="stylesheet" href="/PRODCONS/PI2do/postWeb/code.css">
+     <link rel="stylesheet" href="/PRODCONS/PI2do/header_post/header_post.css">
+    <link rel="stylesheet" href="/PRODCONS/PI2do/footer/footer.css">
+    
+    <!-- =====================================================================
+    SCRIPTS DE TRADUCCIÓN - REQUERIDOS
+    No eliminar estas líneas, son necesarias para la funcionalidad de traducción
+    ===================================================================== -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-    <!-- Script de traducción global -->
-    <script src='/PRODCONS/translate.js'></script>
+    <script src="/PRODCONS/translate.js"></script>
+    
+    <!-- =====================================================================
+    ESTILOS PARA EL CUADRO DE IDIOMA - PERSONALIZABLE
+    Puedes modificar los estilos para cambiar la apariencia del cuadro de idioma
+    
+    - El botón X permite cerrar el selector cuando no se necesita
+    ===================================================================== -->
+        <style>        .language-toggle {            position: fixed;          /* Posición fija en la pantalla */            top: 20px;                /* Distancia desde la parte superior - PERSONALIZABLE */            right: 20px;              /* Distancia desde la derecha - PERSONALIZABLE */            background-color: #fff;   /* Color de fondo - PERSONALIZABLE */            border: 1px solid #ddd;   /* Borde - PERSONALIZABLE */            border-radius: 8px;       /* Bordes redondeados - PERSONALIZABLE */            padding: 10px 15px;       /* Espaciado interno - PERSONALIZABLE */            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Sombra - PERSONALIZABLE */            z-index: 1000;            /* Capa de visualización - MANTENER ALTO */            font-family: Arial, sans-serif; /* Fuente - PERSONALIZABLE */        }                .language-toggle p {            margin: 0 0 8px 0;            font-size: 14px;          /* Tamaño de texto - PERSONALIZABLE */            font-weight: bold;        /* Negrita - PERSONALIZABLE */        }                .language-toggle .language-buttons {            display: flex;            gap: 10px;                /* Espacio entre botones - PERSONALIZABLE */        }                .language-toggle button {            padding: 5px 10px;        /* Espaciado interno de botones - PERSONALIZABLE */            border: none;             /* Sin borde - PERSONALIZABLE */            border-radius: 4px;       /* Bordes redondeados - PERSONALIZABLE */            background-color: #f0f0f0; /* Color de fondo - PERSONALIZABLE */            cursor: pointer;            transition: background-color 0.2s;        }                .language-toggle button:hover {            background-color: #e0e0e0; /* Color al pasar el mouse - PERSONALIZABLE */        }                .language-toggle button.active {            background-color: #4CAF50; /* Color del botón activo - PERSONALIZABLE */            color: white;             /* Color de texto del botón activo - PERSONALIZABLE */        }                /* Estilos para el botón de cerrar (X) */        .close-button {            position: absolute;       /* Posición absoluta dentro del contenedor */            top: 0;                   /* Distancia desde arriba - PERSONALIZABLE */            right: 0;                 /* Distancia desde la derecha - PERSONALIZABLE */            font-size: 8px;           /* Tamaño de la X más pequeño - PERSONALIZABLE */            background-color: transparent; /* Fondo completamente transparente */            border: none;             /* Sin borde */                        cursor: pointer;          /* Cursor tipo mano al pasar por encima */                        color: #bbb;              /* Color más claro para la X */                        padding: 6px 8px;         /* Padding más grande para aumentar el área de clic */            line-height: 1;           /* Altura de línea ajustada */            opacity: 0.7;             /* Ligeramente transparente */            z-index: 1001;            /* Se asegura que esté por encima para poder hacer clic */        }                .close-button:hover {            color: #999;              /* Color al pasar el ratón más sutil - PERSONALIZABLE */            opacity: 0.9;             /* Aumenta ligeramente la opacidad al pasar el ratón */        }
+    </style>
 </head>
 <body>
-
-    <!-- Barra para regresar - Puedes ajustar la URL según necesites -->
+    <!-- Barra para regresar y header principal -->
     <section class="barra_left">
         <i class="flecha_left">
-            <a href="javascript:history.back()" title="Regresar a la página anterior">
+<a href="/PRODCONS/" title="Regresar a la página principal">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
                 </svg>
             </a>
         </i>
     </section>
+
 
     <!-- =====================================================================    CUADRO DE SELECCIÓN DE IDIOMA - NO MODIFICAR LA ESTRUCTURA    Puedes modificar el texto, pero mantén los IDs y la estructura        - El botón X permite cerrar/ocultar el selector de idioma    ===================================================================== -->
     <div class="language-toggle" id="language-toggle">
@@ -88,7 +102,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     </div>
 
     <?php if ($article): ?>
-        <!-- Header convertido en section - con contenido dinámico -->
+        <!-- Sección del artículo -->
         <section class="header-section">
             <h1><?php echo htmlspecialchars($article['Titulo']); ?></h1>
             <div class="contenedor-imagenes">
@@ -115,16 +129,29 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         </main>
 
         <!-- Sección de autor y fecha -->
+        <div class="article-meta">
+            <div class="meta-info-container">
+                <div class="publicado">Publicado el <?php
+                    try {
+                        $date = new DateTime($article['Fecha de Publicacion']);
+                        echo $date->format('d F Y');
+                    } catch (Exception $e) {
+                        echo 'Fecha inválida';
+                    }
+                ?></div>
+                <div class="autor">| Por <?php echo htmlspecialchars($article['autor_nombre']); ?></div>
+            </div>
+        </div>
+
+        <!-- Sección de bibliografías (el "recuadro negro") -->
         <section class="autor-bibliografias">
-             <div class="publicado">PUBLICADO EL <?php
-                try {
-                    $date = new DateTime($article['Fecha de Creacion']);
-                    echo $date->format('d F Y');
-                } catch (Exception $e) {
-                    echo 'Fecha inválida';
-                }
-            ?> |
-            POR <?php echo htmlspecialchars($article['autor_nombre']); ?></div>
+            <!-- Aquí irán las bibliografías -->
+            <h2>Bibliografías</h2>
+            <?php if (!empty($article['Bibliografias'])): ?>
+                <p><?php echo nl2br(htmlspecialchars($article['Bibliografias'])); ?></p>
+            <?php else: ?>
+                <p>No hay bibliografía disponible para este artículo.</p>
+            <?php endif; ?>
         </section>
 
     <?php else: ?>
@@ -134,14 +161,27 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         </div>
     <?php endif; ?>
 
-<!-- =====================================================================
-SCRIPT PARA ACTUALIZAR BOTONES DE IDIOMA - NO MODIFICAR
-Este script mantiene sincronizada la interfaz de idioma
- 
-- El botón X permite ocultar el selector de idioma cuando no se necesita
-===================================================================== -->
 <script>
-    // Function to update button states based on current language    function updateLanguageButtons() {        const btnEs = document.getElementById('btn-es');        const btnEn = document.getElementById('btn-en');        const toggleText = document.getElementById('toggle-text');                // Get current language from localStorage or default to Spanish        const currentLang = localStorage.getItem('preferredLanguage') || 'es';                // Update active button        if (currentLang === 'en') {            btnEs.classList.remove('active');            btnEn.classList.add('active');            toggleText.innerText = 'Change language?';        } else {            btnEn.classList.remove('active');            btnEs.classList.add('active');            toggleText.innerText = '¿Cambiar idioma?';        }    }
+    // Function to update button states based on current language
+    function updateLanguageButtons() {
+        const btnEs = document.getElementById('btn-es');
+        const btnEn = document.getElementById('btn-en');
+        const toggleText = document.getElementById('toggle-text');
+        
+        // Get current language from localStorage or default to Spanish
+        const currentLang = localStorage.getItem('preferredLanguage') || 'es';
+        
+        // Update active button
+        if (currentLang === 'en') {
+            btnEs.classList.remove('active');
+            btnEn.classList.add('active');
+            toggleText.innerText = 'Change language?';
+        } else {
+            btnEn.classList.remove('active');
+            btnEs.classList.add('active');
+            toggleText.innerText = '¿Cambiar idioma?';
+        }
+    }
     
     // Call this function on page load
     document.addEventListener('DOMContentLoaded', function() {
@@ -177,6 +217,7 @@ Este script mantiene sincronizada la interfaz de idioma
 </script>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/footer/Visitante/footer.php'; ?>
+<script src='/PRODCONS/PI2do/header_post/header_post.js'></script>
 
 </body>
 </html> 

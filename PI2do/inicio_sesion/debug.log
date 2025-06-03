@@ -243,4 +243,75 @@ DEBUG: Error message: None
 --- Nuevo Log de Sesión: 2025-06-03 07:45:53 ---
 DEBUG PHP: Script registro.php started. Error: None
 --- Nuevo Log de Sesión: 2025-06-03 07:45:55 ---
-DEBUG: Iniciando proceso de lo
+DEBUG: Iniciando proceso de lo--- Nuevo Log de Sesión: 2025-06-03 09:50:33 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 09:50:52 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-03 09:58:30 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 09:58:34 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xcobian@ucol.mx
+DEBUG: Contraseña recibida: anabeli05
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-03 10:06:32 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 10:06:37 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xcobian@ucol.mx
+DEBUG: Contraseña recibida: anabeli05
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-03 13:31:11 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Tu cuenta no está registrada, por favor regístrate
+--- Nuevo Log de Sesión: 2025-06-03 13:31:21 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: rvuelvas@ucol.mx
+DEBUG: Contraseña recibida: Prodcor2024
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-03 13:36:04 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 13:56:59 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 13:57:06 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 13:57:13 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xcobian@ucol.mx
+DEBUG: Contraseña recibida: anabeli05
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-03 14:00:23 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Tu cuenta no está registrada, por favor regístrate
+--- Nuevo Log de Sesión: 2025-06-03 14:00:28 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: rvuelvas@ucol.mx
+DEBUG: Contraseña recibida: Prodcor2024
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-03 14:07:09 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 14:12:27 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 14:12:27 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 14:12:27 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None

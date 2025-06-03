@@ -176,18 +176,29 @@ async function translateContent(targetLanguage) {
  * @param {string} idioma - 'ingles' o 'espanol' (sin tilde)
  */
 function cambiarIdioma(idioma) {
-    // 1. Actualizar la bandera principal si existe
-    const bandera = document.getElementById('banderaIdioma');
-    if (bandera) {
-        bandera.src = idioma === 'ingles' 
-            ? "/PRODCONS/imagenes/logos/ingles.png" 
-            : "/PRODCONS/imagenes/logos/espanol.png";
+    // 1. Actualizar la bandera principal y las banderas del menú
+    const banderaPrincipal = document.getElementById('banderaIdioma');
+    const banderaIngles = document.querySelector('.ingles');
+    const banderaEspana = document.querySelector('.españa');
+    
+    if (banderaPrincipal) {
+        banderaPrincipal.src = idioma === 'ingles' 
+            ? "/PRODCONS/PI2do/imagenes/logos/ingles.png" 
+            : "/PRODCONS/PI2do/imagenes/logos/espanol.png";
     }
     
-    // 2. Llamar a la función de traducción con el idioma apropiado
-    translateContent(idioma === 'ingles' ? 'en' : 'es');
+    if (banderaIngles && banderaEspana) {
+        banderaIngles.style.display = idioma === 'espanol' ? 'none' : 'block';
+        banderaEspana.style.display = idioma === 'espanol' ? 'block' : 'none';
+    }
     
-    // 3. Cerrar el menú de opciones si existe
+    // 2. Actualizar el idioma actual
+    currentLanguage = idioma === 'ingles' ? 'en' : 'es';
+    
+    // 3. Llamar a la función de traducción
+    translateContent(currentLanguage);
+    
+    // 4. Cerrar el menú de opciones si existe
     const opciones = document.getElementById('idiomasOpciones');
     if (opciones) {
         opciones.style.display = 'none';
