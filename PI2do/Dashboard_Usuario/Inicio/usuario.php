@@ -43,8 +43,8 @@ if (!$conn) {
 // Obtener los posts publicados desde la base de datos - Updated query to match index.php
 $stmt = $conn->prepare("SELECT a.*, u.Nombre as autor_nombre, 
                                GROUP_CONCAT(ia.Url_Imagen) as imagenes
-                               FROM articulos a 
-                               JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID 
+                       FROM articulos a 
+                       JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID 
                                LEFT JOIN imagenes_articulos ia ON a.ID_Articulo = ia.Articulo_ID
                                WHERE a.Estado = 'Publicado' 
                                GROUP BY a.ID_Articulo
@@ -102,7 +102,7 @@ $conexion->cerrar_conexion();
             justify-content: center;
             align-items: center;
         }
-
+        
         /* Estilos para los botones de interacción */
         .post-actions {
             display: flex;
@@ -160,7 +160,7 @@ $conexion->cerrar_conexion();
         .add-comment {
             margin-top: 10px;
         }
-
+        
         .add-comment textarea {
             width: 100%;
             padding: 10px;
@@ -170,7 +170,7 @@ $conexion->cerrar_conexion();
             resize: vertical;
             min-height: 60px;
         }
-
+        
         .add-comment button {
             padding: 8px 16px;
             background-color: #4CAF50;
@@ -181,7 +181,7 @@ $conexion->cerrar_conexion();
             transition: background-color 0.3s ease;
             font-weight: bold;
         }
-
+        
         .add-comment button:hover {
             background-color: #45a049;
         }
@@ -199,13 +199,13 @@ $conexion->cerrar_conexion();
     <div class="hamburger-icon" onclick="toggleMenu()">☰</div>
 
     <!-- Menú hamburguesa lateral -->
-    <nav class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-menu" id="mobileMenu">
       <div class="close-icon" onclick="toggleMenu()">✖</div>
 
       <!-- Logo dentro del menú -->
       <div class="mobile-logo">
         <img src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo" />
-        </div>
+            </div>
 
       <!-- Opciones del menú -->
       <ul>
@@ -289,7 +289,7 @@ $conexion->cerrar_conexion();
     font-weight: bold;
     font-family: 'Arial', sans-serif;
     font-size: 16.1px;
-    cursor: pointer;
+                cursor: pointer;
     text-transform: uppercase;
     background: none;
     border: none;
@@ -305,10 +305,10 @@ $conexion->cerrar_conexion();
 .idioma-text:focus {
     outline: none;
     box-shadow: none;
-}
-</style>
+        }
+    </style>
 
-<script>
+    <script>
 function updateIdiomaButtonText(lang) {
     const btnIdioma = document.getElementById('btnIdioma');
     if (!btnIdioma) return;
@@ -396,7 +396,7 @@ document.addEventListener('DOMContentLoaded', function() {
             translateContent(savedLanguage);
             }
         });
-    </script>
+</script>
 
     <section class="logo">
         <div class="header_2">
@@ -448,13 +448,13 @@ document.addEventListener('DOMContentLoaded', function() {
             // Guardar la preferencia en localStorage - NO MODIFICAR esta línea
             localStorage.setItem('preferredLanguage', nuevoIdioma === 'ingles' ? 'en' : 'es');
         }
-
+        
         // Cargar el idioma guardado al iniciar la página - NO MODIFICAR
         document.addEventListener('DOMContentLoaded', function() {
             const savedLanguage = localStorage.getItem('preferredLanguage');
             if (savedLanguage) {
-            const bandera = document.getElementById('banderaIdioma');
-            bandera.src = savedLanguage === 'en' 
+                const bandera = document.getElementById('banderaIdioma');
+                bandera.src = savedLanguage === 'en' 
                     ? '/PRODCONS/PI2do/imagenes/logos/ingles.png' 
                     : '/PRODCONS/PI2do/imagenes/logos/espanol.png';
             translateContent(savedLanguage);
@@ -518,10 +518,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     $imagen_principal_carousel = $pub['imagen_principal'] ?? '/PRODCONS/PI2do/imagenes/default-post.jpg';
                 ?>
                     <div class="carousel-item post" data-post-id="<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>">
-                        <div class="post-header">
+                <div class="post-header">
                             <img src="/PRODCONS/PI2do/imagenes/articulos/<?= htmlspecialchars($imagen_principal_carousel) ?>" alt="<?= htmlspecialchars($pub['Titulo'] ?? '') ?>" class="post-img">
-                        </div>
-                        <div class="post-body">
+                </div>
+                <div class="post-body">
                             <h2><?= htmlspecialchars($pub['Titulo'] ?? '') ?></h2>
                             <p class="descripcion"><?php 
                                 $descripcion = htmlspecialchars($pub['descripcion'] ?? '');
@@ -532,35 +532,35 @@ document.addEventListener('DOMContentLoaded', function() {
                                 echo $descripcion;
                             ?></p>
 
-                            <div class="post-footer">
+                    <div class="post-footer">
                                 <div class="post-actions">
-                                    <a href="/PRODCONS/PI2do/Dashboard_Usuario/postWeb user/articulo.php?id=<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>" class="post-link">Ver más...</a>
-                                    <div class="interaction-buttons">
+                                    <a href="/PRODCONS/PI2do/postWeb/ver-articulo-usuario.php?id=<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>" class="post-link">Ver más...</a>
+                        <div class="interaction-buttons">
                                         <button class="like-button-small" data-post-id="<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>" title="Me gusta">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                                            </svg>
+                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                </svg>
                                             <span class="likes-count">0</span>
-                                        </button>
+                            </button>
                                         <button class="comment-toggle-small" data-post-id="<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>" title="Comentarios">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
-                                                <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
-                                            </svg>
+                                    <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                                </svg>
                                             <span class="comments-count">0</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            </button>
+                        </div>
+                    </div>
+                        </div>
 
                             <div class="comments-section" style="display: none;">
                                 <div class="existing-comments">
                                     <!-- Los comentarios se mostrarán aquí via AJAX -->
-                                </div>
-                                <div class="add-comment">
+                        </div>
+                        <div class="add-comment">
                                     <textarea placeholder="Escribe tu comentario..."></textarea>
                                     <button>Publicar</button>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
                             
                             <span style="font-size: 12px; line-height: 1.2;">Publicado el <?php 
                                 $fecha_timestamp = strtotime($pub['Fecha'] ?? '');
@@ -575,19 +575,19 @@ document.addEventListener('DOMContentLoaded', function() {
                                 }
                             ?></span>
                             <span>| Por   <?= htmlspecialchars($pub['autor_nombre'] ?? '') ?></span>
-
-                        </div>
-                    </div>
+                    
+                </div>
+                </div>
                 <?php endforeach; ?>
             <?php else: ?>
                 <div class="no-posts">
                     <p>No hay publicaciones disponibles en este momento. ¡Vuelve pronto!</p>
-                </div>
+                        </div>
             <?php endif; ?>
-        </div>
+                    </div>
         <button class="prev" aria-label="Publicación anterior">‹</button>
         <button class="next" aria-label="Publicación siguiente">›</button>
-    </div>
+                        </div>
 </section>
 
     <h3 class="apubli"> MIRA MAS DE NUESTRO CONTENIDO </h3>
@@ -601,10 +601,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 $imagen_principal = !empty($imagenes[0]) ? $imagenes[0] : '/PRODCONS/PI2do/imagenes/default-post.jpg';
             ?>
                 <article class="post" data-post-id="<?php echo htmlspecialchars($post['ID_Articulo'] ?? ''); ?>">
-                    <div class="post-header">
+                <div class="post-header">
                         <img src="<?php echo htmlspecialchars($imagen_principal); ?>" alt="<?php echo htmlspecialchars($post['Titulo'] ?? ''); ?>" class="post-img">
-                    </div>
-                    <div class="post-body">
+                </div>
+                <div class="post-body">
                         <h2><?php echo htmlspecialchars($post['Titulo'] ?? ''); ?></h2>
                         <p class="descripcion"><?php 
                             $contenido = htmlspecialchars($post['Contenido'] ?? '');
@@ -615,35 +615,35 @@ document.addEventListener('DOMContentLoaded', function() {
                             echo $contenido;
                         ?></p>
                         
-                        <div class="post-footer">
+                    <div class="post-footer">
                             <div class="post-actions">
                                 <a href="/PRODCONS/PI2do/Dashboard_Usuario/postWeb user/articulo.php?id=<?php echo htmlspecialchars($post['ID_Articulo'] ?? ''); ?>" class="post-link">Leer más...</a>
-                                <div class="interaction-buttons">
+                        <div class="interaction-buttons">
                                     <button class="like-button-small" data-post-id="<?php echo htmlspecialchars($post['ID_Articulo'] ?? ''); ?>" title="Me gusta">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                                        </svg>
+                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                </svg>
                                         <span class="likes-count">0</span>
-                                    </button>
+                            </button>
                                     <button class="comment-toggle-small" data-post-id="<?php echo htmlspecialchars($post['ID_Articulo'] ?? ''); ?>" title="Comentarios">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
-                                            <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
-                                        </svg>
+                                    <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                                </svg>
                                         <span class="comments-count">0</span>
-                                    </button>
-                                </div>
-                            </div>
+                            </button>
+                        </div>
+                    </div>
                         </div>
 
                         <div class="comments-section" style="display: none;">
                             <div class="existing-comments">
                                 <!-- Los comentarios se mostrarán aquí via AJAX -->
-                            </div>
-                            <div class="add-comment">
+                        </div>
+                        <div class="add-comment">
                                 <textarea placeholder="Escribe tu comentario..."></textarea>
                                 <button>Publicar</button>
-                            </div>
                         </div>
+                    </div>
 
                         <span style="font-size: 12px; line-height: 1.2;">Publicado el <?php 
                             $fecha_timestamp = strtotime($post['Fecha de Publicacion'] ?? '');
@@ -658,8 +658,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             }
                         ?></span>
                         <span>| Por <?php echo htmlspecialchars($post['autor_nombre'] ?? ''); ?></span>
-                    </div>
-                </article>
+                </div>
+            </article>
             <?php endforeach; ?>
         </div>
     </section>
@@ -672,11 +672,11 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="cookie-buttons">
                 <button id="rejectCookies" class="cookie-btn reject-btn">Rechazar</button>
                 <button id="acceptCookies" class="cookie-btn accept-btn">Aceptar</button>
+                </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <script>
+<script>
         // Script para activar/desactivar la barra de búsqueda
         const btnLupa = document.getElementById('btnLupa');
         const barraBusqueda = document.getElementById('barraBusqueda');
@@ -791,21 +791,21 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        function toggleComments(articleId) {
-            const commentsSection = document.getElementById(`comments-section-${articleId}`);
+    function toggleComments(articleId) {
+        const commentsSection = document.getElementById(`comments-section-${articleId}`);
             if (commentsSection) {
-                if (commentsSection.style.display === 'none') {
-                    commentsSection.style.display = 'block';
-                } else {
-                    commentsSection.style.display = 'none';
-                }
-            }
+        if (commentsSection.style.display === 'none') {
+            commentsSection.style.display = 'block';
+        } else {
+            commentsSection.style.display = 'none';
+        }
+    }
         }
 
-        function addComment(articleId) {
-            const commentInput = document.getElementById(`comment-input-${articleId}`);
-            const commentText = commentInput.value.trim();
-            
+    function addComment(articleId) {
+        const commentInput = document.getElementById(`comment-input-${articleId}`);
+        const commentText = commentInput.value.trim();
+        
             if (!commentText) {
                 alert('Por favor, escribe un comentario.');
                 return;
@@ -841,8 +841,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Fetch error:', error);
                 alert('Hubo un error al publicar tu comentario.'); // Generic error message
             });
-        }
-    </script>
+    }
+</script>
 
     <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/footer/footer/footer.php'; ?>
     <script src='/PRODCONS/Header visitantes/barra_principal.js'></script>
