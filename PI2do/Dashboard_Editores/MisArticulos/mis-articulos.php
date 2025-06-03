@@ -216,7 +216,7 @@ $conexion->cerrar_conexion();
                                 <p class="text-[12px] text-gray-500"><?php echo date('d/m/Y', strtotime($post['Fecha de Creacion'])); ?></p>
                                 <p class="text-[14px] text-gray-700"><?php echo substr(strip_tags($post['Contenido']), 0, 150) . '...'; ?></p>
                                 <div class="flex gap-4 mt-3">
-                                    <button onclick="confirmarEliminar(<?php echo $post['ID_Articulo']; ?>)" class="px-4 py-2 bg-[#a5cf61] text-white font-semibold rounded text-sm hover:bg-[#6f9b39] transition">Ver</button>
+                                    <button class="px-4 py-2 bg-[#a5cf61] text-white font-semibold rounded text-sm hover:bg-[#6f9b39] transition">Ver</button>
                                     <a href="editar-post.php?id=<?php echo $post['ID_Articulo']; ?>" class="px-4 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition">Editar</a>
                                     <button onclick="confirmarEliminar(<?php echo $post['ID_Articulo']; ?>)" class="px-4 py-2 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition">Eliminar</button>
                                 </div>

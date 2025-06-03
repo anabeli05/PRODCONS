@@ -10,13 +10,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/Base de datos/conexion
   <meta charset="UTF-8">
   <title>Crear Nuevo Post</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
-  <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
   <link rel="stylesheet" href="../Crear nuevo Post/post-form.css">
+  
+  <!--herramientas QUILLJS-->
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
-    <!-- CSS Y JS DE HEADER-->
-    <link rel="stylesheet" href='../Dashboard/sidebar.css'>
-    <script src='../Dashboard/barra-nav.js' defer></script>
+  <!-- CSS Y JS DE HEADER-->
+  <link href='../Dashboard/sidebar.css' rel="stylesheet">
+  <script src='../Dashboard/barra-nav.js' defer></script>
 </head>
 <body> 
       <header> 
@@ -115,128 +117,141 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/Base de datos/conexion
         </div>
     </section>
     
-  <div class="contenedor-formulario">
-    <h1>Crear Nuevo Post</h1>
+<div class="contenedor-formulario">
+  <h1>Crear Nuevo Post</h1>
 
-  <form onsubmit="return validarFormulario()" action="/guardar-post" method="POST" enctype="multipart/form-data">
+  <form id="form-post" onsubmit="return guardarContenido()" action="/guardar-post" method="POST" enctype="multipart/form-data">
 
     <!-- Sección 1: Introducción -->
     <div class="seccion intro">
       <h2>Introducción del Artículo</h2>
 
-      <label for="intro_titulo">Título de la Introducción:</label>
-      <input type="text" id="intro_titulo" name="intro_titulo" required>
-
-      <label for="intro_texto">Texto de Introducción:</label>
-      <textarea id="intro_texto" name="intro_texto" required></textarea>
-
       <label for="intro_imagen">Imagen:</label>
       <input type="file" id="intro_imagen" name="intro_imagen" accept="image/*" required>
 
-      <label for="intro_alineacion">Alineación de la Imagen:</label>
-      <select id="intro_alineacion" name="intro_alineacion" required>
-        <option value="">Selecciona</option>
-        <option value="izquierda">Izquierda</option>
-        <option value="derecha">Derecha</option>
-      </select>
+      <label for="intro_titulo">Título:</label>
+      <input type="text" id="intro_titulo" name="intro_titulo" required>
+
+      <label for="intro_editor">Texto de Introducción:</label>
+      <div id="intro_editor" class="quill-editor"></div>
+      <input type="hidden" name="intro_texto" id="intro_texto_hidden">
+
+      <label for="intro_color">Color de Fondo:</label>
+      <input type="color" id="intro_color" name="intro_color" value="#ffffff" required>
     </div>
 
-    <!-- Sección 2: Contenido -->
-    <div class="seccion">
-      <h2>Contenido del Artículo</h2>
-      <div id="contenedores">
-        <div class="bloque">
-          <label>Título:</label>
-          <input type="text" name="titulo_bloques[]" required>
+<!-- Sección 2: Contenido -->
+<div class="seccion">
+  <h2>Contenido del Artículo</h2>
+  <div id="contenedores">
+    <!-- Primer bloque obligatorio -->
+    <div class="bloque">
+      <button type="button" class="eliminar-bloque" onclick="this.parentElement.remove()">❌</button>
 
-          <label>Subtítulo:</label>
-          <input type="text" name="subtitulo_bloques[]" required>
+      <label>Título:</label>
+      <input type="text" name="titulo_bloques[]" required>
 
-          <label>Texto:</label>
-          <textarea name="texto_bloques[]" class="editor" required></textarea>
+      <label>Subtítulo:</label>
+      <input type="text" name="subtitulo_bloques[]" required>
 
-          <label>Imagen (opcional):</label>
-          <input type="file" name="imagen_bloques[]" accept="image/*" multiple>
-
-          <label>Alineación de Imagen:</label>
-          <select name="alineacion_bloques[]">
-            <option value="">Sin imagen</option>
-            <option value="izquierda">Izquierda</option>
-            <option value="derecha">Derecha</option>
-          </select>
-        </div>
-      </div>
-
-      <button type="button" class="agregar" onclick="agregarBloque()">+ Agregar otro bloque</button>
+      <label>Contenido:</label>
+      <div class="quill-editor" id="bloque_editor_0"></div>
+      <input type="hidden" name="contenido_bloques[]" id="bloque_hidden_0">
     </div>
+  </div>
+
+  <button type="button" onclick="agregarBloque()">+ Agregar otro bloque</button>
+</div>
 
     <!-- Sección 3: Conclusión -->
     <div class="seccion">
       <h2>Conclusión</h2>
-      <textarea name="conclusion" class="editor" rows="4" required></textarea>
+      <div id="conclusion_editor" class="quill-editor"></div>
+      <input type="hidden" name="conclusion">
     </div>
 
     <!-- Sección 4: Bibliografía -->
     <div class="seccion">
       <h2>Bibliografía</h2>
-      <textarea name="bibliografia" class="editor" rows="4"></textarea>
+      <div id="bibliografia_editor" class="quill-editor"></div>
+      <input type="hidden" name="bibliografia">
     </div>
+
     <button type="submit" class="submit-btn">Publicar Artículo</button>
   </form>
+</div>
 
-  </div>
+<!--JavaScript-->
+<script>
+  let editors = {}; // Para guardar instancias de Quill
+  let bloqueCount = 1;
 
-
-  <script>
-    // Activar CKEditor para los campos iniciales
-    CKEDITOR.replace('intro_texto');
-    const contenidoInicial = document.querySelectorAll('.editor');
-    contenidoInicial.forEach((el, i) => CKEDITOR.replace(el));
-
-    function agregarBloque() {
-      const contenedor = document.getElementById('contenedores');
-      const bloque = document.createElement('div');
-      const index = contenedor.children.length;
-
-      bloque.className = 'bloque';
-      bloque.innerHTML = `
-        <label>Título:</label>
-        <input type="text" name="titulo_bloques[]" required>
-
-        <label>Subtítulo:</label>
-        <input type="text" name="subtitulo_bloques[]" required>
-
-        <label>Texto:</label>
-        <textarea name="texto_bloques[]" class="editor" required></textarea>
-
-        <label>Imagen (opcional):</label>
-        <input type="file" name="imagen_bloques[]" accept="image/*" multiple>
-
-        <label>Alineación de Imagen:</label>
-        <select name="alineacion_bloques[]">
-          <option value="">Sin imagen</option>
-          <option value="izquierda">Izquierda</option>
-          <option value="derecha">Derecha</option>
-        </select>
-      `;
-      contenedor.appendChild(bloque);
-
-      // Activar CKEditor en el nuevo textarea
-      const newTextarea = bloque.querySelector('.editor');
-      CKEDITOR.replace(newTextarea);
-    }
-
-    // Validación mínima para asegurar que haya al menos dos bloques llenos
-    function validarFormulario() {
-      const titulos = document.querySelectorAll('input[name="titulo_bloques[]"]');
-      const subtitulos = document.querySelectorAll('input[name="subtitulo_bloques[]"]');
-      if (titulos.length < 2 || subtitulos.length < 2) {
-        alert("Debes completar al menos dos bloques de contenido con título y subtítulo.");
-        return false;
+  // Inicializar editores
+  const initQuill = (id) => {
+    return new Quill(`#${id}`, {
+      theme: 'snow',
+      placeholder: 'Escribe aquí...',
+      modules: {
+        toolbar: [
+          ['bold', 'italic', 'underline'],
+          [{ 'color': [] }, { 'background': [] }],
+          [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+          ['link', 'image']
+        ]
       }
-      return true;
-    }
-  </script>
+    });
+  };
+
+  // Editores estáticos
+  editors.intro = initQuill('intro_editor');
+  editors.conclusion = initQuill('conclusion_editor');
+  editors.bibliografia = initQuill('bibliografia_editor');
+  editors["bloque_0"] = initQuill('bloque_editor_0');
+
+  function agregarBloque() {
+  const contenedor = document.getElementById("contenedores");
+  const index = bloqueCount++;
+
+  const bloque = document.createElement("div");
+  bloque.className = "bloque";
+  bloque.innerHTML = `
+    <button type="button" class="eliminar-bloque" onclick="this.parentElement.remove()">❌</button>
+
+    <label>Título:</label>
+    <input type="text" name="titulo_bloques[]">
+
+    <label>Subtítulo:</label>
+    <input type="text" name="subtitulo_bloques[]">
+
+    <label>Contenido:</label>
+    <div class="quill-editor" id="bloque_editor_${index}"></div>
+    <input type="hidden" name="contenido_bloques[]" id="bloque_hidden_${index}">
+  `;
+  contenedor.appendChild(bloque);
+
+  editors[`bloque_${index}`] = initQuill(`bloque_editor_${index}`);
+}
+
+
+  function guardarContenido() {
+    // Extraer contenido del editor de introducción
+    document.getElementById("intro_texto_hidden").value = editors.intro.root.innerHTML;
+
+    // Conclusión y bibliografía
+    document.querySelector('[name="conclusion"]').value = editors.conclusion.root.innerHTML;
+    document.querySelector('[name="bibliografia"]').value = editors.bibliografia.root.innerHTML;
+
+    // Bloques dinámicos
+    Object.keys(editors).forEach((key) => {
+      if (key.startsWith("bloque_")) {
+        const index = key.split("_")[1];
+        document.getElementById(`bloque_hidden_${index}`).value = editors[key].root.innerHTML;
+      }
+    });
+    return true;
+  }
+</script>
+
 
 </body>
 </html>
