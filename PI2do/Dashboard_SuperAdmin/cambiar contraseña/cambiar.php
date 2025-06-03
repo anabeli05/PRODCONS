@@ -123,20 +123,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../../styles.css">
     <link href="../../inicio_sesion/login.css" rel="stylesheet">
-    <style>
-        .error-message {
-            color: #dc3545;
-            margin-bottom: 15px;
-            text-align: center;
-            font-weight: bold;
-        }
-        .success-message {
-            color: #28a745;
-            margin-bottom: 15px;
-            text-align: center;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
     <div class="background-animation">
@@ -169,6 +155,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="input-area">
                             <input type="password" name="currentPassword" placeholder="Contraseña Actual" required>
                             <i class="fas fa-lock"></i>
+                            <span class="toggle-password" onclick="togglePasswordVisibility('currentPassword')">
+                                <i class="fas fa-eye"></i>
+                            </span>
                         </div>
                     </div>
 
@@ -176,6 +165,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="input-area">
                             <input type="password" name="nueva_password" placeholder="Nueva Contraseña" required>
                             <i class="fas fa-lock"></i>
+                            <span class="toggle-password" onclick="togglePasswordVisibility('nueva_password')">
+                                <i class="fas fa-eye"></i>
+                            </span>
                         </div>
                     </div>
 
@@ -183,6 +175,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="input-area">
                             <input type="password" name="confirmar_password" placeholder="Confirmar Nueva Contraseña" required>
                             <i class="fas fa-lock"></i>
+                            <span class="toggle-password" onclick="togglePasswordVisibility('confirmar_password')">
+                                <i class="fas fa-eye"></i>
+                            </span>
                         </div>
                     </div>
         
@@ -202,5 +197,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </section>
     </section>
+<script>
+    function togglePasswordVisibility(inputName) {
+        const input = document.querySelector(`input[name="${inputName}"]`);
+        const toggleIcon = document.querySelector(`input[name="${inputName}"] + i + .toggle-password i`);
+        
+        if (input.type === 'password') {
+            input.type = 'text';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+        } else {
+            input.type = 'password';
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
+        }
+    }
+</script>
 </body>
 </html>
