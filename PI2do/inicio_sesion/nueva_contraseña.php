@@ -59,52 +59,77 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRODCONS</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="login.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>PRODCONS - Nueva Contraseña</title>
     <style>
+        /* Estilos de la barra de navegación */
+        .barra-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: rgb(225, 216, 204);
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding-left: 20px;
+            border-bottom: 4px solid black;
+            z-index: 1000;
+        }
+        
+        .flecha-nav {
+            margin-left: 0;
+        }
+        
+        .flecha-nav a {
+            display: flex;
+            align-items: center;
+            height: 50px;
+        }
+        
+        .flecha-nav svg {
+            width: 32px;
+            height: 32px;
+            fill: #000;
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            transition: transform 0.2s;
+        }
+        
+        .flecha-nav svg:hover {
+            transform: scale(1.1);
+            fill: #4CAF50;
+        }
+        
+        /* Ajuste para el contenido principal */
+        .contenedor-main {
+            margin-top: 70px;
+        }
+        
+        /* Estilos existentes */
         .error-message {
             color: #dc3545;
             margin-bottom: 15px;
             text-align: center;
             font-weight: bold;
         }
-        
-        .back-arrow {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            font-size: 32px;
-            cursor: pointer;
-            color: #333;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 15px;
-            border-radius: 50%;
-            z-index: 1000;
-            transition: all 0.3s ease;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .back-arrow:hover {
-            background: rgba(255, 255, 255, 1);
-            transform: scale(1.1);
-        }
-        
-        .back-arrow i {
-            display: block;
-        }
     </style>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="login.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Flecha de regreso -->
-    <div class="back-arrow" onclick="window.history.back();">
-        <i class="fas fa-arrow-left"></i>
-    </div>
+    <!-- Barra de navegación -->
+    <nav class="barra-nav">
+        <div class="flecha-nav">
+            <a onclick="window.history.back()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+                    <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+                </svg>
+            </a>
+        </div>
+    </nav>
 
     <div class="background-animation">
         <div class="circle circle-1"></div>
