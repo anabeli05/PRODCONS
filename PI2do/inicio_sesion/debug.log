@@ -259,18 +259,96 @@ DEBUG: Success message:
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
 DEBUG: Success message: 
-
---- Nuevo Log de Sesión: 2025-05-31 17:22:28 ---
---- Nuevo Log de Sesión: 2025-05-31 17:23:07 ---
-DEBUG: Checking for duplicate email: xiomicob2005@outlook.com
-DEBUG: Duplicate email found.
-DEBUG: Exception caught: Error: El correo ya está registrado
---- Nuevo Log de Sesión: 2025-05-31 17:23:08 ---
---- Nuevo Log de Sesión: 2025-05-31 17:24:13 ---
---- Nuevo Log de Sesión: 2025-05-31 17:24:40 ---
-DEBUG: Checking for duplicate email: xiomicob2005@outlook.com
-DEBUG: Duplicate email found.
-DEBUG: Exception caught: Error: El correo ya está registrado
---- Nuevo Log de Sesión: 2025-05-31 17:24:41 ---
---- Nuevo Log de Sesión: 2025-05-31 17:25:07 ---
-DEBUG: Checking for duplicate email: xiomicob2005@outlook.com
+--- Nuevo Log de Sesión: 2025-06-02 19:52:28 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-02 20:06:28 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-02 20:13:59 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-02 20:16:01 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-02 20:19:42 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-02 20:21:24 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-02 20:23:15 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-02 20:24:52 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-02 20:27:33 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-02 20:28:59 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-02 20:29:19 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: 12345678
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Usuario no encontrado con correo: ysierra@ucol.mx
+DEBUG: Redirigiendo a login con error=1
+--- Nuevo Log de Sesión: 2025-06-02 20:29:20 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-02 20:29:20 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-03 06:56:16 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 06:57:26 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 07:01:37 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 07:03:33 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 07:04:09 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 07:09:02 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 07:09:19 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 07:44:23 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 07:44:27 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 07:44:31 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 07:44:45 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 07:45:25 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 07:45:33 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 07:45:46 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 07:45:50 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 07:45:53 ---
+DEBUG PHP: Script registro.php started. Error: None
+--- Nuevo Log de Sesión: 2025-06-03 07:45:55 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None

@@ -3,43 +3,53 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
-// Ensure the database connection is included
-include '../Base de datos/conexion.php';
 
-// Initialize the database connection
+if (!isset($_SESSION['codigo_recuperacion'])) {
+    header("Location: codigo.php");
+    exit();
+}
+
+if (time() > $_SESSION['codigo_expiracion']) {
+    session_unset();
+    session_destroy();
+    $_SESSION['error'] = "El código ha expirado. Por favor solicita uno nuevo.";
+    header("Location: codigo.php");
+    exit();
+}
+
+include '../Base de datos/conexion.php';
 $conexion = new Conexion();
 $conexion->abrir_conexion();
 $conn = $conexion->conexion;
+
+$error = null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $codigo_ingresado = $_POST['codigo'];
     $nueva_password = $_POST['nueva_password'];
     $confirmar_password = $_POST['confirmar_password'];
     
-    // Verificar que el código coincida
     if ($codigo_ingresado != $_SESSION['codigo_recuperacion']) {
-        die("Error: Código de verificación incorrecto");
+        $error = "Código de verificación incorrecto";
     }
-    
-    // Verificar que las contraseñas coincidan
-    if ($nueva_password != $confirmar_password) {
-        die("Error: Las contraseñas no coinciden");
+    elseif ($nueva_password != $confirmar_password) {
+        $error = "Las contraseñas no coinciden";
     }
-    
-    // Actualizar la contraseña en la base de datos
-    $hash = password_hash($nueva_password, PASSWORD_DEFAULT);
-    $stmt = $conn->prepare("UPDATE usuarios SET Contraseña = ? WHERE Correo = ?");
-    $stmt->bind_param("ss", $hash, $_SESSION['correo_recuperacion']);
-    
-    if ($stmt->execute()) {
-        // Limpiar variables de sesión
-        unset($_SESSION['codigo_recuperacion']);
-        unset($_SESSION['correo_recuperacion']);
+    else {
+        $hash = password_hash($nueva_password, PASSWORD_DEFAULT);
+        $stmt = $conn->prepare("UPDATE usuarios SET Contraseña = ? WHERE Correo = ?");
+        $stmt->bind_param("ss", $hash, $_SESSION['correo_recuperacion']);
         
-        header("Location: login.php?success=password_changed");
-        exit();
-    } else {
-        die("Error al actualizar la contraseña");
+        if ($stmt->execute()) {
+            session_unset();
+            session_destroy();
+            
+            $_SESSION['success'] = "Contraseña actualizada correctamente. Ahora puedes iniciar sesión.";
+            header("Location: login.php");
+            exit();
+        } else {
+            $error = "Error al actualizar la contraseña";
+        }
     }
 }
 ?>
@@ -47,37 +57,67 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Configuración básica del documento -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODCONS</title>
-    
-    <!-- Hojas de estilo -->
     <link rel="stylesheet" href="css/styles.css">
     <link href="login.css" rel="stylesheet">
-    <!-- Iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .error-message {
+            color: #dc3545;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .back-arrow {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 32px;
+            cursor: pointer;
+            color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 50%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .back-arrow:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+        }
+        
+        .back-arrow i {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <!-- ============================================= -->
-    <!-- SECCIÓN DE ANIMACIÓN DE FONDO -->
-    <!-- ============================================= -->
+    <!-- Flecha de regreso -->
+    <div class="back-arrow" onclick="window.history.back();">
+        <i class="fas fa-arrow-left"></i>
+    </div>
+
     <div class="background-animation">
         <div class="circle circle-1"></div>
         <div class="circle circle-2"></div>
         <div class="circle circle-3"></div>
     </div>
-    <!-- ============================================= -->
-    <!-- CABECERA PRINCIPAL -->
-    <!-- ============================================= -->
+    
     <header> 
         <div class="header-contenedor">
             <div class="principal"></div>
         </div>
     </header>
-    <!-- ============================================= -->
-    <!-- SECCIÓN DEL LOGO -->
-    <!-- ============================================= -->
+
     <section class="logo"> 
         <div class="header_2">
             <a href="/">           
@@ -85,19 +125,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </a>
         </div>
     </section>
-    <!-- ============================================= -->
-    <!-- CONTENIDO PRINCIPAL -->
-    <!-- ============================================= -->
+
     <section class="contenedor-main">
         <section class="wrapper">
             <div class="form" id="nueva-contrasena-form">
                 <h1>RESTABLECER CONTRASEÑA</h1>
-                <form method="POST" action="">
-                    <div class="instrucciones">
-                        <p>Ingresa el código que recibiste y tu nueva contraseña.</p>
+                
+                <?php if ($error): ?>
+                    <div class="error-message">
+                        <?php echo htmlspecialchars($error); ?>
                     </div>
+                <?php endif; ?>
 
-                    <!-- Campo para el código -->
+                <form method="POST" action="">
                     <div class="buton">
                         <div class="input-area">
                             <input type="text" name="codigo" placeholder="Código de verificación" required>
@@ -105,7 +145,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </div>
 
-                    <!-- Campo para la nueva contraseña -->
                     <div class="buton">
                         <div class="input-area">
                             <input type="password" name="nueva_password" placeholder="Nueva Contraseña" required>
@@ -113,7 +152,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </div>
 
-                    <!-- Campo para confirmar la nueva contraseña -->
                     <div class="buton">
                         <div class="input-area">
                             <input type="password" name="confirmar_password" placeholder="Confirmar Nueva Contraseña" required>
@@ -121,17 +159,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </div>
 
-                    <!-- Botón de envío -->
                     <input type="submit" value="CAMBIAR CONTRASEÑA"> 
                     
-                    <!-- Enlace para volver al login -->
                     <div class="alternar-form">
                         <p>¿Recordaste tu contraseña? <a href='login.php'>Inicia sesión aquí</a></p>
                     </div>
                 </form>
             </div>
             
-            <!-- Contenedor del logo (lado derecho) -->
             <div class="contenedor-logo">
                 <img src="../imagenes/login.png" alt="Imagen de fondo" class="bg-image">
                 <figure>

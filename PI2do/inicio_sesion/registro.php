@@ -4,12 +4,10 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
 
-// Validaciones de seguridad
 if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
-// Manejo de mensajes de error/success
 if (isset($_SESSION['registro_error'])) {
     $error = $_SESSION['registro_error'];
     unset($_SESSION['registro_error']);
@@ -22,10 +20,8 @@ if (isset($_SESSION['registro_error'])) {
 }
 
 include_once 'log_utils.php';
+writeLog("DEBUG PHP: Script registro.php started. Error: " . (isset($error) ? $error : "None"));
 
-writeLog("DEBUG PHP: Script registro.php started. Error: " . (isset($error) ? $error : "None")); // Log para verificar si $error tiene valor
-
-// Inicia la conexion con la base de datos
 include '../Base de datos/conexion.php';   
 $conexion = new Conexion();
 $conexion->abrir_conexion();
@@ -33,12 +29,10 @@ $conn = $conexion->conexion;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
     try {
-        // Validar token CSRF
         if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
             throw new Exception("Error: Solicitud no válida");
         }
 
-        // Sanitizar y validar inputs
         $nombre = filter_var(trim($_POST['Nombre']), FILTER_SANITIZE_STRING);
         if (empty($nombre)) {
             throw new Exception("Error: El nombre es requerido");
@@ -52,7 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
         $password = $_POST['Contraseña'];
         $confirmar_password = $_POST['confirmar_password'];
 
-        // Validar contraseña
         if (empty($password)) {
             throw new Exception("Error: La contraseña es requerida");
         }
@@ -87,7 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
             $_SESSION['Rol'] = $rol;
             $_SESSION['Estado'] = $estado;
             $_SESSION['registro_success'] = "Registro exitoso.";
-            // Redirigir a la página de bienvenida
             header("Location: https://localhost/PRODCONS/PI2do/Bienvenida/Bienvenida.html");
             exit();
         } else {
@@ -110,12 +102,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Configuración básica del documento -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODCONS</title>
-    
-    <!-- Estilos para mensajes -->
     <style>
         .error, .success {
             padding: 15px;
@@ -126,21 +115,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
             animation: fadeIn 0.5s ease-in-out;
         }
 
-        /* Estilos para campos inválidos */
-        .input-area input:invalid {
-            /* border-color: #dc3545; */
-            /* box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2); */
-        }
-
-        /* Estilos para campos válidos */
         .input-area input:valid {
             border-color: #155724;
             box-shadow: 0 0 0 2px rgba(21, 87, 36, 0.2);
         }
 
-
-
-        /* Estilos para el mensaje de error nativo */
         .input-area input:invalid::-webkit-validation-bubble-message {
             background-color: #f8d7da;
             color: #dc3545;
@@ -149,7 +128,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
             border-radius: 4px;
         }
 
-        /* Estilos para el icono de error */
         .input-area input:invalid::-webkit-validation-bubble-arrow {
             border-color: #dc3545;
         }
@@ -157,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
         .error {
             background-color: #f8d7da;
             border: none;
-            color: #800020; /* Color vino */
+            color: #800020;
             font-size: 16px;
             padding: 15px;
             margin: 15px 0;
@@ -165,10 +143,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
             font-weight: bold;
         }
 
-        /* Estilo para el mensaje de error de correo duplicado */
         .error-message {
             font-size: 16px;
-            color: #800020; /* Color vino */
+            color: #800020;
             margin: 5px 0;
             padding: 8px;
             border-radius: 4px;
@@ -196,34 +173,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
+        .back-arrow {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 32px;
+            cursor: pointer;
+            color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 50%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .back-arrow:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+        }
+        
+        .back-arrow i {
+            display: block;
+        }
     </style>
-    
-    <!-- Hojas de estilo -->
     <link rel="stylesheet" href="css/styles.css">
     <link href="login.css" rel="stylesheet">
-    <!-- Iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- ============================================= -->
-    <!-- SECCIÓN DE ANIMACIÓN DE FONDO -->
-    <!-- ============================================= -->
+    <!-- Flecha de regreso -->
+    <div class="back-arrow" onclick="window.history.back();">
+        <i class="fas fa-arrow-left"></i>
+    </div>
+
     <div class="background-animation">
         <div class="circle circle-1"></div>
         <div class="circle circle-2"></div>
         <div class="circle circle-3"></div>
     </div>
-    <!-- ============================================= -->
-    <!-- CABECERA PRINCIPAL -->
-    <!-- ============================================= -->
+    
     <header> 
         <div class="header-contenedor">
             <div class="principal"></div>
         </div>
     </header>
-    <!-- ============================================= -->
-    <!-- SECCIÓN DEL LOGO -->
-    <!-- ============================================= -->
+
     <section class="logo"> 
         <div class="header_2">
             <a href="/">           
@@ -231,14 +231,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
             </a>
         </div>
     </section>
-    <!-- ============================================= -->
-    <!-- CONTENIDO PRINCIPAL -->
-    <!-- ============================================= -->
+
     <section class="contenedor-main">
         <section class="wrapper">
-            <!-- ============================================= -->
-            <!-- FORMULARIO DE REGISTRO -->
-            <!-- ============================================= -->
             <div class="form" id="registro-form">
                 <h1>REGISTRAR USUARIO</h1>
                 <?php if (isset($success)): ?>
@@ -248,52 +243,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
                 <?php endif; ?>
                 <form method="POST" action="registro.php" onsubmit="return validarFormulario()">
                     <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
-                    <!-- Campo para el nombre completo -->
                     <div class="buton">
                         <div class="input-area">
                             <input type="text" placeholder="Nombre Completo" name="Nombre" required>
                             <i class="fas fa-user"></i>
                         </div>
                     </div>
-                    <!-- Mensaje de validación del nombre -->
                     <div class="error-message" id="nombre-error"></div>
-                    <!-- Campo para el correo electrónico -->
                     <div class="buton">
                         <div class="input-area">
                             <input type="email" placeholder="Correo Electrónico" name="Correo" required>
                             <i class="fas fa-envelope"></i>
                         </div>
                     </div>
-                    <!-- Campo para la contraseña -->
                     <div class="buton">
                         <div class="input-area">
                             <input type="password" placeholder="Contraseña" name="Contraseña" required>
                             <i class="fas fa-lock"></i>
                         </div>
                     </div>
-                    <!-- Campo para confirmar la contraseña -->
                     <div class="buton">
                         <div class="input-area">
                             <input type="password" placeholder="Confirmar Contraseña" name="confirmar_password" required>
                             <i class="fas fa-lock"></i>
                         </div>
                     </div>
-                    <!-- Checkbox de términos y condiciones -->
                     <div class="terminos">
                         <input class="C" type="checkbox" required>
                         <label>Acepto los <a href="/PRODCONS/footer/parafooter/term-condi/term-condi.html">términos y condiciones</a></label>
                     </div>
-                    <!-- Botón de envío -->
                     <input type="submit" name="registro" value="REGISTRARSE"> 
-                    <!-- Enlace para alternar al formulario de login -->
                     <div class="alternar-form">
                         <p>¿Ya tienes una cuenta? <a href='../inicio_sesion/login.php' id="mostrar-login">Inicia sesión aquí</a></p>
                     </div>
                 </form>
             </div>
-            <!-- ============================================= -->
-            <!-- CONTENEDOR DEL LOGO (lado derecho) -->
-            <!-- ============================================= -->
             <div class="contenedor-logo">
                 <img src="../imagenes/login.png" alt="Imagen de fondo" class="bg-image">
                 <figure>
@@ -303,7 +287,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
         </section>
     </section>
     <script>
-    // Validación de contraseñas en el formulario de registro
     document.addEventListener('DOMContentLoaded', function() {
         const registroForm = document.getElementById('registro-form');
         const registroPassword = registroForm.querySelector('input[placeholder="Contraseña"]');
@@ -313,7 +296,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
         const terminosCheckbox = registroForm.querySelector('.C');
         const nombreError = document.getElementById('nombre-error');
 
-        // Validación de contraseñas en tiempo real
         registroPassword.addEventListener('input', function() {
             if (this.value.length < 8) {
                 this.setCustomValidity('La contraseña debe tener al menos 8 caracteres');
@@ -330,7 +312,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
             }
         });
 
-        // Validación de nombre
         nombreInput.addEventListener('input', function() {
             if (this.value.length < 3) {
                 this.setCustomValidity('El nombre debe tener al menos 3 caracteres');
@@ -339,7 +320,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
             }
         });
 
-        // Validación de correo
         correoInput.addEventListener('input', function() {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(this.value)) {
@@ -349,43 +329,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
             }
         });
 
-        // Validación de términos y condiciones
         registroForm.addEventListener('submit', function(e) {
             if (!terminosCheckbox.checked) {
                 e.preventDefault();
                 alert('Debes aceptar los términos y condiciones');
             }
-            // También validamos otros campos al intentar enviar para mostrar las burbujas
             nombreInput.reportValidity();
             correoInput.reportValidity();
             registroPassword.reportValidity();
             registroConfirmPassword.reportValidity();
         });
 
-        // --- Manejo de errores de sesión desde PHP ---
-        // Pass PHP error to JavaScript
         const phpError = "<?php echo isset($error) ? htmlspecialchars($error) : ''; ?>";
-        writeLog('DEBUG JS Consolidated: phpError variable value: ' + phpError); // Log point 6 (Consolidated)
+        writeLog('DEBUG JS Consolidated: phpError variable value: ' + phpError);
 
         document.addEventListener('DOMContentLoaded', function() {
-            writeLog('DEBUG JS Consolidated: DOMContentLoaded listener started.'); // Log point 7 (Consolidated)
+            writeLog('DEBUG JS Consolidated: DOMContentLoaded listener started.');
             const registroForm = document.getElementById('registro-form');
             const correoInput = registroForm.querySelector('input[placeholder="Correo Electrónico"]');
             
-            // Display duplicate email error if present from PHP
             if (phpError === 'Error: El correo ya está registrado') {
-                writeLog('DEBUG JS Consolidated: Inside duplicate email error display block.'); // Log point 8 (Consolidated)
+                writeLog('DEBUG JS Consolidated: Inside duplicate email error display block.');
                 if (correoInput) {
-                    writeLog('DEBUG JS Consolidated: Correo input found.'); // Log point 5 (Consolidated)
+                    writeLog('DEBUG JS Consolidated: Correo input found.');
                     correoInput.setCustomValidity('El correo ya está registrado');
                     correoInput.reportValidity();
                     
-                    // Aseguramos que el mensaje se muestre inmediatamente
                     correoInput.style.borderColor = '#dc3545';
                     correoInput.style.boxShadow = '0 0 0 2px rgba(220, 53, 69, 0.2)';
                     correoInput.style.color = '#dc3545';
                     
-                    // Mostramos el mensaje en un div adicional si no se muestra la burbuja
                     const errorDiv = document.createElement('div');
                     errorDiv.className = 'error-message';
                     errorDiv.textContent = 'El correo ya está registrado';
@@ -393,28 +366,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
                 }
             }
 
-            // Show success message in a pop-up and then redirect if present from PHP
             const phpSuccess = "<?php echo isset($success) ? htmlspecialchars($success) : ''; ?>";
             if (phpSuccess) {
                  writeLog('DEBUG JS Consolidated: Showing success message.');
                  alert(phpSuccess);
                  window.location.href = "/PRODCONS/PI2do/Dashboard_Usuario/Inicio/usuario.php";
             }
-             // --- Fin Manejo de errores de sesión desde PHP ---
-
         });
-
-        // Clear the session error after displaying it via JS on the next page load
-        // This PHP code is outside the DOMContentLoaded to ensure it runs immediately
-        <?php 
-        // Ya no necesitamos limpiar aquí, se limpia después de la asignación en PHP arriba
-        // unset($_SESSION['registro_error']);
-        // unset($_SESSION['registro_success']);
-        ?>
-
     });
-
     </script>
 </body>
 </html>
-            
