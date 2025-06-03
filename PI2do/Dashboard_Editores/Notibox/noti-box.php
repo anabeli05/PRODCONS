@@ -58,7 +58,6 @@ $stmt->close();
     <!-- CSS Y JS DE HEADER-->
     <link href='/PRODCONS/PI2do/Dashboard_Editores/Dashboard/sidebar.css' rel="stylesheet">
     <script src='/PRODCONS/PI2do/Dashboard_Editores/Dashboard/barra-nav.js' defer></script>
-
     <style>
         .notification-badge {
             position: absolute;
@@ -94,8 +93,6 @@ $stmt->close();
     </style>
 </head>
 <body>
-
-
     <header> 
         <div class="header-contenedor">
             <div class="principal"></div>
@@ -104,7 +101,7 @@ $stmt->close();
 
     <section class="logo"> 
         <div class="header_2">
-            <img class="prodcons" src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo">
+            <img class="prodcons" src='../../imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
             <div class="admin-controls">
                 <!-- Botón de búsqueda-->
@@ -151,7 +148,7 @@ $stmt->close();
                 
                 <nav class="sidebar-menu">
 
-                <a href='../MisArticulos/mis-articulos.php'><!----cambiar la ruta a inicio---->
+                <a href='../inicio/inicio.php'><!----cambiar la ruta a inicio---->
                         <span>Inicio</span>
                         <i class="fas fa-file-alt"></i>
                     </a>
@@ -161,7 +158,7 @@ $stmt->close();
                         <i class="fas fa-file-alt"></i>
                     </a>
 
-                    <a href="../Crear nuevo post/formulario-new-post.php">
+                    <a href="../Crear nuevo post/post-form.html">
                         <span>Crear Post</span>
                         <i class="fas fa-edit"></i>
                     </a>
@@ -187,12 +184,12 @@ $stmt->close();
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </div>
+                </nav>
             </div>
         </div>
     </section>
 
     <!-- NOTIFICACIONES -->
-
     <section class="notificaciones">
         <div class="notifications-container">
             <div class="notifications-header">

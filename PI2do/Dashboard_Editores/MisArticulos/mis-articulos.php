@@ -61,6 +61,7 @@ $conexion->cerrar_conexion();
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
+<body>
     <header> 
         <div class="header-contenedor">
             <div class="principal"></div>
@@ -69,7 +70,7 @@ $conexion->cerrar_conexion();
 
     <section class="logo"> 
         <div class="header_2">
-            <img class="prodcons" src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo">
+            <img class="prodcons" src='../../imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
             <div class="admin-controls">
                 <!-- Botón de búsqueda-->
@@ -126,7 +127,7 @@ $conexion->cerrar_conexion();
                         <i class="fas fa-file-alt"></i>
                     </a>
 
-                    <a href="../Crear nuevo post/formulario-new-post.php">
+                    <a href="../Crear nuevo post/post-form.html">
                         <span>Crear Post</span>
                         <i class="fas fa-edit"></i>
                     </a>
@@ -161,7 +162,7 @@ $conexion->cerrar_conexion();
     <div class="font-sans m-20 bg-[#fdfdfd]">
         <div class="flex justify-between items-center mb-5">
             <h1 class="text-[28px] font-semibold m-0">Mis Artículos</h1>
-            <a href="/PRODCONS/PI2do/Dashboard_Editores/MisArticulos/formulario-new-post.php" class="flex items-center gap-2 bg-[#31a6c0] text-white text-[15px] font-bold py-2 px-5 rounded-[15px] cursor-pointer hover:bg-[#27899f]">
+            <a href="/PRODCONS/PI2do/Dashboard_Editores/Crear nuevo post/post-form.html" class="flex items-center gap-2 bg-[#31a6c0] text-white text-[15px] font-bold py-2 px-5 rounded-[15px] cursor-pointer hover:bg-[#27899f]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -215,6 +216,7 @@ $conexion->cerrar_conexion();
                                 <p class="text-[12px] text-gray-500"><?php echo date('d/m/Y', strtotime($post['Fecha de Creacion'])); ?></p>
                                 <p class="text-[14px] text-gray-700"><?php echo substr(strip_tags($post['Contenido']), 0, 150) . '...'; ?></p>
                                 <div class="flex gap-4 mt-3">
+                                    <button onclick="confirmarEliminar(<?php echo $post['ID_Articulo']; ?>)" class="px-4 py-2 bg-[#a5cf61] text-white font-semibold rounded text-sm hover:bg-[#6f9b39] transition">Ver</button>
                                     <a href="editar-post.php?id=<?php echo $post['ID_Articulo']; ?>" class="px-4 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition">Editar</a>
                                     <button onclick="confirmarEliminar(<?php echo $post['ID_Articulo']; ?>)" class="px-4 py-2 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition">Eliminar</button>
                                 </div>
@@ -227,7 +229,7 @@ $conexion->cerrar_conexion();
             <div class="flex items-end gap-[120px] mt-10 max-w-[895px] relative">
                 <div class="w-[120%] bg-[#ece9e5] mr-[35px] rounded-[12px] p-[25px_40px] pt-[60px] relative flex-grow min-h-[150px] flex flex-col justify-center items-center">
                     <p class="m-0 mb-5 text-[15px] text-gray-800 max-w-[80%] z-[1] text-center">Sigue creando post, informa al mundo de los nuevos sucesos!</p>
-                    <a href='formulario-new-post.php' class="pb-5 bg-[#b1dcaa] rounded-full w-[50px] h-[50px] text-[50px] font-bold text-green-900 cursor-pointer z-[2] transition-transform duration-200 flex items-center justify-center hover:scale-110">+</a>
+                    <a href='../Crear nuevo post/post-form.html' class="pb-5 bg-[#b1dcaa] rounded-full w-[50px] h-[50px] text-[50px] font-bold text-green-900 cursor-pointer z-[2] transition-transform duration-200 flex items-center justify-center hover:scale-110">+</a>
                     <img src='/PRODCONS/PI2do/imagenes/plantita.png' class="absolute z-0 left-[15px] top-[25px]" width="80">
                     <img src='/PRODCONS/PI2do/imagenes/planta.png' class="absolute z-0 right-[15px] top-[25px]" width="80">
                 </div>
