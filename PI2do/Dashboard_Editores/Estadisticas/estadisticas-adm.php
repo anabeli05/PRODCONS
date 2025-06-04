@@ -110,27 +110,13 @@ if (!isset($_SESSION['csrf_token'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>PRODCONS - Mis Estadísticas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    <link rel="stylesheet" href="estadisticas-adm.css" />
-    <link rel="stylesheet" href="sidebar.css" />
-    <script src="barra-nav.js" defer></script>
+    <link rel="stylesheet" href="../Estadisticas/estadisticas-adm.css" />
+
+    <!-- CSS Y JS DE HEADER-->
+    <link rel="stylesheet" href='../Dashboard/sidebar.css'>
+    <script src='../Dashboard/barra-nav.js' defer></script>
     <style>
-        .stat-number {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-        }
-        .stat h1 i {
-            margin-right: 8px;
-            color: #666;
-        }
-        .stat {
-            text-align: center;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin: 10px;
-        }
+
     </style>
 </head>
 <body>

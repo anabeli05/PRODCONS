@@ -43,10 +43,14 @@ h1 {
 
 .stat {
   background: #75c36a;
-  width: 25%;
-  height: 90px;
+  width: 100%;
+  max-width: 300px;
+  min-width: 200px;
+  height: auto;
   padding: 10px;
   border-radius: 10px;
+  word-wrap: break-word;
+  text-align: center;
 }
 
 .stat p{
@@ -59,9 +63,11 @@ h1 {
 }
 
 .chart-wrapper {
-  width: 90%;
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .bars {
@@ -174,3 +180,22 @@ h1 {
   margin-right: 10px;
 }
 
+.stat-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.stat h1 i {
+  margin-right: 8px;
+  color: #666;
+}
+
+.stat {
+  text-align: center;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin: 10px;
+  }
