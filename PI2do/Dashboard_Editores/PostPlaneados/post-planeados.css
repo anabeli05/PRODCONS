@@ -19,14 +19,14 @@ h1 {
   display: flex;
   margin: 30px 45px 0px 35px;
   gap: 35px;
-  flex-wrap:nowrap;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .contenedor-cajas {
-  flex: 1 1 100%;
+  flex: 1 1 60%;
   max-width: 100%;
   position: relative;
-  align-items: center;
 }
 
 .programa {
@@ -89,7 +89,7 @@ h1 {
 /*------ apartado calendario ------*/
 .contenedor-calendario{
   background-color:#fff;
-  padding: 15px;
+  padding: 10px;
   border-radius: 8px;
   width: 100%;
   margin-top: 20px;
@@ -116,28 +116,36 @@ h2{
 }
 
 .dias-semana{
-  display: flex;
-  justify-content: space-between;
-  margin: 0 10px;
-  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin: 0;
+  padding: 0 0 10px 0;
   font-size: 13px;
   font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+
+.dias-semana .dia {
+    /* Remove flex-specific styles if any */
 }
 
 .contenedores {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 0;
   gap: 10px;
-  
+  width: 100%;
 }
 
 .cuadrito{
   background-color:green;
-  padding: 20px;
+  padding: 8px;
   border-radius: 10px;
-  width: 45px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  min-width: 0;
 }
 
 .contenedor-postit{
@@ -148,12 +156,72 @@ h2{
   height: 320px;
   text-align: center;
   font-size: 13px;
-  flex-shrink: 0;
+  flex: 1 1 300px;
+  border-radius: 10px;
 }
 
 .contenedor-postit h2{
   padding-left: 60px;
   font-size: 25px;
+}
+
+.contenedor-postit .text {
+    /* Add padding or margin if needed */
+}
+
+.post-planeado {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Space between post entries */
+    padding-bottom: 15px; /* Add padding at the bottom */
+    border-bottom: 1px solid #ccc; /* Add a subtle separator */
+}
+
+.post-planeado:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none; /* Remove border for the last item */
+}
+
+.post-day {
+    font-size: 2em; /* Large font size for the day */
+    font-weight: bold;
+    margin-right: 15px; /* Space between day and image/content */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.post-content-wrapper {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Allow content wrapper to take available space */
+}
+
+.post-image {
+    width: 80px; /* Thumbnail width */
+    height: 80px; /* Thumbnail height */
+    object-fit: cover; /* Crop image to fit */
+    border-radius: 8px; /* Rounded corners for image */
+    margin-right: 15px; /* Space between image and text */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.post-text {
+    flex-grow: 1; /* Allow text to take available space */
+}
+
+.post-title {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.post-date {
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* Adjust postit height if necessary */
+.contenedor-postit {
+    height: auto; /* Allow height to adjust based on content */
 }
 
 .flecha-mes {
@@ -165,4 +233,49 @@ h2{
 
 .flecha-mes:hover {
   color: #388e3c;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .division-dos {
+        margin: 20px; /* Adjust margin for smaller screens */
+        gap: 20px; /* Adjust gap for smaller screens */
+    }
+
+    .contenedor-cajas {
+        flex: 1 1 100%; /* Take full width on smaller screens */
+        /* Remove max-width if it interferes */
+        max-width: none; 
+        width: 100%; /* Explicitly set width to 100% */
+        box-sizing: border-box; /* Ensure consistent box model */
+    }
+
+    .programa {
+        padding: 0; /* Remove padding from programa in media query */
+    }
+
+    .contenedor-postit {
+        flex: 1 1 100%; /* Take full width on smaller screens */
+        max-width: none; /* Remove max-width constraint */
+        padding: 0; /* Remove internal padding when stacked */
+        width: 100%; /* Explicitly set width to 100% */
+        box-sizing: border-box; /* Ensure consistent box model */
+    }
+    
+    .contenedor-calendario {
+        padding: 0; /* Remove padding from calendar container in media query */
+    }
+    
+    .contenedores {
+        gap: 3px; /* Keep gap between items */
+        width: 100%; /* Ensure grid container takes full width */
+        box-sizing: border-box; /* Include padding and border in width */
+        padding: 0; /* Remove padding from grid container in media query */
+        /* Use calc() to define precise column widths */
+        grid-template-columns: repeat(7, calc((100% - (6 * 3px)) / 7));
+    }
+    
+    .cuadrito {
+        padding: 3px; /* Keep padding on squares */
+    }
 }
