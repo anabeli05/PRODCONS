@@ -190,7 +190,7 @@ try {
                     <button class="w-1/2 min-w-[150px] h-20 border-none rounded-[30px] bg-[#1b641b] text-white font-semibold text-[clamp(14px,1.5vw,16px)] cursor-pointer transition duration-300 mt-[25px] hover:bg-[#145014]">ESCRIBE UN NUEVO POST</button>
                 </a>
             </div>
-            <div class="w-[35%] h-full flex justify-center items-center p-[15px]">
+            <div class="absolute right-[30px] bottom-[10px] top-[10px] w-[30%] flex justify-center items-center">
                 <img src='/PRODCONS/PI2do/imagenes/chicaLaptop.png' class="max-h-[200px] h-[280px] w-auto object-contain">
             </div>
         </div>
