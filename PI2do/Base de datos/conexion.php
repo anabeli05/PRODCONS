@@ -52,7 +52,7 @@
 					// echo "DEBUG: Error en la consulta: " . $this->conexion->error . "<br>";
 					throw new Exception("Error en la consulta: " . $this->conexion->error);
 				}
-				$this->cerrar_conexion(); 
+				            // No cerrar la conexión aquí, se cerrará en el bloque finally del script que la usa 
 				// echo "DEBUG: Consulta exitosa<br>";
 				if (!$result) {
 					throw new Exception("Error en la consulta: " . $this->conexion->error);
