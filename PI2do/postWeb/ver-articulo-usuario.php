@@ -167,7 +167,33 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 </head>
 <body>
     <?php if ($article): ?>
-        <?php include $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/header_post/header_post.php'; ?>
+        <header>
+            <div class="header-contenedor">
+                <i class="flecha_left">
+                    <a href="/PRODCONS/" title="Regresar a la página principal">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+                        </svg>
+                    </a>
+                </i>
+                <div class="principal">
+                    <a class="navlink" href="/PRODCONS/PI2do/empresas_responsables/empresasr.php">EMPRESAS RESPONSABLES</a>
+                    <!-- =====================================================================
+                    SELECTOR DE BANDERA PARA CAMBIO DE IDIOMA - PERSONALIZABLE
+                    Estos elementos controlan la selección de idioma en la página principal
+                    ===================================================================== -->
+                    <!-- Bandera principal visible - Puedes cambiar la imagen por defecto aquí -->
+                    <div id="idiomaToggle" style="display: inline-block; margin-left: 15px;">
+                        <img class="españa" id="banderaIdioma" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
+                    </div>
+                    <!-- Opciones de banderas desplegables - Puedes cambiar las imágenes aquí -->
+                    <div id="idiomasOpciones" style="display: none;">
+                        <img class="ingles" src="/PRODCONS/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
+                        <img class="españa" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
+                    </div>
+                </div>
+            </div>
+        </header>
 
         <!-- Sección del artículo -->
         <section class="header-section">
@@ -178,7 +204,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                 </div>
                 <div class="imagenes">
                     <?php if ($article['imagenes']): ?>
-                        <img src="/PRODCONS/PI2do/imagenes/articulos/<?php echo htmlspecialchars(explode(',', $article['imagenes'])[0]); ?>" alt="<?php echo htmlspecialchars($article['Titulo']); ?>" class="imagen-primera">
+                        <img id="mainImage" src="/PRODCONS/PI2do/imagenes/articulos/<?php echo htmlspecialchars(explode(',', $article['imagenes'])[0]); ?>" alt="<?php echo htmlspecialchars($article['Titulo']); ?>" class="imagen-primera" style="cursor:pointer;" onclick="changeImage()">
                     <?php else: ?>
                         <div class="w-full h-full bg-[#f5f5f5] flex items-center justify-center text-[#666]">Sin imagen</div>
                     <?php endif; ?>
@@ -416,6 +442,38 @@ Este script mantiene sincronizada la interfaz de idioma
     </section>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/footer/Visitante/footer.php'; ?>
+
+<script>
+    // Initialize translation on page load with preferred language
+    document.addEventListener('DOMContentLoaded', function() {
+        const preferredLanguage = localStorage.getItem('preferredLanguage') || 'es';
+        const bandera = document.getElementById('banderaIdioma');
+        if (bandera) {
+            bandera.src = preferredLanguage === 'en' ? "/PRODCONS/PI2do/imagenes/logos/ingles.png" : "/PRODCONS/PI2do/imagenes/logos/espanol.png";
+            bandera.setAttribute('data-idioma', preferredLanguage);
+        }
+        translateContent(preferredLanguage);
+    });
+
+    // Image change function (if multiple images exist)
+    function changeImage() {
+        const mainImage = document.getElementById('mainImage');
+        if (!mainImage) return;
+
+        // Get all images from PHP variable
+        const images = <?php echo json_encode($article && $article['imagenes'] ? explode(',', $article['imagenes']) : []); ?>;
+        if (images.length <= 1) return;
+
+        // Find current image index
+        const currentSrc = mainImage.src;
+        const basePath = '/PRODCONS/PI2do/imagenes/articulos/';
+        let currentIndex = images.findIndex(img => currentSrc.endsWith(img));
+
+        // Cycle to next image
+        let nextIndex = (currentIndex + 1) % images.length;
+        mainImage.src = basePath + images[nextIndex];
+    }
+</script>
 
 </body>
 </html>

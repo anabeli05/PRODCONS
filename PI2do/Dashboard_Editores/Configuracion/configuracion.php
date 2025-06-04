@@ -72,7 +72,9 @@ try {
 
     <section class="logo"> 
         <div class="header_2">
-            <img class="prodcons" src='../../imagenes/prodcon/logoSinfondo.png' alt="Logo">
+            <a href="../inicio/inicio.php">
+                <img class="prodcons" src='../../imagenes/prodcon/logoSinfondo.png' alt="Logo">
+            </a>
 
             <div class="admin-controls">
                 <!-- Botón de búsqueda-->

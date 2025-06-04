@@ -1,6 +1,16 @@
 <?php
 session_start();
+
 include '../../Base de datos/conexion.php';
+
+// Crear instancia de la conexión
+$conexion = new Conexion();
+try {
+    $conexion->abrir_conexion();
+    $conn = $conexion->conexion;
+} catch (Exception $e) {
+    die("Error de conexión a la base de datos");
+}
 
 if (!isset($_SESSION['Usuario_ID'])) {
     header('Location: ../inicio_sesion/login.php');
@@ -8,14 +18,27 @@ if (!isset($_SESSION['Usuario_ID'])) {
 }
 
 $Usuario_ID = $_SESSION['Usuario_ID'];
-$stmt = $conn->prepare("SELECT * FROM posts_planeados WHERE Usuario_ID = ? ORDER BY Fecha_Programada ASC");
-$stmt->execute([$Usuario_ID]);
-$planeados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+try {
+    $stmt = $conn->prepare("SELECT * FROM articulos WHERE Usuario_ID = ? ORDER BY `Fecha de Publicacion` ASC");
+    
+    $stmt->bind_param("i", $Usuario_ID);
+    
+    $stmt->execute();
+    
+    $result = $stmt->get_result();
+    $planeados = [];
+    while ($row = $result->fetch_assoc()) {
+        $planeados[] = $row;
+    }
+} catch (Exception $e) {
+    die("Error al obtener los posts planeados");
+}
 
 // Extraer los días con posts programados
 $dias_con_post = [];
 foreach ($planeados as $post) {
-    $fecha = date('Y-m-d', strtotime($post['Fecha_Programada']));
+    $fecha = date('Y-m-d', strtotime($post['Fecha de Publicacion']));
     $dias_con_post[$fecha] = true;
 }
 
@@ -39,7 +62,7 @@ if ($mes_siguiente > 12) {
 
 // Formato para el título del mes
 setlocale(LC_TIME, 'es_ES.UTF-8');
-$nombre_mes = strftime('%B', mktime(0, 0, 0, $mes_actual, 1, $anio_actual));
+$nombre_mes = date('F', mktime(0, 0, 0, $mes_actual, 1, $anio_actual));
 
 $primer_dia = "$anio_actual-$mes_actual-01";
 $ultimo_dia = date('t', strtotime($primer_dia));
@@ -67,7 +90,9 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
 
     <section class="logo"> 
         <div class="header_2">
-            <img class="prodcons" src='../../imagenes/prodcon/logoSinfondo.png' alt="Logo">
+            <a href="../inicio/inicio.php">
+                <img class="prodcons" src='../../imagenes/prodcon/logoSinfondo.png' alt="Logo">
+            </a>
 
             <div class="admin-controls">
                 <!-- Botón de búsqueda-->
@@ -95,7 +120,7 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
 
                 <!-- Botón Admin con avatar -->
                 <div class="admin-btn">
-                    <span><?php echo htmlspecialchars($_SESSION['Nombre'] ?? 'Admin'); ?></span>
+                    <span><?php echo htmlspecialchars($_SESSION['Nombre'] ?? 'Editor'); ?></span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 11l8 3l8 -3" />
                     </svg>
@@ -181,7 +206,7 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
                             <div class="dia">D</div>
                             <div class="dia">L</div>
                             <div class="dia">M</div>
-                            <div class="dia">M</div>
+                            <div class="dia">Mi</div>
                             <div class="dia">J</div>
                             <div class="dia">V</div>
                             <div class="dia">S</div>
@@ -217,13 +242,16 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
                     <?php else: ?>
                         <?php foreach ($planeados as $post): ?>
                             <div class="post-planeado">
-                                <strong><?= htmlspecialchars($post['Titulo']) ?></strong><br>
-                                <span><?= date('d/m/Y H:i', strtotime($post['Fecha_Programada'])) ?></span>
-                                <p><?= nl2br(htmlspecialchars($post['Contenido'])) ?></p>
-                                <?php if ($post['Imagen']): ?>
-                                    <img src="<?= htmlspecialchars($post['Imagen']) ?>" alt="Imagen del post" style="max-width:100px;">
-                                <?php endif; ?>
-                                <hr>
+                                <div class="post-day"><?= date('d', strtotime($post['Fecha de Publicacion'])) ?></div>
+                                <div class="post-content-wrapper">
+                                    <?php if ($post['Imagen']): ?>
+                                        <img src="<?= htmlspecialchars($post['Imagen']) ?>" alt="Imagen del post" class="post-image">
+                                    <?php endif; ?>
+                                    <div class="post-text">
+                                        <strong class="post-title"><?= htmlspecialchars($post['Titulo']) ?></strong><br>
+                                        <span class="post-date">Será publicado el <?= date('d', strtotime($post['Fecha de Publicacion'])) ?> de <?= date('F', strtotime($post['Fecha de Publicacion'])) ?> de <?= date('Y', strtotime($post['Fecha de Publicacion'])) ?></span>
+                                    </div>
+                                </div>
                             </div>
                         <?php endforeach; ?>
                     <?php endif; ?>
