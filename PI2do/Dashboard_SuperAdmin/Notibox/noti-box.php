@@ -27,8 +27,8 @@ try {
     $sql = "SELECT a.*, u.Nombre as autor_nombre 
             FROM articulos a 
             JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID 
-            WHERE a.Estado = 'pendiente' 
-            ORDER BY a.Fecha de Creacion DESC";
+            WHERE a.Estado = 'Borrador' 
+            ORDER BY `Fecha de Creacion` DESC";
     
     $result = $conexion->ejecutar_consulta($sql);
     if ($result) {
@@ -125,7 +125,7 @@ try {
         
         <div class="pending-articles-container">
             <?php if (empty($articulos_pendientes)): ?>
-                <div class="no-pending">No hay artículos pendientes de revisión.</div>
+                <div class="no-pending">No hay artículos con estado 'Borrador' en la base de datos.</div>
             <?php else: ?>
                 <?php foreach ($articulos_pendientes as $articulo): ?>
                     <div class="article-card">
