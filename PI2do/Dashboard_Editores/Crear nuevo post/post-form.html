@@ -232,7 +232,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/Base de datos/conexion
   editors[`bloque_${index}`] = initQuill(`bloque_editor_${index}`);
 }
 
-
   function guardarContenido() {
     // Extraer contenido del editor de introducción
     document.getElementById("intro_texto_hidden").value = editors.intro.root.innerHTML;

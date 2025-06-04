@@ -162,7 +162,7 @@ $conexion->cerrar_conexion();
     <div class="font-sans m-20 bg-[#fdfdfd]">
         <div class="flex justify-between items-center mb-5">
             <h1 class="text-[28px] font-semibold m-0">Mis Artículos</h1>
-            <a href="/PRODCONS/PI2do/Dashboard_Editores/Crear nuevo post/post-form.html" class="flex items-center gap-2 bg-[#31a6c0] text-white text-[15px] font-bold py-2 px-5 rounded-[15px] cursor-pointer hover:bg-[#27899f]">
+            <a href="/PRODCONS/PI2do/Dashboard_Editores/Crear nuevo post/post-form.html" class="flex mr-5 items-center gap-2 bg-[#3F6B55] text-white text-[15px] font-bold italic py-2 px-5 rounded-[12px] cursor-pointer hover:bg-[#2F5443]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -170,9 +170,9 @@ $conexion->cerrar_conexion();
                 Crear Nuevo Post
             </a>
         </div>
-        <div class="flex justify-end mt-[-10px] mb-5 mr-5">
-            <a href="?orden=<?php echo $orden === 'desc' ? 'asc' : 'desc'; ?>" class="flex items-center gap-1 bg-[#a6d78e] text-black font-bold text-[16px] py-3 px-5 cursor-pointer hover:bg-[#5f9f51] mr-5">
-                ORDENAR POR RECIENTES <span class="text-[10px] transition-transform hover:scale-110"><?php echo $orden_icono; ?></span>
+        <div class="flex justify-end mt-[10px] mb-5 ">
+            <a href="?orden=<?php echo $orden === 'desc' ? 'asc' : 'desc'; ?>" class="flex items-center gap-1 rounded-[12px] bg-[#a6d78e] text-black font-bold text-[16px] py-3 px-5 cursor-pointer hover:bg-[#5f9f51] mr-5">
+                ORDENAR POR RECIENTES <span class="text-[10px]  transition-transform hover:scale-110"><?php echo $orden_icono; ?></span>
             </a>
         </div>        
         
@@ -204,7 +204,7 @@ $conexion->cerrar_conexion();
                 <?php else: ?>
                     <?php foreach ($posts as $post): ?>
                         <article class="bg-[#fceee3] rounded-[12px] p-5 flex w-full max-w-[700px] shadow-md mb-3 gap-3">
-                            <div class="w-[200px] h-[140px] flex-shrink-0">
+                            <div class="mt-4 w-[200px] h-[140px] flex-shrink-0">
                                 <?php if ($post['imagenes']): ?>
                                     <img src="<?php echo '/PRODCONS/PI2do/imagenes/articulos/' . explode(',', $post['imagenes'])[0]; ?>" alt="<?php echo htmlspecialchars($post['Titulo']); ?>" class="w-full h-full object-cover rounded-md">
                                 <?php else: ?>
@@ -215,10 +215,10 @@ $conexion->cerrar_conexion();
                                 <h2 class="m-0 text-[18px] font-bold font-serif"><?php echo htmlspecialchars($post['Titulo']); ?></h2>
                                 <p class="text-[12px] text-gray-500"><?php echo date('d/m/Y', strtotime($post['Fecha de Creacion'])); ?></p>
                                 <p class="text-[14px] text-gray-700"><?php echo substr(strip_tags($post['Contenido']), 0, 150) . '...'; ?></p>
+                                <button class=" text-black italic font-bold rounded text-[13px] hover:text-[#2F5443] transition">Ver más...</button>
                                 <div class="flex gap-4 mt-3">
-                                    <button class="px-4 py-2 bg-[#a5cf61] text-white font-semibold rounded text-sm hover:bg-[#6f9b39] transition">Ver</button>
-                                    <a href="editar-post.php?id=<?php echo $post['ID_Articulo']; ?>" class="px-4 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition">Editar</a>
-                                    <button onclick="confirmarEliminar(<?php echo $post['ID_Articulo']; ?>)" class="px-4 py-2 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition">Eliminar</button>
+                                    <a href="editar-post.php?id=<?php echo $post['ID_Articulo']; ?>" class="px-4 py-2 bg-blue-600 font-semibold text-white rounded text-[10px] hover:bg-blue-700 transition">Editar</a>
+                                    <button onclick="confirmarEliminar(<?php echo $post['ID_Articulo']; ?>)" class="px-4 py-2 bg-red-600 font-semibold text-white rounded text-[10px] hover:bg-red-700 transition">Eliminar</button>
                                 </div>
                             </div>
                         </article>
