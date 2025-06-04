@@ -55,17 +55,7 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
     <link href='post-planeados.css'	 rel="stylesheet">
     <link href='../Dashboard/sidebar.css' rel="stylesheet">
     <script src='../Dashboard/barra-nav.js' defer></script>
-    <style>
-        .flecha-mes {
-            color: #4CAF50;
-            font-weight: bold;
-            padding: 0 10px;
-            transition: color 0.2s;
-        }
-        .flecha-mes:hover {
-            color: #388e3c;
-        }
-    </style>
+
 </head>
 <body>
 <body>

@@ -391,3 +391,15 @@ DEBUG: Error message: None
 --- Nuevo Log de Sesión: 2025-06-04 00:08:39 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 02:53:08 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 02:53:38 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 02:53:56 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
