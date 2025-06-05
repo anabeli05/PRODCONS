@@ -111,7 +111,40 @@ if (isset($_SESSION['success'])) {
             text-align: center;
             font-weight: bold;
         }
-    </style>
+.input-area {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #777;
+    z-index: 2;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/* Estilo para el hover del icono */
+.toggle-password:hover {
+    color: #333;
+}
+</style>
     <link rel="stylesheet" href="css/styles.css">
     <link href="login.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -175,10 +208,14 @@ if (isset($_SESSION['success'])) {
 
                     <div class="buton">
                         <div class="input-area">
-                            <input type="password" placeholder="Contraseña" name="Contraseña" required>
-                            <i class="fas fa-lock"></i>
+                            <input type="password" placeholder="Contraseña" name="Contraseña" required id="password-login">
+                            <i class="fas fa-lock input-icon"></i>
+                            <span class="toggle-password" onclick="togglePassword('password-login', this)">
+                                <i class="fas fa-eye"></i>
+                            </span>
                         </div>
                     </div>
+
 
                     <div class="recuerdame-contenedor">
                         <div class="recuerdame">
@@ -210,5 +247,17 @@ if (isset($_SESSION['success'])) {
 <?php
     include 'login_var.php';
 ?>
+<script>
+function togglePassword(inputId, icon) {
+    const input = document.getElementById(inputId);
+    if (input.type === "password") {
+        input.type = "text";
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+    } else {
+        input.type = "password";
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+    }
+}
+</script>
 </body>
 </html>
