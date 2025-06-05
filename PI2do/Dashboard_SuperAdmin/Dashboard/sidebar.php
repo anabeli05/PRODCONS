@@ -47,20 +47,24 @@ try {
     $conexion->cerrar_conexion();
 }
 ?>
+
     <header> 
         <div class="header-contenedor">
             <div class="principal"></div>
         </div>
     </header>
-    <!-- Script de traducción global -->
-    <script src='/PRODCONS/translate.js'></script>
+    <!-- Scripts de traducción -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <script src="/PRODCONS/translate.js"></script>
+
 <section class="logo"> 
         <div class="header_2">
             <img class="prodcons" src="../../imagenes/prodcon/logoSinfondo.png" alt="Logo">
-            <div class="admin-controls">
+            <div class="admin-controls"><!--
                 <button class="search-toggle-btn">
                     <i class="fas fa-search"></i>
-                </button>
+                </button>-->
                 <div class="search-bar hidden">
                     <input type="text" placeholder="Buscar...">
                     <button class="search-close-btn">&times;</button>

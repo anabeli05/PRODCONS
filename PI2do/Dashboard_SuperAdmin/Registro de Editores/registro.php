@@ -128,7 +128,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" id="nombre" name="nombre" required
                        value="<?php echo htmlspecialchars($_POST['nombre'] ?? ''); ?>">
             </div>
-            
+            <!--
+            <div class="form-group">
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" required
+                       value="<//?php echo htmlspecialchars($_POST['apellido'] ?? ''); ?>">
+            </div>
+        -->
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required
