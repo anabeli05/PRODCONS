@@ -47,41 +47,16 @@ header{
     margin-left: auto;
 }
 
-/* Botón de búsqueda */
-.search-toggle-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-}
-
 /* Barra de búsqueda */
 .search-bar {
     display: flex;
     align-items: center;
-    background: #fff;
+    background: transparent;
     border-radius: 30px;
     padding: 5px 15px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     position: absolute;
     right: 200px;
-    width: 250px;
-    transition: all 0.3s ease;
-}
-
-.search-bar input {
-    border: none;
-    width: 100%;
-    padding: 8px;
-    outline: none;
-}
-
-.search-close-btn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    margin-left: 5px;
+    width: 10%;
 }
 
 /* Notificaciones */

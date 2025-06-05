@@ -88,20 +88,10 @@ try {
             </a>
 
             <div class="admin-controls">
-                <!-- Botón de búsqueda-->
-                <button class="search-toggle-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                </button>
-
-                <!--Barra de búsqueda-->
+                <button class="search-toggle-btn"></button>
                 <div class="search-bar hidden">
-                    <input type="text" placeholder="Buscar...">
-                    <button class="search-close-btn">&times;</button>
+                    <button class="search-close-btn"></button>
                 </div>
-
                 <!--Botón de notificaciones-->
                 <a href='/PRODCONS/PI2do/Dashboard_Editores/Notibox/noti-box.php' class="notif-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -204,11 +194,6 @@ try {
                 <div class="flex items-center gap-2 ml-14">
                     <label for="Nombre" class="font-bold text-[12px]">Nombre:</label>
                     <input type="text" id="Nombre" name="Nombre" value="<?php echo htmlspecialchars($usuario['Nombre'] ?? ''); ?>" class="px-3 py-2 border border-gray-300 rounded w-52 text-base" required>
-                </div>
-
-                <div class="flex items-center gap-2 ml-14">
-                    <label for="Contraseña" class="font-bold text-[12px]">Contraseña:</label>
-                    <input type="password" id="Contraseña" name="Contraseña" value="<?php echo htmlspecialchars($usuario['Contraseña'] ?? ''); ?>" class="px-3 py-2 border border-gray-300 rounded w-52 text-base" required>
                 </div>
 
                 <div class="flex items-center gap-2 mt-4 ml-auto">
