@@ -125,7 +125,7 @@ try {
         
         <div class="pending-articles-container">
             <?php if (empty($articulos_pendientes)): ?>
-                <div class="no-pending">No hay artículos con estado 'Borrador' en la base de datos.</div>
+                <div class="no-pending">No hay artículos pendientes de revisión.</div>
             <?php else: ?>
                 <?php foreach ($articulos_pendientes as $articulo): ?>
                     <div class="article-card">

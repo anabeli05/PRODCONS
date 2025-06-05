@@ -189,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="submit" value="CAMBIAR CONTRASEÑA">
             
             <div class="alternar-form">
-                        <p><a href="../../Dashboard_Editores/inicio/inicio.php">Volver al Panel de Editor</a></p>
+                        <p><a href="../../Dashboard_Editores/inicio/inicio.php">Volver al Panel</a></p>
             </div>
         </form>
     </div>
