@@ -214,7 +214,15 @@ $conexion->cerrar_conexion();
                             </div>
                             <div class="p-6">
                                 <h2 class="m-0 text-[18px] font-bold font-serif"><?php echo htmlspecialchars($post['Titulo']); ?></h2>
-                                <p class="text-[12px] text-gray-500"><?php echo date('d/m/Y', strtotime($post['Fecha de Creacion'])); ?></p>
+                                <p class="text-[12px] text-gray-500">
+                                    <?php
+                                    if (!empty($post['Fecha de Creacion'])) {
+                                        echo date('d/m/Y', strtotime($post['Fecha de Creacion']));
+                                    } else {
+                                        echo 'Fecha no disponible'; // O un mensaje similar
+                                    }
+                                    ?>
+                                </p>
                                 <p class="text-[14px] text-gray-700"><?php echo substr(strip_tags($post['Contenido']), 0, 150) . '...'; ?></p>
                                 <button class=" text-black italic font-bold rounded text-[13px] hover:text-[#2F5443] transition">Ver más...</button>
                                 <div class="flex gap-4 mt-3">

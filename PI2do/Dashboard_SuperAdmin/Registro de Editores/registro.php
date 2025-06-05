@@ -30,13 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             // Validar datos
             $nombre = trim($_POST['nombre'] ?? '');
-            $apellido = trim($_POST['apellido'] ?? '');
             $email = trim($_POST['email'] ?? '');
             $password = $_POST['password'] ?? '';
             $confirm_password = $_POST['confirm_password'] ?? '';
 
             // Validaciones
-            if (empty($nombre) || empty($apellido) || empty($email) || empty($password)) {
+            if (empty($nombre) || empty($email) || empty($password)) {
                 throw new Exception("Todos los campos son obligatorios");
             }
 
@@ -68,10 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
             // Insertar nuevo editor
-            $sql = "INSERT INTO usuarios (nombre, apellido, email, password, rol, estado) 
-                    VALUES (?, ?, ?, ?, 'Editor', 'activo')";
+            $sql = "INSERT INTO usuarios (Nombre, Correo, Contraseña, Rol, Estado) 
+                    VALUES (?, ?, ?, 'Editor', 'activo')";
             $stmt = $conexion->conexion->prepare($sql);
-            $stmt->bind_param("ssss", $nombre, $apellido, $email, $password_hash);
+            $stmt->bind_param("sss", $nombre, $email, $password_hash);
             
             if ($stmt->execute()) {
                 $success = "Editor registrado exitosamente";
@@ -129,13 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" id="nombre" name="nombre" required
                        value="<?php echo htmlspecialchars($_POST['nombre'] ?? ''); ?>">
             </div>
-            <!--
-            <div class="form-group">
-                <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="apellido" required
-                       value="<?php echo htmlspecialchars($_POST['apellido'] ?? ''); ?>">
-            </div>
-        -->
+            
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required

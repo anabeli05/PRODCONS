@@ -209,8 +209,8 @@ $conexion->cerrar_conexion();
 
       <!-- Opciones del menú -->
       <ul>
-<a href='/PRODCONS/PI2do/Dashboard_Usuario/pr/produccionr.php'>PRODUCCIÓN RESPONSABLE</a>
-<a href='/PRODCONS/PI2do/Dashboard_Usuario/cr/consumores.php'>CONSUMO RESPONSABLE</a>
+<a href='/PRODCONS/PI2do/pr/produccionr.php'>PRODUCCIÓN RESPONSABLE</a>
+<a href='/PRODCONS/PI2do/cr/consumores.php'>CONSUMO RESPONSABLE</a>
          <li>
           <form>
             <button id="btnLupa" class="lupa" aria-label="Abrir buscador" type="button">

@@ -1,8 +1,19 @@
 <?php
 session_start();
 
+// Debug: Mostrar información de la sesión
+echo "Debug - Session variables:<br>";
+echo "Usuario_ID: " . (isset($_SESSION['Usuario_ID']) ? $_SESSION['Usuario_ID'] : 'No definido') . "<br>";
+echo "Rol: " . (isset($_SESSION['Rol']) ? $_SESSION['Rol'] : 'No definido') . "<br>";
+
 // Verificar si el usuario está logueado
 if (!isset($_SESSION['Usuario_ID'])) {
+    header('Location: ../../inicio_sesion/login.php');
+    exit();
+}
+
+// Verificar si el usuario es Super Admin
+if (!isset($_SESSION['Rol']) || $_SESSION['Rol'] !== 'SuperAdmin') {
     header('Location: ../../inicio_sesion/login.php');
     exit();
 }
@@ -83,12 +94,12 @@ try {
     <title>PRODCONS - Estadísticas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="estadisticas-adm.css" />
-    <link rel="stylesheet" href="../Dashboard/sidebar.css" />
-    <script src="../Dashboard/barra-nav-copy.js" defer></script>
+    <link rel="stylesheet" href="../../Dashboard_SuperAdmin/Dashboard/sidebar.css" />
+    <script src="../../Dashboard_SuperAdmin/Dashboard/barra-nav-copy.js" defer></script>
 </head>
 <body>
     <section class="logo"> 
-    <?php include('../Dashboard/sidebar.php'); ?>
+    <?php include('../../Dashboard_SuperAdmin/Dashboard/sidebar.php'); ?>
     </section>
 
     <div class="contenedor-estadisticas">

@@ -1,8 +1,10 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Verificar si el usuario está logueado
-if (!isset($_SESSION['usuario'])) {
+if (!isset($_SESSION['Usuario_ID'])) {
     header('Location: ../../inicio_sesion/login.php');
     exit();
 }
@@ -57,7 +59,7 @@ if (!isset($_SESSION['usuario'])) {
 
                 <!-- Botón Admin con avatar -->
                 <div class="admin-btn">
-                    <span><?php echo htmlspecialchars($_SESSION['usuario']); ?></span>
+                    <span><?php echo htmlspecialchars($_SESSION['Nombre'] ?? 'Editor'); ?></span>
                     <img src='../../imagenes/logos/perfil.png' alt="Admin" class="admin-avatar">
                 </div>
             </div>
