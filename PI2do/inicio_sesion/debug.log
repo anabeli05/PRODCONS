@@ -866,22 +866,12 @@ DEBUG: Botón de ingreso presionado
 DEBUG: Correo recibido: ysierra@ucol.mx
 DEBUG: Contraseña recibida: Prodcons12344
 DEBUG: Clase Contacto cargada
-DEBUG: Objeto Contacto creado
---- Nuevo Log de Sesión: 2025-06-05 15:21:41 ---
+DEBUG: Objeto Contacto creado--- Nuevo Log de Sesión: 2025-06-05 15:48:52 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 15:21:43 ---
+--- Nuevo Log de Sesión: 2025-06-05 15:48:58 ---
 DEBUG: Botón de ingreso presionado
-DEBUG: Correo recibido: ysierra@ucol.mx
-DEBUG: Contraseña recibida: Prodcons12344
-DEBUG: Clase Contacto cargada
-DEBUG: Objeto Contacto creado
---- Nuevo Log de Sesión: 2025-06-05 15:29:59 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 15:30:38 ---
-DEBUG: Botón de ingreso presionado
-DEBUG: Correo recibido: ysierra@ucol.mx
-DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Correo recibido: jmancilla1@ucol.mx
+DEBUG: Contraseña recibida: 123456789
 DEBUG: Clase Contacto cargada
 DEBUG: Objeto Contacto creado

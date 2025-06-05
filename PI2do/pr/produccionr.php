@@ -8,6 +8,7 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Producción Responsable</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/PRODCONS/PI2do/header_post/header_post.css">
   
   <!-- Scripts de traducción -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
@@ -15,159 +16,161 @@ session_start();
   <script src="/PRODCONS/translate.js"></script>
 
   <style>
-    .language-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 10px 15px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      z-index: 1003;
-      font-family: Arial, sans-serif;
+    /* Estilos para la bandera de idioma */
+    #banderaIdioma {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid black;
+        cursor: pointer;
+        transition: transform 0.2s;
     }
     
-    .language-toggle p {
-      margin: 0 0 8px 0;
-      font-size: 14px;
-      font-weight: bold;
+    #banderaIdioma:hover {
+        transform: scale(1.1);
     }
-    
-    .language-toggle .language-buttons {
-      display: flex;
-      gap: 10px;
+
+    .header-section {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 2rem;
     }
-    
-    .language-toggle button {
-      padding: 5px 10px;
-      border: none;
-      border-radius: 4px;
-      background-color: #f0f0f0;
-      cursor: pointer;
-      transition: background-color 0.2s;
+
+    .contenedor-imagenes {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+        margin-top: 2rem;
     }
-    
-    .language-toggle button:hover {
-      background-color: #e0e0e0;
+
+    .texto {
+        flex: 1;
+        font-size: 1.1rem;
+        line-height: 1.6;
     }
-    
-    .language-toggle button.active {
-      background-color: #4CAF50;
-      color: white;
+
+    .imagenes {
+        flex: 1;
+        display: flex;
+        justify-content: center;
     }
-    
-    .close-button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      font-size: 8px;
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      color: #bbb;
-      padding: 6px 8px;
-      line-height: 1;
-      opacity: 0.7;
-      z-index: 1004;
+
+    .imagen-primera {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    
-    .close-button:hover {
-      color: #999;
-      opacity: 0.9;
+
+    @media (max-width: 768px) {
+        .contenedor-imagenes {
+            flex-direction: column;
+        }
     }
   </style>
 </head>
 
-<body class="bg-white m-0 p-0">
+<body class="bg-gray-50">
+    <header>
+        <div class="header-contenedor">
+            <i class="flecha_left">
+                <a href="/PRODCONS/" title="Regresar a la página principal">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-6 h-6">
+                        <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+                    </svg>
+                </a>
+            </i>
+            <div class="principal">
+                <!-- Selector de bandera para cambio de idioma -->
+                <div id="idiomaToggle" style="display: inline-block; margin-left: 15px;">
+                    <img class="españa" id="banderaIdioma" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
+                </div>
+                <!-- Opciones de banderas desplegables -->
+                <div id="idiomasOpciones" style="display: none;">
+                    <img class="ingles" src="/PRODCONS/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
+                    <img class="españa" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <!-- Barra superior con flecha para regresar -->
-  <section class="w-full h-12 bg-[rgb(225,216,204)] flex items-center">
-<a href="/PRODCONS/" title="Regresar a la página principal" class="pl-4">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" 
-           class="w-6 h-6 fill-current text-gray-700 hover:text-green-600 transition-colors duration-300">
-        <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
-      </svg>
-    </a>
-  </section>
+    <!-- Contenedor principal -->
+    <div class="flex flex-col md:flex-row w-full mt-6 box-border">
+        <!-- Cuadro café -->
+        <div style="background-color: #868278;" 
+             class="w-full md:w-1/2 text-white p-8 rounded-md flex flex-col justify-center">
+            <h2 class="text-3xl font-bold mb-6 leading-tight">LA PRODUCCIÓN RESPONSABLE</h2>
+            <p class="text-lg leading-relaxed">
+                Cada producto que consumimos tiene un costo ambiental que muchas veces no vemos. Desde la extracción de materiales hasta su fabricación y distribución, el impacto puede ser enorme si no se hace de manera responsable.
+            </p>
+            <p class="text-lg leading-relaxed mt-4">
+                La producción responsable implica adoptar prácticas que minimicen el impacto ambiental, promuevan el uso eficiente de recursos y garanticen condiciones laborales justas. Es fundamental para construir un futuro sostenible.
+            </p>
+        </div>
 
-  <!-- Línea negra debajo de la barra -->
-  <div class="w-full h-[3.5px] bg-black"></div>
-
-  <!-- Contenedor principal -->
-  <div class="flex flex-col md:flex-row w-full mt-6 box-border">
-
-    <!-- Cuadro café -->
-    <div style="background-color: #868278;" 
-         class="w-full md:w-1/2 text-white p-8 rounded-md flex flex-col justify-center">
-      <h2 id="titulo" class="text-3xl font-bold mb-6 leading-tight">LA PRODUCCIÓN RESPONSABLE</h2>
-      <p id="parrafo" class="text-lg leading-relaxed">
-        Cada producto que consumimos tiene un costo ambiental que muchas veces no vemos. Desde la extracción de materiales hasta su fabricación y distribución, el impacto puede ser enorme si no se hace de manera responsable.</p>
+        <!-- Imagen -->
+        <div class="w-full md:w-1/2 flex items-center justify-center mt-6 md:mt-0">
+            <img src="/PRODCONS/PI2do/imagenes/produccion.png" alt="Producción Responsable" class="max-w-full h-auto rounded-md shadow-lg" />
+        </div>
     </div>
 
-    <!-- Imagen -->
-    <div class="w-full md:w-1/2 flex items-center justify-center mt-6 md:mt-0">
-      <img src="/PRODCONS/PI2do/imagenes/produccion.png" alt="Imagen Principal" class="max-w-full h-auto rounded-md shadow-lg" />
-    </div>
-  </div>
+    <footer class="text-center text-sm text-gray-500 py-8">© 2025 PRODCONS</footer>
 
-  <!-- Selector de idioma -->
-  <div class="language-toggle" id="language-toggle">
-    <button class="close-button" id="close-language-toggle" onclick="document.getElementById('language-toggle').style.display='none'">✕</button>
-    <p id="toggle-text">¿Cambiar idioma?</p>
-    <div class="language-buttons">
-      <button id="btn-es" onclick="cambiarIdioma('espanol')" class="active">Español</button>
-      <button id="btn-en" onclick="cambiarIdioma('ingles')">English</button>
-    </div>
-  </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'es';
+            const bandera = document.getElementById('banderaIdioma');
+            bandera.src = savedLanguage === 'en'
+                ? '/PRODCONS/PI2do/imagenes/logos/ingles.png'
+                : '/PRODCONS/PI2do/imagenes/logos/espanol.png';
+            bandera.setAttribute('data-idioma', savedLanguage);
+            translateContent(savedLanguage);
+        });
 
-  <footer class="text-center text-sm text-gray-500 py-8">© 2025 PRODCONS</footer>
+        function cambiarIdioma(idioma) {
+            const banderaPrincipal = document.getElementById('banderaIdioma');
+            const banderaIngles = document.querySelector('.ingles');
+            const banderaEspana = document.querySelector('.españa');
+            
+            if (banderaPrincipal) {
+                banderaPrincipal.src = idioma === 'ingles' 
+                    ? "/PRODCONS/PI2do/imagenes/logos/ingles.png" 
+                    : "/PRODCONS/PI2do/imagenes/logos/espanol.png";
+            }
+            
+            if (banderaIngles && banderaEspana) {
+                banderaIngles.style.display = idioma === 'espanol' ? 'none' : 'block';
+                banderaEspana.style.display = idioma === 'espanol' ? 'block' : 'none';
+            }
+            
+            currentLanguage = idioma === 'ingles' ? 'en' : 'es';
+            translateContent(currentLanguage);
+            
+            const opciones = document.getElementById('idiomasOpciones');
+            if (opciones) {
+                opciones.style.display = 'none';
+            }
+        }
 
-  <!-- Script para el idioma -->
-  <script>
-    function updateLanguageButtons() {
-      const btnEs = document.getElementById('btn-es');
-      const btnEn = document.getElementById('btn-en');
-      const toggleText = document.getElementById('toggle-text');
-      
-      const currentLang = localStorage.getItem('preferredLanguage') || 'es';
-      
-      if (currentLang === 'en') {
-        btnEs.classList.remove('active');
-        btnEn.classList.add('active');
-        toggleText.innerText = 'Change language?';
-      } else {
-        btnEn.classList.remove('active');
-        btnEs.classList.add('active');
-        toggleText.innerText = '¿Cambiar idioma?';
-      }
-    }
-    
-    document.addEventListener('DOMContentLoaded', function() {
-      updateLanguageButtons();
-      
-      const observer = new MutationObserver(function(mutations) {
-        updateLanguageButtons();
-      });
-      
-      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
-      
-      document.getElementById('close-language-toggle').addEventListener('click', function() {
-        document.getElementById('language-toggle').style.display = 'none';
-      });
-    });
-    
-    const originalCambiarIdioma = window.cambiarIdioma;
-    window.cambiarIdioma = function(idioma) {
-      if (typeof originalCambiarIdioma === 'function') {
-        originalCambiarIdioma(idioma);
-      } else {
-        translateContent(idioma === 'ingles' ? 'en' : 'es');
-      }
-      
-      setTimeout(updateLanguageButtons, 100);
-    };
-  </script>
+        function alternarIdioma() {
+            const bandera = document.getElementById('banderaIdioma');
+            let idiomaActual = bandera.getAttribute('data-idioma') || 'es';
+            let nuevoIdioma, nuevaBandera;
 
+            if (idiomaActual === 'es') {
+                nuevoIdioma = 'en';
+                nuevaBandera = '/PRODCONS/PI2do/imagenes/logos/ingles.png';
+            } else {
+                nuevoIdioma = 'es';
+                nuevaBandera = '/PRODCONS/PI2do/imagenes/logos/espanol.png';
+            }
+
+            bandera.src = nuevaBandera;
+            bandera.setAttribute('data-idioma', nuevoIdioma);
+
+            translateContent(nuevoIdioma);
+            localStorage.setItem('preferredLanguage', nuevoIdioma);
+        }
+    </script>
 </body>
 </html>
