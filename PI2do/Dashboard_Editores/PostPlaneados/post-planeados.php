@@ -244,14 +244,14 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
                     <?php else: ?>
                         <?php foreach ($planeados as $post): ?>
                             <div class="post-planeado">
-                                <div class="post-day"><?= date('d', strtotime($post['Fecha de Publicacion'])) ?></div>
+                                <div class="post-day"><?= date('d', strtotime($post['Fecha de Publicacion'] ?? date('Y-m-d'))) ?></div>
                                 <div class="post-content-wrapper">
-                                    <?php if ($post['Imagen']): ?>
+                                    <?php if (isset($post['Imagen']) && $post['Imagen']): ?>
                                         <img src="<?= htmlspecialchars($post['Imagen']) ?>" alt="Imagen del post" class="post-image">
                                     <?php endif; ?>
                                     <div class="post-text">
-                                        <strong class="post-title"><?= htmlspecialchars($post['Titulo']) ?></strong><br>
-                                        <span class="post-date">Será publicado el <?= date('d', strtotime($post['Fecha de Publicacion'])) ?> de <?= date('F', strtotime($post['Fecha de Publicacion'])) ?> de <?= date('Y', strtotime($post['Fecha de Publicacion'])) ?></span>
+                                        <strong class="post-title"><?= htmlspecialchars($post['Titulo'] ?? '') ?></strong><br>
+                                        <span class="post-date">Será publicado el <?= date('d', strtotime($post['Fecha de Publicacion'] ?? date('Y-m-d'))) ?> de <?= date('F', strtotime($post['Fecha de Publicacion'] ?? date('Y-m-d'))) ?> de <?= date('Y', strtotime($post['Fecha de Publicacion'] ?? date('Y-m-d'))) ?></span>
                                     </div>
                                 </div>
                             </div>

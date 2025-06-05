@@ -4,11 +4,11 @@
     error_reporting(E_ALL);
 	class Conexion
 	{
-		private $host='gondola.proxy.rlwy.net';
-        private $port='49128';
+		private $host='localhost';
+        private $port='3306';
 		private $usuario='root';
-		private $password = 'XSvZgbZFpXXcKskSSjFyvBmASVZeCXcM';
-		private $base='railway';
+		private $password = 'XXSvZgbZFpXXcKskSSjFyvBmASVZeCXcM';
+		private $base='Prodcons nube';
 		public $sentencia;
 		private $rows =array();
 		public $conexion;	

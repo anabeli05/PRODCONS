@@ -17,7 +17,7 @@ function verificarRegistro() {
     // Definir los roles permitidos y sus dashboards correspondientes
     $roles_permitidos = [
         'Usuario' => '/PRODCONS/PI2do/Dashboard_Usuario/inicio/usuario.php',
-        'Editor' => '/PRODCONS/PI2do/Dashboard_Editor/inicio/inicio.php',
+        'Editor' => '/PRODCONS/PI2do/Dashboard_Editores/inicio/inicio.php',
         'SuperAdmin' => '/PRODCONS/PI2do/Dashboard_SuperAdmin/inicio/inicioSA.php'
     ];
 
