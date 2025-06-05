@@ -79,10 +79,22 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
     <link href='../Dashboard/sidebar.css' rel="stylesheet">
     <script src='../Dashboard/barra-nav.js' defer></script>
 
+    <!-- Tailwind CSS y font -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- CSS de traduccion -->
+    <link rel="stylesheet" href="../../Dashboard_Editores/Dashboard/traduccion.css">
+    <!-- Scripts de traducción -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="/PRODCONS/translate.js"></script>
 </head>
 <body>
 <body>
-    <header> 
+    <header>
+        <a href="javascript:history.back()" title="Regresar a la página principal" class="flex m-6 pl-4 ">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" 
+            class="w-10 h-10 fill-current text-gray-700 hover:text-green-600 transition-colors duration-300">
+            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
         <div class="header-contenedor">
             <div class="principal"></div>
         </div>
@@ -115,7 +127,7 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
                         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                         <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                     </svg>
-                    <span class="notif-badge">1</span>
+                    <span class="notif-badge"></span>
                 </a>
 
                 <!-- Botón Admin con avatar -->
@@ -182,7 +194,7 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
 
     <div class="contenedor-planeados">
         <div class="titulo-planeados">
-            <h1>Post Planeados</h1>
+            <h1 class="text-[28px] font-semibold">Post Planeados</h1>
         </div>
 
          <div class="division-dos">
@@ -191,12 +203,12 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
                 <div class="programa">
                     <p>¡Programa tus post desde antes!</p>
                     <a href='../PostPlaneados/planeados-form.html' class="mas">+</a>
-                    <img src='../imagenes/plantita.png' class="decoracion hojas-izq" width="80">
-                    <img src='../imagenes/planta.png' class="decoracion hojas-der" width="80">
+                    <img src='/PRODCONS/PI2do/imagenes/plantita.png' class="decoracion hojas-izq" width="80">
+                    <img src='/PRODCONS/PI2do/imagenes/planta.png' class="decoracion hojas-der" width="80">
                 </div>
                 
                 <div class="contenedor-calendario">
-                    <div class="titulo-calendario" style="display:flex;align-items:center;justify-content:center;gap:20px;">
+                    <div class="titulo-calendario" style="display:flex;align-items:center;justify-content:center;gap:20px;font-size:px;font-weight:bold;">
                         <a href="?mes=<?= $mes_anterior ?>&anio=<?= $anio_anterior ?>" class="flecha-mes" style="font-size:2rem;text-decoration:none;">&#8592;</a>
                         <h2 id="mes-actual" style="margin:0;"><?= ucfirst($nombre_mes) . " $anio_actual" ?></h2>
                         <a href="?mes=<?= $mes_siguiente ?>&anio=<?= $anio_siguiente ?>" class="flecha-mes" style="font-size:2rem;text-decoration:none;">&#8594;</a>
@@ -206,7 +218,7 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
                             <div class="dia">D</div>
                             <div class="dia">L</div>
                             <div class="dia">M</div>
-                            <div class="dia">Mi</div>
+                            <div class="dia">M</div>
                             <div class="dia">J</div>
                             <div class="dia">V</div>
                             <div class="dia">S</div>
@@ -235,7 +247,7 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
             </div>
             
             <div class="contenedor-postit">
-                <h2>Post Planeados</h2>
+                <h2 class="text-[30px] font-semibold">Post Planeados</h2>
                 <div class="text">
                     <?php if (empty($planeados)): ?>
                         <p>No tienes ningún post programado</p>
@@ -260,7 +272,61 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
         </div>
          
     </div>
-    
 
+    <!-- Selector de idioma -->
+    <div class="language-toggle" id="language-toggle">
+        <button class="close-button" id="close-language-toggle" onclick="document.getElementById('language-toggle').style.display='none'">✕</button>
+        <p id="toggle-text">¿Cambiar idioma?</p>
+        <div class="language-buttons">
+            <button id="btn-es" onclick="cambiarIdioma('espanol')" class="active">Español</button>
+            <button id="btn-en" onclick="cambiarIdioma('ingles')">English</button>
+        </div>
+    </div>
+    <!------------------------>
+
+    <script>
+    //Script para el idioma -->
+    function updateLanguageButtons() {
+      const btnEs = document.getElementById('btn-es');
+      const btnEn = document.getElementById('btn-en');
+      const toggleText = document.getElementById('toggle-text');
+      
+      const currentLang = localStorage.getItem('preferredLanguage') || 'es';
+      
+      if (currentLang === 'en') {
+        btnEs.classList.remove('active');
+        btnEn.classList.add('active');
+        toggleText.innerText = 'Change language?';
+      } else {
+        btnEn.classList.remove('active');
+        btnEs.classList.add('active');
+        toggleText.innerText = '¿Cambiar idioma?';
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      updateLanguageButtons();
+      
+      const observer = new MutationObserver(function(mutations) {
+        updateLanguageButtons();
+      });
+      
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+      
+      document.getElementById('close-language-toggle').addEventListener('click', function() {
+        document.getElementById('language-toggle').style.display = 'none';
+      });
+    });
+    
+    const originalCambiarIdioma = window.cambiarIdioma;
+    window.cambiarIdioma = function(idioma) {
+      if (typeof originalCambiarIdioma === 'function') {
+        originalCambiarIdioma(idioma);
+      } else {
+        translateContent(idioma === 'ingles' ? 'en' : 'es');
+      }
+      setTimeout(updateLanguageButtons, 100);
+    };
+    </script>
 </body>
 </html>

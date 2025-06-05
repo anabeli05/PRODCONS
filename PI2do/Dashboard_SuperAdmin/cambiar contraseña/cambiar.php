@@ -123,6 +123,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../../styles.css">
     <link href="../../inicio_sesion/login.css" rel="stylesheet">
+    <style>
+        .error-message {
+            color: #dc3545;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .success-message {
+            color: #28a745;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <div class="background-animation">
@@ -134,60 +148,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <section class="contenedor-main">
         <section class="wrapper">
             <div class="form" id="cambiar-password-form">
-                <h1>CAMBIAR CONTRASEÑA</h1>
-                
+        <h1>CAMBIAR CONTRASEÑA</h1>
+        
                 <?php if (!empty($errores)): ?>
-                    <?php foreach ($errores as $error): ?>
-                        <div class="error-message"><?php echo htmlspecialchars($error); ?></div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-
+            <?php foreach ($errores as $error): ?>
+                <div class="error-message"><?php echo htmlspecialchars($error); ?></div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        
                 <?php if ($mensaje_exito): ?>
                     <div class="success-message"><?php echo htmlspecialchars($mensaje_exito); ?></div>
                 <?php endif; ?>
 
-                <div class="instrucciones">
-                    <p>Ingresa tu contraseña actual y tu nueva contraseña.</p>
-                </div>
+            <div class="instrucciones">
+                <p>Ingresa tu contraseña actual y tu nueva contraseña.</p>
+            </div>
 
                 <form action="" method="POST">
-                    <div class="buton">
-                        <div class="input-area">
+            <div class="buton">
+                <div class="input-area">
                             <input type="password" name="currentPassword" placeholder="Contraseña Actual" required>
-                            <i class="fas fa-lock"></i>
-                            <span class="toggle-password" onclick="togglePasswordVisibility('currentPassword')">
-                                <i class="fas fa-eye"></i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="buton">
-                        <div class="input-area">
-                            <input type="password" name="nueva_password" placeholder="Nueva Contraseña" required>
-                            <i class="fas fa-lock"></i>
-                            <span class="toggle-password" onclick="togglePasswordVisibility('nueva_password')">
-                                <i class="fas fa-eye"></i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="buton">
-                        <div class="input-area">
-                            <input type="password" name="confirmar_password" placeholder="Confirmar Nueva Contraseña" required>
-                            <i class="fas fa-lock"></i>
-                            <span class="toggle-password" onclick="togglePasswordVisibility('confirmar_password')">
-                                <i class="fas fa-eye"></i>
-                            </span>
-                        </div>
-                    </div>
-        
-                    <input type="submit" value="CAMBIAR CONTRASEÑA">
-                    
-                    <div class="alternar-form">
-                        <p><a href="../../Dashboard_Editores/inicio/inicio.php">Volver al Panel de Editor</a></p>
-                    </div>
-                </form>
+                    <i class="fas fa-lock"></i>
+                </div>
             </div>
+
+            <div class="buton">
+                <div class="input-area">
+                            <input type="password" name="nueva_password" placeholder="Nueva Contraseña" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+            </div>
+
+            <div class="buton">
+                <div class="input-area">
+                            <input type="password" name="confirmar_password" placeholder="Confirmar Nueva Contraseña" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+            </div>
+
+            <input type="submit" value="CAMBIAR CONTRASEÑA">
+            
+            <div class="alternar-form">
+                        <p><a href="../../Dashboard_SuperAdmin/inicio/inicioSA.php">Volver al Panel de SuperAdmin</a></p>
+            </div>
+        </form>
+    </div>
 
             <div class="contenedor-logo">
                 <img src="../../imagenes/login.png" alt="Imagen de fondo" class="bg-image">
@@ -197,21 +202,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </section>
     </section>
-<script>
-    function togglePasswordVisibility(inputName) {
-        const input = document.querySelector(`input[name="${inputName}"]`);
-        const toggleIcon = document.querySelector(`input[name="${inputName}"] + i + .toggle-password i`);
-        
-        if (input.type === 'password') {
-            input.type = 'text';
-            toggleIcon.classList.remove('fa-eye');
-            toggleIcon.classList.add('fa-eye-slash');
-        } else {
-            input.type = 'password';
-            toggleIcon.classList.remove('fa-eye-slash');
-            toggleIcon.classList.add('fa-eye');
-        }
-    }
-</script>
 </body>
 </html>
