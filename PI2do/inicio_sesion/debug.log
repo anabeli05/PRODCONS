@@ -1415,3 +1415,20 @@ DEBUG: Iniciando proceso de login
 --- Nuevo Log de Sesión: 2025-06-05 17:41:41 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 16:51:57 ---
+DEBUG PHP: Script registro.php started. Error: None
+--- Nuevo Log de Sesión: 2025-06-05 16:58:38 ---
+DEBUG PHP: Script registro.php started. Error: None
+--- Nuevo Log de Sesión: 2025-06-05 16:59:25 ---
+DEBUG PHP: Script registro.php started. Error: None
+--- Nuevo Log de Sesión: 2025-06-05 17:00:30 ---
+DEBUG PHP: Script registro.php started. Error: None
+--- Nuevo Log de Sesión: 2025-06-05 17:12:22 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:12:22 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:12:22 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
