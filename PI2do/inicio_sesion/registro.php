@@ -247,16 +247,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
                     </div>
                     <div class="buton">
                         <div class="input-area">
-                            <input type="password" placeholder="Contraseña" name="Contraseña" required>
-                            <i class="fas fa-lock"></i>
+                            <input type="password" placeholder="Contraseña" name="Contraseña" required id="password-registro">
+                            <i class="fas fa-lock input-icon"></i>
+                            <span class="toggle-password" onclick="togglePassword('password-registro', this)">
+                                <i class="fas fa-eye"></i>
+                            </span>
                         </div>
                     </div>
+
                     <div class="buton">
                         <div class="input-area">
-                            <input type="password" placeholder="Confirmar Contraseña" name="confirmar_password" required>
-                            <i class="fas fa-lock"></i>
-                        </div>
-                    </div>
+                            <input type="password" placeholder="Confirmar Contraseña" name="confirmar_password" required id="confirm-password-registro">
+        <i class="fas fa-lock input-icon"></i>
+        <span class="toggle-password" onclick="togglePassword('confirm-password-registro', this)">
+            <i class="fas fa-eye"></i>
+        </span>
+    </div>
+</div>
                     <div class="terminos">
                         <input class="C" type="checkbox" required>
                         <label>Acepto los <a href="/PRODCONS/footer/parafooter/term-condi/term-condi.html">términos y condiciones</a></label>
@@ -363,6 +370,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
             }
         });
     });
-    </script>
+    function togglePassword(inputId, icon) {
+    const input = document.getElementById(inputId);
+    if (input.type === "password") {
+        input.type = "text";
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+    } else {
+        input.type = "password";
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+    }
+}
+</script>
+
+<style>
+.input-area {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #777;
+    z-index: 2;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
 </body>
 </html>
