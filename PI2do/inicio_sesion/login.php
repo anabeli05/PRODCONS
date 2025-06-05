@@ -176,7 +176,7 @@ if (isset($_SESSION['success'])) {
 
     <section class="logo"> 
         <div class="header_2">
-            <a href="/">           
+            <a>    
                  <img class="prodcons" src="../imagenes/prodcon/logoSinfondo.png" alt="Logo"> 
             </a>
         </div>

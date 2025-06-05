@@ -52,6 +52,8 @@ try {
             <div class="principal"></div>
         </div>
     </header>
+    <!-- Script de traducción global -->
+    <script src='/PRODCONS/translate.js'></script>
 <section class="logo"> 
         <div class="header_2">
             <img class="prodcons" src="../../imagenes/prodcon/logoSinfondo.png" alt="Logo">
@@ -64,14 +66,17 @@ try {
                     <button class="search-close-btn">&times;</button>
                 </div>
                 <a href="../Notibox/noti-box.php" class="notif-btn" aria-label="Notificaciones">
-                    <i class="fas fa-bell" aria-hidden="true"></i>
+                    <i class="fas fa-bell" aria-hidden="true" data-no-translate></i>
                     <span class="notif-badge">1</span>
                 </a>
                 <div class="admin-btn" id="sidebarToggle">
-                    <span>SuperAdmin</span>
+                    <span>Super Administrador</span>
                     <i class="fas fa-chevron-down"></i>
                     <img src="../../imagenes/logos/perfil.png" alt="Admin" class="admin-avatar">
-                </div>
+                </div><!--
+                <div class="idiomaToggle">
+                    <img class="españa" id="banderaIdioma" src="../PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
+                </div>-->
             </div>
         </div>
 </section>
@@ -84,7 +89,7 @@ try {
         <img src="<?php echo $admin_foto; ?>" alt="<?php echo $admin_nombre; ?>" class="profile-img">
         <div class="name-job">
             <div class="profile_name"><?php echo $admin_nombre; ?></div>
-            <div class="job">Super Admin</div>
+            <div class="job">Super Administrador</div>
         </div>
     </div>
     <div class="logo-details">
@@ -109,17 +114,12 @@ try {
                 <span class="link_name">Registrar Editor</span>
             </a>
         </li>
-        <li><!--
+        <li>
             <a href="../Estadisticas/estadisticas-adm.php">
                 <i class="fas fa-chart-bar"></i>
                 <span class="link_name">Estadísticas</span>
             </a>
         </li>
-        <li>
-            <a href="../Notibox/noti-box.php">
-                <i class="fas fa-bell"></i>
-            </a>
-        </li>-->
         <li>
             <a href="../Configuracion/configuracion.php">
                 <i class="fas fa-key"></i>
@@ -182,4 +182,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
 </script>
