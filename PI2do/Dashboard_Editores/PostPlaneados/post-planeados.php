@@ -96,7 +96,17 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
             <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
         </a>
         <div class="header-contenedor">
-            <div class="principal"></div>
+            <div class="principal">
+                <!-- Selector de bandera para cambio de idioma -->
+                <div id="idiomaToggle" style="display: inline-block; margin-left: 15px;">
+                    <img class="españa" id="banderaIdioma" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
+                </div>
+                <!-- Opciones de banderas desplegables -->
+                <div id="idiomasOpciones" style="display: none;">
+                    <img class="ingles" src="/PRODCONS/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
+                    <img class="españa" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
+                </div>
+            </div>
         </div>
     </header>
 
@@ -262,61 +272,5 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
         </div>
          
     </div>
-
-    <!-- Selector de idioma -->
-    <div class="language-toggle" id="language-toggle">
-        <button class="close-button" id="close-language-toggle" onclick="document.getElementById('language-toggle').style.display='none'">✕</button>
-        <p id="toggle-text">¿Cambiar idioma?</p>
-        <div class="language-buttons">
-            <button id="btn-es" onclick="cambiarIdioma('espanol')" class="active">Español</button>
-            <button id="btn-en" onclick="cambiarIdioma('ingles')">English</button>
-        </div>
-    </div>
-    <!------------------------>
-
-    <script>
-    //Script para el idioma -->
-    function updateLanguageButtons() {
-      const btnEs = document.getElementById('btn-es');
-      const btnEn = document.getElementById('btn-en');
-      const toggleText = document.getElementById('toggle-text');
-      
-      const currentLang = localStorage.getItem('preferredLanguage') || 'es';
-      
-      if (currentLang === 'en') {
-        btnEs.classList.remove('active');
-        btnEn.classList.add('active');
-        toggleText.innerText = 'Change language?';
-      } else {
-        btnEn.classList.remove('active');
-        btnEs.classList.add('active');
-        toggleText.innerText = '¿Cambiar idioma?';
-      }
-    }
-    
-    document.addEventListener('DOMContentLoaded', function() {
-      updateLanguageButtons();
-      
-      const observer = new MutationObserver(function(mutations) {
-        updateLanguageButtons();
-      });
-      
-      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
-      
-      document.getElementById('close-language-toggle').addEventListener('click', function() {
-        document.getElementById('language-toggle').style.display = 'none';
-      });
-    });
-    
-    const originalCambiarIdioma = window.cambiarIdioma;
-    window.cambiarIdioma = function(idioma) {
-      if (typeof originalCambiarIdioma === 'function') {
-        originalCambiarIdioma(idioma);
-      } else {
-        translateContent(idioma === 'ingles' ? 'en' : 'es');
-      }
-      setTimeout(updateLanguageButtons, 100);
-    };
-    </script>
 </body>
 </html>

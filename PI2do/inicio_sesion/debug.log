@@ -1154,6 +1154,267 @@ DEBUG: Correo recibido: xiomicob2005@outlook.com
 DEBUG: Contraseña recibida: Prodcons12345
 DEBUG: Clase Contacto cargada
 DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-05 17:05:26 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:05:29 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:05:29 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:05:29 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 17:05:46 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12345
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:05:46 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:05:46 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 17:06:00 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12345
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:06:00 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:06:00 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 17:08:09 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:08:09 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:08:09 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 17:09:22 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:09:32 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:09:32 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:09:32 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 17:27:08 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:27:09 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:27:09 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:27:09 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 17:27:29 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:27:31 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:27:31 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:27:31 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 17:28:03 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:28:06 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:28:06 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:28:06 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 17:28:08 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:28:08 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:28:08 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 17:28:22 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:28:23 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:28:23 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:28:23 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 17:28:24 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:28:24 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:28:24 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 17:29:13 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:29:13 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:29:13 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 17:31:38 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:31:40 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:31:40 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:31:40 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 17:31:47 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:33:22 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:33:23 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:33:26 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:33:34 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:33:37 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:33:37 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:33:37 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 17:34:47 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:34:48 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:35:01 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:35:03 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:35:03 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:35:03 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 17:38:38 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:38:39 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:38:48 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:38:50 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-05 17:39:00 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:39:00 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:39:00 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-05 17:41:41 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: Access denied for user 'root'@'localhost' (using password: YES)
+--- Nuevo Log de Sesión: 2025-06-05 17:41:41 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-05 17:41:41 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
 --- Nuevo Log de Sesión: 2025-06-05 16:51:57 ---
 DEBUG PHP: Script registro.php started. Error: None
 --- Nuevo Log de Sesión: 2025-06-05 16:58:38 ---
