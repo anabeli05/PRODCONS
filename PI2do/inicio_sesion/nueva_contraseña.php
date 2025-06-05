@@ -136,20 +136,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="circle circle-2"></div>
         <div class="circle circle-3"></div>
     </div>
-    
-    <header> 
-        <div class="header-contenedor">
-            <div class="principal"></div>
-        </div>
-    </header>
-
-    <section class="logo"> 
-        <div class="header_2">
-            <a href="/">           
-                 <img class="prodcons" src="../imagenes/prodcon/logoSinfondo.png" alt="Logo"> 
-            </a>
-        </div>
-    </section>
 
     <section class="contenedor-main">
         <section class="wrapper">
