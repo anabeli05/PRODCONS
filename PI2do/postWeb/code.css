@@ -8,53 +8,31 @@ body {
     font-size: 18px;
 }
 
-.barra_left{
-    top: 0;/*que tan separado estara del inicio*/
-    left: 0;
-    width: 100%;/*anchura que abarcara de la pantalla*/
-    background: rgb(225, 216, 204);/*color del fondo*/
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding-left: 20px;/*indicaremos cuanto lo justificaremos a la derecha*/
-    border-bottom: 4px solid black;
-    position: fixed; /* Fija la barra */
-    right: 0;
-    height: 50px;
-}
-
-.flecha_left {
-    margin-left: 0;
-}
-
-.flecha_left a {
-    display: flex;
-    align-items: center;
-    height: 50px;
-}
-
-.flecha_left svg {
-    width: 32px;
-    height: 32px;
-    fill: #000;
-    cursor: pointer;
-    margin: 0;
-    padding: 0;
-    transition: transform 0.2s;
-}
-
-.flecha_left svg:hover {
-    transform: scale(1.1);
-    fill: #4CAF50;
-}
-
-/* Estilos para la sección que reemplaza al header */
+/* Estilos para la sección del artículo */
 .header-section {
     background-color: #3f5022;
     color: white;
     padding: 20px;
     text-align: center;
-    margin-top: 90px;
+    margin-top: 0; /* Ensure no margin-top here */
+    position: relative;
+}
+
+.article-meta {
+    margin: 20px 0;
+    text-align: right;
+}
+
+.meta-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.publicado, .autor {
+    font-size: 14px;
+    color: #333333;
+    font-weight: bold;
 }
 
 .header-section h1 {

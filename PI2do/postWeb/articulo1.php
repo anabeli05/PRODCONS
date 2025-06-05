@@ -8,6 +8,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menos Plásticos, Más Vida</title>
     <link rel="stylesheet" href="/PRODCONS/PI2do/postWeb/code.css">
+     <link rel="stylesheet" href="/PRODCONS/PI2do/header_post/header_post.css">
     
     <!-- =====================================================================
     SCRIPTS DE TRADUCCIÓN - REQUERIDOS
@@ -27,7 +28,7 @@ session_start();
     </style>
 </head>
 <body>
-    <!-- Barra para regresar -->
+    <!-- Barra para regresar y header principal -->
     <section class="barra_left">
         <i class="flecha_left">
 <a href="/PRODCONS/" title="Regresar a la página principal">
@@ -39,14 +40,14 @@ session_start();
     </section>
 
     <!-- =====================================================================    CUADRO DE SELECCIÓN DE IDIOMA - NO MODIFICAR LA ESTRUCTURA    Puedes modificar el texto, pero mantén los IDs y la estructura        - El botón X permite cerrar/ocultar el selector de idioma    ===================================================================== -->
-    <div class="language-toggle" id="language-toggle">
+    <!-- <div class="language-toggle" id="language-toggle">
         <button class="close-button" id="close-language-toggle" onclick="document.getElementById('language-toggle').style.display='none'">✕</button>
         <p id="toggle-text">¿Cambiar idioma?</p>
         <div class="language-buttons">
             <button id="btn-es" onclick="cambiarIdioma('espanol')" class="active">Español</button>
             <button id="btn-en" onclick="cambiarIdioma('ingles')">English</button>
         </div>
-    </div>
+    </div> -->
 
     <!-- Header convertido en section -->
     <section class="header-section">
@@ -167,6 +168,7 @@ Este script mantiene sincronizada la interfaz de idioma
 </script>
 
 <?php include '/xampp/htdocs/PRODCONS/PI2do/footer/Visitante/footer.php'; ?>
+<script src='/PRODCONS/PI2do/header_post/header_post.js'></script>
 
 </body>
 </html>

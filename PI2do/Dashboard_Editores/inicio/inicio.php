@@ -76,12 +76,10 @@ try {
     <title>PRODCONS - Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="hola-adminstyles.css"> <!-- nada, todo esta ahora en TaildwindCSS -->
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- CSS DE HEADER-->
+    <!-- CSS Y JS DE HEADER-->
     <link rel="stylesheet" href='../Dashboard/sidebar.css'>
     <script src='../Dashboard/barra-nav.js' defer></script>
 </head>
@@ -151,7 +149,7 @@ try {
                         <i class="fas fa-file-alt"></i>
                     </a>
 
-                    <a href="../Crear nuevo post/formulario-new-post.php">
+                    <a href="../Crear nuevo post/post-form.html">
                         <span>Crear Post</span>
                         <i class="fas fa-edit"></i>
                     </a>
@@ -188,11 +186,11 @@ try {
             <div class="flex-1 min-w-[300px] p-5 m-0">
               <h2 class="text-[clamp(28px,3vw,40px)] mb-[15px] font-bold">¡Hola <?php echo htmlspecialchars($_SESSION['Nombre'] ?? 'Admin'); ?>!</h2>
                 <p class="text-[clamp(13px,1.5vw,15px)] mb-5">Un blog exitoso se construye post a post. ¡Sigue adelante!</p>
-                <a href='../MisArticulos/formulario-new-post.php'>
+                <a href='../Crear nuevo post/post-form.html'>
                     <button class="w-1/2 min-w-[150px] h-20 border-none rounded-[30px] bg-[#1b641b] text-white font-semibold text-[clamp(14px,1.5vw,16px)] cursor-pointer transition duration-300 mt-[25px] hover:bg-[#145014]">ESCRIBE UN NUEVO POST</button>
                 </a>
             </div>
-            <div class="w-[35%] h-full flex justify-center items-center p-[15px]">
+            <div class="absolute right-[30px] bottom-[10px] top-[10px] w-[30%] flex justify-center items-center">
                 <img src='/PRODCONS/PI2do/imagenes/chicaLaptop.png' class="max-h-[200px] h-[280px] w-auto object-contain">
             </div>
         </div>
@@ -272,4 +270,4 @@ try {
         });
     </script>
 </body>
-</html>
+</html> 

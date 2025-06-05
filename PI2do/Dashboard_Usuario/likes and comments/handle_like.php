@@ -39,7 +39,7 @@ if ($conn->connect_error) {
 
 try {
     // 1. Verificar si el usuario ya ha dado like a este post
-    $stmt = $conn->prepare("SELECT id FROM likes WHERE ID_Articulo = ? AND Usuario_ID = ?");
+    $stmt = $conn->prepare("SELECT Like_ID FROM likes WHERE Articulo_ID = ? AND Usuario_ID = ?");
     if (!$stmt) {
         throw new Exception("Error preparando consulta de verificación de like: " . $conn->error);
     }
@@ -64,34 +64,39 @@ try {
     $stmt->execute();
     $stmt->close();
 
-    // 3. Obtener información del artículo y el usuario para la notificación
-    $stmt = $conn->prepare("SELECT a.Usuario_ID, a.Titulo, u.Nombre 
+    // Verificar si la inserción fue exitosa
+    if ($conn->affected_rows > 0) {
+        // 3. Obtener información del artículo y el usuario para la notificación
+        $stmt = $conn->prepare("SELECT a.Usuario_ID, a.Titulo, u.Nombre 
                            FROM articulos a 
                            JOIN usuarios u ON u.Usuario_ID = ? 
                            WHERE a.ID_Articulo = ?");
-    if (!$stmt) {
-        throw new Exception("Error preparando consulta para obtener información: " . $conn->error);
-    }
-    $stmt->bind_param("ii", $usuario_id_logueado, $post_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $info = $result->fetch_assoc();
-    $stmt->close();
-
-    if ($info) {
-        // 4. Insertar notificación
-        $mensaje = $info['Nombre'] . " le ha dado 'Me gusta' a tu publicación '" . $info['Titulo'] . "'";
-        $stmt = $conn->prepare("INSERT INTO noti_box (Usuario_ID, Mensaje, Fecha, Leido) VALUES (?, ?, NOW(), 0)");
         if (!$stmt) {
-            throw new Exception("Error preparando consulta de notificación: " . $conn->error);
+            throw new Exception("Error preparando consulta para obtener información: " . $conn->error);
         }
-        $stmt->bind_param("is", $info['Usuario_ID'], $mensaje);
+        $stmt->bind_param("ii", $usuario_id_logueado, $post_id);
         $stmt->execute();
+        $result = $stmt->get_result();
+        $info = $result->fetch_assoc();
         $stmt->close();
-    }
 
-    // Si todo fue bien
-    echo json_encode(['success' => true, 'message' => 'Me gusta registrado.']);
+        if ($info) {
+            // 4. Insertar notificación
+            $mensaje = $info['Nombre'] . " le ha dado 'Me gusta' a tu publicación '" . $info['Titulo'] . "'";
+            $stmt = $conn->prepare("INSERT INTO noti_box (Usuario_ID, Mensaje, Fecha, Leido) VALUES (?, ?, NOW(), 0)");
+            if (!$stmt) {
+                throw new Exception("Error preparando consulta de notificación: " . $conn->error);
+            }
+            $stmt->bind_param("is", $info['Usuario_ID'], $mensaje);
+            $stmt->execute();
+            $stmt->close();
+        }
+
+        // Si todo fue bien
+        echo json_encode(['success' => true, 'message' => 'Me gusta registrado.']);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Error al registrar el like.']);
+    }
 
 } catch (Exception $e) {
     // Log the error for debugging

@@ -88,6 +88,30 @@ form {
     position: relative;
 }
 
+.toggle-password {
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+}
+.toggle-password:hover {
+    color: #333;
+}
+.error-message {
+    color: #dc3545;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+.success-message {
+    color: #28a745;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
 .input-area i {
     position: absolute;
     left: 15px;
