@@ -93,7 +93,17 @@ try {
 <body>
     <header>
         <div class="header-contenedor">
-            <div class="principal"></div>
+            <div class="principal">
+                <!-- Selector de bandera para cambio de idioma -->
+                <div id="idiomaToggle" style="display: inline-block; margin-left: 15px;">
+                    <img class="españa" id="banderaIdioma" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
+                </div>
+                <!-- Opciones de banderas desplegables -->
+                <div id="idiomasOpciones" style="display: none;">
+                    <img class="ingles" src="/PRODCONS/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
+                    <img class="españa" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
+                </div>
+            </div>
         </div>
     </header>
 
@@ -251,17 +261,6 @@ try {
         </div>
     </section>
 
-    <!-- Selector de idioma -->
-    <div class="language-toggle" id="language-toggle">
-        <button class="close-button" id="close-language-toggle" onclick="document.getElementById('language-toggle').style.display='none'">✕</button>
-        <p id="toggle-text">¿Cambiar idioma?</p>
-        <div class="language-buttons">
-            <button id="btn-es" onclick="cambiarIdioma('espanol')" class="active">Español</button>
-            <button id="btn-en" onclick="cambiarIdioma('ingles')">English</button>
-        </div>
-    </div>
-    <!------------------------>
-    
     <?php if (isset($_SESSION['error'])): ?>
     <div class="error-message">
         <?php 

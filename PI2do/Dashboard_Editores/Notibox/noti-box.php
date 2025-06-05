@@ -54,7 +54,6 @@ $stmt->close();
     <title>PRODCONS - Notificaciones</title>
     <!-- <link href='/PRODCONS/PI2do/Dashboard_Editores/Notibox/noti-box.css' rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
     <!-- CSS Y JS DE HEADER-->
     <link href='/PRODCONS/PI2do/Dashboard_Editores/Dashboard/sidebar.css' rel="stylesheet">
     <script src='/PRODCONS/PI2do/Dashboard_Editores/Dashboard/barra-nav.js' defer></script>
@@ -62,6 +61,12 @@ $stmt->close();
     <!-- Tailwind CSS y font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- CSS de traduccion -->
+    <link rel="stylesheet" href="../../Dashboard_Editores/Dashboard/traduccion.css">
+    <!-- Scripts de traducción -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="/PRODCONS/translate.js"></script>
 </head>
 <body>
     <header>
@@ -71,7 +76,17 @@ $stmt->close();
             <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
         </a>
         <div class="header-contenedor">
-            <div class="principal"></div>
+            <div class="principal">
+                <!-- Selector de bandera para cambio de idioma -->
+                <div id="idiomaToggle" style="display: inline-block; margin-left: 15px;">
+                    <img class="españa" id="banderaIdioma" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
+                </div>
+                <!-- Opciones de banderas desplegables -->
+                <div id="idiomasOpciones" style="display: none;">
+                    <img class="ingles" src="/PRODCONS/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
+                    <img class="españa" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
+                </div>
+            </div>
         </div>
     </header>
 
