@@ -302,12 +302,13 @@ body {
 /* Estilos para los badges de estado */
 .status-badge {
     display: inline-block;
-    padding: 4px 8px;
+    padding: 8px 12px;
     border-radius: 12px;
     font-size: 0.8rem;
     font-weight: bold;
     text-transform: capitalize;
-    color: white;
+    color: rgb(0, 0, 0);
+    background-color: rgb(27, 233, 48);
     text-align: center;
 }
 

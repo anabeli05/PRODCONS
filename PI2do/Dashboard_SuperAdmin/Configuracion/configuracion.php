@@ -55,7 +55,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuración - PRONCONS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href='../../Dashboard_Editores/Configuracion/configuracion.css'>
+    <link rel="stylesheet" href='configuracion.css'>
     
     
     <link rel="stylesheet" href='../Dashboard/sidebar.css'>

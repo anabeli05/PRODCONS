@@ -10,6 +10,29 @@ html, body {
     background: white;
 }
 
+/* Estilos para la bandera de idioma */
+#banderaIdioma {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid black;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+        
+#banderaIdioma:hover {
+    transform: scale(1.1);
+}
+
+.carrusel-destacado {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto 40px auto;
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 *, *:before, *:after { /*Se quita la barra de desplazamiento de abajo*/
     box-sizing: inherit;
