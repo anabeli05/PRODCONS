@@ -2,26 +2,12 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // Elementos
-    const searchToggle = document.querySelector('.search-toggle-btn');
-    const searchBar = document.querySelector('.search-bar');
-    const searchClose = document.querySelector('.search-close-btn');
     const adminBtn = document.querySelector('.admin-btn');
     const sidebar = document.querySelector('.admin-sidebar');
     const closeSidebar = document.querySelector('.close-sidebar');
 
     // Verifica que todos los elementos existen antes de agregar listeners
-    if (searchToggle && searchBar && searchClose && adminBtn && sidebar && closeSidebar) {
-        // Toggle barra de búsqueda
-        searchToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            searchBar.classList.toggle('hidden');
-        });
-
-        // Cerrar barra de búsqueda
-        searchClose.addEventListener('click', function() {
-            searchBar.classList.add('hidden');
-        });
-
+    if (adminBtn && sidebar && closeSidebar) {
         // Toggle sidebar - Área clickeable mejorada
         adminBtn.addEventListener('click', function(e) {
             // Verifica si el clic fue en un elemento interactivo interno
@@ -35,12 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
             sidebar.classList.remove('active');
         });
 
-        // Cerrar al hacer clic fuera (versión mejorada)
+        // Cerrar al hacer clic fuera
         document.addEventListener('click', function(e) {
-            // Para la barra de búsqueda
-            if (!searchBar.contains(e.target) && e.target !== searchToggle && !searchToggle.contains(e.target)) {
-                searchBar.classList.add('hidden');
-            }
             // Para el sidebar
             if (!sidebar.contains(e.target) && !adminBtn.contains(e.target)) {
                 sidebar.classList.remove('active');
