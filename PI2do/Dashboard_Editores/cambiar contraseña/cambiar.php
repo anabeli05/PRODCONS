@@ -121,8 +121,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODCONS - Cambiar Contraseña</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../../styles.css">
-    <link href="../../inicio_sesion/login.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../inicio_sesion/login.css">
+    
+    <!--Tailwind CSS-->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- CSS de traduccion -->
+    <link rel="stylesheet" href="../../Dashboard_Editores/Dashboard/traduccion.css">
+    <!-- Scripts de traducción -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="/PRODCONS/translate.js"></script>
+
     <style>
         .error-message {
             color: #dc3545;
@@ -139,6 +148,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
+    <header>
+        <a href="../Configuracion/configuracion.php" title="Regresar a la página principal" class="flex pl-4 ">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" 
+            class="w-10 h-10 fill-current text-gray-700 hover:text-green-600 transition-colors duration-300">
+            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+        <div class="header-contenedor">
+            <div class="principal"></div>
+        </div>
+    </header>
+
+    <section class="logo"> 
+        <div class="header_2">
+            <img class="prodcons" src='../../imagenes/prodcon/logoSinfondo.png' alt="Logo">
+        </div>
+    </section>
+
     <div class="background-animation">
         <div class="circle circle-1"></div>
         <div class="circle circle-2"></div>
@@ -202,5 +228,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </section>
     </section>
+    <!-- Selector de idioma -->
+    <div class="language-toggle" id="language-toggle">
+        <button class="close-button" id="close-language-toggle" onclick="document.getElementById('language-toggle').style.display='none'">✕</button>
+        <p id="toggle-text">¿Cambiar idioma?</p>
+        <div class="language-buttons">
+            <button id="btn-es" onclick="cambiarIdioma('espanol')" class="active">Español</button>
+            <button id="btn-en" onclick="cambiarIdioma('ingles')">English</button>
+        </div>
+    </div>
+    <!------------------------>
+
+    <script>
+            //Script para el idioma -->
+    function updateLanguageButtons() {
+      const btnEs = document.getElementById('btn-es');
+      const btnEn = document.getElementById('btn-en');
+      const toggleText = document.getElementById('toggle-text');
+      
+      const currentLang = localStorage.getItem('preferredLanguage') || 'es';
+      
+      if (currentLang === 'en') {
+        btnEs.classList.remove('active');
+        btnEn.classList.add('active');
+        toggleText.innerText = 'Change language?';
+      } else {
+        btnEn.classList.remove('active');
+        btnEs.classList.add('active');
+        toggleText.innerText = '¿Cambiar idioma?';
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      updateLanguageButtons();
+      
+      const observer = new MutationObserver(function(mutations) {
+        updateLanguageButtons();
+      });
+      
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+      
+      document.getElementById('close-language-toggle').addEventListener('click', function() {
+        document.getElementById('language-toggle').style.display = 'none';
+      });
+    });
+    
+    const originalCambiarIdioma = window.cambiarIdioma;
+    window.cambiarIdioma = function(idioma) {
+      if (typeof originalCambiarIdioma === 'function') {
+        originalCambiarIdioma(idioma);
+      } else {
+        translateContent(idioma === 'ingles' ? 'en' : 'es');
+      }
+      setTimeout(updateLanguageButtons, 100);
+    };
+    </script>
 </body>
 </html>
