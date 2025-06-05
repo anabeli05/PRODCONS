@@ -229,114 +229,7 @@ DEBUG: Error message:
 DEBUG: Success message: 
 --- Nuevo Log de Sesión: 2025-05-31 17:08:30 ---
 DEBUG: Botón de ingreso presionado
-DEBUG: Correo recibido: xcobian@ucol.mx
-DEBUG: Contraseña recibida: Anabeli05
-DEBUG: Clase Contacto cargada
-DEBUG: Objeto Contacto creado
---- Nuevo Log de Sesión: 2025-05-31 17:11:17 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: 
-DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-05-31 17:11:35 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: 
-DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-05-31 17:12:07 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: 
-DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-05-31 17:12:12 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: 
-DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-05-31 17:12:59 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: 
-DEBUG: Success message: 
-
-
---- Nuevo Log de Sesión: 2025-06-02 15:18:14 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
-DEBUG: Success message: 
---- Nuevo Log de Sesión: 2025-06-02 19:52:28 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-02 20:06:28 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-02 20:13:59 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-02 20:16:01 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-02 20:19:42 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-02 20:21:24 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-02 20:23:15 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-02 20:24:52 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-02 20:27:33 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-02 20:28:59 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-02 20:29:19 ---
-DEBUG: Botón de ingreso presionado
-DEBUG: Correo recibido: ysierra@ucol.mx
-DEBUG: Contraseña recibida: 12345678
-DEBUG: Clase Contacto cargada
-DEBUG: Objeto Contacto creado
-DEBUG: Usuario no encontrado con correo: ysierra@ucol.mx
-DEBUG: Redirigiendo a login con error=1
---- Nuevo Log de Sesión: 2025-06-02 20:29:20 ---
-DEBUG: Iniciando proceso de login
---- Nuevo Log de Sesión: 2025-06-02 20:29:20 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: Error: Credenciales incorrectas
---- Nuevo Log de Sesión: 2025-06-03 06:56:16 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-03 06:57:26 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-03 07:01:37 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-03 07:03:33 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-03 07:04:09 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-03 07:09:02 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-03 07:09:19 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-03 07:44:23 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-03 07:44:27 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-03 07:44:31 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-03 07:44:45 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-03 07:45:25 ---
-DEBUG: Iniciando proceso de login
+DEBUG: Correo re
 DEBUG: Error message: None
 --- Nuevo Log de Sesión: 2025-06-03 07:45:33 ---
 DEBUG: Iniciando proceso de login
@@ -350,6 +243,76 @@ DEBUG: Error message: None
 --- Nuevo Log de Sesión: 2025-06-03 07:45:53 ---
 DEBUG PHP: Script registro.php started. Error: None
 --- Nuevo Log de Sesión: 2025-06-03 07:45:55 ---
+DEBUG: Iniciando proceso de lo--- Nuevo Log de Sesión: 2025-06-03 09:50:33 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 09:50:52 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-03 09:58:30 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 09:58:34 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xcobian@ucol.mx
+DEBUG: Contraseña recibida: anabeli05
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-03 10:06:32 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 10:06:37 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xcobian@ucol.mx
+DEBUG: Contraseña recibida: anabeli05
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-03 13:31:11 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Tu cuenta no está registrada, por favor regístrate
+--- Nuevo Log de Sesión: 2025-06-03 13:31:21 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: rvuelvas@ucol.mx
+DEBUG: Contraseña recibida: Prodcor2024
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-03 13:36:04 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 13:56:59 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 13:57:06 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 13:57:13 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xcobian@ucol.mx
+DEBUG: Contraseña recibida: anabeli05
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-03 14:00:23 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Tu cuenta no está registrada, por favor regístrate
+--- Nuevo Log de Sesión: 2025-06-03 14:00:28 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: rvuelvas@ucol.mx
+DEBUG: Contraseña recibida: Prodcor2024
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-03 14:07:09 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 14:12:27 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 14:12:27 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-03 14:12:27 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
 --- Nuevo Log de Sesión: 2025-06-03 22:48:21 ---
@@ -428,257 +391,405 @@ DEBUG: Error message: None
 --- Nuevo Log de Sesión: 2025-06-04 00:08:39 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 01:17:48 ---
+--- Nuevo Log de Sesión: 2025-06-04 02:53:08 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 01:17:51 ---
+--- Nuevo Log de Sesión: 2025-06-04 02:53:38 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 01:18:06 ---
+--- Nuevo Log de Sesión: 2025-06-04 02:53:56 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-04 04:51:07 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 01:18:09 ---
+--- Nuevo Log de Sesión: 2025-06-04 04:51:10 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 01:19:04 ---
+--- Nuevo Log de Sesión: 2025-06-04 04:51:12 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-04 17:48:50 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 01:19:13 ---
+--- Nuevo Log de Sesión: 2025-06-04 17:49:47 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: MySQL server has gone away
+--- Nuevo Log de Sesión: 2025-06-04 17:49:48 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-04 17:49:48 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-04 17:49:56 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 01:40:45 ---
+--- Nuevo Log de Sesión: 2025-06-04 17:50:04 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 01:41:07 ---
+--- Nuevo Log de Sesión: 2025-06-04 17:50:07 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: MySQL server has gone away
+--- Nuevo Log de Sesión: 2025-06-04 17:50:07 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-04 17:50:07 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-04 17:50:25 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: MySQL server has gone away
+--- Nuevo Log de Sesión: 2025-06-04 17:50:25 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-04 17:50:25 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-04 17:51:33 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 01:47:06 ---
+--- Nuevo Log de Sesión: 2025-06-04 17:55:21 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: MySQL server has gone away
+--- Nuevo Log de Sesión: 2025-06-04 17:55:21 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-04 17:55:21 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-04 17:56:41 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 01:47:09 ---
+--- Nuevo Log de Sesión: 2025-06-04 17:56:43 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 01:47:12 ---
+--- Nuevo Log de Sesión: 2025-06-04 17:56:45 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 02:05:44 ---
+--- Nuevo Log de Sesión: 2025-06-04 17:57:00 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 02:06:03 ---
+--- Nuevo Log de Sesión: 2025-06-04 17:57:03 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: MySQL server has gone away
+--- Nuevo Log de Sesión: 2025-06-04 17:57:04 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-04 17:57:04 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-04 17:57:25 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 02:06:14 ---
+--- Nuevo Log de Sesión: 2025-06-04 17:57:40 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: MySQL server has gone away
+--- Nuevo Log de Sesión: 2025-06-04 17:57:41 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-04 17:57:41 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-04 18:44:29 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 02:06:15 ---
+--- Nuevo Log de Sesión: 2025-06-04 18:44:30 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: MySQL server has gone away
+--- Nuevo Log de Sesión: 2025-06-04 18:44:31 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-04 18:44:31 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-04 18:46:11 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: MySQL server has gone away
+--- Nuevo Log de Sesión: 2025-06-04 18:46:11 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-04 18:46:11 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-04 18:46:15 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: MySQL server has gone away
+--- Nuevo Log de Sesión: 2025-06-04 18:46:15 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-04 18:46:15 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-04 18:47:02 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 18:47:03 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 18:47:09 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 18:47:10 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 18:47:12 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 18:47:43 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 18:47:45 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: MySQL server has gone away
+--- Nuevo Log de Sesión: 2025-06-04 18:47:45 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-04 18:47:45 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-04 19:29:16 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: MySQL server has gone away
+--- Nuevo Log de Sesión: 2025-06-04 19:29:16 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-04 19:29:16 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-04 19:47:50 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 19:47:54 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: MySQL server has gone away
+--- Nuevo Log de Sesión: 2025-06-04 19:47:54 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-04 19:47:54 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-04 19:48:40 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: Error de conexión: MySQL server has gone away
+--- Nuevo Log de Sesión: 2025-06-04 19:48:40 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-04 19:48:40 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-04 19:50:23 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 19:50:24 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 21:02:39 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 21:02:40 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-04 21:13:07 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 21:13:08 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-04 21:19:08 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 21:19:09 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-04 21:19:28 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-04 21:58:23 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 21:58:27 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 22:14:00 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 22:14:01 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-04 22:29:38 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 22:30:10 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 22:30:11 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-04 22:30:29 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 22:30:30 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+--- Nuevo Log de Sesión: 2025-06-04 14:19:27 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 14:19:33 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: rvuelvas@ucol.mx
+DEBUG: Contraseña recibida: Prodcor2024
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-04 14:24:16 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 14:28:43 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 14:28:50 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xiomicob2005@outlook.com
+DEBUG: Contraseña recibida: Prodcons12345
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-04 14:28:58 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 14:30:32 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-04 14:30:37 ---
 DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 02:06:21 ---
+--- Nuevo Log de Sesión: 2025-06-04 14:30:46 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 02:17:51 ---
+--- Nuevo Log de Sesión: 2025-06-04 14:34:06 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xcobian@ucol.mx
+DEBUG: Contraseña recibida: anabeli05
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-04 19:28:07 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 02:24:58 ---
+--- Nuevo Log de Sesión: 2025-06-04 19:28:09 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 02:26:34 ---
+--- Nuevo Log de Sesión: 2025-06-04 19:33:40 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 02:26:39 ---
+--- Nuevo Log de Sesión: 2025-06-04 19:33:46 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: rvuelvas@ucol.mx
+DEBUG: Contraseña recibida: Prodcor2024
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: MySQL server has gone away
+--- Nuevo Log de Sesión: 2025-06-04 19:33:46 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-04 19:33:46 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-04 19:33:51 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: rvuelvas@ucol.mx
+DEBUG: Contraseña recibida: Prodcor2024
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: MySQL server has gone away
+--- Nuevo Log de Sesión: 2025-06-04 19:33:51 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-04 19:33:51 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-04 19:34:29 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 02:31:27 ---
+--- Nuevo Log de Sesión: 2025-06-04 19:34:31 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 02:44:27 ---
---- Nuevo Log de Sesión: 2025-06-05 02:45:16 ---
---- Nuevo Log de Sesión: 2025-06-05 02:45:20 ---
---- Nuevo Log de Sesión: 2025-06-05 02:45:49 ---
+--- Nuevo Log de Sesión: 2025-06-04 19:34:36 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: rvuelvas@ucol.mx
+DEBUG: Contraseña recibida: Prodcor2024
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Excepción en login: MySQL server has gone away
+--- Nuevo Log de Sesión: 2025-06-04 19:34:36 ---
 DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 02:46:02 ---
+--- Nuevo Log de Sesión: 2025-06-04 19:34:36 ---
 DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 03:02:21 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 03:02:34 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 03:02:46 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 03:29:43 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 03:31:49 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 03:31:56 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 03:32:12 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 03:32:13 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 03:35:53 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 03:37:43 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 03:37:50 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 03:38:17 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 03:39:05 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 03:39:11 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 03:39:21 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 03:39:48 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:05:49 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:05:55 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:06:18 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:18:06 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:19:21 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:19:28 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:19:30 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:19:31 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:19:31 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:19:34 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:19:37 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:23:11 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:23:14 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:23:15 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:27:24 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:27:29 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:27:36 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:31:14 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:32:04 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:32:40 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:33:38 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:33:39 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:33:40 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:35:26 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:35:33 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:35:34 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:40:53 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:40:54 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:40:55 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:40:56 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:40:57 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:41:24 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:41:27 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:48:10 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:48:15 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:50:32 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:53:56 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:58:54 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 04:58:56 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 04:59:58 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 05:00:01 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 05:00:02 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 05:00:04 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 05:00:10 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 05:16:02 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 05:16:02 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 05:16:15 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 05:18:50 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 05:18:51 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 05:18:59 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 05:19:05 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 05:19:11 ---
-DEBUG PHP: Script registro.php started. Error: None
---- Nuevo Log de Sesión: 2025-06-05 05:19:23 ---
-DEBUG: Iniciando proceso de login
-DEBUG: Error message: None
---- Nuevo Log de Sesión: 2025-06-05 05:19:35 ---
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-04 20:47:55 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xcobian@ucol.mx
+DEBUG: Contraseña recibida: anabeli05
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-05 00:51:45 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: None

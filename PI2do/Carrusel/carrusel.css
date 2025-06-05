@@ -18,13 +18,14 @@
     overflow: hidden;
     transition: .2s;
     flex-direction: column;
-    max-height: 100%;
-    width: 300px;
+    width: 450px;
+    height: 450px;
     justify-content: center;
-    margin: 0 10px; /* margen lateral para separación */
+    margin: 0 15px;
     background: white;
     border-radius: 8px;
     display: flex;
+    flex-shrink: 0;
 }
 
 .carousel-item.post:hover {
@@ -59,16 +60,16 @@
     background-color: #F5E7DC;
     padding: 15px;
     text-align: justify;
-    min-height: 80%;
+    height: auto;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 }
 
 .post-body span {
     padding-top: 10px;
     display: block;
-    font-size: 12px;
+    font-size: 20px;
     line-height: .1;
     text-align: right;
     color: #6c6b6b;
@@ -77,14 +78,14 @@
 }
 
 .post-body h2 {
-    margin-bottom: 15px;
+    margin-bottom: 50px;
     text-align: center;
 }
 
 .post-body p {
-    line-height: 1.5;
-    margin-bottom: 20px;
-    font-size: 1rem;
+    line-height: 10px;
+    margin-bottom: 40px;
+    font-size: 10px;
 }
 
 .post-body .post-link {
@@ -157,14 +158,14 @@ button.next {
 /* --- Responsividad --- */
 @media (max-width: 900px) {
     .carousel-item.post {
-        width: 45vw; /* menos ancho en tablet */
-        margin: 0 8px;
+        width: 65vw;
+        margin: 0 10px;
     }
     .post-header {
-        height: 160px;
+        height: 140px;
     }
     .post-header img {
-        height: 160px;
+        height: 140px;
     }
     button.prev, button.next {
         width: 35px;
@@ -178,14 +179,14 @@ button.next {
 
 @media (max-width: 600px) {
     .carousel-item.post {
-        width: 90vw; /* casi ancho completo en móvil */
+        width: 90vw;
         margin: 0 5px;
     }
     .post-header {
-        height: 140px;
+        height: 120px;
     }
     .post-header img {
-        height: 140px;
+        height: 120px;
     }
     button.prev, button.next {
         width: 30px;

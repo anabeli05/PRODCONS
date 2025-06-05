@@ -52,50 +52,18 @@ $stmt->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODCONS - Notificaciones</title>
-    <link href='/PRODCONS/PI2do/Dashboard_Editores/Notibox/noti-box.css' rel="stylesheet">
+    <!-- <link href='/PRODCONS/PI2do/Dashboard_Editores/Notibox/noti-box.css' rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- CSS Y JS DE HEADER-->
     <link href='/PRODCONS/PI2do/Dashboard_Editores/Dashboard/sidebar.css' rel="stylesheet">
     <script src='/PRODCONS/PI2do/Dashboard_Editores/Dashboard/barra-nav.js' defer></script>
 
-    <style>
-        .notification-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background-color: #ff0000;
-            color: white;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 12px;
-            display: <?php echo $total_no_vistas > 0 ? 'block' : 'none'; ?>;
-        }
-        .notification-icon {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-        .notification-icon i {
-            font-size: 20px;
-        }
-        .notification-type {
-            font-weight: bold;
-            color: #666;
-        }
-        .comment-text {
-            margin-top: 5px;
-            padding: 8px;
-            background-color: #f5f5f5;
-            border-radius: 4px;
-            font-style: italic;
-        }
-    </style>
+    <!-- Tailwind CSS y font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-
-
     <header> 
         <div class="header-contenedor">
             <div class="principal"></div>
@@ -104,7 +72,7 @@ $stmt->close();
 
     <section class="logo"> 
         <div class="header_2">
-            <img class="prodcons" src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo">
+            <img class="prodcons" src='../../imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
             <div class="admin-controls">
                 <!-- Botón de búsqueda-->
@@ -151,7 +119,7 @@ $stmt->close();
                 
                 <nav class="sidebar-menu">
 
-                <a href='../MisArticulos/mis-articulos.php'><!----cambiar la ruta a inicio---->
+                <a href='../inicio/inicio.php'><!----cambiar la ruta a inicio---->
                         <span>Inicio</span>
                         <i class="fas fa-file-alt"></i>
                     </a>
@@ -161,7 +129,7 @@ $stmt->close();
                         <i class="fas fa-file-alt"></i>
                     </a>
 
-                    <a href="../Crear nuevo post/formulario-new-post.php">
+                    <a href="../Crear nuevo post/post-form.html">
                         <span>Crear Post</span>
                         <i class="fas fa-edit"></i>
                     </a>
@@ -187,67 +155,67 @@ $stmt->close();
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </div>
+                </nav>
             </div>
         </div>
     </section>
 
     <!-- NOTIFICACIONES -->
-
-    <section class="notificaciones">
-        <div class="notifications-container">
-            <div class="notifications-header">
-                <h2>Notificaciones</h2>
-                <div class="badge-container">
-                    <div class="notification-badge"><?php echo $total_no_vistas; ?></div>
+    <section class="font-sans bg-[#f5f7fa] py-10 px-4 flex justify-center">
+        <div class="notifications-container w-full max-w-[600px] bg-white rounded-[12px] overflow-hidden">
+            <div class="dflex items-center justify-between px-5 py-4 border-b">
+                <h2 class="text-[18px] font-semibold">Notificaciones</h2>
+                <div class="relative">
+                    <div class="notification-badge bg-red-600 text-white text-[12px] w-6 h-6 rounded-full flex items-center justify-center font-bold"><?php echo $total_no_vistas; ?></div>
                 </div>
             </div>
 
             <?php if (empty($notificaciones)): ?>
-                <div class="notification">No tienes notificaciones nuevas.</div>
+                <div  class="text-center text-gray-500 text-[15px] px-5 py-6">No tienes notificaciones nuevas.</div>
             <?php else: ?>
                 <?php foreach ($notificaciones as $noti): ?>
-                    <div class="notification" data-post-id="<?= $noti['ID'] ?>">
+                    <div class="border-b px-5 py-4 flex gap-4 items-start text-[16px]" data-post-id="<?= $noti['ID'] ?>">
                         <?php if ($noti['tipo'] === 'likes'): ?>
-                            <div class="notification-icon">
-                                <i class="fas fa-heart"></i>
-                                <span class="notification-type">Nuevo like</span>
+                            <div class="flex items-center gap-2">
+                                <i  class="fas fa-heart text-[20px] text-[#e0245e] mt-1"></i>
+                                <span class="font-semibold text-gray-700">Nuevo like</span>
                             </div>
-                            <div class="content">
-                                <div class="notification-text">
-                                    <span class="author-name"><?= htmlspecialchars($noti['autor_nombre']) ?></span>
+                            <div class="flex-1">
+                                <div class="text-gray-800">
+                                    <span class="font-bold"><?= htmlspecialchars($noti['autor_nombre']) ?></span>
                                     te ha dado like a tu publicación
                                 </div>
-                                <a href="ver-publicacion.php?id=<?= $noti['ID'] ?>" class="view-post-button">Ver publicación</a>
-                                <div class="time"><?= htmlspecialchars($noti['Fecha']) ?></div>
+                                <a href="ver-publicacion.php?id=<?= $noti['ID'] ?>" class="inline-block mt-2 bg-blue-600 text-white text-sm px-3 py-1.5 rounded hover:bg-blue-700 transition">Ver publicación</a>
+                                <div class="text-[14px] text-gray-500 mt-1"><?= htmlspecialchars($noti['Fecha']) ?></div>
                             </div>
                         <?php elseif ($noti['tipo'] === 'comentarios_autor'): ?>
-                            <div class="notification-icon">
-                                <i class="fas fa-comment"></i>
-                                <span class="notification-type">Nuevo comentario</span>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-comment text-[20px] text-[#007bff] mt-1"></i>
+                                <span class="font-semibold text-gray-700">Nuevo comentario</span>
                             </div>
-                            <div class="content">
-                                <div class="notification-text">
-                                    <span class="author-name"><?= htmlspecialchars($noti['autor_nombre']) ?></span>
+                            <div class="flex-1">
+                                <div class="text-gray-800">
+                                    <span class="font-bold"><?= htmlspecialchars($noti['autor_nombre']) ?></span>
                                     ha comentado en tu publicación:
-                                    <div class="comment-text"><?= htmlspecialchars($noti['Comentario']) ?></div>
+                                    <div class="mt-1 p-2 bg-[#f5f5f5] rounded text-gray-600 italic"><?= htmlspecialchars($noti['Comentario']) ?></div>
                                 </div>
-                                <a href="ver-publicacion.php?id=<?= $noti['ID'] ?>" class="view-post-button">Ver publicación</a>
-                                <div class="time"><?= htmlspecialchars($noti['Fecha']) ?></div>
+                                <a href="ver-publicacion.php?id=<?= $noti['ID'] ?>" class="inline-block mt-2 bg-blue-600 text-white text-sm px-3 py-1.5 rounded hover:bg-blue-700 transition">Ver publicación</a>
+                                <div class="text-[14px] text-gray-500 mt-1"><?= htmlspecialchars($noti['Fecha']) ?></div>
                             </div>
                         <?php elseif ($noti['tipo'] === 'aceptada'): ?>
-                            <div class="avatar" style="background-image: url('perfil.png')"></div>
-                            <div class="content">
-                                <div class="status-accepted">Tu publicación fue aceptada y ya está en línea</div>
-                                <a href="ver-publicacion.php?id=<?= $noti['Articulo_ID'] ?>" class="view-post-button">Ver publicación</a>
-                                <div class="time"><?= htmlspecialchars($noti['Fecha']) ?></div>
+                            <div class="w-10 h-10 rounded-full bg-cover bg-center flex-shrink-0" style="background-image: url('perfil.png')"></div>
+                            <div class="flex-1">
+                                <div class="text-green-600 font-bold text-[17px]">Tu publicación fue aceptada y ya está en línea</div>
+                                <a href="ver-publicacion.php?id=<?= $noti['Articulo_ID'] ?>" class="inline-block mt-2 bg-blue-600 text-white text-sm px-3 py-1.5 rounded hover:bg-blue-700 transition">Ver publicación</a>
+                                <div class="text-[14px] text-gray-500 mt-1"><?= htmlspecialchars($noti['Fecha']) ?></div>
                             </div>
                         <?php elseif ($noti['tipo'] === 'rechazada'): ?>
-                            <div class="avatar" style="background-image: url('perfil.png')"></div>
-                            <div class="content">
-                                <div class="status-rejected">Tu publicación fue rechazada</div>
-                                <div class="admin-comment">Motivo: "<?= htmlspecialchars($noti['Comentario']) ?>"</div>
-                                <a href="ver-publicacion.php?id=<?= $noti['Articulo_ID'] ?>" class="view-post-button">Ver publicación</a>
-                                <div class="time"><?= htmlspecialchars($noti['Fecha']) ?></div>
+                            <div class="w-10 h-10 rounded-full bg-cover bg-center flex-shrink-0" style="background-image: url('perfil.png')"></div>
+                            <div class="flex-1">
+                                <div class="text-red-600 font-bold text-[17px]">Tu publicación fue rechazada</div>
+                                <div class="text-blue-600 italic mt-1">Motivo: "<?= htmlspecialchars($noti['Comentario']) ?>"</div>
+                                <a href="ver-publicacion.php?id=<?= $noti['Articulo_ID'] ?>" class="inline-block mt-2 bg-blue-600 text-white text-sm px-3 py-1.5 rounded hover:bg-blue-700 transition">Ver publicación</a>
+                                <div class="text-[14px] text-gray-500 mt-1"><?= htmlspecialchars($noti['Fecha']) ?></div>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -256,35 +224,35 @@ $stmt->close();
         </div>
     </section>
 
-    <script>
-        // Marcar todas las notificaciones como vistas cuando se abra el modal
-        document.addEventListener('DOMContentLoaded', function() {
-            const notificationContainer = document.querySelector('.notifications-container');
-            const notificationBadge = document.querySelector('.notification-badge');
+<script>
+    // Marcar todas las notificaciones como vistas cuando se abra el modal
+    document.addEventListener('DOMContentLoaded', function() {
+        const notificationContainer = document.querySelector('.notifications-container');
+        const notificationBadge = document.querySelector('.notification-badge');
             
-            if (notificationContainer && notificationBadge) {
-                notificationContainer.addEventListener('click', function() {
-                    fetch('marcar_vistas.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: 'Usuario_ID=' + <?php echo $Usuario_ID; ?>
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            notificationBadge.style.display = 'none';
-                        } else {
-                            console.error('Error al marcar como vistas:', data.error);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error en la petición:', error);
-                    });
+        if (notificationContainer && notificationBadge) {
+            notificationContainer.addEventListener('click', function() {
+                fetch('marcar_vistas.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'Usuario_ID=' + <?php echo $Usuario_ID; ?>
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        notificationBadge.style.display = 'none';
+                    } else {
+                        console.error('Error al marcar como vistas:', data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la petición:', error);
                 });
-            }
-        });
-    </script>
+            });
+        }
+    });
+</script>
 </body>
 </html>

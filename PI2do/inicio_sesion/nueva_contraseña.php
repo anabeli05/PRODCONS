@@ -41,6 +41,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("ss", $hash, $_SESSION['correo_recuperacion']);
         
         if ($stmt->execute()) {
+            // Password updated successfully
+            $stmt->close();
+
+            // --- Log password change in historial de datos usuario table ---
+            // Get Usuario_ID from the usuarios table using the email
+            $stmt_user_id = $conn->prepare("SELECT Usuario_ID FROM usuarios WHERE Correo = ?");
+            if ($stmt_user_id) {
+                $stmt_user_id->bind_param("s", $_SESSION['correo_recuperacion']);
+                $stmt_user_id->execute();
+                $result_user_id = $stmt_user_id->get_result();
+                $user_data = $result_user_id->fetch_assoc();
+                $stmt_user_id->close();
+
+                if ($user_data && isset($user_data['Usuario_ID'])) {
+                    $usuario_id_log = $user_data['Usuario_ID'];
+                    $campo_cambiado = 'Contraseña';
+                    $valor_anterior = NULL; // We don't store the old password/hash
+                    $valor_nuevo = '[Actualizado]'; // Indicate password was updated
+                    $tipo_cambio = 'Actualización de contraseña';
+
+                    // Insert into historial de datos usuario
+                    $stmt_historial = $conn->prepare("INSERT INTO historial_de_datos_usuario (Usuario_ID, Campo, Valor_Anterior, Valor_Nuevo, Fecha_Cambio, Tipo_Cambio) VALUES (?, ?, ?, ?, NOW(), ?)");
+                    if ($stmt_historial) {
+                        $stmt_historial->bind_param("issss", $usuario_id_log, $campo_cambiado, $valor_anterior, $valor_nuevo, $tipo_cambio);
+                        $stmt_historial->execute();
+                        $stmt_historial->close();
+                        // Log success or handle error if needed, but don't interrupt user flow for history log failure
+                    } else {
+                        error_log("Error preparando consulta para historial de datos: " . $conn->error);
+                    }
+                } else {
+                    error_log("Usuario_ID no encontrado para el correo: " . $_SESSION['correo_recuperacion']);
+                }
+            } else {
+                error_log("Error preparando consulta para obtener Usuario_ID: " . $conn->error);
+            }
+            // --- End logging ---
+            
             session_unset();
             session_destroy();
             
@@ -52,6 +90,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+
+// Close the database connection after all operations
+$conexion->cerrar_conexion();
+
 ?>
 
 <!DOCTYPE html>
