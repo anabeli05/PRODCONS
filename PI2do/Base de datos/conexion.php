@@ -4,32 +4,32 @@
     error_reporting(E_ALL);
 	class Conexion
 	{
-		private $host='localhost';
-        private $port='3306';
+		private $host='gondola.proxy.rlwy.net';
+        private $port='49128';
 		private $usuario='root';
-		private $password = 'XXSvZgbZFpXXcKskSSjFyvBmASVZeCXcM';
-		private $base='Prodcons nube';
+		private $password = 'XSvZgbZFpXXcKskSSjFyvBmASVZeCXcM';
+		private $base='railway';
 		public $sentencia;
 		private $rows =array();
 		public $conexion;	
 
 		public function abrir_conexion(){
 			try {
-                // echo "DEBUG: Intentando conectar a la base de datos...<br>";
-                // echo "DEBUG: Host: " . $this->host . "<br>";
-                // echo "DEBUG: Puerto: " . $this->port . "<br>";
-                // echo "DEBUG: Usuario: " . $this->usuario . "<br>";
-                // echo "DEBUG: Base de datos: " . $this->base . "<br>";
+                echo "DEBUG: Intentando conectar a la base de datos...<br>";
+                echo "DEBUG: Host: " . $this->host . "<br>";
+                echo "DEBUG: Puerto: " . $this->port . "<br>";
+                echo "DEBUG: Usuario: " . $this->usuario . "<br>";
+                echo "DEBUG: Base de datos: " . $this->base . "<br>";
                 
 				$this->conexion = new mysqli($this->host, $this->usuario, $this->password, $this->base, $this->port);
 				if ($this->conexion->connect_error) {
-                    // echo "DEBUG: Error de conexión: " . $this->conexion->connect_error . "<br>";
+                    echo "DEBUG: Error de conexión: " . $this->conexion->connect_error . "<br>";
 					throw new Exception("Error de conexión: " . $this->conexion->connect_error);
 				}
-                // echo "DEBUG: Conexión exitosa a la base de datos<br>";
+                echo "DEBUG: Conexión exitosa a la base de datos<br>";
 				$this->conexion->set_charset("utf8");
 			} catch (Exception $e) {
-                // echo "DEBUG: Excepción en la conexión: " . $e->getMessage() . "<br>";
+                echo "DEBUG: Excepción en la conexión: " . $e->getMessage() . "<br>";
 				error_log("Error de conexión: " . $e->getMessage());
 				throw $e;
 			}
@@ -41,19 +41,25 @@
 			}
 		}
 
-		public function ejecutar_consulta($sql) {
+		public function ejecutar_sentencia(){
 			try {
-				// echo "DEBUG: Sentencia SQL: " . htmlspecialchars($sql) . "<br>";
 				$this->abrir_conexion();
-				// echo "DEBUG: Conexión establecida<br>";
-				$result = $this->conexion->query($sql);
-				// echo "DEBUG: Consulta ejecutada<br>";
-				if (!$result) {
-					// echo "DEBUG: Error en la consulta: " . $this->conexion->error . "<br>";
+				$bandera = $this->conexion->query($this->sentencia);
+				if (!$bandera) {
 					throw new Exception("Error en la consulta: " . $this->conexion->error);
 				}
-				            // No cerrar la conexión aquí, se cerrará en el bloque finally del script que la usa 
-				// echo "DEBUG: Consulta exitosa<br>";
+				$this->cerrar_conexion(); 
+				return $bandera;
+			} catch (Exception $e) {
+				error_log("Error en ejecutar_sentencia: " . $e->getMessage());
+				throw $e;
+			}
+		}
+
+		public function obtener_sentencia(){
+			try {
+				$this->abrir_conexion();
+				$result = $this->conexion->query($this->sentencia);
 				if (!$result) {
 					throw new Exception("Error en la consulta: " . $this->conexion->error);
 				}
