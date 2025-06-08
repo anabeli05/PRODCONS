@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch("/PRODCONS/BarrasNav/barra_normal.html")
         .then(response => {
             if (response.ok) {
-                console.log("Footer cargado exitosamente");
+                console.log("Barra cargado exitosamente");
                 return response.text();
             } else {
                 console.log("Error al cargar el footer:", response.status);
