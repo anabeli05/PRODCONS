@@ -3,7 +3,53 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/Base de datos/conexion
 
 // You can add your database interaction code here, for example, to handle form submissions.
 
+//function rgbToName($rgbInput) {
+// Diccionario básico de colores
+//   $colorNames = [
+//     "black" => "rgb(0, 0, 0)",
+//     "white" => "rgb(255, 255, 255)",
+//     "red" => "rgb(255, 0, 0)",
+//     "lime" => "rgb(0, 255, 0)",
+//     "blue" => "rgb(0, 0, 255)",
+//     "yellow" => "rgb(255, 255, 0)",
+//     "cyan" => "rgb(0, 255, 255)",
+//     "magenta" => "rgb(255, 0, 255)",
+//     "silver" => "rgb(192, 192, 192)",
+//     "gray" => "rgb(128, 128, 128)",
+//     "maroon" => "rgb(128, 0, 0)",
+//     "olive" => "rgb(128, 128, 0)",
+//     "green" => "rgb(0, 128, 0)",
+//     "purple" => "rgb(128, 0, 128)",
+//     "teal" => "rgb(0, 128, 128)",
+//     "navy" => "rgb(0, 0, 128)"
+//  ];
+
+//  $rgbInput = str_replace(' ', '', strtolower($rgbInput)); // Normaliza
+
+//  foreach ($colorNames as $name => $rgb) {
+//    if (str_replace(' ', '', strtolower($rgb)) === $rgbInput) {
+//      return $name;
+//    }
+//  }
+
+//  return "desconocido";
+//}
 ?>
+<?php
+//if ($_SERVER["REQUEST_METHOD"] === "POST") {
+//  $rgb = $_POST['color']; // Por ejemplo: "rgb(255, 0, 0)"
+//
+//  require_once 'colores.php'; // Donde está la función rgbToName()
+//
+//  $nombreColor = rgbToName($rgb);
+//
+//  echo "El color es: $rgb y su nombre es: $nombreColor";
+
+  // Luego puedes guardarlo en la base de datos si lo deseas
+//}
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -175,6 +221,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/Base de datos/conexion
 
   <button type="button" onclick="agregarBloque()">+ Agregar otro bloque</button>
 </div>
+
     <!-- Sección 3: Conclusión -->
     <div class="seccion">
       <h2 class="text-[12px]">Conclusión</h2>
