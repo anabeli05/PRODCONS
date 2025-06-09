@@ -1765,3 +1765,61 @@ DEBUG: Correo recibido: ysierra@ucol.mx
 DEBUG: Contraseña recibida: Prodcons12344
 DEBUG: Clase Contacto cargada
 DEBUG: Objeto Contacto creado
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-06 19:19:19 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: dbarroso0@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12345
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Contraseña incorrecta para usuario: dbarroso0@ucol.mx
+DEBUG: Redirigiendo a login con error=1
+--- Nuevo Log de Sesión: 2025-06-06 19:19:20 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-06 19:19:20 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-06 19:19:26 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: rvuelvas@ucol.mx
+DEBUG: Contraseña recibida: Prodcor2024
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-06 20:19:33 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-06 20:19:38 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xcobian@ucol.mx
+DEBUG: Contraseña recibida: anabeli05
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Contraseña incorrecta para usuario: xcobian@ucol.mx
+DEBUG: Redirigiendo a login con error=1
+--- Nuevo Log de Sesión: 2025-06-06 20:19:39 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-06 20:19:39 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-06 20:19:44 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xcobian@ucol.mx
+DEBUG: Contraseña recibida: anabeli05
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Contraseña incorrecta para usuario: xcobian@ucol.mx
+DEBUG: Redirigiendo a login con error=1
+--- Nuevo Log de Sesión: 2025-06-06 20:19:45 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-06 20:19:45 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-06 20:57:02 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xiomicob2005@outlook.com
+DEBUG: Contraseña recibida: Prodcons12345
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-06 21:16:34 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
