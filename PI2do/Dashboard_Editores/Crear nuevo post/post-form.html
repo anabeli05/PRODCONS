@@ -131,13 +131,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/Base de datos/conexion
     </section>
     
 <div class="contenedor-formulario">
-  <h1>Crear Nuevo Post</h1>
+  <h1 class="text-[20px] font-semibold mb-5">Crear Nuevo Post</h1>
 
   <form id="form-post" onsubmit="return guardarContenido()" action="/guardar-post" method="POST" enctype="multipart/form-data">
 
     <!-- Sección 1: Introducción -->
     <div class="seccion intro">
-      <h2>Introducción del Artículo</h2>
+      <h2 class="text-[12px]">Introducción del Artículo</h2>
 
       <label for="intro_imagen">Imagen:</label>
       <input type="file" id="intro_imagen" name="intro_imagen" accept="image/*" required>
@@ -155,7 +155,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/Base de datos/conexion
 
 <!-- Sección 2: Contenido -->
 <div class="seccion">
-  <h2>Contenido del Artículo</h2>
+  <h2 class="text-[12px]">Contenido del Artículo</h2>
   <div id="contenedores">
     <!-- Primer bloque obligatorio -->
     <div class="bloque">
@@ -175,17 +175,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/Base de datos/conexion
 
   <button type="button" onclick="agregarBloque()">+ Agregar otro bloque</button>
 </div>
-
     <!-- Sección 3: Conclusión -->
     <div class="seccion">
-      <h2>Conclusión</h2>
+      <h2 class="text-[12px]">Conclusión</h2>
       <div id="conclusion_editor" class="quill-editor"></div>
       <input type="hidden" name="conclusion">
     </div>
 
     <!-- Sección 4: Bibliografía -->
     <div class="seccion">
-      <h2>Bibliografía</h2>
+      <h2 class="text-[12px]">Bibliografía</h2>
       <div id="bibliografia_editor" class="quill-editor"></div>
       <input type="hidden" name="bibliografia">
     </div>

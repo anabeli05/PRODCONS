@@ -189,16 +189,16 @@ try {
 
     <!---------Saludo Admin--------->
     <section class="w-full max-w-[1200px] mx-auto my-[10px] px-5 flex flex-col items-center">
-        <div class="relative w-[90%] max-w-[900px] h-[250px] p-[30px] flex flex-wrap justify-between items-start bg-[#9fd984] rounded-[40px]">
-            <div class="flex-1 min-w-[300px] p-5 m-0">
+        <div class="relative w-[90%] max-w-[900px] min-h-[250px] p-[30px] flex flex-wrap justify-between items-start bg-[#9fd984] rounded-[40px] overflow-hidden">
+            <div class="flex-1 min-w-[300px] p-5 m-0 z-10">
               <h2 class="text-[clamp(28px,3vw,40px)] mb-[15px] font-bold">¡Hola <?php echo htmlspecialchars($_SESSION['Nombre'] ?? 'Admin'); ?>!</h2>
                 <p class="text-[clamp(13px,1.5vw,15px)] mb-5">Un blog exitoso se construye post a post. ¡Sigue adelante!</p>
                 <a href='../Crear nuevo post/post-form.html'>
-                    <button class="w-1/2 min-w-[150px] h-20 border-none rounded-[30px] bg-[#1b641b] text-white font-semibold text-[clamp(14px,1.5vw,16px)] cursor-pointer transition duration-300 mt-[25px] hover:bg-[#145014]">ESCRIBE UN NUEVO POST</button>
+                    <button class="min-w-[250px] h-20 border-none rounded-[30px] bg-[#1b641b] text-white font-semibold text-[clamp(14px,1.5vw,16px)] cursor-pointer transition duration-300 mt-[25px] hover:bg-[#145014]">ESCRIBE UN NUEVO POST</button>
                 </a>
             </div>
-            <div class="absolute right-[30px] bottom-[10px] top-[10px] w-[30%] flex justify-center items-center">
-                <img src='/PRODCONS/PI2do/imagenes/chicaLaptop.png' class="max-h-[200px] h-[280px] w-auto object-contain">
+            <div class="w-full flex justify-center items-center mt-8 md:mt-0 md:absolute md:right-[30px] md:bottom-[10px] md:top-[10px] md:w-[30%] md:h-auto z-0">
+                <img src='/PRODCONS/PI2do/imagenes/chicaLaptop.png' class="max-h-[200px] h-auto w-auto object-contain">
             </div>
         </div>
         

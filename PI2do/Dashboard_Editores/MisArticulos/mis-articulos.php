@@ -245,14 +245,16 @@ $conexion->cerrar_conexion();
                 <?php endif; ?>
             </div>
             
-            <div class="flex items-end gap-[120px] mt-10 max-w-[895px] relative">
-                <div class="w-[120%] bg-[#ece9e5] mr-[35px] rounded-[12px] p-[25px_40px] pt-[60px] relative flex-grow min-h-[150px] flex flex-col justify-center items-center">
+            <div class="flex flex-col md:flex-row items-end gap-8 mt-10 max-w-[895px] relative mx-auto">
+                <div class="w-full md:w-[130%] bg-[#ece9e5] md:mr-[35px] rounded-[12px] px-[40px] pt-[60px] pb-[25px] relative flex-grow min-h-[150px] flex flex-col justify-center items-center">
                     <p class="m-0 mb-5 text-[15px] text-gray-800 max-w-[80%] z-[1] text-center">Sigue creando post, informa al mundo de los nuevos sucesos!</p>
                     <a href='../Crear nuevo post/post-form.html' class="pb-5 bg-[#b1dcaa] rounded-full w-[50px] h-[50px] text-[50px] font-bold text-green-900 cursor-pointer z-[2] transition-transform duration-200 flex items-center justify-center hover:scale-110">+</a>
                     <img src='/PRODCONS/PI2do/imagenes/plantita.png' class="absolute z-0 left-[15px] top-[25px]" width="80">
                     <img src='/PRODCONS/PI2do/imagenes/planta.png' class="absolute z-0 right-[15px] top-[25px]" width="80">
                 </div>
-                    <img src='/PRODCONS/PI2do/imagenes/maceta-verde.png' class="w-[125px] -mr-[90px]" width="80">
+                <div class="md:w-[250px] flex justify-center">
+                    <img src='/PRODCONS/PI2do/imagenes/maceta-verde.png' class="w-[250px] md:-mr-[90px]" width="80">
+                </div>
             </div>
             
         </div>

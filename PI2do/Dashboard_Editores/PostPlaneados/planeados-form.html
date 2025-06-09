@@ -124,13 +124,13 @@
         </div>
     </section>
     <div class="contenedor-formulario">
-  <h1>Crear Nuevo Post</h1>
+  <h1 class="text-[20px] font-semibold mb-5">Crear Nuevo Post</h1>
 
   <form id="form-post" onsubmit="return guardarContenido()" action="/guardar-post" method="POST" enctype="multipart/form-data">
 
     <!-- Sección 1: Introducción -->
     <div class="seccion intro">
-      <h2>Introducción del Artículo</h2>
+      <h2 class="text-[12px]">Introducción del Artículo</h2>
 
       <label for="intro_imagen">Imagen:</label>
       <input type="file" id="intro_imagen" name="intro_imagen" accept="image/*" required>
@@ -148,7 +148,7 @@
 
 <!-- Sección 2: Contenido -->
 <div class="seccion">
-  <h2>Contenido del Artículo</h2>
+  <h2 class="text-[12px]">Contenido del Artículo</h2>
   <div id="contenedores">
     <!-- Primer bloque obligatorio -->
     <div class="bloque">
@@ -171,21 +171,21 @@
 
     <!-- Sección 3: Conclusión -->
     <div class="seccion">
-      <h2>Conclusión</h2>
+      <h2 class="text-[12px]">Conclusión</h2>
       <div id="conclusion_editor" class="quill-editor"></div>
       <input type="hidden" name="conclusion">
     </div>
 
     <!-- Sección 4: Bibliografía -->
     <div class="seccion">
-      <h2>Bibliografía</h2>
+      <h2 class="text-[12px]">Bibliografía</h2>
       <div id="bibliografia_editor" class="quill-editor"></div>
       <input type="hidden" name="bibliografia">
     </div>
 
     <!-- Sección 5: Fecha Programada -->
     <div class="seccion">
-      <h2>Fecha Programada para Publicación</h2>
+      <h2 class="text-[12px]">Fecha Programada para Publicación</h2>
       <label for="fecha_programada">Elige la fecha y hora para publicar:</label>
       <input type="datetime-local" id="fecha_programada" name="fecha_programada" required>
       <!-- Puedes agregar un valor por defecto, por ejemplo:
