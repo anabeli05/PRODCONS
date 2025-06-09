@@ -1638,6 +1638,133 @@ DEBUG: Iniciando proceso de login
 --- Nuevo Log de Sesión: 2025-06-07 05:17:52 ---
 DEBUG: Iniciando proceso de login
 DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-07 05:21:26 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-07 05:24:48 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-07 05:24:49 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-07 05:24:49 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-07 05:24:49 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-07 05:24:49 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-07 05:24:50 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-07 05:24:50 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-07 05:24:55 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-07 05:24:56 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Contraseña incorrecta para usuario: ysierra@ucol.mx
+DEBUG: Redirigiendo a login con error=1
+--- Nuevo Log de Sesión: 2025-06-07 05:24:57 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-07 05:24:57 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-07 05:34:11 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-07 05:34:26 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Contraseña incorrecta para usuario: ysierra@ucol.mx
+DEBUG: Redirigiendo a login con error=1
+--- Nuevo Log de Sesión: 2025-06-07 05:34:27 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-07 05:34:27 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-07 05:54:45 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Contraseña incorrecta para usuario: ysierra@ucol.mx
+DEBUG: Redirigiendo a login con error=1
+--- Nuevo Log de Sesión: 2025-06-07 05:54:46 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-07 05:54:46 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-07 05:58:02 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+DEBUG: Contraseña incorrecta para usuario: ysierra@ucol.mx
+DEBUG: Redirigiendo a login con error=1
+--- Nuevo Log de Sesión: 2025-06-07 05:58:03 ---
+DEBUG: Iniciando proceso de login
+--- Nuevo Log de Sesión: 2025-06-07 05:58:03 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: Error: Credenciales incorrectas
+--- Nuevo Log de Sesión: 2025-06-07 07:10:38 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-07 07:10:40 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-07 08:18:08 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-07 08:18:10 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-07 19:56:08 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-07 19:56:09 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-08 16:53:01 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-08 16:53:03 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-09 02:02:17 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-09 02:02:19 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: ysierra@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12344
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
 DEBUG: Error message: None
 --- Nuevo Log de Sesión: 2025-06-06 19:19:19 ---
 DEBUG: Botón de ingreso presionado
