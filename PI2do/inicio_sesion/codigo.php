@@ -100,64 +100,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['correo'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODCONS - Recuperar Contraseña</title>
-    <style>
-        /* Estilos de la barra de navegación */
-        .barra-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 50px;
-            background: rgb(225, 216, 204);
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            padding-left: 20px;
-            border-bottom: 4px solid black;
-            z-index: 1000;
-        }
-        
-        .flecha-nav {
-            margin-left: 0;
-        }
-        
-        .flecha-nav a {
-            display: flex;
-            align-items: center;
-            height: 50px;
-        }
-        
-        .flecha-nav svg {
-            width: 32px;
-            height: 32px;
-            fill: #000;
-            cursor: pointer;
-            margin: 0;
-            padding: 0;
-            transition: transform 0.2s;
-        }
-        
-        .flecha-nav svg:hover {
-            transform: scale(1.1);
-            fill: #4CAF50;
-        }
-        
-        /* Ajuste para el contenido principal */
-        .contenedor-main {
-            margin-top: 70px;
-        }
-        
-        /* Estilos existentes */
-        .error-message {
-            color: #dc3545;
-            margin-bottom: 15px;
-            text-align: center;
-            font-weight: bold;
-        }
-    </style>
     <link rel="stylesheet" href="css/styles.css">
     <link href="login.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+       <!-- Google Cloud Translation API -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <!-- Script de traducción global -->
+    <script src='/PRODCONS/translate.js'></script>
+
 </head>
 <body>
     <!-- Barra de navegación -->
@@ -169,7 +121,65 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['correo'])) {
                 </svg>
             </a>
         </div>
+
+          <!-- Bandera actual --> 
+           <div id="idiomaToggle" style="display: inline-block; margin-left: 15px;">
+                    <img class="españa" id="banderaIdioma" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
+                </div>
+                <!-- Opciones de banderas desplegables - Puedes cambiar las imágenes aquí -->
+                <div id="idiomasOpciones" style="display: none;">
+                    <img class="ingles" src="/PRODCONS/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
+                    <img class="españa" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
+                </div>
     </nav>
+
+    <script>
+        // Funciones para el cambio de idioma (copiadas de index.php)
+        function cambiarIdioma(idioma) {
+            const banderaPrincipal = document.getElementById('banderaIdioma');
+            const banderaIngles = document.querySelector('.ingles');
+            const banderaEspana = document.querySelector('.españa');
+            
+            if (banderaPrincipal) {
+                banderaPrincipal.src = idioma === 'ingles' 
+                    ? "/PRODCONS/PI2do/imagenes/logos/ingles.png" 
+                    : "/PRODCONS/PI2do/imagenes/logos/espanol.png";
+            }
+            
+            if (banderaIngles && banderaEspana) {
+                banderaIngles.style.display = idioma === 'espanol' ? 'none' : 'block';
+                banderaEspana.style.display = idioma === 'espanol' ? 'block' : 'none';
+            }
+            
+            currentLanguage = idioma === 'ingles' ? 'en' : 'es';
+            translateContent(currentLanguage);
+            
+            const opciones = document.getElementById('idiomasOpciones');
+            if (opciones) {
+                opciones.style.display = 'none';
+            }
+        }
+
+        function alternarIdioma() {
+            const bandera = document.getElementById('banderaIdioma');
+            let idiomaActual = bandera.getAttribute('data-idioma') || 'es';
+            let nuevoIdioma, nuevaBandera;
+
+            if (idiomaActual === 'es') {
+                nuevoIdioma = 'en';
+                nuevaBandera = '/PRODCONS/PI2do/imagenes/logos/ingles.png';
+            } else {
+                nuevoIdioma = 'es';
+                nuevaBandera = '/PRODCONS/PI2do/imagenes/logos/espanol.png';
+            }
+
+            bandera.src = nuevaBandera;
+            bandera.setAttribute('data-idioma', nuevoIdioma);
+
+            translateContent(nuevoIdioma);
+            localStorage.setItem('preferredLanguage', nuevoIdioma);
+        }
+    </script>
 
     <div class="background-animation">
         <div class="circle circle-1"></div>
@@ -206,7 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['correo'])) {
                     </div>
                     
                     <div class="alternar-form">
-                        <p>¿Recordaste tu contraseña? <a href="../inicio_sesion/login.php" id="volver-login">Inicia sesión aquí</a></p>
+                        <label>¿Recordaste tu contraseña? <a href="../inicio_sesion/login.php" id="volver-login">Inicia sesión aquí</a></label>
                     </div>
                 </form>
             </div>
@@ -219,5 +229,77 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['correo'])) {
             </div>
         </section>
     </section>
+
+     <style>
+        /* Estilos de la barra de navegación */
+             .barra-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: rgb(225, 216, 204);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 4px solid black;
+    z-index: 1000;
+}
+
+.flecha-nav a {
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+
+.flecha-nav svg {
+    width: 32px;
+    height: 32px;
+    fill: #000;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    transition: transform 0.2s;
+}
+
+.flecha-nav svg:hover {
+    transform: scale(1.1);
+    fill: #4CAF50;
+}
+
+/* Contenedor para la bandera alineada a la derecha */
+.bandera-container {
+    margin-left: auto;
+}
+
+/* BANDERA */
+#banderaIdioma {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid black;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#banderaIdioma:hover {
+    transform: scale(1.1);
+}
+        
+        /* Ajuste para el contenido principal */
+        .contenedor-main {
+            margin-top: 70px;
+        }
+        
+        /* Estilos existentes */
+        .error-message {
+            color: #dc3545;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+
 </body>
 </html>
