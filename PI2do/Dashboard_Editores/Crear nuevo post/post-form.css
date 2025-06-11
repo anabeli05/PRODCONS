@@ -5,7 +5,7 @@ body {
   font-size: 62.5%;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  background: rgb(212, 203, 195);
+  background: rgb(227, 217, 208);
 }
 
 /*------ FORMULARIO GENERAL -------*/
@@ -16,16 +16,6 @@ body {
   border: 1px solid #ccc;
   border-radius: 10px;
   background: white;
-}
-
-h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-h2 {
-  font-size: 1.6rem;
-  margin-bottom: 15px;
 }
 
 .seccion {
