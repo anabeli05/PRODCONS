@@ -234,7 +234,7 @@ $conexion->cerrar_conexion();
                                     ?>
                                 </p>
                                 <p class="text-[14px] text-gray-700"><?php echo substr(strip_tags($post['Contenido']), 0, 150) . '...'; ?></p>
-                                <button class=" text-black italic font-bold rounded text-[13px] hover:text-[#2F5443] transition">Ver más...</button>
+                                <a href="/PRODCONS/PI2do/postWeb/ver-articulo-usuario.php?ID_Articulo=<?php echo $post['ID_Articulo']; ?>" class="text-black italic font-bold rounded text-[13px] hover:text-[#2F5443] transition cursor-pointer">Ver más...</a>
                                 <div class="flex gap-4 mt-3">
                                     <a href="editar-post.php?id=<?php echo $post['ID_Articulo']; ?>" class="px-4 py-2 bg-blue-600 font-semibold text-white rounded text-[10px] hover:bg-blue-700 transition">Editar</a>
                                     <button onclick="confirmarEliminar(<?php echo $post['ID_Articulo']; ?>)" class="px-4 py-2 bg-red-600 font-semibold text-white rounded text-[10px] hover:bg-red-700 transition">Eliminar</button>

@@ -47,37 +47,93 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errores[] = 'Error de seguridad: token CSRF inválido';
     } else {
         $titulo = $_POST['titulo'] ?? '';
+        $introduccion = $_POST['introduccion'] ?? '';
+        $color = $_POST['color'] ?? '';
         $contenido = $_POST['contenido'] ?? '';
-        $etiquetas = $_POST['etiquetas'] ?? '';
-        $comentario_autor = $_POST['comentario_autor'] ?? '';
-        $imagenes = $_FILES['imagenes'] ?? [];
-        $errores = validarFormulario($titulo, $contenido, $imagenes);
+        $bibliografias = $_POST['bibliografias'] ?? '';
+        $conclusion = $_POST['conclusion'] ?? '';
+        $fecha_publicacion = $_POST['fecha_publicacion'] ?? date('Y-m-d');
+        $estado = 'Borrador'; // Estado inicial
+        $motivo_rechazo = ''; // Inicialmente vacío
+        
+        // Validación de campos requeridos
+        if (empty($titulo)) $errores[] = 'El título es obligatorio';
+        if (empty($contenido)) $errores[] = 'El contenido es obligatorio';
+        if (empty($bibliografias)) $errores[] = 'La bibliografía es obligatoria';
+        if (empty($fecha_publicacion)) $errores[] = 'La fecha de publicación es obligatoria';
+        
         if (empty($errores)) {
             try {
-                $conn->beginTransaction();
-                $stmt = $conn->prepare("INSERT INTO posts (titulo, contenido, etiquetas, comentario_autor, usuario_id, fecha_creacion) VALUES (?, ?, ?, ?, ?, NOW())");
-                $stmt->execute([$titulo, $contenido, $etiquetas, $comentario_autor, $_SESSION['usuario_id']]);
-                $post_id = $conn->lastInsertId();
-                // Procesar imágenes
-                if (!empty($imagenes['name'][0])) {
-                    $upload_dir = '../../imagenes/posts/';
-                    if (!file_exists($upload_dir)) {
-                        mkdir($upload_dir, 0777, true);
-                    }
-                    foreach ($imagenes['name'] as $key => $value) {
-                        $file_name = uniqid() . '_' . basename($imagenes['name'][$key]);
-                        $file_path = $upload_dir . $file_name;
-                        if (move_uploaded_file($imagenes['tmp_name'][$key], $file_path)) {
-                            $stmt = $conn->prepare("INSERT INTO imagenes_posts (post_id, ruta_imagen) VALUES (?, ?)");
-                            $stmt->execute([$post_id, $file_path]);
+                $conexion = new Conexion();
+                $conexion->abrir_conexion();
+                $conexion->conexion->begin_transaction();
+                
+                // Insertar el artículo
+                $sql = "INSERT INTO articulos (
+                    Titulo, Introduccion, Color, Contenido, Bibliografias, 
+                    Conclusion, Usuario_ID, `Fecha de Creacion`, `Fecha de Publicacion`, 
+                    Estado, `Motivo de Rechazo`
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?, ?)";
+                
+                $stmt = $conexion->conexion->prepare($sql);
+                $stmt->bind_param(
+                    "ssssssssss",
+                    $titulo,
+                    $introduccion,
+                    $color,
+                    $contenido,
+                    $bibliografias,
+                    $conclusion,
+                    $_SESSION['usuario_id'],
+                    $fecha_publicacion,
+                    $estado,
+                    $motivo_rechazo
+                );
+                
+                if ($stmt->execute()) {
+                    $articulo_id = $conexion->conexion->insert_id;
+                    
+                    // Procesar las imágenes si se han subido
+                    if (!empty($_FILES['imagenes']['name'][0])) {
+                        foreach ($_FILES['imagenes']['tmp_name'] as $key => $tmp_name) {
+                            if ($_FILES['imagenes']['error'][$key] === UPLOAD_ERR_OK) {
+                                $imagen_contenido = file_get_contents($tmp_name);
+                                $descripcion = $_POST['descripcion_imagen'][$key] ?? '';
+                                $orden = $_POST['orden_imagen'][$key] ?? '1';
+                                
+                                $sql_imagen = "INSERT INTO imagenes_articulos (Articulo_ID, Url_Imagen, Descripcion, Orden_Imagen) 
+                                             VALUES (?, ?, ?, ?)";
+                                $stmt_imagen = $conexion->conexion->prepare($sql_imagen);
+                                $stmt_imagen->bind_param("ibss", 
+                                    $articulo_id,
+                                    $imagen_contenido,
+                                    $descripcion,
+                                    $orden
+                                );
+                                
+                                if (!$stmt_imagen->execute()) {
+                                    throw new Exception("Error al guardar la imagen: " . $stmt_imagen->error);
+                                }
+                                $stmt_imagen->close();
+                            }
                         }
                     }
+                    
+                    $conexion->conexion->commit();
+                    $mensaje = 'Artículo creado exitosamente';
+                    // Limpiar el formulario después del éxito
+                    $_POST = array();
+                    $_FILES = array();
+                } else {
+                    throw new Exception("Error al crear el artículo: " . $stmt->error);
                 }
-                $conn->commit();
-                $mensaje = 'Post creado exitosamente';
+                
+                $stmt->close();
+                $conexion->cerrar_conexion();
+                
+                
             } catch (Exception $e) {
-                $conn->rollBack();
-                $errores[] = 'Error al crear el post: ' . $e->getMessage();
+                $errores[] = 'Error al crear el artículo: ' . $e->getMessage();
             }
         }
     }
@@ -94,7 +150,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="formulario-new-post.css" rel="stylesheet">
     <script src="../Dashboard/barra-nav.js" defer></script>
 </head>
-<body>
 <body>
     <header> 
         <div class="header-contenedor">
@@ -195,17 +250,73 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
         <form action="" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
-            <label for="titulo">Título del Post:</label>
-            <input type="text" id="titulo" name="titulo" required minlength="5" maxlength="100" value="<?php echo isset($_POST['titulo']) ? htmlspecialchars($_POST['titulo']) : ''; ?>">
+            
+            <label for="titulo">Título del Artículo:</label>
+            <input type="text" id="titulo" name="titulo" required maxlength="255" 
+                value="<?php echo isset($_POST['titulo']) ? htmlspecialchars($_POST['titulo']) : ''; ?>">
+            
+            <label for="introduccion">Introducción:</label>
+            <textarea id="introduccion" name="introduccion" maxlength="700"><?php echo isset($_POST['introduccion']) ? htmlspecialchars($_POST['introduccion']) : ''; ?></textarea>
+            
+            <label for="color">Color:</label>
+            <input type="color" id="color" name="color" 
+                value="<?php echo isset($_POST['color']) ? htmlspecialchars($_POST['color']) : '#ffffff'; ?>">
+            
             <label for="contenido">Contenido:</label>
-            <textarea id="contenido" name="contenido" rows="8" required minlength="50"><?php echo isset($_POST['contenido']) ? htmlspecialchars($_POST['contenido']) : ''; ?></textarea>
-            <label for="imagenes">Subir Imágenes:</label>
-            <input type="file" id="imagenes" name="imagenes[]" multiple accept="image/*">
-            <label for="etiquetas">Etiquetas (separadas por comas):</label>
-            <input type="text" id="etiquetas" name="etiquetas" value="<?php echo isset($_POST['etiquetas']) ? htmlspecialchars($_POST['etiquetas']) : ''; ?>">
-            <label for="comentario_autor">Comentario del Autor:</label>
-            <textarea id="comentario_autor" name="comentario_autor" rows="4"><?php echo isset($_POST['comentario_autor']) ? htmlspecialchars($_POST['comentario_autor']) : ''; ?></textarea>
-            <button type="submit">Publicar</button>
+            <textarea id="contenido" name="contenido" required rows="8"><?php echo isset($_POST['contenido']) ? htmlspecialchars($_POST['contenido']) : ''; ?></textarea>
+            
+            <label for="bibliografias">Bibliografías:</label>
+            <textarea id="bibliografias" name="bibliografias" required rows="4"><?php echo isset($_POST['bibliografias']) ? htmlspecialchars($_POST['bibliografias']) : ''; ?></textarea>
+            
+            <label for="conclusion">Conclusión:</label>
+            <textarea id="conclusion" name="conclusion" maxlength="700"><?php echo isset($_POST['conclusion']) ? htmlspecialchars($_POST['conclusion']) : ''; ?></textarea>
+            
+            <div class="imagenes-container">
+                <label>Imágenes del Artículo:</label>
+                <div id="imagen-inputs">
+                    <div class="imagen-input">
+                        <input type="file" name="imagenes[]" accept="image/*">
+                        <input type="text" name="descripcion_imagen[]" placeholder="Descripción de la imagen" maxlength="200">
+                        <select name="orden_imagen[]">
+                            <option value="1">Imagen 1</option>
+                            <option value="2">Imagen 2</option>
+                            <option value="3">Imagen 3</option>
+                            <option value="4">Imagen 4</option>
+                            <option value="5">Imagen 5</option>
+                            <option value="6">Imagen 6</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="button" onclick="agregarImagenInput()">+ Agregar otra imagen</button>
+            </div>
+
+            <label for="fecha_publicacion">Fecha de Publicación:</label>
+            <input type="date" id="fecha_publicacion" name="fecha_publicacion" required 
+                value="<?php echo isset($_POST['fecha_publicacion']) ? htmlspecialchars($_POST['fecha_publicacion']) : date('Y-m-d'); ?>">
+            
+            <button type="submit">Guardar Artículo</button>
+
+            <script>
+            function agregarImagenInput() {
+                const container = document.getElementById('imagen-inputs');
+                const div = document.createElement('div');
+                div.className = 'imagen-input';
+                div.innerHTML = `
+                    <input type="file" name="imagenes[]" accept="image/*">
+                    <input type="text" name="descripcion_imagen[]" placeholder="Descripción de la imagen" maxlength="200">
+                    <select name="orden_imagen[]">
+                        <option value="1">Imagen 1</option>
+                        <option value="2">Imagen 2</option>
+                        <option value="3">Imagen 3</option>
+                        <option value="4">Imagen 4</option>
+                        <option value="5">Imagen 5</option>
+                        <option value="6">Imagen 6</option>
+                    </select>
+                    <button type="button" onclick="this.parentElement.remove()">Eliminar</button>
+                `;
+                container.appendChild(div);
+            }
+            </script>
         </form>
     </div>
 

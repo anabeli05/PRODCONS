@@ -15,13 +15,16 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 if (!isset($data['articleId']) || !isset($data['userId']) || !isset($data['isFavorited'])) {
     http_response_code(400);
-    echo json_encode(['error' => 'Datos incompletos']);
+    echo json_encode([
+        'success' => false,
+        'error' => 'Datos incompletos'
+    ]);
     exit;
 }
 
-$articleId = $data['articleId'];
-$userId = $data['userId'];
-$isFavorited = $data['isFavorited'];
+$articleId = intval($data['articleId']);
+$userId = intval($data['userId']);
+$isFavorited = filter_var($data['isFavorited'], FILTER_VALIDATE_BOOLEAN);
 
 // Conexión a la base de datos
 $conexion = new Conexion();
@@ -44,10 +47,17 @@ try {
     $stmt->execute();
     $stmt->close();
     
-    echo json_encode(['success' => true]);
+    echo json_encode([
+        'success' => true,
+        'message' => $isFavorited ? 'Favorito agregado' : 'Favorito removido'
+    ]);
 } catch (Exception $e) {
+    error_log("Error en toggle-favorite.php: " . $e->getMessage());
     http_response_code(500);
-    echo json_encode(['error' => 'Error al actualizar el favorito']);
+    echo json_encode([
+        'success' => false,
+        'error' => 'Error al actualizar el favorito: ' . $e->getMessage()
+    ]);
 }
 
 $conexion->cerrar_conexion();
