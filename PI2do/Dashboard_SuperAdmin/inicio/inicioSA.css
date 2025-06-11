@@ -10,7 +10,6 @@ html, body {
     background: white;
 }
 
-
 *, *:before, *:after { /*Se quita la barra de desplazamiento de abajo*/
     box-sizing: inherit;
 }
@@ -27,6 +26,7 @@ html, body {
 }
 
 /* Sección de saludo admin */
+@media (min-width: 701px) {
 .rec-admin {
     position: relative;
     width: 90%;
@@ -95,7 +95,7 @@ html, body {
     width: auto; /* Ancho proporcional */
     object-fit: contain;
 }
-
+}
 /*------------ Contenedor de artículos ------------*/
 .encabezado-articulos {
     display: flex;
@@ -232,70 +232,66 @@ html, body {
     line-height: 1.5;
 }
 
-@media (max-width: 768px) {
-  /* Ajustes para la sección admin */
-  .rec-admin {
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-    padding: 20px;
-    gap: 20px;
-    overflow: hidden; /* ✅ Evita que cualquier contenido se salga */
+@media (max-width: 700px) {
+    .rec-admin {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 20px;
+        gap: 0;
+        overflow: hidden;
+        background-color: rgb(159, 217, 132);
+        border-radius: 40px;
+    }/*
+    .rec-admin {
+        position: relative;
+        width: 90%;
+        max-width: 900px;
+        height: 250px;
+        padding: 30px;
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: space-between;
+        align-items: flex-start;
+        background-color: rgb(159, 217, 132);
+        border-radius: 40px;
+    }*/
+    .admin-img {
+      width: 100%;
+      padding: 0; /* Elimina espacio innecesario */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .admin-img img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        max-height: 100%;
+        object-fit: contain;
+        display: block;
+        margin: -40px;
+    }
+  
+    .formato-txt {
+      padding: 0;
+      margin: 0;
+    }
+  
+    .formato-txt h2 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+  
+    .formato-txt p {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+  
+    .formato-txt button {
+      width: 70%;
+      margin-top: 15px;
+    }
   }
-
-  .admin-img {
-    width: 100%;
-    max-height: 240px; /* ✅ Límite claro en altura */
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .admin-img img {
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    max-height: 100%;
-    object-fit: contain;
-    display: block;
-  }
-
-  /* Ajustes para los artículos */
-  .articulo {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .contenido-articulo {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .imagen-articulo {
-    width: 100%;
-    height: auto;
-    min-width: unset;
-  }
-
-  .imagen-articulo img {
-    width: 100%;
-    height: auto;
-  }
-
-  .texto-articulo {
-    padding: 0;
-  }
-
-  .texto-articulo h3 {
-    font-size: 1.5rem;
-  }
-
-  .selector-meses {
-    width: 100%;
-  }
-
-  .estilo-selector {
-    width: 100%;
-  }
-}
+  

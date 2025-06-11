@@ -7,6 +7,13 @@ if (!isset($_SESSION['Usuario_ID']) || $_SESSION['Rol'] !== 'Super Admin') {
     exit();
 }
 
+// Configurar idioma para fechas
+setlocale(LC_TIME, 'es_ES.UTF-8', 'Spanish_Spain');
+// Si no existe el archivo de idioma, usar fallback
+if (!setlocale(LC_TIME, 'es_ES.UTF-8', 'Spanish_Spain')) {
+    setlocale(LC_TIME, 'es_ES', 'spanish');
+}
+
 // Conexión a la base de datos
 require_once __DIR__ . '/../../Base de datos/conexion.php';
 $conexion = new Conexion();
@@ -48,7 +55,6 @@ try {
     <title>PRODCONS - Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="inicioSA.css">
-    <link rel="stylesheet" href="../Dashboard/sidebar.css">
     <script src='../Dashboard/barra-nav-copy.js' defer></script>
 </head>
 <body>
@@ -88,7 +94,7 @@ try {
                 if ($hay_articulos) {
                     $contador = 1;
                     while($articulo = mysqli_fetch_assoc($resultado)) {
-                        $fecha = date('d M Y', strtotime($articulo['fecha_publicacion']));
+                        $fecha = strftime('%d de %B de %Y', strtotime($articulo['fecha_publicacion']));
                         $numero = str_pad($contador, 2, '0', STR_PAD_LEFT);
                 ?>
                 <div class="articulo" data-mes="<?php echo strtolower(date('F', strtotime($articulo['fecha_publicacion']))); ?>">
@@ -108,7 +114,7 @@ try {
                         $contador++;
                     }
                 } else {
-                    echo '<div class="no-articulos">No hay artículos disponibles en este momento.</div>';
+                    echo '<div class="no-articulos" data-no-translate>No hay artículos disponibles en este momento.</div>';
                 }
                 ?>
             </div>

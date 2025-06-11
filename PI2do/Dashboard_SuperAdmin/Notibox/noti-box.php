@@ -30,7 +30,7 @@ try {
             WHERE a.Estado = 'Borrador' 
             ORDER BY `Fecha de Creacion` DESC";
     
-    $result = $conexion->ejecutar_consulta($sql);
+    $result = $conexion->conexion->query($sql);
     if ($result) {
         $articulos_pendientes = $result->fetch_all(MYSQLI_ASSOC);
     } else {

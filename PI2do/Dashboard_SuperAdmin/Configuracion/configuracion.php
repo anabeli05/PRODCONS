@@ -72,7 +72,8 @@ try {
 
     <div class="main-content">
         <div class="secciones">
-            <div class="section-title">Perfil</div>
+            <div class="section-title">
+                <span>Perfil</span></div>
 
             <?php if (isset($mensaje)): ?>
                 <div class="alert alert-success"><?php echo $mensaje; ?></div>

@@ -123,6 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../../styles.css">
     <link href="../../inicio_sesion/login.css" rel="stylesheet">
+    <!--<link href="../../../cambiar.css" rel="stylesheet">-->
     <style>
         .error-message {
             color: #dc3545;
@@ -139,6 +140,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
+<?php include('../Dashboard/sidebar.php'); ?>
+
     <div class="background-animation">
         <div class="circle circle-1"></div>
         <div class="circle circle-2"></div>
@@ -189,7 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="submit" value="CAMBIAR CONTRASEÑA">
             
             <div class="alternar-form">
-                        <p><a href="../../Dashboard_SuperAdmin/inicio/inicioSA.php">Volver al Panel de SuperAdmin</a></p>
+                <a href="../../Dashboard_SuperAdmin/inicio/inicioSA.php">Salir al Panel de SuperAdmin</a>
             </div>
         </form>
     </div>
