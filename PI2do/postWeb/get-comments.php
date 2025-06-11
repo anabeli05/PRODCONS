@@ -2,23 +2,13 @@
 session_start();
 header('Content-Type: application/json');
 
-// Habilitar el registro de errores
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('log_errors', 1);
-ini_set('error_log', $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/logs/error.log');
-
 require_once $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/Base de datos/conexion_ajax.php';
-
-// Debug: Mostrar datos recibidos
-error_log("DEBUG - get-comments.php: Datos recibidos - ID_Articulo: " . (isset($_POST['ID_Articulo']) ? $_POST['ID_Articulo'] : 'null'));
-error_log("DEBUG - get-comments.php: Datos completos: " . print_r($_POST, true));
 
 // Obtener el ID del artículo usando el mismo método que en el HTML
 $ID_Articulo = isset($_POST['ID_Articulo']) ? intval($_POST['ID_Articulo']) : 0;
 
 if (!$ID_Articulo || $ID_Articulo <= 0) {
-    error_log("DEBUG - get-comments.php: ID del artículo inválido");
+
     echo json_encode([
         'success' => false, 
         'message' => 'ID del artículo inválido',
@@ -36,7 +26,7 @@ try {
     $conn = $conexion->conexion;
 
     if (!$conn) {
-        error_log("DEBUG - get-comments.php: Error de conexión: " . mysqli_connect_error());
+    
         echo json_encode([
             'success' => false,
             'message' => 'Error de conexión a la base de datos',
@@ -47,7 +37,7 @@ try {
     
     // Verificar si la conexión está activa
     if (!$conn->ping()) {
-        error_log("DEBUG - get-comments.php: Conexión inactiva");
+    
         echo json_encode([
             'success' => false,
             'message' => 'La conexión a la base de datos está inactiva'
@@ -56,13 +46,13 @@ try {
     }
 
     // Debug: Estado de la conexión
-    error_log("DEBUG - get-comments.php: Conexión exitosa");
+
     
     // Obtener los 6 comentarios más recientes
     // Verificar si la tabla comentarios_autor existe
     $checkTable = $conn->query("SHOW TABLES LIKE 'comentarios_autor'");
     if (!$checkTable || $checkTable->num_rows == 0) {
-        error_log("DEBUG - get-comments.php: Tabla comentarios_autor no existe");
+    
         throw new Exception("La tabla comentarios_autor no existe en la base de datos");
     }
 
@@ -81,21 +71,21 @@ try {
     ");
     
     if (!$stmt) {
-        error_log("DEBUG - get-comments.php: Error preparando consulta: " . $conn->error);
+    
         throw new Exception("Error preparando consulta: " . $conn->error);
     }
     
-    error_log("DEBUG - get-comments.php: Bind param ID_Articulo: " . $ID_Articulo);
+
     $stmt->bind_param("i", $ID_Articulo);
     
     if (!$stmt->execute()) {
-        error_log("DEBUG - get-comments.php: Error en execute: " . $stmt->error);
+    
         throw new Exception("Error en execute: " . $stmt->error);
     }
     
     $result = $stmt->get_result();
     if ($stmt->error) {
-        error_log("DEBUG - get-comments.php: Error en get_result: " . $stmt->error);
+    
         throw new Exception("Error en get_result: " . $stmt->error);
     }
 
@@ -132,7 +122,7 @@ try {
         'total_comments' => $totalComments
     ]);
 } catch (Exception $e) {
-    error_log("DEBUG - get-comments.php: Error: " . $e->getMessage());
+
     echo json_encode([
         'success' => false, 
         'message' => $e->getMessage(),

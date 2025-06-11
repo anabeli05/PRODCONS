@@ -62,6 +62,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($bibliografias)) $errores[] = 'La bibliografía es obligatoria';
         if (empty($fecha_publicacion)) $errores[] = 'La fecha de publicación es obligatoria';
         
+        // Validar que se haya subido al menos una imagen
+        if (empty($_FILES['imagenes']['name'][0])) {
+            $errores[] = 'Debe seleccionar al menos una imagen para el artículo';
+        }
+        
         if (empty($errores)) {
             try {
                 $conexion = new Conexion();
@@ -120,10 +125,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                     
                     $conexion->conexion->commit();
-                    $mensaje = 'Artículo creado exitosamente';
-                    // Limpiar el formulario después del éxito
-                    $_POST = array();
-                    $_FILES = array();
+                    // Redirigir a la página de Mis Artículos después de crear exitosamente
+                    header('Location: ../MisArticulos/mis-articulos.php');
+                    exit();
                 } else {
                     throw new Exception("Error al crear el artículo: " . $stmt->error);
                 }
@@ -133,6 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 
             } catch (Exception $e) {
+                $conexion->conexion->rollback();
                 $errores[] = 'Error al crear el artículo: ' . $e->getMessage();
             }
         }
@@ -248,7 +253,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </ul>
             </div>
         <?php endif; ?>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="/PRODCONS/PI2do/Dashboard_Editores/Crear%20nuevo%20post/formulario-new-post.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
             
             <label for="titulo">Título del Artículo:</label>
@@ -272,10 +277,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <textarea id="conclusion" name="conclusion" maxlength="700"><?php echo isset($_POST['conclusion']) ? htmlspecialchars($_POST['conclusion']) : ''; ?></textarea>
             
             <div class="imagenes-container">
-                <label>Imágenes del Artículo:</label>
+                <label>Imágenes del Artículo: <span style="color: red;">*</span></label>
                 <div id="imagen-inputs">
                     <div class="imagen-input">
-                        <input type="file" name="imagenes[]" accept="image/*">
+                        <input type="file" name="imagenes[]" accept="image/*" required>
                         <input type="text" name="descripcion_imagen[]" placeholder="Descripción de la imagen" maxlength="200">
                         <select name="orden_imagen[]">
                             <option value="1">Imagen 1</option>
@@ -299,6 +304,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <script>
             function agregarImagenInput() {
                 const container = document.getElementById('imagen-inputs');
+                const imagenes = container.querySelectorAll('.imagen-input');
+                if (imagenes.length >= 6) {
+                    alert('Máximo 6 imágenes permitidas');
+                    return;
+                }
                 const div = document.createElement('div');
                 div.className = 'imagen-input';
                 div.innerHTML = `
@@ -316,6 +326,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 `;
                 container.appendChild(div);
             }
+
+            // Validación del formulario antes del envío
+            document.querySelector('form').addEventListener('submit', function(e) {
+                const imagenes = document.querySelectorAll('input[type="file"]');
+                let tieneImagen = false;
+                
+                imagenes.forEach(input => {
+                    if (input.files.length > 0) tieneImagen = true;
+                });
+                
+                if (!tieneImagen) {
+                    e.preventDefault();
+                    alert('Debe seleccionar al menos una imagen para el artículo');
+                    return false;
+                }
+            });
             </script>
         </form>
     </div>

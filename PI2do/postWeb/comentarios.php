@@ -4,15 +4,8 @@ header('Content-Type: application/json');
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/Base de datos/conexion_ajax.php';
 
-// Debug: Mostrar datos recibidos
-error_log("DEBUG - comentarios.php: Datos recibidos - ID_Articulo: " . (isset($_POST['ID_Articulo']) ? $_POST['ID_Articulo'] : 'null'));
-error_log("DEBUG - comentarios.php: Datos recibidos - Usuario_ID: " . (isset($_POST['Usuario_ID']) ? $_POST['Usuario_ID'] : 'null'));
-error_log("DEBUG - comentarios.php: Datos recibidos - Comentario: " . (isset($_POST['Comentario']) ? $_POST['Comentario'] : 'null'));
-error_log("DEBUG - comentarios.php: Usuario_ID en sesión: " . (isset($_SESSION['Usuario_ID']) ? $_SESSION['Usuario_ID'] : 'null'));
-
 // Verificar si el usuario está logueado
 if (!isset($_SESSION['Usuario_ID'])) {
-    error_log("DEBUG - comentarios.php: Usuario no logueado");
     echo json_encode([
         'success' => false, 
         'message' => 'No autorizado',
@@ -27,11 +20,6 @@ $Comentario = isset($_POST['Comentario']) ? trim($_POST['Comentario']) : '';
 
 // Usar el ID del usuario de la sesión
 $Usuario_ID = isset($_SESSION['Usuario_ID']) ? intval($_SESSION['Usuario_ID']) : 0;
-
-// Debug: Mostrar datos procesados
-error_log("DEBUG - comentarios.php: Datos procesados - ID_Articulo: " . $ID_Articulo);
-error_log("DEBUG - comentarios.php: Datos procesados - Usuario_ID: " . $Usuario_ID);
-error_log("DEBUG - comentarios.php: Datos procesados - Comentario: " . $Comentario);
 
 if (!$ID_Articulo || !$Usuario_ID || empty($Comentario)) {
     error_log("DEBUG - comentarios.php: Datos inválidos");
@@ -53,29 +41,27 @@ try {
     $conn = $conexion->conexion;
 
     if (!$conn) {
-        error_log("DEBUG - comentarios.php: Error de conexión");
+
         throw new Exception("Error de conexión: " . mysqli_connect_error());
     }
 
-    // Debug: Estado de la conexión
-    error_log("DEBUG - comentarios.php: Conexión exitosa");
+
 
     // Insertar el nuevo comentario usando los nombres correctos de las columnas
     $stmt = $conn->prepare("INSERT INTO comentarios_autor (ID_Articulo, Usuario_ID, Comentario, Fecha, visto) VALUES (?, ?, ?, NOW(), 1)");
     if (!$stmt) {
-        error_log("DEBUG - comentarios.php: Error preparando consulta");
+
         throw new Exception("Error preparando consulta: " . $conn->error);
     }
     
     $stmt->bind_param("iis", $ID_Articulo, $Usuario_ID, $Comentario);
     
     if (!$stmt->execute()) {
-        error_log("DEBUG - comentarios.php: Error ejecutando consulta");
+
         throw new Exception("Error ejecutando consulta: " . $stmt->error);
     }
 
-    // Debug: Estado después de la inserción
-    error_log("DEBUG - comentarios.php: Comentario insertado exitosamente");
+
 
     // Obtener el ID del nuevo comentario
     $ComentarioUsuario_ID = $conn->insert_id;
@@ -83,7 +69,7 @@ try {
     // Obtener los datos del usuario
     $stmt = $conn->prepare("SELECT Nombre, `Foto de Perfil` as foto_perfil FROM usuarios WHERE Usuario_ID = ?");
     if (!$stmt) {
-        error_log("DEBUG - comentarios.php: Error preparando consulta de usuario");
+
         throw new Exception("Error preparando consulta: " . $conn->error);
     }
     

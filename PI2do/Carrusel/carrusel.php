@@ -40,7 +40,6 @@ try {
     
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
-        error_log("Carrusel Debug - Error en preparación: " . $conn->error);
         die("Error en la preparación de la consulta: " . $conn->error);
     }
 
@@ -54,18 +53,9 @@ try {
         while ($row = $result->fetch_assoc()) {
             $publicaciones[] = $row;
         }
-    } else {
-        // Debug: agregar información sobre por qué no hay resultados
-        error_log("Carrusel Debug - No se encontraron publicaciones");
-        error_log("Carrusel Debug - SQL: " . $sql);
-        if (!$result) {
-            error_log("Carrusel Debug - Error en query: " . $conn->error);
-        } else {
-            error_log("Carrusel Debug - Query exitosa pero 0 resultados. Num rows: " . $result->num_rows);
-        }
     }
 } catch (Exception $e) {
-    error_log("Error en el carrusel: " . $e->getMessage());
+
     $publicaciones = [];
 } finally {
     if (isset($conexion)) {

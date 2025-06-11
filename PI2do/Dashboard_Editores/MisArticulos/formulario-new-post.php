@@ -32,8 +32,8 @@ function validarFormulario($titulo, $contenido, $imagenes) {
     // Validar título
     if (strlen($titulo) < 5) {
         $errores[] = 'El título debe tener al menos 5 caracteres';
-    } elseif (strlen($titulo) > 100) {
-        $errores[] = 'El título no puede exceder 100 caracteres';
+    } elseif (strlen($titulo) > 255) {
+        $errores[] = 'El título no puede exceder 255 caracteres';
     }
 
     // Validar contenido
@@ -43,19 +43,19 @@ function validarFormulario($titulo, $contenido, $imagenes) {
 
     // Validar imágenes
     if (isset($imagenes)) {
-        $max_imagenes = 5;
+        $max_imagenes = 6;
         $max_tamano = 5 * 1024 * 1024; // 5MB
         $tipos_permitidos = ['image/jpeg', 'image/png', 'image/gif'];
         
         if (count($imagenes['name']) > $max_imagenes) {
-            $errores[] = 'Solo puedes subir hasta 5 imágenes';
+            $errores[] = 'Solo puedes subir hasta 6 imágenes';
         } else {
             foreach ($imagenes['name'] as $key => $nombre) {
-                if (!in_array($imagenes['type'][$key], $tipos_permitidos)) {
+                if (!empty($nombre) && !in_array($imagenes['type'][$key], $tipos_permitidos)) {
                     $errores[] = 'Solo se permiten imágenes JPG, PNG y GIF';
                     break;
                 }
-                if ($imagenes['size'][$key] > $max_tamano) {
+                if (!empty($nombre) && $imagenes['size'][$key] > $max_tamano) {
                     $errores[] = 'Alguna imagen excede el tamaño máximo de 5MB';
                     break;
                 }
@@ -84,7 +84,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $_SESSION['datos_formulario'] = [
         'titulo' => $_POST['titulo'] ?? '',
+        'introduccion' => $_POST['introduccion'] ?? '',
+        'color' => $_POST['color'] ?? '',
         'contenido' => $_POST['contenido'] ?? '',
+        'conclusion' => $_POST['conclusion'] ?? '',
         'etiquetas' => $_POST['etiquetas'] ?? '',
         'comentario_autor' => $_POST['comentario_autor'] ?? '',
         'bibliografias' => $_POST['bibliografias'] ?? ''
@@ -92,35 +95,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errores)) {
         $titulo = trim($_POST['titulo']);
+        $introduccion = trim($_POST['introduccion'] ?? '');
+        $color = $_POST['color'] ?? '#ffffff';
         $contenido = trim($_POST['contenido']);
+        $conclusion = trim($_POST['conclusion'] ?? '');
         $usuario_id = $_SESSION['Usuario_ID'];
-        $fecha_creacion = date('Y-m-d H:i:s');
-        $fecha_publicacion = date('Y-m-d'); // Usar la fecha actual
-        $estado = 'pendiente';
-        $motivo_rechazo = null;
+        $fecha_publicacion = date('Y-m-d');
+        $estado = 'Borrador';
+        $motivo_rechazo = '';
         $bibliografias = trim($_POST['bibliografias'] ?? '');
 
-        // Manejo de imágenes
-        $imagenes_ruta = [];
+        // Manejo de imágenes - se guardarán después de insertar el artículo
+        $imagenes_data = [];
         if (isset($_FILES['imagenes']) && isset($_FILES['imagenes']['tmp_name']) && is_array($_FILES['imagenes']['tmp_name'])) {
             foreach ($_FILES['imagenes']['tmp_name'] as $key => $tmp_name) {
-                if ($_FILES['imagenes']['error'][$key] === 0) {
-                    $upload_dir = '../../uploads/';
-                    if (!is_dir($upload_dir)) {
-                        mkdir($upload_dir, 0777, true);
-                    }
-                    $nombre_archivo = basename($_FILES['imagenes']['name'][$key]);
-                    $ruta_destino = $upload_dir . uniqid() . '_' . $nombre_archivo;
-                    if (move_uploaded_file($tmp_name, $ruta_destino)) {
-                        $imagenes_ruta[] = $ruta_destino;
-                    }
+                if ($_FILES['imagenes']['error'][$key] === 0 && !empty($tmp_name)) {
+                    $imagen_contenido = file_get_contents($tmp_name);
+                    $descripcion = $_POST['descripcion_imagen'][$key] ?? '';
+                    $orden = $_POST['orden_imagen'][$key] ?? ($key + 1);
+                    
+                    $imagenes_data[] = [
+                        'contenido' => $imagen_contenido,
+                        'descripcion' => $descripcion,
+                        'orden' => $orden
+                    ];
                 }
             }
         }
-        $imagenes_json = json_encode($imagenes_ruta);
 
-        // Prepara el statement
-        $stmt = $conn->prepare("INSERT INTO articulos (Titulo, Contenido, Bibliografias, Usuario_ID, `Fecha de Publicacion`) VALUES (?, ?, ?, ?, ?)");
+        // Prepara el statement con todos los campos requeridos
+        $stmt = $conn->prepare("INSERT INTO articulos (
+            Titulo, 
+            Introduccion,
+            Color,
+            Contenido, 
+            Bibliografias,
+            Conclusion,
+            Usuario_ID, 
+            `Fecha de Creacion`,
+            `Fecha de Publicacion`,
+            Estado,
+            `Motivo de Rechazo`
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?, ?)");
+        
         if (!$stmt) {
             $_SESSION['errores'][] = "Error en prepare: " . $conn->error;
             header('Location: formulario-new-post.php');
@@ -128,23 +145,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $stmt->bind_param(
-            "sssis",
+            "ssssssssss",
             $titulo,
+            $introduccion,
+            $color,
             $contenido,
             $bibliografias,
+            $conclusion,
             $usuario_id,
-            $fecha_publicacion
+            $fecha_publicacion,
+            $estado,
+            $motivo_rechazo
         );
 
         if ($stmt->execute()) {
+            $articulo_id = $conn->insert_id;
+            
+            // Insertar las imágenes en la tabla imagenes_articulos
+            if (!empty($imagenes_data)) {
+                $stmt_img = $conn->prepare("INSERT INTO imagenes_articulos (Articulo_ID, Url_Imagen, Descripcion, Orden_Imagen) VALUES (?, ?, ?, ?)");
+                
+                foreach ($imagenes_data as $imagen) {
+                    $stmt_img->bind_param("isss", 
+                        $articulo_id,
+                        $imagen['contenido'],
+                        $imagen['descripcion'],
+                        $imagen['orden']
+                    );
+                    $stmt_img->execute();
+                }
+                $stmt_img->close();
+            }
+            
             $_SESSION['mensaje'] = 'Post creado exitosamente';
             unset($_SESSION['datos_formulario']);
+            $stmt->close();
+            header('Location: mis-articulos.php');
+            exit();
         } else {
             $_SESSION['errores'][] = "Error al guardar el post: " . $stmt->error;
+            $stmt->close();
+            header('Location: formulario-new-post.php');
+            exit();
         }
-        $stmt->close();
-        header('Location: formulario-new-post.php');
-        exit();
     } else {
         $_SESSION['errores'] = $errores;
         header('Location: formulario-new-post.php');
@@ -179,7 +222,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </script>
     <?php endif; ?>
 
-<body>
     <header> 
         <div class="header-contenedor">
             <div class="principal"></div>
@@ -190,7 +232,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="header_2">
             <img class="prodcons" src='../../imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
-            <div class="admin-controls">
             <div class="admin-controls">
                 <button class="search-toggle-btn"></button>
                 <div class="search-bar hidden">
@@ -225,13 +266,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 
                 <nav class="sidebar-menu">
-
-                <a href='../inicio/inicio.php'><!----cambiar la ruta a inicio---->
+                    <a href='../inicio/inicio.php'>
                         <span>Inicio</span>
                         <i class="fas fa-file-alt"></i>
                     </a>
 
-                <a href='../MisArticulos/mis-articulos.php'>
+                    <a href='../MisArticulos/mis-articulos.php'>
                         <span>Mis Artículos</span>
                         <i class="fas fa-file-alt"></i>
                     </a>
@@ -256,17 +296,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <i class="fas fa-cog"></i>
                     </a>
                 
-                <div class="sidebar-footer">
-                    <a href='../../inicio_sesion/logout.php' class="logout-btn">
-                        Cerrar Sesión
-                        <i class="fas fa-sign-out-alt"></i>
-                    </a>
-                </div>
+                    <div class="sidebar-footer">
+                        <a href='../../inicio_sesion/logout.php' class="logout-btn">
+                            Cerrar Sesión
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+                    </div>
                 </nav>
             </div>
         </div>
     </section>
-
 
     <div class="contenedor-formulario">
         <h1>Crear Nuevo Post</h1>
@@ -299,12 +338,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label for="titulo">Título del Post:</label>
                 <input type="text" id="titulo" name="titulo" required 
-                       minlength="5" maxlength="100"
+                       minlength="5" maxlength="255"
                        value="<?php echo isset($_SESSION['datos_formulario']['titulo']) ? htmlspecialchars($_SESSION['datos_formulario']['titulo']) : ''; ?>"
                        oninput="validarTitulo(this)">
                 <span class="error-message" id="titulo-error"></span>
             </div>
             
+            <div class="form-group">
+                <label for="introduccion">Introducción:</label>
+                <textarea id="introduccion" name="introduccion" rows="3" maxlength="700"
+                          placeholder="Breve introducción del artículo..."><?php echo isset($_SESSION['datos_formulario']['introduccion']) ? htmlspecialchars($_SESSION['datos_formulario']['introduccion']) : ''; ?></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="color">Color del tema:</label>
+                <input type="color" id="color" name="color" 
+                       value="<?php echo isset($_SESSION['datos_formulario']['color']) ? htmlspecialchars($_SESSION['datos_formulario']['color']) : '#ffffff'; ?>">
+            </div>
+
             <div class="form-group">
                 <label for="contenido">Contenido:</label>
                 <textarea id="contenido" name="contenido" rows="8" required
@@ -313,11 +364,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             
             <div class="form-group">
-                <label for="imagenes">Subir Imágenes:</label>
-                <input type="file" id="imagenes" name="imagenes[]" 
-                       multiple accept="image/*" onchange="previewImages(this)">
-                <div id="image-preview" class="image-preview"></div>
-                <span class="error-message" id="imagenes-error"></span>
+                <label>Imágenes del Artículo:</label>
+                <div id="imagen-inputs">
+                    <div class="imagen-input">
+                        <input type="file" name="imagenes[]" accept="image/*">
+                        <input type="text" name="descripcion_imagen[]" placeholder="Descripción de la imagen" maxlength="200">
+                        <select name="orden_imagen[]">
+                            <option value="1">Imagen 1</option>
+                            <option value="2">Imagen 2</option>
+                            <option value="3">Imagen 3</option>
+                            <option value="4">Imagen 4</option>
+                            <option value="5">Imagen 5</option>
+                            <option value="6">Imagen 6</option>
+                        </select>
+                        <button type="button" onclick="this.parentElement.remove()">Eliminar</button>
+                    </div>
+                </div>
+                <button type="button" onclick="agregarImagenInput()">+ Agregar otra imagen</button>
+            </div>
+
+            <div class="form-group">
+                <label for="conclusion">Conclusión:</label>
+                <textarea id="conclusion" name="conclusion" rows="3" maxlength="700"
+                          placeholder="Conclusión del artículo..."><?php echo isset($_SESSION['datos_formulario']['conclusion']) ? htmlspecialchars($_SESSION['datos_formulario']['conclusion']) : ''; ?></textarea>
             </div>
             
             <div class="form-group">
@@ -343,8 +412,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button type="submit">Publicar</button>
             </div>
         </form>
-
     </div>
+
+    <script>
+    function agregarImagenInput() {
+        const container = document.getElementById('imagen-inputs');
+        const imagenes = container.querySelectorAll('.imagen-input');
+        
+        if (imagenes.length >= 6) {
+            alert('Máximo 6 imágenes permitidas');
+            return;
+        }
+        
+        const div = document.createElement('div');
+        div.className = 'imagen-input';
+        div.innerHTML = `
+            <input type="file" name="imagenes[]" accept="image/*">
+            <input type="text" name="descripcion_imagen[]" placeholder="Descripción de la imagen" maxlength="200">
+            <select name="orden_imagen[]">
+                <option value="1">Imagen 1</option>
+                <option value="2">Imagen 2</option>
+                <option value="3">Imagen 3</option>
+                <option value="4">Imagen 4</option>
+                <option value="5">Imagen 5</option>
+                <option value="6">Imagen 6</option>
+            </select>
+            <button type="button" onclick="this.parentElement.remove()">Eliminar</button>
+        `;
+        container.appendChild(div);
+    }
+
+    function validarTitulo(input) {
+        const error = document.getElementById('titulo-error');
+        if (input.value.length < 5) {
+            error.textContent = 'El título debe tener al menos 5 caracteres';
+        } else if (input.value.length > 255) {
+            error.textContent = 'El título no puede exceder 255 caracteres';
+        } else {
+            error.textContent = '';
+        }
+    }
+
+    function validarContenido(input) {
+        const error = document.getElementById('contenido-error');
+        if (input.value.length < 50) {
+            error.textContent = 'El contenido debe tener al menos 50 caracteres';
+        } else {
+            error.textContent = '';
+        }
+    }
+    </script>
 
 </body>
 </html>
