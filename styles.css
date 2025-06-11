@@ -10,6 +10,130 @@ body {
     flex-direction: column;
 }
 
+/* Estilos para el carrusel destacado */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.carousel-item .post-header {
+    margin-bottom: 20px;
+}
+
+.carousel-item .post-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.carousel-item .post-body {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.carousel-item h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.carousel-item .descripcion {
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.carousel-item .post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.carousel-item .post-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.carousel-item .post-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.carousel-item .interaction-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.carousel-item .like-button-small,
+.carousel-item .comment-toggle-small {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.carousel-item .like-button-small:hover,
+.carousel-item .comment-toggle-small:hover {
+    color: #007bff;
+}
+
+.carousel-item .likes-count,
+.carousel-item .comments-count {
+    font-size: 14px;
+}
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.no-posts {
+    text-align: center;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
 .main-content {
     flex: 1 0 auto;
     display: flex;

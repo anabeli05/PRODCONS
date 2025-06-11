@@ -23,59 +23,88 @@ $usuario_nombre = $_SESSION['Nombre'];
 
 $article = null;
 $error = null;
+$article_id = null;
 
-// Verificar si se proporcionó un ID de artículo en la URL
-if (isset($_GET['id']) && !empty($_GET['id'])) {
-    $article_id = (int)$_GET['id']; // Convertir a entero explícitamente
+// Verificar si se proporcionó un ID de artículo válido
+$article_id = isset($_GET['ID_Articulo']) ? filter_var($_GET['ID_Articulo'], FILTER_VALIDATE_INT) : null;
+if ($article_id === false || $article_id <= 0) {
+    $article_id = null;
+}
 
+// Debug: Mostrar información sobre el ID recibido
+error_log("Debug - ID_Articulo recibido: " . $_GET['ID_Articulo'] ?? 'null');
+error_log("Debug - article_id después del cast: " . $article_id);
+
+if ($article_id <= 0) {
+    // Debug: Mostrar información sobre el error
+    error_log("Error - ID de artículo inválido: " . $article_id);
+    error_log("Error - ID recibido: " . $_GET['ID_Articulo'] ?? 'null');
+    error_log("Error - Tipo de ID recibido: " . gettype($_GET['ID_Articulo'] ?? null));
+    
+    // Mostrar mensaje de error en la página en lugar de redirigir
+    $error = "Error al cargar el artículo. Por favor, intenta de nuevo.";
+} else {
     // Conexión MySQLi
-    $conexion = new Conexion();
-    $conexion->abrir_conexion();
-    $conn = $conexion->conexion;
+    try {
+        $conexion = new Conexion();
+        $conexion->abrir_conexion();
+        $conn = $conexion->conexion;
+        
+        if (!$conn) {
+            throw new Exception("Error de conexión a la base de datos");
+        }
 
-    // Verificar si la conexión se estableció correctamente
-    if ($conn) {
-        // Obtener el artículo con el ID proporcionado, incluyendo likes y comentarios
-        $sql = "SELECT a.*, u.nombre as autor_nombre, 
-                       GROUP_CONCAT(ia.Url_Imagen) as imagenes,
-                       (SELECT COUNT(*) FROM likes WHERE Articulo_ID = a.ID_Articulo) as total_likes,
-                       (SELECT COUNT(*) FROM comentarios_autor WHERE Articulo_ID = a.ID_Articulo) as total_comentarios
-                FROM articulos a 
-                JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID
-                LEFT JOIN imagenes_articulos ia ON a.ID_Articulo = ia.Articulo_ID
-                WHERE a.ID_Articulo = ? AND a.Estado = 'Publicado'
-                GROUP BY a.ID_Articulo";
+        // Obtener el artículo con el ID proporcionado
+        $sql = "SELECT a.*, u.Nombre as autor_nombre, 
+                   GROUP_CONCAT(ia.Url_Imagen) as imagenes,
+                   (SELECT COUNT(*) FROM likes WHERE ID_Articulo = ? AND visto = 1) as total_likes,
+                   (SELECT COUNT(DISTINCT ComentarioUsuario_ID) FROM comentarios_autor WHERE ID_Articulo = ? AND visto = 1) as total_comentarios,
+                   (SELECT visto FROM likes WHERE ID_Articulo = ? AND Usuario_ID = ? LIMIT 1) as usuario_ha_liked
+            FROM articulos a 
+            JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID
+            LEFT JOIN imagenes_articulos ia ON a.ID_Articulo = ia.Articulo_ID
+            WHERE a.ID_Articulo = ? AND a.Estado = 'Publicado'
+            GROUP BY a.ID_Articulo";
 
         $stmt = $conn->prepare($sql);
-        if ($stmt) {
-            $stmt->bind_param("i", $article_id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $article = $result->fetch_assoc();
-            $stmt->close();
-        } else {
-            $error = "Error al preparar la consulta: " . $conn->error;
+        if (!$stmt) {
+            throw new Exception("Error al preparar la consulta: " . $conn->error);
         }
-        $conexion->cerrar_conexion();
-    } else {
-        $error = "Error de conexión a la base de datos.";
+
+        // Bind parameters (5 parámetros: iiiii)
+        $stmt->bind_param("iiiii", $article_id, $article_id, $article_id, $usuario_id, $article_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $article = $result->fetch_assoc();
+        $stmt->close();
+
+        if (!$article) {
+            throw new Exception("No se encontró el artículo con ID " . $article_id);
+        }
+
+    } catch (Exception $e) {
+        $error = "Error al obtener el artículo: " . $e->getMessage();
+        error_log("Error en ver-articulo-usuario.php: " . $e->getMessage());
+    } finally {
+        if (isset($conexion)) {
+            $conexion->cerrar_conexion();
+        }
     }
-} else {
-    $error = "No se especificó un ID de artículo válido.";
 }
 
 ?>
-
-<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="user-id" content="<?php echo htmlspecialchars($usuario_id); ?>" />
     <title><?php echo $article ? htmlspecialchars($article['Titulo']) : 'Artículo no encontrado'; ?> - PRODCONS</title>
     <link rel="stylesheet" href="/PRODCONS/PI2do/postWeb/code.css"> <!-- Estilos postWeb -->
     <link rel="stylesheet" href="/PRODCONS/PI2do/Header_post/header_post.css">
     <link rel="stylesheet" href="/PRODCONS/PI2do/footer/footer.css">
     <style>
+
+
         .interaccion {
             padding: 20px;
             background: #fff;
@@ -89,6 +118,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             gap: 20px;
             padding: 10px;
             border-bottom: 1px solid #eee;
+            align-items: center;
         }
 
         .likes button, .comentarios button {
@@ -100,6 +130,11 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             cursor: pointer;
             padding: 8px 12px;
             transition: all 0.2s;
+            font-size: 16px;
+            color: #666;
+            min-width: 120px;
+            justify-content: center;
+            border-radius: 4px;
         }
 
         .likes button:hover, .comentarios button:hover {
@@ -109,16 +144,276 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         .likes button svg, .comentarios button svg {
             width: 24px;
             height: 24px;
-            fill: #666;
+            fill: currentColor;
+        }
+
+        .likes button.liked {
+            color: #e44d26;
         }
 
         .likes button.liked svg {
             fill: #e44d26;
         }
 
+        .likes button span, .comentarios button span {
+            font-weight: 500;
+        }
+
+        .like-count, .comments-count {
+            font-weight: 500;
+        }
+
+        #commentsSection {
+            margin-top: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 25px;
+            display: none;
+        }
+
+        #commentsSection.visible {
+            display: block;
+        }
+
+        .comments-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comments-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .comments-count {
+            color: #666;
+            font-size: 0.9em;
+        }
+
         .nuevo-comentario {
+            margin-bottom: 25px;
             padding: 20px;
-            border-top: 1px solid #eee;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        #commentText {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            min-height: 80px;
+            resize: vertical;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        #commentText:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,.25);
+        }
+
+        #commentForm button[type="submit"] {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.2s;
+            margin-top: 15px;
+        }
+
+        #commentForm button[type="submit"]:hover {
+            background: #0056b3;
+        }
+
+        #commentForm button[type="submit"]:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Estilos para los comentarios */
+        .comment {
+            background: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .comment-avatar {
+            margin-right: 12px;
+        }
+
+        .comment-avatar img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .comment-info {
+            flex: 1;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: #333;
+            display: block;
+        }
+
+        .comment-date {
+            font-size: 0.85em;
+            color: #666;
+            display: block;
+        }
+
+        .comment-content {
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .loading-comments {
+            padding: 20px;
+            text-align: center;
+            color: #666;
+        }
+        }
+
+        .comment {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .comment-date {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .comment-text {
+            color: #333;
+            line-height: 1.6;
+            font-size: 1em;
+        }
+
+        /* Animación de carga */
+        .loading-comments {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .loading-comments::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Estilo para cuando no hay comentarios */
+        .no-comments {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 1.1em;
+        }
+    </style>
+    <style>
+        /* Estilos para el selector de idiomas */
+        .language-selector {
+            position: relative;
+            display: inline-block;
+        }
+
+        .language-selector img {
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+        }
+
+        #idiomasOpciones {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 5px;
+        }
+
+        .idioma-btn {
+            background: none;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+
+        .idioma-btn:hover {
+            background: #f5f5f5;
+        }
+
+        .idioma-btn img {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+
+        .interaccion {
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+
+        .likes-comentarios {
+            display: flex;
         }
 
         #commentForm {
@@ -170,7 +465,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         <header>
             <div class="header-contenedor">
                 <i class="flecha_left">
-                    <a href="/PRODCONS/PI2do/Dashboard_Usuario/Inicio/usuario.php" title="Regresar a la página principal">
+                    <a href="/PRODCONS/" title="Regresar a la página principal">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                             <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
                         </svg>
@@ -185,12 +480,11 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     <!-- Bandera principal visible - Puedes cambiar la imagen por defecto aquí -->
                     <div id="idiomaToggle" style="display: inline-block; margin-left: 15px;">
                         <img class="españa" id="banderaIdioma" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
-                    </div>
+                        </div>
                     <!-- Opciones de banderas desplegables - Puedes cambiar las imágenes aquí -->
                     <div id="idiomasOpciones" style="display: none;">
                         <img class="ingles" src="/PRODCONS/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
-                        <img class="españa" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
-                    </div>
+                        <img class="españa" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">                    </div>
                 </div>
             </div>
         </header>
@@ -248,40 +542,73 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             <?php endif; ?>
         </section>
 
-        <!-- Sección de interacción (likes y comentarios) -->
+        <!-- ID del usuario -->
+        <input type="hidden" id="userId" value="<?php echo $_SESSION['Usuario_ID']; ?>">
+
+        <!-- Sección de interacción (likes, favoritos y comentarios) -->
         <section class="interaccion">
             <div class="likes-comentarios">
-                <div class="likes">
-                    <button id="likeButton" onclick="toggleLike()">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                <!-- Sección de Likes -->
+                <div class="likes" 
+                    data-post-id="<?php echo $article['ID_Articulo']; ?>"
+                    data-total-likes="<?php echo isset($article['total_likes']) ? $article['total_likes'] : 0; ?>"
+                    data-has-liked="<?php echo isset($article['usuario_ha_liked']) && $article['usuario_ha_liked'] ? 'true' : 'false'; ?>">
+                    <button id="likeButton" class="like-button">
+                        <svg viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                         </svg>
-                        <span id="likeCount"><?php echo isset($article['total_likes']) ? $article['total_likes'] : 0; ?></span>
+                        <span id="likeCount" class="like-count"><?php echo isset($article['total_likes']) ? $article['total_likes'] : '0'; ?></span>
                     </button>
                 </div>
-                <div class="comentarios">
-                    <button id="commentButton" onclick="toggleComments()">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z"/>
+                <!-- Sección de Comentarios -->
+                <div class="comentarios" data-post-id="<?php echo $article['ID_Articulo']; ?>">
+                    <button type="button" class="comment-toggle" data-post-id="<?php echo $article['ID_Articulo']; ?>" onclick="window.handleComments(event)">
+                        <svg viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z"/>
                         </svg>
                         <span id="commentCount"><?php echo isset($article['total_comentarios']) ? $article['total_comentarios'] : 0; ?></span>
                     </button>
                 </div>
             </div>
-
-            <!-- Sección de comentarios (oculta por defecto) -->
-            <div id="commentsSection" style="display: none;">
-                <div class="nuevo-comentario">
-                    <form id="commentForm">
-                        <textarea id="commentText" placeholder="Escribe tu comentario..." required></textarea>
-                        <button type="submit">Publicar</button>
-                    </form>
-                </div>
-                <div id="commentsList">
-                    <!-- Los comentarios se cargarán aquí dinámicamente -->
-                </div>
-            </div>
         </section>
+
+        <!-- Sección de comentarios -->
+        <div id="commentsSection" class="mt-8" style="display: none;">
+            <div class="comments-header">
+                <h2 class="comments-title">Comentarios</h2>
+                <span class="comments-count" id="commentsCountDisplay"><?php echo isset($article['total_comentarios']) ? $article['total_comentarios'] . ' comentarios' : '0 comentarios'; ?></span>
+            </div>
+
+            <!-- Lista de comentarios -->
+            <div id="commentsList" class="comments-list">
+                <!-- Los comentarios se cargarán dinámicamente -->
+            </div>
+
+            <!-- Mensaje cuando no hay comentarios -->
+            <div id="noComments" class="no-comments" style="display: none;">
+                ¡Sé el primero en comentar!
+            </div>
+
+            <!-- Formulario de nuevo comentario -->
+            <div class="nuevo-comentario">
+                <form id="commentForm" class="comment-form">
+                    <textarea id="commentText" placeholder="Escribe tu comentario..." required></textarea>
+                    <button type="submit" class="submit-comment">Publicar</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            // Almacenar el ID del usuario en localStorage
+            const userId = document.getElementById('userId').value;
+            if (userId) {
+                localStorage.setItem('userId', userId);
+            }
+
+            // Inicializar interacciones
+            document.addEventListener('DOMContentLoaded', function() {
+                window.initInteractions();
+            });
+        </script>
 
     <?php else: ?>
         <div class="container mx-auto mt-10 p-5 bg-white rounded-md shadow-md">
@@ -351,129 +678,58 @@ Este script mantiene sincronizada la interfaz de idioma
     };
 </script>
 
-    <script>
-        // Función para alternar el like
-        function toggleLike() {
-            const likeButton = document.getElementById('likeButton');
-            const likeCount = document.getElementById('likeCount');
-            const articleId = <?php echo json_encode($article_id); ?>;
-            const userId = <?php echo json_encode($usuario_id); ?>;
-            
-            // Verificar si ya existe un like
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '/PRODCONS/PI2do/Dashboard_Usuario/likes and comments/handle_like.php', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    const response = JSON.parse(xhr.responseText);
-                    if (response.success) {
-                        likeButton.classList.toggle('liked');
-                        likeCount.textContent = response.total_likes;
-                    }
-                }
-            };
-            xhr.send('post_id=' + articleId + '&user_id=' + userId);
-        }
-
-        // Función para alternar la visibilidad de los comentarios
-        function toggleComments() {
-            const commentsSection = document.getElementById('commentsSection');
-            commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
-        }
-
-        // Función para manejar el envío de comentarios
-        document.getElementById('commentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const commentText = document.getElementById('commentText').value;
-            if (!commentText.trim()) return;
-
-            const articleId = <?php echo json_encode($article_id); ?>;
-            const userId = <?php echo json_encode($usuario_id); ?>;
-            const userName = <?php echo json_encode($usuario_nombre); ?>;
-
-            // Enviar el comentario al servidor
-            const formData = new FormData();
-            formData.append('article_id', articleId);
-            formData.append('Usuario_ID', userId);
-            formData.append('comment_text', commentText);
-
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '/PRODCONS/PI2do/postWeb/comentarios.php', true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    const response = JSON.parse(xhr.responseText);
-                    if (response.success) {
-                        // Crear el nuevo comentario
-                        const commentsList = document.getElementById('commentsList');
-                        const commentCount = document.getElementById('commentCount');
-                        
-                        const comment = document.createElement('div');
-                        comment.className = 'comment';
-                        comment.innerHTML = `
-                            <div class="comment-author">${userName}:</div>
-                            <div class="comment-text">${commentText}</div>
-                            <div class="comment-date">${new Date().toLocaleDateString()}</div>
-                        `;
-                        
-                        // Agregar el nuevo comentario al inicio de la lista
-                        commentsList.insertBefore(comment, commentsList.firstChild);
-                        
-                        // Limpiar el formulario
-                        document.getElementById('commentText').value = '';
-                        
-                        // Actualizar el contador de comentarios
-                        commentCount.textContent = parseInt(commentCount.textContent) + 1;
-                    }
-                }
-            };
-            xhr.send(formData);
-        });
-    </script>
-
     <section class="logo">
         <div class="header_2">
             <img class="prodcons" src="/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png" alt="Logo" />
             <div class="subtitulos">
-                <a href="/PRODCONS/PI2do/pr/produccionr.php">PRODUCCIÓN RESPONSABLE</a>
-                <a href="/PRODCONS/PI2do/cr/consumores.php">CONSUMO RESPONSABLE</a>
+                <a href="/PRODCONS/PI2do/pr/produccionr_usuario.php">PRODUCCIÓN RESPONSABLE</a>
+                <a href="/PRODCONS/PI2do/cr/consumores_usuario.php">CONSUMO RESPONSABLE</a>
             </div>
         </div>
     </section>
 
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/footer/Visitante/footer.php'; ?>
 
-<script>
-    // Initialize translation on page load with preferred language
-    document.addEventListener('DOMContentLoaded', function() {
-        const preferredLanguage = localStorage.getItem('preferredLanguage') || 'es';
-        const bandera = document.getElementById('banderaIdioma');
-        if (bandera) {
-            bandera.src = preferredLanguage === 'en' ? "/PRODCONS/PI2do/imagenes/logos/ingles.png" : "/PRODCONS/PI2do/imagenes/logos/espanol.png";
-            bandera.setAttribute('data-idioma', preferredLanguage);
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/PRODCONS/PI2do/footer/Visitante/footer.php'; ?>
+    <script>
+    // Inicializar traducción al cargar la página
+    window.addEventListener('load', async function() {
+        try {
+            // Inicializar traducción
+            const preferredLanguage = localStorage.getItem('preferredLanguage') || 'es';
+            const bandera = document.getElementById('banderaIdioma');
+            if (bandera) {
+                bandera.src = preferredLanguage === 'en' ? "/PRODCONS/PI2do/imagenes/logos/ingles.png" : "/PRODCONS/PI2do/imagenes/logos/espanol.png";
+                bandera.setAttribute('data-idioma', preferredLanguage);
+            }
+            translateContent(preferredLanguage);
+        } catch (error) {
+            console.error('Error al inicializar traducción:', error);
         }
-        translateContent(preferredLanguage);
     });
-
-    // Image change function (if multiple images exist)
-    function changeImage() {
-        const mainImage = document.getElementById('mainImage');
-        if (!mainImage) return;
-
-        // Get all images from PHP variable
-        const images = <?php echo json_encode($article && $article['imagenes'] ? explode(',', $article['imagenes']) : []); ?>;
-        if (images.length <= 1) return;
-
-        // Find current image index
-        const currentSrc = mainImage.src;
-        const basePath = '/PRODCONS/PI2do/imagenes/articulos';
-        let currentIndex = images.findIndex(img => currentSrc.endsWith(img));
-
-        // Cycle to next image
-        let nextIndex = (currentIndex + 1) % images.length;
-        mainImage.src = basePath + images[nextIndex];
-    }
 </script>
 
+    <!-- Scripts -->
+    <script src="/PRODCONS/PI2do/postWeb/interacciones.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userId = '<?php echo isset($_SESSION["Usuario_ID"]) ? $_SESSION["Usuario_ID"] : ""; ?>';
+            if (userId) {
+                // Actualizar el input hidden existente
+                const userIdInput = document.getElementById('userId');
+                if (userIdInput) {
+                    userIdInput.value = userId;
+                }
+                
+                // Inicializar interacciones después de asegurar que el userId está disponible
+                if (typeof window.initInteractions === 'function') {
+                    window.initInteractions();
+                } else {
+                    console.error('La función initInteractions no está definida');
+                }
+            } else {
+                console.error('Usuario no autenticado');
+            }
+        });
+    </script>
 </body>
 </html>

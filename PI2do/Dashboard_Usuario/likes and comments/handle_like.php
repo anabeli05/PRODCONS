@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 require_once '../../Base de datos/conexion.php'; // Ajusta la ruta si es necesario
 
@@ -10,103 +13,100 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
-// Verificar si el usuario está logueado
-if (!isset($_SESSION['Usuario_ID'])) {
-    echo json_encode(['success' => false, 'message' => 'Usuario no autenticado.']);
+// Obtener los datos de la solicitud
+$Articulo_ID = filter_input(INPUT_POST, 'Articulo_ID', FILTER_VALIDATE_INT);
+$Usuario_ID = filter_input(INPUT_POST, 'Usuario_ID', FILTER_VALIDATE_INT);
+
+// Verificar si los datos son válidos
+if (!$Articulo_ID || !$Usuario_ID) {
+    echo json_encode([
+        'success' => false, 
+        'message' => 'Datos inválidos.',
+        'debug' => [
+            'Articulo_ID' => $Articulo_ID,
+            'Usuario_ID' => $Usuario_ID
+        ]
+    ]);
     exit();
 }
 
-// Normalizar el ID del usuario logueado
-$usuario_id_logueado = $_SESSION['Usuario_ID'];
-
-// Obtener el ID del post desde la solicitud POST
-$post_id = filter_input(INPUT_POST, 'post_id', FILTER_VALIDATE_INT);
-
-// Validar el post_id
-if ($post_id === false || $post_id === null) {
-    echo json_encode(['success' => false, 'message' => 'ID de post inválido.']);
-    exit();
-}
-
-// Conectar a la base de datos
+// Crear una nueva conexión
 $conexion = new Conexion();
-$conn = $conexion->conexion; // Obtener la conexión mysqli
-
-if ($conn->connect_error) {
-    echo json_encode(['success' => false, 'message' => 'Error de conexión a la base de datos: ' . $conn->connect_error]);
-    exit();
-}
-
 try {
-    // 1. Verificar si el usuario ya ha dado like a este post
+    $conexion->abrir_conexion();
+    $conn = $conexion->conexion;
+    
+    if (!$conn) {
+        throw new Exception("Conexión a la base de datos fallida");
+    }
+
+    // Verificar si ya existe el like
     $stmt = $conn->prepare("SELECT Like_ID FROM likes WHERE Articulo_ID = ? AND Usuario_ID = ?");
     if (!$stmt) {
-        throw new Exception("Error preparando consulta de verificación de like: " . $conn->error);
+        throw new Exception("Error preparando consulta: " . $conn->error);
     }
-    $stmt->bind_param("ii", $post_id, $usuario_id_logueado);
+    $stmt->bind_param("ii", $Articulo_ID, $Usuario_ID);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        // El usuario ya dio like
+        echo json_encode([
+            'success' => false, 
+            'message' => 'Ya has dado like a esta publicación.',
+            'debug' => [
+                'query' => $stmt->error
+            ]
+        ]);
         $stmt->close();
-        echo json_encode(['success' => false, 'message' => 'Ya has dado like a esta publicación.']);
         exit();
     }
     $stmt->close();
 
-    // 2. Insertar el nuevo like
-    $stmt = $conn->prepare("INSERT INTO likes (ID_Articulo, Usuario_ID, fecha) VALUES (?, ?, NOW())");
+    // Insertar el nuevo like
+    $stmt = $conn->prepare("INSERT INTO likes (Articulo_ID, Usuario_ID, Fecha, visto, total_likes) VALUES (?, ?, NOW(), 0, 1)");
     if (!$stmt) {
-        throw new Exception("Error preparando consulta de inserción de like: " . $conn->error);
+        throw new Exception("Error preparando inserción: " . $conn->error);
     }
-    $stmt->bind_param("ii", $post_id, $usuario_id_logueado);
-    $stmt->execute();
-    $stmt->close();
-
-    // Verificar si la inserción fue exitosa
-    if ($conn->affected_rows > 0) {
-        // 3. Obtener información del artículo y el usuario para la notificación
-        $stmt = $conn->prepare("SELECT a.Usuario_ID, a.Titulo, u.Nombre 
-                           FROM articulos a 
-                           JOIN usuarios u ON u.Usuario_ID = ? 
-                           WHERE a.ID_Articulo = ?");
+    $stmt->bind_param("ii", $Articulo_ID, $Usuario_ID);
+    
+    if ($stmt->execute()) {
+        // Obtener el total de likes
+        $stmt = $conn->prepare("SELECT COUNT(*) as total_likes FROM likes WHERE Articulo_ID = ?");
         if (!$stmt) {
-            throw new Exception("Error preparando consulta para obtener información: " . $conn->error);
+            throw new Exception("Error preparando consulta de total likes: " . $conn->error);
         }
-        $stmt->bind_param("ii", $usuario_id_logueado, $post_id);
+        $stmt->bind_param("i", $Articulo_ID);
         $stmt->execute();
         $result = $stmt->get_result();
-        $info = $result->fetch_assoc();
+        $total_likes = $result->fetch_assoc()['total_likes'];
         $stmt->close();
 
-        if ($info) {
-            // 4. Insertar notificación
-            $mensaje = $info['Nombre'] . " le ha dado 'Me gusta' a tu publicación '" . $info['Titulo'] . "'";
-            $stmt = $conn->prepare("INSERT INTO noti_box (Usuario_ID, Mensaje, Fecha, Leido) VALUES (?, ?, NOW(), 0)");
-            if (!$stmt) {
-                throw new Exception("Error preparando consulta de notificación: " . $conn->error);
-            }
-            $stmt->bind_param("is", $info['Usuario_ID'], $mensaje);
-            $stmt->execute();
-            $stmt->close();
-        }
-
         // Si todo fue bien
-        echo json_encode(['success' => true, 'message' => 'Me gusta registrado.']);
+        echo json_encode([
+            'success' => true, 
+            'message' => 'Me gusta registrado exitosamente.',
+            'total_likes' => $total_likes
+        ]);
     } else {
-        echo json_encode(['success' => false, 'message' => 'Error al registrar el like.']);
+        throw new Exception("Error al ejecutar la inserción: " . $stmt->error);
     }
 
 } catch (Exception $e) {
     // Log the error for debugging
     error_log("Error en handle_like.php: " . $e->getMessage());
-    echo json_encode(['success' => false, 'message' => 'Error al procesar el like.']);
+    echo json_encode([
+        'success' => false, 
+        'message' => 'Error al procesar el like: ' . $e->getMessage(),
+        'debug' => [
+            'error' => $e->getMessage(),
+            'file' => $e->getFile(),
+            'line' => $e->getLine()
+        ]
+    ]);
 } finally {
-    // Cerrar conexión (si $conn fue inicializada)
-    if ($conn) {
-        $conn->close();
+    // Cerrar conexión
+    if ($conexion) {
+        $conexion->cerrar_conexion();
     }
 }
-
 ?> 
