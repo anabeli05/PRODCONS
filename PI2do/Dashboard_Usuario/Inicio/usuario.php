@@ -209,8 +209,8 @@ $conexion->cerrar_conexion();
 
       <!-- Opciones del menú -->
       <ul>
-<a href='/PRODCONS/PI2do/pr/produccionr.php'>PRODUCCIÓN RESPONSABLE</a>
-<a href='/PRODCONS/PI2do/cr/consumores.php'>CONSUMO RESPONSABLE</a>
+<a href='/PRODCONS/PI2do/pr/produccionr_usuario.php'>PRODUCCIÓN RESPONSABLE</a>
+<a href='/PRODCONS/PI2do/cr/consumores_usuario.php'>CONSUMO RESPONSABLE</a>
          <li>
           <form>
             <button id="btnLupa" class="lupa" aria-label="Abrir buscador" type="button">
@@ -339,8 +339,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <img class="prodcons" src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
             <div class="subtitulos">
-<a href='/PRODCONS/PI2do/Dashboard_Usuario/pr/produccionr.php'>PRODUCCIÓN RESPONSABLE</a>
-<a href='/PRODCONS/PI2do/Dashboard_Usuario/cr/consumores.php'>CONSUMO RESPONSABLE</a>
+<a href='/PRODCONS/PI2do/pr/produccionr_usuario.php'>PRODUCCIÓN RESPONSABLE</a>
+<a href='/PRODCONS/PI2do/cr/consumores_usuario.php'>CONSUMO RESPONSABLE</a>
 
                 <form class="search-form">
                     <button class="lupa">
@@ -403,8 +403,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <img class="prodcons" src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
             <div class="subtitulos">
-<a href='/PRODCONS/PI2do/Dashboard_Usuario/pr/produccionr.php'>PRODUCCIÓN RESPONSABLE</a>
-<a href='/PRODCONS/PI2do/Dashboard_Usuario/cr/consumores.php'>CONSUMO RESPONSABLE</a>
+<a href='/PRODCONS/PI2do/pr/produccionr_usuario.php'>PRODUCCIÓN RESPONSABLE</a>
+<a href='/PRODCONS/PI2do/cr/consumores_usuario.php'>CONSUMO RESPONSABLE</a>
 
                 <form class="search-form">
                     <button class="lupa">
@@ -492,30 +492,40 @@ document.addEventListener('DOMContentLoaded', function() {
     $conn_carousel = $conexion_carousel->conexion;
 
     $publicaciones_carousel = [];
-    $sql_carousel = "SELECT a.Titulo as Titulo, a.Contenido as descripcion, a.ID_Articulo as ID_Articulo, 
-                     a.`Fecha de Publicacion` as Fecha, u.Nombre as autor_nombre, 
-                     ia.Url_Imagen as imagen_principal 
+    $sql_carousel = "SELECT a.*, u.Nombre as autor_nombre, 
+                     GROUP_CONCAT(ia.Url_Imagen) as imagenes
                      FROM articulos a 
                      JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID 
-                     LEFT JOIN imagenes_articulos ia ON a.ID_Articulo = ia.Articulo_ID AND ia.Orden_Imagen = 1
+                     LEFT JOIN imagenes_articulos ia ON a.ID_Articulo = ia.Articulo_ID
                      WHERE a.Estado = 'Publicado' 
-                     ORDER BY a.`Fecha de Publicacion` DESC LIMIT 10";
-    $result_carousel = $conn_carousel->query($sql_carousel);
+                     GROUP BY a.ID_Articulo
+                     ORDER BY a.`Fecha de Publicacion` DESC LIMIT 3";
 
-    if ($result_carousel && $result_carousel->num_rows > 0) {
-        while ($row_carousel = $result_carousel->fetch_assoc()) {
-            $publicaciones_carousel[] = $row_carousel;
-        }
+    $stmt_carousel = $conn_carousel->prepare($sql_carousel);
+    if (!$stmt_carousel) {
+        die("Error en la preparación de la consulta del carrusel: " . $conn_carousel->error);
     }
+
+    $stmt_carousel->execute();
+    $result_carousel = $stmt_carousel->get_result();
+    while ($row = $result_carousel->fetch_assoc()) {
+        // Asegurar que el ID del artículo sea numérico
+        $row['ID_Articulo'] = (int)$row['ID_Articulo'];
+        $publicaciones_carousel[] = $row;
+    }
+    $stmt_carousel->close();
+
+    // Cerrar la conexión del carrusel
     $conexion_carousel->cerrar_conexion();
-    
     ?>
+
     <!-- Duplicating carousel structure to add interaction buttons -->
     <div class="carousel-container">
         <div class="carousel">
             <?php if (!empty($publicaciones_carousel)): ?>
                 <?php foreach ($publicaciones_carousel as $pub): 
-                    $imagen_principal_carousel = $pub['imagen_principal'] ?? '/PRODCONS/PI2do/imagenes/default-post.jpg';
+                    $article_id = isset($pub['ID_Articulo']) ? (int)$pub['ID_Articulo'] : 0;
+                    $imagen_principal_carousel = $pub['imagenes'] ?? '/PRODCONS/PI2do/imagenes/default-post.jpg';
                 ?>
                     <div class="carousel-item post" data-post-id="<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>">
                 <div class="post-header">
@@ -534,15 +544,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     <div class="post-footer">
                                 <div class="post-actions">
-                                    <a href="/PRODCONS/PI2do/postWeb/ver-articulo-usuario.php?id=<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>" class="post-link">Ver más...</a>
+                                <a href="/PRODCONS/PI2do/postWeb/ver-articulo-usuario.php?ID_Articulo=<?php echo $article_id; ?>" class="post-link">Leer más...</a>
                         <div class="interaction-buttons">
-                                        <button class="like-button-small" data-post-id="<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>" title="Me gusta">
+                                        <button class="like-button-small" data-post-id="<?php echo $article_id; ?>" title="Me gusta">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                                 </svg>
                                             <span class="likes-count">0</span>
                             </button>
-                                        <button class="comment-toggle-small" data-post-id="<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>" title="Comentarios">
+                                        <button class="comment-toggle-small" data-post-id="<?php echo $article_id; ?>" title="Comentarios">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
                                     <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
                                 </svg>
@@ -595,12 +605,19 @@ document.addEventListener('DOMContentLoaded', function() {
     <section class="post-list">
         <div class="content">
             <?php foreach ($publicaciones as $post): 
+                // Asegurar que el ID del artículo sea numérico
+                $article_id = isset($post['ID_Articulo']) ? (int)$post['ID_Articulo'] : 0;
+                
                 // Check if images data is available before exploding
                 $imagenes_string = $post['imagenes'] ?? '';
                 $imagenes = !empty($imagenes_string) ? explode(',', $imagenes_string) : [];
                 $imagen_principal = !empty($imagenes[0]) ? $imagenes[0] : '/PRODCONS/PI2do/imagenes/default-post.jpg';
+                
+                // Asegurar que el ID se use en el botón de like y comentarios
+                $like_id = $article_id;
+                $comment_id = $article_id;
             ?>
-                <article class="post" data-post-id="<?php echo htmlspecialchars($post['ID_Articulo'] ?? ''); ?>">
+                <article class="post" data-post-id="<?php echo $article_id; ?>">
                 <div class="post-header">
                         <img src="<?php echo htmlspecialchars($imagen_principal); ?>" alt="<?php echo htmlspecialchars($post['Titulo'] ?? ''); ?>" class="post-img">
                 </div>
@@ -617,15 +634,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                     <div class="post-footer">
                             <div class="post-actions">
-                                <a href="/PRODCONS/PI2do/Dashboard_Usuario/postWeb user/articulo.php?id=<?php echo htmlspecialchars($post['ID_Articulo'] ?? ''); ?>" class="post-link">Leer más...</a>
+                                <a href="/PRODCONS/PI2do/postWeb/ver-articulo-usuario.php?ID_Articulo=<?php echo $article_id; ?>" class="post-link">Leer más...</a>
                         <div class="interaction-buttons">
-                                    <button class="like-button-small" data-post-id="<?php echo htmlspecialchars($post['ID_Articulo'] ?? ''); ?>" title="Me gusta">
+                                    <button class="like-button-small" data-post-id="<?php echo $article_id; ?>" title="Me gusta">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                                 </svg>
                                         <span class="likes-count">0</span>
                             </button>
-                                    <button class="comment-toggle-small" data-post-id="<?php echo htmlspecialchars($post['ID_Articulo'] ?? ''); ?>" title="Comentarios">
+                                    <button class="comment-toggle-small" data-post-id="<?php echo $article_id; ?>" title="Comentarios">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
                                     <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
                                 </svg>

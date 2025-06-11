@@ -27,35 +27,40 @@ try {
     $conexion->abrir_conexion();
     $conn = $conexion->conexion;
 
+    $publicaciones = [];
     $sql = "SELECT 
-            a.*, 
-            u.Nombre as autor_nombre,
-            (SELECT Url_Imagen FROM imagenes_articulos WHERE Articulo_ID = a.ID_Articulo ORDER BY ID_Imagen LIMIT 1) as imagen_principal,
-            (SELECT COUNT(*) FROM likes WHERE ID_Articulo = a.ID_Articulo) as total_likes,
-            (SELECT COUNT(*) FROM comentarios WHERE ID_Articulo = a.ID_Articulo) as total_comentarios
+            a.Titulo as Titulo, 
+            a.Contenido as descripcion, 
+            a.ID_Articulo as ID_Articulo, 
+            a.`Fecha de Publicacion` as Fecha, 
+            u.Nombre as autor, 
+            GROUP_CONCAT(ia.Url_Imagen) as imagen,
+            (SELECT COUNT(*) FROM likes l WHERE l.ID_Articulo = a.ID_Articulo) as total_likes,
+            (SELECT COUNT(*) FROM comentarios c WHERE c.ID_Articulo = a.ID_Articulo) as total_comments
             FROM articulos a 
             JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID 
+            LEFT JOIN imagenes_articulos ia ON a.ID_Articulo = ia.Articulo_ID 
             WHERE a.Estado = 'Publicado' 
-            ORDER BY a.`Fecha de Publicacion` DESC";
-    
-    $stmt = $conn->prepare($sql);
-    if (!$stmt) {
-        die("Error en la preparación de la consulta: " . $conn->error);
-    }
-
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $publicaciones = $result->fetch_all(MYSQLI_ASSOC);
-    $stmt->close();
+            GROUP BY a.ID_Articulo 
+            ORDER BY a.`Fecha de Publicacion` DESC LIMIT 10";
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $publicaciones[] = $row;
         }
+    } else {
+        // Debug: agregar información sobre por qué no hay resultados
+        error_log("Carrusel Debug - No se encontraron publicaciones");
+        error_log("Carrusel Debug - SQL: " . $sql);
+        if (!$result) {
+            error_log("Carrusel Debug - Error en query: " . $conn->error);
+        } else {
+            error_log("Carrusel Debug - Query exitosa pero 0 resultados. Num rows: " . $result->num_rows);
+        }
     }
 } catch (Exception $e) {
-
+    error_log("Error en el carrusel: " . $e->getMessage());
     $publicaciones = [];
 } finally {
     if (isset($conexion)) {
@@ -76,30 +81,24 @@ try {
     <div class="carousel">
         <?php if (!empty($publicaciones)): ?>
             <?php foreach ($publicaciones as $pub): ?>
-                <article class="post" data-post-id="<?= htmlspecialchars($pub['ID_Articulo'] ?? '') ?>">
+                <div class="carousel-item post">
                     <div class="post-header">
-                        <img src="<?= htmlspecialchars($pub['imagen_principal'] ?? '/PRODCONS/PI2do/imagenes/default-post.jpg') ?>" 
-                             alt="<?= htmlspecialchars($pub['Titulo'] ?? '') ?>" 
-                             class="post-img">
+                        <img src="/PRODCONS/PI2do/imagenes/articulos/<?= htmlspecialchars($pub['imagen'] ?? '') ?>" alt="<?= htmlspecialchars($pub['Titulo'] ?? '') ?>" class="post-img">
                     </div>
                     <div class="post-body">
                         <h2><?= htmlspecialchars($pub['Titulo'] ?? '') ?></h2>
                         <p class="descripcion"><?php 
-                            $contenido = htmlspecialchars($pub['Contenido'] ?? '');
-                            // Truncar contenido a aproximadamente 100 caracteres si es más largo
-                            if (strlen($contenido) > 100) {
-                                $contenido = substr($contenido, 0, 401) . '...';
+                            $descripcion = htmlspecialchars($pub['descripcion'] ?? '');
+                            // Truncar descripción a aproximadamente 401 caracteres si es más larga
+                            if (strlen($descripcion) > 401) {
+                                $descripcion = substr($descripcion, 0, 401) . '...';
                             }
-                            echo $contenido;
+                            echo $descripcion;
                         ?></p>
-                        <a href="/PRODCONS/PI2do/postWeb/ver-articulo.php?id=<?= htmlspecialchars($pub['ID_Articulo'] ?? '') ?>" class="post-link">Leer más...</a>
-                        <div class="post-stats">
-                            <span class="likes"><i class="fas fa-heart"></i> <?= htmlspecialchars($pub['total_likes'] ?? '0') ?></span>
-                            <span class="comments"><i class="fas fa-comment"></i> <?= htmlspecialchars($pub['total_comentarios'] ?? '0') ?></span>
-                        </div>
+                        <a href="/PRODCONS/PI2do/postWeb/ver-articulo.php?id=<?= htmlspecialchars($pub['ID_Articulo'] ?? '') ?>" class="post-link">Ver más...</a>
                         <span>Publicado el <?php 
-                            $fecha_timestamp = strtotime($pub['Fecha de Publicacion'] ?? '');
-                            // Check if timestamp es válido antes de formatear
+                            $fecha_timestamp = strtotime($pub['Fecha'] ?? '');
+                            // Check if timestamp is valid before formatting
                             if ($fecha_timestamp !== false) {
                                 $dia = date('d', $fecha_timestamp);
                                 $mes_ingles = date('F', $fecha_timestamp);

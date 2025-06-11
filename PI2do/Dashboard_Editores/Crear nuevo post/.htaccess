@@ -1,0 +1,15 @@
+# Forzar HTTP en lugar de HTTPS para evitar errores 404
+RewriteEngine On
+RewriteCond %{HTTPS} on
+RewriteRule ^(.*)$ http://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Permitir archivos PHP
+<Files "*.php">
+    Order allow,deny
+    Allow from all
+</Files>
+
+# Configuración para manejar espacios en nombres de archivos
+Options +FollowSymLinks
+RewriteEngine On
+RewriteRule ^(.*)$ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

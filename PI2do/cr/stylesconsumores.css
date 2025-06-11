@@ -13,6 +13,15 @@
     z-index: 1000;
 }
 
+.apubli {
+    text-align: center;
+    margin: 40px 0;
+    color: #0c730c;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
 .flecha_left {
     display: flex;
     align-items: center;
