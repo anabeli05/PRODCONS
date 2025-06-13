@@ -3,7 +3,7 @@ session_start();
 include '../../Base de datos/conexion.php';
 
 // Verificar si el usuario está logueado
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($_SESSION['Usuario_ID'])) {
     header('Location: ../../inicio_sesion/login.php');
     exit();
 }
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $bibliografias = $_POST['bibliografias'] ?? '';
         $conclusion = $_POST['conclusion'] ?? '';
         $fecha_publicacion = $_POST['fecha_publicacion'] ?? date('Y-m-d');
-        $estado = 'Borrador'; // Estado inicial
+        $estado = 'Publicado'; // Estado inicial
         $motivo_rechazo = ''; // Inicialmente vacío
         
         // Validación de campos requeridos
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $contenido,
                     $bibliografias,
                     $conclusion,
-                    $_SESSION['usuario_id'],
+                    $_SESSION['Usuario_ID'],
                     $fecha_publicacion,
                     $estado,
                     $motivo_rechazo
@@ -102,24 +102,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if (!empty($_FILES['imagenes']['name'][0])) {
                         foreach ($_FILES['imagenes']['tmp_name'] as $key => $tmp_name) {
                             if ($_FILES['imagenes']['error'][$key] === UPLOAD_ERR_OK) {
-                                $imagen_contenido = file_get_contents($tmp_name);
-                                $descripcion = $_POST['descripcion_imagen'][$key] ?? '';
-                                $orden = $_POST['orden_imagen'][$key] ?? '1';
+                                // Generar un nombre único para la imagen
+                                $nombre_original = $_FILES['imagenes']['name'][$key];
+                                $extension = strtolower(pathinfo($nombre_original, PATHINFO_EXTENSION));
+                                $nombre_unico = uniqid() . '.' . $extension;
                                 
-                                $sql_imagen = "INSERT INTO imagenes_articulos (Articulo_ID, Url_Imagen, Descripcion, Orden_Imagen) 
-                                             VALUES (?, ?, ?, ?)";
-                                $stmt_imagen = $conexion->conexion->prepare($sql_imagen);
-                                $stmt_imagen->bind_param("ibss", 
-                                    $articulo_id,
-                                    $imagen_contenido,
-                                    $descripcion,
-                                    $orden
-                                );
+                                // Ruta donde se guardará la imagen
+                                $ruta_destino = '../../uploads/' . $nombre_unico;
                                 
-                                if (!$stmt_imagen->execute()) {
-                                    throw new Exception("Error al guardar la imagen: " . $stmt_imagen->error);
+                                // Mover la imagen al directorio de uploads
+                                if (move_uploaded_file($tmp_name, $ruta_destino)) {
+                                    // Guardar la ruta relativa en la base de datos
+                                    $ruta_imagen = '/PRODCONS/PI2do/uploads/' . $nombre_unico;
+                                    $descripcion = $_POST['descripcion_imagen'][$key] ?? '';
+                                    $orden = $_POST['orden_imagen'][$key] ?? '1';
+                                    
+                                    $sql_imagen = "INSERT INTO imagenes_articulos (Articulo_ID, Url_Imagen, Descripcion, Orden_Imagen) 
+                                                 VALUES (?, ?, ?, ?)";
+                                    $stmt_imagen = $conexion->conexion->prepare($sql_imagen);
+                                    $stmt_imagen->bind_param("isss", 
+                                        $articulo_id,
+                                        $ruta_imagen,
+                                        $descripcion,
+                                        $orden
+                                    );
+                                    
+                                    if (!$stmt_imagen->execute()) {
+                                        throw new Exception("Error al guardar la imagen: " . $stmt_imagen->error);
+                                    }
+                                    $stmt_imagen->close();
+                                } else {
+                                    throw new Exception("Error al mover la imagen al servidor");
                                 }
-                                $stmt_imagen->close();
                             }
                         }
                     }
@@ -153,27 +167,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <link href="formulario-new-post.css" rel="stylesheet">
-    <script src="../Dashboard/barra-nav.js" defer></script>
+    <link href="post-form.css" rel="stylesheet">
+    
+    <!-- CSS Y JS DE HEADER-->
+    <link rel="stylesheet" href='../Dashboard/sidebar.css'>
+    <script src='../Dashboard/barra-nav.js' defer></script>
+    
+    <!-- CSS de traduccion -->
+    <link rel="stylesheet" href="../../Dashboard_Editores/Dashboard/traduccion.css">
+    <!-- Scripts de traducción -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="/PRODCONS/translate.js"></script>
 </head>
+
 <body>
-    <header> 
+<header>
         <div class="header-contenedor">
-            <div class="principal"></div>
+            <div class="principal">
+                <!-- Selector de bandera para cambio de idioma -->
+                <div id="idiomaToggle" style="display: inline-block; margin-left: 15px;">
+                    <img class="españa" id="banderaIdioma" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
+                </div>
+                <!-- Opciones de banderas desplegables -->
+                <div id="idiomasOpciones" style="display: none;">
+                    <img class="ingles" src="/PRODCONS/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
+                    <img class="españa" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
+                </div>
+            </div>
         </div>
     </header>
 
     <section class="logo"> 
         <div class="header_2">
             <img class="prodcons" src='../../imagenes/prodcon/logoSinfondo.png' alt="Logo">
-
             <div class="admin-controls">
+                <button class="search-toggle-btn"></button>
+                <div class="search-bar hidden">
+                    <button class="search-close-btn"></button>
+                </div>
+
                 <!--Botón de notificaciones-->
                 <a href='/PRODCONS/PI2do/Dashboard_Editores/Notibox/noti-box.php' class="notif-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                         <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                     </svg>
-                    <span class="notif-badge">1</span>
+                    <span class="notif-badge"></span>
                 </a>
 
                 <!-- Botón Admin con avatar -->
@@ -185,6 +224,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <img src='/PRODCONS/PI2do/imagenes/logos/perfil.png' alt="Admin" class="admin-avatar">
                 </div>
             </div>
+
+
 
             <!-- Sidebar -->
             <div class="admin-sidebar" id="adminSidebar">

@@ -138,7 +138,7 @@ $conexion->cerrar_conexion();
                         <i class="fas fa-file-alt"></i>
                     </a>
 
-                    <a href="../Crear nuevo post/post-form.html">
+                    <a href="../Crear nuevo post/formulario-new-post.php">
                         <span>Crear Post</span>
                         <i class="fas fa-edit"></i>
                     </a>
@@ -173,7 +173,7 @@ $conexion->cerrar_conexion();
     <div class="font-sans m-20 bg-[#fdfdfd]">
         <div class="flex justify-between items-center mb-5">
             <h1 class="text-[28px] font-semibold m-0">Mis Artículos</h1>
-            <a href="/PRODCONS/PI2do/Dashboard_Editores/Crear nuevo post/post-form.html" class="flex mr-5 items-center gap-2 bg-[#3F6B55] text-white text-[15px] font-bold italic py-2 px-5 rounded-[12px] cursor-pointer hover:bg-[#2F5443]">
+            <a href="/PRODCONS/PI2do/Dashboard_Editores/Crear nuevo post/formulario-new-post.php" class="flex mr-5 items-center gap-2 bg-[#3F6B55] text-white text-[15px] font-bold italic py-2 px-5 rounded-[12px] cursor-pointer hover:bg-[#2F5443]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -248,7 +248,7 @@ $conexion->cerrar_conexion();
             <div class="flex items-end gap-[120px] mt-10 max-w-[895px] relative">
                 <div class="w-[120%] bg-[#ece9e5] mr-[35px] rounded-[12px] p-[25px_40px] pt-[60px] relative flex-grow min-h-[150px] flex flex-col justify-center items-center">
                     <p class="m-0 mb-5 text-[15px] text-gray-800 max-w-[80%] z-[1] text-center">Sigue creando post, informa al mundo de los nuevos sucesos!</p>
-                    <a href='../Crear nuevo post/post-form.html' class="pb-5 bg-[#b1dcaa] rounded-full w-[50px] h-[50px] text-[50px] font-bold text-green-900 cursor-pointer z-[2] transition-transform duration-200 flex items-center justify-center hover:scale-110">+</a>
+                    <a href='../Crear nuevo post/formulario-new-post.php' class="pb-5 bg-[#b1dcaa] rounded-full w-[50px] h-[50px] text-[50px] font-bold text-green-900 cursor-pointer z-[2] transition-transform duration-200 flex items-center justify-center hover:scale-110">+</a>
                     <img src='/PRODCONS/PI2do/imagenes/plantita.png' class="absolute z-0 left-[15px] top-[25px]" width="80">
                     <img src='/PRODCONS/PI2do/imagenes/planta.png' class="absolute z-0 right-[15px] top-[25px]" width="80">
                 </div>

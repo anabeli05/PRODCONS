@@ -58,6 +58,42 @@ $stmt->execute();
 $publicaciones = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
+// Consulta para el carrusel (solo 3 publicaciones más recientes)
+$stmt_carousel = $conn->prepare("SELECT a.*, u.Nombre as autor_nombre, 
+                               GROUP_CONCAT(ia.Url_Imagen) as imagenes
+                               FROM articulos a 
+                               JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID 
+                               LEFT JOIN imagenes_articulos ia ON a.ID_Articulo = ia.Articulo_ID
+                               WHERE a.Estado = 'Publicado' 
+                               GROUP BY a.ID_Articulo
+                               ORDER BY a.`Fecha de Publicacion` DESC LIMIT 3");
+
+if (!$stmt_carousel) {
+    die("Error en la preparación de la consulta del carrusel: " . $conn->error);
+}
+
+$stmt_carousel->execute();
+$publicaciones_carousel = $stmt_carousel->get_result()->fetch_all(MYSQLI_ASSOC);
+$stmt_carousel->close();
+
+// Consulta para el carrusel (todas las publicaciones publicadas)
+$stmt_carousel_all = $conn->prepare("SELECT a.*, u.Nombre as autor_nombre, 
+                           GROUP_CONCAT(ia.Url_Imagen) as imagenes
+                           FROM articulos a 
+                           JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID 
+                           LEFT JOIN imagenes_articulos ia ON a.ID_Articulo = ia.Articulo_ID
+                           WHERE a.Estado = 'Publicado' 
+                           GROUP BY a.ID_Articulo
+                           ORDER BY a.`Fecha de Publicacion` DESC");
+
+if (!$stmt_carousel_all) {
+    die("Error en la preparación de la consulta del carrusel: " . $conn->error);
+}
+
+$stmt_carousel_all->execute();
+$publicaciones_carousel_all = $stmt_carousel_all->get_result()->fetch_all(MYSQLI_ASSOC);
+$stmt_carousel_all->close();
+
 // Cerrar la conexión al finalizar el script
 $conexion->cerrar_conexion();
 ?>
@@ -95,12 +131,102 @@ $conexion->cerrar_conexion();
         
         .carrusel-destacado {
             width: 100%;
-            max-width: 900px;
-            margin: 40px auto 40px auto;
-            padding: 0 10px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .carousel-container {
+            width: 100%;
+        }
+
+        .carousel {
             display: flex;
-            justify-content: center;
+            gap: 20px;
+            transition: transform 0.5s ease-in-out;
+            flex-wrap: nowrap;
+        }
+
+        .carousel-item {
+            flex: 0 0 100%;
+            min-width: 100%;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin: 0;
+        }
+
+        .post-header {
+            margin-bottom: 20px;
+        }
+
+        .post-header img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .post-body h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #040404;
+            font-family: Georgia, serif;
+        }
+
+        .descripcion {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333333;
+            font-family: Georgia, serif;
+        }
+
+        .post-footer {
+            display: flex;
             align-items: center;
+            color: #333333;
+            font-size: 14px;
+            font-family: Georgia, serif;
+            margin-top: 20px;
+        }
+
+        .post-footer span {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 24px;
+            transition: background 0.3s;
+        }
+
+        .prev:hover, .next:hover {
+            background: rgba(0,0,0,0.7);
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        .no-posts {
+            text-align: center;
+            padding: 40px;
+            color: #333333;
+            font-family: Georgia, serif;
         }
         
         /* Estilos para los botones de interacción */
@@ -476,104 +602,35 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Carrusel destacado -->
 <section class="carrusel-destacado">
     <?php 
-    
-    // Re-fetch publications for the carousel to include like/comment counts if needed, 
-    // or pass them from the main query if it already fetches them.
-    // For simplicity, assuming the included carrusel.php already fetches necessary data
-    // and modifying its loop to include interaction buttons.
-    // Alternatively, if carrusel.php is only for the visual structure, 
-    // we might need to duplicate the loop here with interaction buttons.
-    // Given the user's request is to 'annex' the icons to the carousel *in usuario.php*,
-    // it is safer to assume the latter and add the loop with buttons here.
-
-    // Fetching data again specifically for the carousel section
-    $conexion_carousel = new Conexion();
-    $conexion_carousel->abrir_conexion();
-    $conn_carousel = $conexion_carousel->conexion;
-
-    $publicaciones_carousel = [];
-    $sql_carousel = "SELECT a.*, u.Nombre as autor_nombre, 
-                     GROUP_CONCAT(ia.Url_Imagen) as imagenes
-                     FROM articulos a 
-                     JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID 
-                     LEFT JOIN imagenes_articulos ia ON a.ID_Articulo = ia.Articulo_ID
-                     WHERE a.Estado = 'Publicado' 
-                     GROUP BY a.ID_Articulo
-                     ORDER BY a.`Fecha de Publicacion` DESC LIMIT 3";
-
-    $stmt_carousel = $conn_carousel->prepare($sql_carousel);
-    if (!$stmt_carousel) {
-        die("Error en la preparación de la consulta del carrusel: " . $conn_carousel->error);
-    }
-
-    $stmt_carousel->execute();
-    $result_carousel = $stmt_carousel->get_result();
-    while ($row = $result_carousel->fetch_assoc()) {
-        // Asegurar que el ID del artículo sea numérico
-        $row['ID_Articulo'] = (int)$row['ID_Articulo'];
-        $publicaciones_carousel[] = $row;
-    }
-    $stmt_carousel->close();
-
-    // Cerrar la conexión del carrusel
-    $conexion_carousel->cerrar_conexion();
-    ?>
-
-    <!-- Duplicating carousel structure to add interaction buttons -->
-    <div class="carousel-container">
-        <div class="carousel">
-            <?php if (!empty($publicaciones_carousel)): ?>
-                <?php foreach ($publicaciones_carousel as $pub): 
+    // Usar la consulta que ya obtuvo todas las publicaciones
+    if (!empty($publicaciones_carousel_all)): ?>
+        <div class="carousel-container">
+            <div class="carousel">
+                <?php foreach ($publicaciones_carousel_all as $pub): 
                     $article_id = isset($pub['ID_Articulo']) ? (int)$pub['ID_Articulo'] : 0;
-                    $imagen_principal_carousel = $pub['imagenes'] ?? '/PRODCONS/PI2do/imagenes/default-post.jpg';
+                    $imagenes = explode(',', $pub['imagenes'] ?? '');
+                    $imagen_principal = !empty($imagenes) ? $imagenes[0] : '/PRODCONS/PI2do/imagenes/default-post.jpg';
                 ?>
-                    <div class="carousel-item post" data-post-id="<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>">
-                <div class="post-header">
-                            <img src="/PRODCONS/PI2do/imagenes/articulos/<?= htmlspecialchars($imagen_principal_carousel) ?>" alt="<?= htmlspecialchars($pub['Titulo'] ?? '') ?>" class="post-img">
-                </div>
-                <div class="post-body">
-                            <h2><?= htmlspecialchars($pub['Titulo'] ?? '') ?></h2>
-                            <p class="descripcion"><?php 
-                                $descripcion = htmlspecialchars($pub['descripcion'] ?? '');
-                                // Truncar descripción a aproximadamente 401 caracteres si es más larga
-                                if (strlen($descripcion) > 401) {
-                                    $descripcion = substr($descripcion, 0, 401) . '...';
+                    <article class="carousel-item post" data-post-id="<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>">
+                        <div class="post-header">
+                            <img src="<?php echo htmlspecialchars($imagen_principal); ?>" 
+                                 alt="<?php echo htmlspecialchars($pub['Titulo'] ?? ''); ?>" 
+                                 class="post-img">
+                        </div>
+                        <div class="post-body">
+                            <h2><?php echo htmlspecialchars($pub['Titulo'] ?? ''); ?></h2>
+                            <p class="descripcion">
+                                <?php 
+                                $contenido = htmlspecialchars($pub['Contenido'] ?? '');
+                                if (strlen($contenido) > 100) {
+                                    $contenido = substr($contenido, 0, 401) . '...';
                                 }
-                                echo $descripcion;
-                            ?></p>
-
-                    <div class="post-footer">
-                                <div class="post-actions">
-                                <a href="/PRODCONS/PI2do/postWeb/ver-articulo-usuario.php?ID_Articulo=<?php echo $article_id; ?>" class="post-link">Leer más...</a>
-                        <div class="interaction-buttons">
-                                        <button class="like-button-small" data-post-id="<?php echo $article_id; ?>" title="Me gusta">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                                </svg>
-                                            <span class="likes-count">0</span>
-                            </button>
-                                        <button class="comment-toggle-small" data-post-id="<?php echo $article_id; ?>" title="Comentarios">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
-                                    <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
-                                </svg>
-                                            <span class="comments-count">0</span>
-                            </button>
-                        </div>
-                    </div>
-                        </div>
-
-                            <div class="comments-section" style="display: none;">
-                                <div class="existing-comments">
-                                    <!-- Los comentarios se mostrarán aquí via AJAX -->
-                        </div>
-                        <div class="add-comment">
-                                    <textarea placeholder="Escribe tu comentario..."></textarea>
-                                    <button>Publicar</button>
-                        </div>
-                    </div>
-                            
-                            <span style="font-size: 12px; line-height: 1.2;">Publicado el <?php 
-                                $fecha_timestamp = strtotime($pub['Fecha'] ?? '');
+                                echo $contenido;
+                                ?>
+                            </p>
+                            <a href="/PRODCONS/PI2do/postWeb/ver-articulo-usuario.php?ID_Articulo=<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>" class="post-link">Leer más...</a>
+                            <span>Publicado el <?php 
+                                $fecha_timestamp = strtotime($pub['Fecha de Publicacion'] ?? '');
                                 if ($fecha_timestamp !== false) {
                                     $dia = date('d', $fecha_timestamp);
                                     $mes_ingles = date('F', $fecha_timestamp);
@@ -584,20 +641,20 @@ document.addEventListener('DOMContentLoaded', function() {
                                     echo "Fecha desconocida";
                                 }
                             ?></span>
-                            <span>| Por   <?= htmlspecialchars($pub['autor_nombre'] ?? '') ?></span>
-                    
-                </div>
-                </div>
+                            <span> | Por <?php echo htmlspecialchars($pub['autor_nombre'] ?? ''); ?></span>
+                        </div>
+                    </article>
                 <?php endforeach; ?>
-            <?php else: ?>
-                <div class="no-posts">
-                    <p>No hay publicaciones disponibles en este momento. ¡Vuelve pronto!</p>
-                        </div>
-            <?php endif; ?>
-                    </div>
-        <button class="prev" aria-label="Publicación anterior">‹</button>
-        <button class="next" aria-label="Publicación siguiente">›</button>
-                        </div>
+            </div>
+            <button class="prev" aria-label="Publicación anterior">‹</button>
+            <button class="next" aria-label="Publicación siguiente">›</button>
+        </div>
+    <?php else: ?>
+        <div class="no-posts">
+            <p>No hay publicaciones disponibles en este momento. ¡Vuelve pronto!</p>
+        </div>
+    <?php endif; ?>
+</section>                    </div>
 </section>
 
     <h3 class="apubli"> MIRA MAS DE NUESTRO CONTENIDO </h3>
@@ -694,6 +751,63 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
 <script>
+        // Función para alternar el idioma
+        function alternarIdioma() {
+            const idiomasOpciones = document.getElementById('idiomasOpciones');
+            idiomasOpciones.style.display = idiomasOpciones.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Función para cambiar el idioma
+        function cambiarIdioma(idioma) {
+            const banderaPrincipal = document.getElementById('banderaIdioma');
+            const banderaIngles = document.querySelector('.ingles');
+            const banderaEspana = document.querySelector('.españa');
+            
+            if (banderaPrincipal) {
+                banderaPrincipal.src = idioma === 'ingles' 
+                    ? "/PRODCONS/PI2do/imagenes/logos/ingles.png" 
+                    : "/PRODCONS/PI2do/imagenes/logos/espanol.png";
+            }
+            
+            if (banderaIngles && banderaEspana) {
+                banderaIngles.style.display = idioma === 'espanol' ? 'none' : 'block';
+                banderaEspana.style.display = idioma === 'espanol' ? 'block' : 'none';
+            }
+            
+            currentLanguage = idioma === 'ingles' ? 'en' : 'es';
+            translateContent(currentLanguage);
+            
+            const opciones = document.getElementById('idiomasOpciones');
+            if (opciones) {
+                opciones.style.display = 'none';
+            }
+        }
+
+        // Código para el carrusel
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel');
+            const prev = document.querySelector('.prev');
+            const next = document.querySelector('.next');
+            let currentSlide = 0;
+
+            function slideTo(index) {
+                if (index < 0) {
+                    currentSlide = carousel.children.length - 1;
+                } else if (index >= carousel.children.length) {
+                    currentSlide = 0;
+                } else {
+                    currentSlide = index;
+                }
+                carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            }
+
+            prev.addEventListener('click', () => slideTo(currentSlide - 1));
+            next.addEventListener('click', () => slideTo(currentSlide + 1));
+
+            // Cambiar automáticamente cada 5 segundos
+            setInterval(() => slideTo(currentSlide + 1), 5000);
+        });
+
         // Script para activar/desactivar la barra de búsqueda
         const btnLupa = document.getElementById('btnLupa');
         const barraBusqueda = document.getElementById('barraBusqueda');
@@ -862,6 +976,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
     <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/footer/footer/footer.php'; ?>
+    <script src="/PRODCONS/carousel.js"></script>
     <script src='/PRODCONS/Header visitantes/barra_principal.js'></script>
 
 </body>

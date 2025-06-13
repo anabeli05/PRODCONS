@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODCONS</title>
-    <link rel="stylesheet" href="/PRODCONS/styles.css">
-    <link rel="stylesheet" href="/PRODCONS/footer/footer/footer.css">
-    <link rel="stylesheet" href="/PRODCONS/articulos.css">
-    <link rel="stylesheet" href="/PRODCONS/PI2do/Header visitantes/barra_principal.css">
-    <link rel="stylesheet" href="/PRODCONS/PI2do/Carrusel/carrusel.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="footer/footer/footer.css">
+    <link rel="stylesheet" href="articulos.css">
+    <link rel="stylesheet" href="PI2do/Header visitantes/barra_principal.css">
+    <link rel="stylesheet" href="PI2do/Carrusel/carrusel.css">
 
     <!-- Google Cloud Translation API -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
@@ -110,22 +110,19 @@
 
 <header>
     <div class="header-contenedor">
+        <div class="logo">
+            <img src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo PRODCONS">
+        </div>
         <div class="principal">
-<a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.php'>EMPRESAS RESPONSABLES</a>
+            <a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.php'>EMPRESAS RESPONSABLES</a>
             <a href="/PRODCONS/PI2do/inicio_sesion/login.php" class="link-login">INICIAR SESIÓN</a>
-             <!-- =====================================================================
-                SELECTOR DE BANDERA PARA CAMBIO DE IDIOMA - PERSONALIZABLE
-                Estos elementos controlan la selección de idioma en la página principal
-                ===================================================================== -->
-                <!-- Bandera principal visible - Puedes cambiar la imagen por defecto aquí -->
-                <div id="idiomaToggle">
-                    <img class="españa" id="banderaIdioma" src="./PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
-                </div>
-                <!-- Opciones de banderas desplegables - Puedes cambiar las imágenes aquí -->
-                <div id="idiomasOpciones">
-                    <img class="ingles" src="./PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés">
-                    <img class="españa" src="./PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español">
-                </div>
+            <div id="idiomaToggle">
+                <img class="españa" id="banderaIdioma" src="./PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
+            </div>
+            <div id="idiomasOpciones">
+                <img class="ingles" src="./PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés">
+                <img class="españa" src="./PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español">
+            </div>
         </div>
     </div>
 </header>

@@ -156,7 +156,7 @@ try {
                         <i class="fas fa-file-alt"></i>
                     </a>
 
-                    <a href="../Crear nuevo post/post-form.html">
+                    <a href="../Crear nuevo post/formulario-new-post.php">
                         <span>Crear Post</span>
                         <i class="fas fa-edit"></i>
                     </a>
@@ -193,7 +193,7 @@ try {
             <div class="flex-1 min-w-[300px] p-5 m-0 z-10">
               <h2 class="text-[clamp(28px,3vw,40px)] mb-[15px] font-bold">¡Hola <?php echo htmlspecialchars($_SESSION['Nombre'] ?? 'Admin'); ?>!</h2>
                 <p class="text-[clamp(13px,1.5vw,15px)] mb-5">Un blog exitoso se construye post a post. ¡Sigue adelante!</p>
-                <a href='../Crear nuevo post/post-form.html'>
+                <a href='../Crear nuevo post/formulario-new-post.php'>
                     <button class="min-w-[250px] h-20 border-none rounded-[30px] bg-[#1b641b] text-white font-semibold text-[clamp(14px,1.5vw,16px)] cursor-pointer transition duration-300 mt-[25px] hover:bg-[#145014]">ESCRIBE UN NUEVO POST</button>
                 </a>
             </div>

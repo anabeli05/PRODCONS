@@ -104,20 +104,23 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <?php if ($article): ?>
         <!-- Sección del artículo -->
         <section class="header-section">
-            <h1><?php echo htmlspecialchars($article['Titulo']); ?></h1>
             <div class="contenedor-imagenes">
                 <div class="texto">
-                    <p><?php echo nl2br(htmlspecialchars($article['Contenido'])); ?></p>
+                    <h1><?php echo htmlspecialchars($article['Titulo']); ?></h1>
+                    <p><?php echo nl2br(htmlspecialchars($article['Introduccion'])); ?></p>
                 </div>
                 <div class="imagenes">
                     <?php if ($article['imagenes']): ?>
-                        <img src="/PRODCONS/PI2do/imagenes/articulos/<?php echo htmlspecialchars(explode(',', $article['imagenes'])[0]); ?>" alt="<?php echo htmlspecialchars($article['Titulo']); ?>" class="imagen-primera">
+                        <img src="<?php echo htmlspecialchars(explode(',', $article['imagenes'])[0]); ?>" alt="<?php echo htmlspecialchars($article['Titulo']); ?>" class="imagen-primera">
                     <?php else: ?>
                         <div class="w-full h-full bg-[#f5f5f5] flex items-center justify-center text-[#666]">Sin imagen</div>
                     <?php endif; ?>
                 </div>
             </div>
         </section>
+        <div class="contenido-principal">
+            <p><?php echo nl2br(htmlspecialchars($article['Contenido'])); ?></p>
+        </div>
 
     <script>
         // Funciones para el cambio de idioma (copiadas de index.php)

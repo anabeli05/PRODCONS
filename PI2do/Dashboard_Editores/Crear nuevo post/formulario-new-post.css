@@ -8,6 +8,74 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Estilos para el header */
+.header-contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.principal {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.idioma {
+    margin-right: auto;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+.admin-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.notif-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #555;
+    text-decoration: none;
+}
+
+.notif-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #dc3545;
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50%;
+}
+
+.admin-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #000;
+}
+
+.admin-btn span {
+    font-weight: bold;
+}
+
+.admin-avatar {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
 .contenedor-formulario h1 {
     text-align: center;
     color: #333;

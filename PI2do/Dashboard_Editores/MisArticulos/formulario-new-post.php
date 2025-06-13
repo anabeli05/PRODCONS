@@ -1,7 +1,15 @@
 <?php
 session_start();
 include '../../Base de datos/conexion.php';
-global $conn;
+
+// Crear instancia de la clase Conexion y establecer la conexión
+try {
+    $conexion = new Conexion();
+    $conexion->abrir_conexion();
+    $conn = $conexion->conexion;
+} catch (Exception $e) {
+    die("Error de conexión: " . $e->getMessage());
+}
 
 // Verificar si el usuario está logueado
 if (!isset($_SESSION['Usuario_ID'])) {
@@ -94,6 +102,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ];
 
     if (empty($errores)) {
+        // Verificar que el Usuario_ID esté disponible en la sesión
+        if (!isset($_SESSION['Usuario_ID']) || empty($_SESSION['Usuario_ID'])) {
+            $_SESSION['errores'][] = "Error: Sesión de usuario no válida. Por favor, inicia sesión nuevamente.";
+            header('Location: ../../inicio_sesion/login.php');
+            exit();
+        }
+        
         $titulo = trim($_POST['titulo']);
         $introduccion = trim($_POST['introduccion'] ?? '');
         $color = $_POST['color'] ?? '#ffffff';
@@ -104,6 +119,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $estado = 'Borrador';
         $motivo_rechazo = '';
         $bibliografias = trim($_POST['bibliografias'] ?? '');
+        
+        // Debug: Verificar el valor del usuario_id
+        error_log("Usuario_ID en sesión: " . $usuario_id);
 
         // Manejo de imágenes - se guardarán después de insertar el artículo
         $imagenes_data = [];
@@ -465,3 +483,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </body>
 </html>
+
+<?php
+// Cerrar la conexión al final del script
+if (isset($conexion)) {
+    $conexion->cerrar_conexion();
+}
+?>

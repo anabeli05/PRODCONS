@@ -361,6 +361,59 @@ if ($article_id <= 0) {
         }
     </style>
     <style>
+        /* Estilos para el recuadro de color y contenido principal */
+        .header-section {
+            background-color: #3f5022;
+            color: white;
+            margin-top: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contenedor-imagenes {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 0;
+            max-width: 100%;
+            margin: 0 auto;
+            width: 100%;
+            border-radius: 0;
+        }
+
+        .texto {
+            flex: 1;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 20px;
+            width: 50%;
+        }
+
+        .texto h1 {
+            margin: 0;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .imagenes {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 50%;
+        }
+
+        .contenido-principal {
+            margin-top: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
         /* Estilos para el selector de idiomas */
         .language-selector {
             position: relative;
@@ -491,20 +544,39 @@ if ($article_id <= 0) {
 
         <!-- Sección del artículo -->
         <section class="header-section">
-            <h1><?php echo htmlspecialchars($article['Titulo']); ?></h1>
             <div class="contenedor-imagenes">
                 <div class="texto">
-                    <p><?php echo nl2br(htmlspecialchars($article['Contenido'])); ?></p>
+                    <h1><?php echo htmlspecialchars($article['Titulo']); ?></h1>
+                    <p><?php echo nl2br(htmlspecialchars($article['Introduccion'])); ?></p>
                 </div>
                 <div class="imagenes">
                     <?php if ($article['imagenes']): ?>
-                        <img id="mainImage" src="/PRODCONS/PI2do/imagenes/articulos/<?php echo htmlspecialchars(explode(',', $article['imagenes'])[0]); ?>" alt="<?php echo htmlspecialchars($article['Titulo']); ?>" class="imagen-primera" style="cursor:pointer;" onclick="changeImage()">
+                        <img src="<?php echo htmlspecialchars(explode(',', $article['imagenes'])[0]); ?>" alt="<?php echo htmlspecialchars($article['Titulo']); ?>" class="imagen-primera">
                     <?php else: ?>
                         <div class="w-full h-full bg-[#f5f5f5] flex items-center justify-center text-[#666]">Sin imagen</div>
                     <?php endif; ?>
                 </div>
             </div>
         </section>
+        <?php if (!empty($article['imagenes'])): ?>
+            <div class="carrusel-imagenes">
+                <?php 
+                $imagenes = explode(',', $article['imagenes']);
+                foreach ($imagenes as $index => $imagen):
+                    $active = $index == 0 ? 'imagen-activa' : 'imagen-inactiva';
+                ?>
+                    <img src="<?php echo htmlspecialchars($imagen); ?>" class="<?php echo $active; ?>" alt="Imagen del artículo">
+                <?php endforeach; ?>
+                <div class="carrusel-indicadores">
+                    <?php foreach ($imagenes as $index => $imagen): ?>
+                        <div class="carrusel-indicador <?php echo $index == 0 ? 'activa' : ''; ?>" data-index="<?php echo $index; ?>"></div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        <div class="contenido-principal">
+            <p><?php echo nl2br(htmlspecialchars($article['Contenido'])); ?></p>
+        </div>
 
         <!-- Article content will go here -->
         <main>
