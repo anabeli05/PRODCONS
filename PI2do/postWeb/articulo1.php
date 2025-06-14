@@ -8,7 +8,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menos Plásticos, Más Vida</title>
     <link rel="stylesheet" href="/PRODCONS/PI2do/postWeb/code.css">
-     <link rel="stylesheet" href="/PRODCONS/PI2do/header_post/header_post.css">
+    <link rel="stylesheet" href="/PRODCONS/PI2do/header_post/header_post.css">
     
     <!-- =====================================================================
     SCRIPTS DE TRADUCCIÓN - REQUERIDOS
@@ -172,3 +172,4 @@ Este script mantiene sincronizada la interfaz de idioma
 
 </body>
 </html>
+

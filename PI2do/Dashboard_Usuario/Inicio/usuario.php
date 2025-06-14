@@ -64,7 +64,7 @@ $conexion->cerrar_conexion();
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
+<<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODCONS</title>
@@ -73,34 +73,33 @@ $conexion->cerrar_conexion();
     <link rel="stylesheet" href="/PRODCONS/articulos.css">
     <link rel="stylesheet" href="/PRODCONS/PI2do/Header visitantes/barra_principal.css">
 
-    <!-- Google Cloud Translation API -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-    <!-- Script de traducción global -->
-    <script src='translate.js'></script>
-    <style>
-        /* Estilos para la bandera de idioma */
-        #banderaIdioma {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid black;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
+    
+    <script src='/PRODCONS/translate.js'></script>
+
+     <style>
+     /* Estilos para la bandera de idioma */
+     #banderaIdioma {
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     border: 2px solid black;
+     cursor: pointer;
+     transition: transform 0.2s;
+     }
+    #banderaIdioma:hover {
+     transform: scale(1.1);
+     }
         
-        #banderaIdioma:hover {
-            transform: scale(1.1);
-        }
-        
-        .carrusel-destacado {
-            width: 100%;
-            max-width: 900px;
-            margin: 40px auto 40px auto;
-            padding: 0 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+    .carrusel-destacado {
+        width: 100%;
+        max-width: 900px;
+        margin: 40px auto 40px auto;
+        padding: 0 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         }
         
         /* Estilos para los botones de interacción */
@@ -248,7 +247,7 @@ $conexion->cerrar_conexion();
     <header>
         <div class="header-contenedor">
             <div class="principal">
-<a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.php'>EMPRESAS RESPONSABLES</a>
+<a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr_usuario.php'>EMPRESAS RESPONSABLES</a>
             <a href="/PRODCONS/PI2do/inicio_sesion/logout.php" class="link-login">CERRAR SESIÓN</a>
              <!-- =====================================================================
                 SELECTOR DE BANDERA PARA CAMBIO DE IDIOMA - PERSONALIZABLE
@@ -398,28 +397,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 </script>
 
-    <section class="logo">
-        <div class="header_2">
-            <img class="prodcons" src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo">
-
-            <div class="subtitulos">
-<a href='/PRODCONS/PI2do/pr/produccionr_usuario.php'>PRODUCCIÓN RESPONSABLE</a>
-<a href='/PRODCONS/PI2do/cr/consumores_usuario.php'>CONSUMO RESPONSABLE</a>
-
-                <form class="search-form">
-                    <button class="lupa">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"
-                            stroke-width="1.5">
-                            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-                            <path d="M21 21l-6 -6"></path>
-                        </svg>
-                    </button>
-                    <input type="search" placeholder="Buscar..." />
-                </form>
-            </div>
-        </div>
-    </section>
 
     <script>
         
@@ -601,6 +578,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
 
     <h3 class="apubli"> MIRA MAS DE NUESTRO CONTENIDO </h3>
+
+    
 
     <section class="post-list">
         <div class="content">

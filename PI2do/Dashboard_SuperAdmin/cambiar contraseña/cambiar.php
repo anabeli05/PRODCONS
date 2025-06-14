@@ -168,28 +168,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="buton">
                 <div class="input-area">
                             <input type="password" name="currentPassword" placeholder="Contraseña Actual" required>
-                    <i class="fas fa-lock"></i>
+                    <li class="fas fa-lock"></li>
                 </div>
             </div>
 
             <div class="buton">
                 <div class="input-area">
                             <input type="password" name="nueva_password" placeholder="Nueva Contraseña" required>
-                    <i class="fas fa-lock"></i>
+                    <li class="fas fa-lock"></li>
                 </div>
             </div>
 
             <div class="buton">
                 <div class="input-area">
                             <input type="password" name="confirmar_password" placeholder="Confirmar Nueva Contraseña" required>
-                    <i class="fas fa-lock"></i>
+                    <li class="fas fa-lock"></li>
                 </div>
             </div>
 
             <input type="submit" value="CAMBIAR CONTRASEÑA">
             
             <div class="alternar-form">
-                        <p><a href="../../Dashboard_SuperAdmin/inicio/inicioSA.php">Volver al Panel de SuperAdmin</a></p>
+                        <li><a href="../../Dashboard_SuperAdmin/inicio/inicioSA.php">Volver al Panel de SuperAdmin</a></li>
             </div>
         </form>
     </div>

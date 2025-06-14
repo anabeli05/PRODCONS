@@ -739,3 +739,237 @@
 [11-Jun-2025 15:36:10 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
 [11-Jun-2025 15:36:10 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
 [11-Jun-2025 15:36:11 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 2
+[11-Jun-2025 15:47:16 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 15:47:16 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 15:47:17 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 15:47:17 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 15:47:17 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 2
+[11-Jun-2025 15:47:17 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 15:47:17 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 15:47:17 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 15:47:18 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 15:47:18 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 2
+[11-Jun-2025 15:47:18 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 15:47:18 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 15:47:18 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 15:47:18 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 15:47:19 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 2
+[11-Jun-2025 15:47:19 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 15:47:19 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 15:47:19 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 15:47:19 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 15:47:19 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 2
+[11-Jun-2025 15:47:51 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 15:47:51 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 15:47:51 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 15:47:51 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 15:47:51 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 4
+[11-Jun-2025 15:47:51 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 15:47:51 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 15:47:52 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 15:47:52 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 15:47:52 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 4
+[11-Jun-2025 15:48:06 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 15:48:06 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 15:48:07 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 15:48:07 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 15:48:07 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 4
+[11-Jun-2025 15:48:07 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 15:48:07 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 15:48:07 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 15:48:08 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 15:48:08 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 4
+[11-Jun-2025 15:48:08 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 15:48:08 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 15:48:08 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 15:48:08 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 15:48:09 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 4
+[11-Jun-2025 15:48:09 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 15:48:09 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 15:48:09 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 15:48:09 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 15:48:09 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 4
+[11-Jun-2025 16:18:57 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 16:18:57 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 16:18:57 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 16:18:57 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 16:18:57 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 4
+[11-Jun-2025 16:18:57 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 16:18:57 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 16:18:58 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 16:18:58 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 16:18:58 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 4
+[11-Jun-2025 16:22:44 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 16:22:44 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 16:22:45 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 16:22:45 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 16:22:45 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 4
+[11-Jun-2025 16:22:45 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 16:22:45 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 16:22:46 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 16:22:46 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 16:22:46 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 4
+[11-Jun-2025 16:22:46 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 16:22:46 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 16:22:46 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 16:22:47 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 16:22:47 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 4
+[11-Jun-2025 16:22:47 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 16:22:47 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 16:22:47 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 16:22:47 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 16:22:48 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 4
+[11-Jun-2025 16:39:22 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 16:39:22 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 16:39:23 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 16:39:23 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 16:39:23 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 6
+[11-Jun-2025 16:39:23 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 16:39:23 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 16:39:23 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 16:39:24 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 16:39:24 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 6
+[11-Jun-2025 16:39:26 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 16:39:26 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 16:39:26 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 16:39:26 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 16:39:26 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 6
+[11-Jun-2025 16:39:26 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 1
+[11-Jun-2025 16:39:26 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 1
+)
+
+[11-Jun-2025 16:39:27 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 16:39:27 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 1
+[11-Jun-2025 16:39:27 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 6
+[11-Jun-2025 19:58:10 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 5
+[11-Jun-2025 19:58:10 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 5
+)
+
+[11-Jun-2025 19:58:10 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 19:58:10 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 5
+[11-Jun-2025 19:58:11 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 0
+[11-Jun-2025 19:58:11 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 5
+[11-Jun-2025 19:58:11 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 5
+)
+
+[11-Jun-2025 19:58:11 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 19:58:11 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 5
+[11-Jun-2025 19:58:11 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 0
+[11-Jun-2025 19:58:13 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 5
+[11-Jun-2025 19:58:13 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 5
+)
+
+[11-Jun-2025 19:58:13 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 19:58:14 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 5
+[11-Jun-2025 19:58:14 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 0
+[11-Jun-2025 19:58:14 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 5
+[11-Jun-2025 19:58:14 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 5
+)
+
+[11-Jun-2025 19:58:14 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 19:58:14 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 5
+[11-Jun-2025 19:58:15 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 0
+[11-Jun-2025 19:58:23 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 5
+[11-Jun-2025 19:58:23 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 5
+)
+
+[11-Jun-2025 19:58:23 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 19:58:23 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 5
+[11-Jun-2025 19:58:24 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 2
+[11-Jun-2025 19:58:24 Europe/Berlin] DEBUG - get-comments.php: Datos recibidos - ID_Articulo: 5
+[11-Jun-2025 19:58:24 Europe/Berlin] DEBUG - get-comments.php: Datos completos: Array
+(
+    [ID_Articulo] => 5
+)
+
+[11-Jun-2025 19:58:24 Europe/Berlin] DEBUG - get-comments.php: Conexión exitosa
+[11-Jun-2025 19:58:24 Europe/Berlin] DEBUG - get-comments.php: Bind param ID_Articulo: 5
+[11-Jun-2025 19:58:24 Europe/Berlin] DEBUG - get-comments.php: Comentarios encontrados: 2

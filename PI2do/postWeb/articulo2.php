@@ -9,16 +9,24 @@ session_start();
     <title>Tu puedes hacer la diferencia</title>
     <link rel="stylesheet" href="/PRODCONS/PI2do/postWeb/code2.css">
     <link rel="stylesheet" href="/PRODCONS/PI2do/header_post/header_post.css">
-    
-    <!-- Scripts de traducción -->
+<!-- =====================================================================
+    SCRIPTS DE TRADUCCIÓN - REQUERIDOS
+    No eliminar estas líneas, son necesarias para la funcionalidad de traducción
+    ===================================================================== -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <script src="/PRODCONS/translate.js"></script>
+   <!-- =====================================================================
+    ESTILOS PARA EL CUADRO DE IDIOMA - PERSONALIZABLE
+    Puedes modificar los estilos para cambiar la apariencia del cuadro de idioma
     
-   
+    - El botón X permite cerrar el selector cuando no se necesita
+    ===================================================================== -->
+        <style>        .language-toggle {            position: fixed;          /* Posición fija en la pantalla */            top: 20px;                /* Distancia desde la parte superior - PERSONALIZABLE */            right: 20px;              /* Distancia desde la derecha - PERSONALIZABLE */            background-color: #fff;   /* Color de fondo - PERSONALIZABLE */            border: 1px solid #ddd;   /* Borde - PERSONALIZABLE */            border-radius: 8px;       /* Bordes redondeados - PERSONALIZABLE */            padding: 10px 15px;       /* Espaciado interno - PERSONALIZABLE */            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Sombra - PERSONALIZABLE */            z-index: 1000;            /* Capa de visualización - MANTENER ALTO */            font-family: Arial, sans-serif; /* Fuente - PERSONALIZABLE */        }                .language-toggle p {            margin: 0 0 8px 0;            font-size: 14px;          /* Tamaño de texto - PERSONALIZABLE */            font-weight: bold;        /* Negrita - PERSONALIZABLE */        }                .language-toggle .language-buttons {            display: flex;            gap: 10px;                /* Espacio entre botones - PERSONALIZABLE */        }                .language-toggle button {            padding: 5px 10px;        /* Espaciado interno de botones - PERSONALIZABLE */            border: none;             /* Sin borde - PERSONALIZABLE */            border-radius: 4px;       /* Bordes redondeados - PERSONALIZABLE */            background-color: #f0f0f0; /* Color de fondo - PERSONALIZABLE */            cursor: pointer;            transition: background-color 0.2s;        }                .language-toggle button:hover {            background-color: #e0e0e0; /* Color al pasar el mouse - PERSONALIZABLE */        }                .language-toggle button.active {            background-color: #4CAF50; /* Color del botón activo - PERSONALIZABLE */            color: white;             /* Color de texto del botón activo - PERSONALIZABLE */        }                /* Estilos para el botón de cerrar (X) */        .close-button {            position: absolute;       /* Posición absoluta dentro del contenedor */            top: 0;                   /* Distancia desde arriba - PERSONALIZABLE */            right: 0;                 /* Distancia desde la derecha - PERSONALIZABLE */            font-size: 8px;           /* Tamaño de la X más pequeño - PERSONALIZABLE */            background-color: transparent; /* Fondo completamente transparente */            border: none;             /* Sin borde */                        cursor: pointer;          /* Cursor tipo mano al pasar por encima */                        color: #bbb;              /* Color más claro para la X */                        padding: 6px 8px;         /* Padding más grande para aumentar el área de clic */            line-height: 1;           /* Altura de línea ajustada */            opacity: 0.7;             /* Ligeramente transparente */            z-index: 1001;            /* Se asegura que esté por encima para poder hacer clic */        }                .close-button:hover {            color: #999;              /* Color al pasar el ratón más sutil - PERSONALIZABLE */            opacity: 0.9;             /* Aumenta ligeramente la opacidad al pasar el ratón */        }
+    </style>
 </head>
 <body>
-    <!-- Barra para regresar -->
+    <!-- Barra para regresar y header principal -->
     <section class="barra_left">
         <i class="flecha_left">
 <a href="/PRODCONS/" title="Regresar a la página principal">
@@ -96,56 +104,51 @@ session_start();
         </section>
     </main>
 
-    <!-- Footer -->
-    <!-- Remove the footer section here to avoid duplication -->
-    <!-- Footer -->
-    <!-- Remove the footer section here to avoid duplication -->
-    <?php include '/xampp/htdocs/PRODCONS/PI2do/footer/Visitante/footer.php'; ?>
-
-    <!-- Script para el idioma -->
-    <script>
-        function updateLanguageButtons() {
-            const btnEs = document.getElementById('btn-es');
-            const btnEn = document.getElementById('btn-en');
-            const toggleText = document.getElementById('toggle-text');
-            
-            const currentLang = localStorage.getItem('preferredLanguage') || 'es';
-            
-            if (currentLang === 'en') {
-                btnEs.classList.remove('active');
-                btnEn.classList.add('active');
-                toggleText.innerText = 'Change language?';
-            } else {
-                btnEn.classList.remove('active');
-                btnEs.classList.add('active');
-                toggleText.innerText = '¿Cambiar idioma?';
-            }
-        }
+   <!-- =====================================================================
+SCRIPT PARA ACTUALIZAR BOTONES DE IDIOMA - NO MODIFICAR
+Este script mantiene sincronizada la interfaz de idioma
+ 
+- El botón X permite ocultar el selector de idioma cuando no se necesita
+===================================================================== -->
+<script>
+    // Function to update button states based on current language    function updateLanguageButtons() {        const btnEs = document.getElementById('btn-es');        const btnEn = document.getElementById('btn-en');        const toggleText = document.getElementById('toggle-text');                // Get current language from localStorage or default to Spanish        const currentLang = localStorage.getItem('preferredLanguage') || 'es';                // Update active button        if (currentLang === 'en') {            btnEs.classList.remove('active');            btnEn.classList.add('active');            toggleText.innerText = 'Change language?';        } else {            btnEn.classList.remove('active');            btnEs.classList.add('active');            toggleText.innerText = '¿Cambiar idioma?';        }    }
+    
+    // Call this function on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        updateLanguageButtons();
         
-        document.addEventListener('DOMContentLoaded', function() {
+        // Add event listener to update buttons when language changes
+        const observer = new MutationObserver(function(mutations) {
             updateLanguageButtons();
-            
-            const observer = new MutationObserver(function(mutations) {
-                updateLanguageButtons();
-            });
-            
-            observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
-            
-            document.getElementById('close-language-toggle').addEventListener('click', function() {
-                document.getElementById('language-toggle').style.display = 'none';
-            });
         });
         
-        const originalCambiarIdioma = window.cambiarIdioma;
-        window.cambiarIdioma = function(idioma) {
-            if (typeof originalCambiarIdioma === 'function') {
-                originalCambiarIdioma(idioma);
-            } else {
-                translateContent(idioma === 'ingles' ? 'en' : 'es');
-            }
-            
-            setTimeout(updateLanguageButtons, 100);
-        };
-    </script>
+        // Start observing the document with the configured parameters
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+        
+        // Add event listener for the close button
+        document.getElementById('close-language-toggle').addEventListener('click', function() {
+            document.getElementById('language-toggle').style.display = 'none';
+        });
+    });
+    
+    // Override the cambiarIdioma function to update button states
+    const originalCambiarIdioma = window.cambiarIdioma;
+    window.cambiarIdioma = function(idioma) {
+        if (typeof originalCambiarIdioma === 'function') {
+            originalCambiarIdioma(idioma);
+        } else {
+            // Fallback if the original function isn't available
+            translateContent(idioma === 'ingles' ? 'en' : 'es');
+        }
+        
+        // Update button states
+        setTimeout(updateLanguageButtons, 100);
+    };
+</script>
+
+<?php include '/xampp/htdocs/PRODCONS/PI2do/footer/Visitante/footer.php'; ?>
+<script src='/PRODCONS/PI2do/header_post/header_post.js'></script>
+
 </body>
 </html>
+

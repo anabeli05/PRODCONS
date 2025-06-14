@@ -10,7 +10,7 @@ let currentLanguage = 'es'; // Idioma predeterminado es español (es)
 // Elementos HTML que serán traducidos
 // Si necesitas traducir otros elementos, agrégalos a este array
 const translatableElements = [
-    'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'a', 'span', 'li'
+    'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'a', 'span', 'li', 'div.content'
 ];
 
 // =====================================================================
@@ -250,4 +250,21 @@ document.addEventListener('DOMContentLoaded', () => {
         : '/PRODCONS/PI2do/imagenes/logos/espanol.png';
     bandera.setAttribute('data-idioma', savedLanguage);
     translateContent(savedLanguage);
-}); 
+
+    // Mutation Observer to detect changes in the DOM
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'childList' || mutation.type === 'subtree') {
+                translateContent(currentLanguage);
+            }
+        });
+    });
+
+    // Start observing the document body for changes
+    observer.observe(document.body, {
+        childList: true, // observe direct children
+        subtree: true, // and lower descendants too
+        attributes: false, // don't observe attribute changes
+        characterData: false, // don't observe text content changes
+    });
+});
