@@ -1,0 +1,207 @@
+/* VARIABLES CSS */
+:root {
+    --verde-oscuro: rgb(47, 81, 47);
+    --verde-claro: rgb(126, 222, 126);
+    --verde-medio: rgb(94, 127, 94);
+    --beige: rgb(225, 216, 204);
+    --gris: rgb(79, 79, 79);
+    --blanco: white;
+    --sombra: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ESTILOS BASE */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background: var(--blanco);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 0 !important;
+}
+
+/* FORMULARIO */
+.form {
+    width: 100%;
+    max-width: 450px;
+    background: var(--blanco);
+    border-radius: 10px;
+    text-align: center;
+    padding: 30px;
+    box-shadow: var(--sombra);
+    position: relative;
+    overflow: hidden;
+    margin: 20px;
+}
+
+.form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--verde-oscuro), var(--verde-claro));
+}
+
+.form h1 {
+    margin-top: 0;
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: var(--verde-oscuro);
+    position: relative;
+}
+
+.form h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: var(--verde-claro);
+}
+
+form {
+    width: 100%;
+    background: var(--blanco);
+    border-radius: 5px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.instrucciones {
+    width: 90%;
+    margin: 0 auto 25px;
+    color: var(--gris);
+    font-size: 1.3rem;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.buton {
+    width: 90%;
+    margin: 0 auto 25px;
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+}
+.toggle-password:hover {
+    color: #333;
+}
+.error-message {
+    color: #dc3545;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+.success-message {
+    color: #28a745;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.input-area i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--verde-oscuro);
+    font-size: 1.4rem;
+}
+
+form input {
+    height: 45px;
+    width: 100%;
+    outline: none;
+    padding: 0 15px 0 45px;
+    border-radius: 30px;
+    border: 1px solid #ddd;
+    background-color: rgba(164, 212, 164, 0.5);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+}
+
+form input:focus {
+    border-color: var(--verde-oscuro);
+    box-shadow: 0 0 0 2px rgba(47, 81, 47, 0.2);
+}
+
+form input[type="submit"] {
+    height: 45px;
+    width: 90%;
+    margin: 20px auto 0;
+    border: none;
+    background-color: var(--verde-medio);
+    color: var(--blanco);
+    font-size: 1.6rem;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0 15px;
+    display: block;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background: var(--verde-oscuro);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.alternar-form {
+    margin-top: 25px;
+    font-size: 1.3rem;
+    color: var(--gris);
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.alternar-form a {
+    color: var(--verde-oscuro);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.alternar-form a:hover {
+    text-decoration: underline;
+    color: var(--verde-claro);
+}
+
+/* RESPONSIVE */
+@media (max-width: 576px) {
+    .form {
+        padding: 20px;
+    }
+    
+    .form h1 {
+        font-size: 2rem;
+    }
+    
+    form input {
+        height: 42px;
+        font-size: 1.3rem;
+    }
+    
+    form input[type="submit"] {
+        height: 42px;
+        font-size: 1.5rem;
+    }
+    
+    .instrucciones {
+        font-size: 1.2rem;
+    }
+}

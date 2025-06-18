@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  background: rgb(212, 203, 195);
+}
+
+
+*, *:before, *:after { /*Se quita la barra de desplazamiento de abajo*/
+  box-sizing: inherit;
+}
+
+/*------FORMULARIO-------*/
+.contenedor-formulario {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: white;
+}
+
+h1 {
+  font-size: 20px;
+}
+label {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+textarea {
+  overflow: hidden; /* Elimina la scrollbar */
+  resize: none; /* Evita que el usuario cambie el tamaño */
+}
+
+input[type="file"] {
+  margin-top: 10px;
+}
+
+.publicacion button{
+  margin-top: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #314b94;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.publicacion button:hover {
+  background-color: #2252b3;
+}

@@ -1,0 +1,348 @@
+:root {
+    --negro: black;
+    --blanco: white;
+    --amarillo: #FFC107;
+    --azulito: #0097A7;
+    --cafe: rgb(90, 61, 61);
+    --beige: beige;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    font-family: 'Georgia';
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Krub', sans-serif;
+    font-family: 'Georgia';
+}
+
+/* HEADER PRINCIPAL */
+header {
+    position: fixed;
+    top: -7px;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: rgb(225, 216, 204);
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    font-family: 'Georgia';
+}
+
+.logo {
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 100%;
+    object-fit: contain;
+}
+
+.header-contenedor {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 16.1px;
+    font-weight: bolder;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.principal {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 0;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.header-contenedor{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 16.1px;
+    font-weight: bolder;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.principal {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 0;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family:Arial, Helvetica, sans-serif;/*define el tipo de letra que sera utilizada*/
+
+}
+
+.navlink {
+    text-align: right;
+    color: #000;
+    display: flex;
+    text-align: center;
+    justify-content: flex-end;    
+}
+
+/* BANDERAS */
+#idiomasOpciones {
+    display: none;
+    position: absolute;
+    /* top: 65px; */
+    right: 2px;
+    background: rgb(225, 216, 204);
+    /* border: 1px solid #000; */
+    border-radius: 5px;
+    padding: 1px;
+    z-index: 100;
+}
+
+.españa,
+.ingles {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+/* LOGO */
+.prodcons {
+    height: auto; /* Altura del logo */
+    position: fixed; /* Hace que el logo se quede fijo */
+    left: 0; /* Alinea el logo a la izquierda */
+    display: flex;
+    align-items: center; /* Centra el logo verticalmente */
+    justify-content: center; /* Centra el logo horizontalmente */
+    width: 11.5%; /* Ajusta el tamaño del logo */
+    z-index: 10; /* Asegura que el logo esté por encima de otros elementos */
+    max-width: 100%;
+}
+
+.logo {
+    width: 100%; /* Ajusta el logo al 100% del contenedor */
+    height: auto; /* Mantiene la proporción del logo */
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .prodcons {
+        width: 13%; /* Ajusta el tamaño del logo en pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .prodcons {
+        width: 8%; /* Ajusta el tamaño del logo para pantallas muy pequeñas */ 
+    }
+}
+
+/* SEGUNDA BARRA */
+.header_2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-bottom: 4px solid black;
+    padding: 15px 20px;
+    position: fixed;
+    top: 50px;
+    z-index: 8;
+    height: 80px;
+    font-family: 'Georgia';
+    width: 100%;
+}
+
+/* SUBTÍTULOS */
+.subtitulos {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+    width: 100%;
+    font-family: 'Georgia';
+}
+
+.subtitulos li {
+    list-style: none;
+}
+
+.subtitulos a {
+    text-decoration: none;
+    color: black;
+    position: relative;
+}
+
+.subtitulos a::after {
+    content: '';
+    position: absolute;
+    bottom: -5.3px;
+    left: 0;
+    width: 100%;
+    height: 7px;
+    background-color: rgb(12, 115, 12);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.subtitulos a:hover::after,
+.subtitulos a:focus::after,
+.subtitulos a:active::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* BUSCADOR */
+/* BUSCADOR */
+/* NUEVO BUSCADOR FIJO CON LUPA DENTRO */
+.search-form {
+    position: relative;
+    width: 220px !important;  /* Fijo y con !important para que no cambie */
+    height: 36px !important;  /* Fijo y con !important */
+}
+
+.search-form input[type="search"] {
+    width: 220px !important;  /* Igual que el contenedor */
+    height: 36px !important;
+    padding: 8px 36px 8px 12px;
+    border: 1px solid #000;
+    border-radius: 25px !important;
+    font-size: 1.6rem;
+    font-family: 'Georgia', serif;
+    box-sizing: border-box;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: all 0.3s ease-in-out;
+    min-width: 220px; /* Para que no se haga más pequeño */
+    max-width: 220px; /* Para que no crezca */
+}
+
+/* Evita que autofill reduzca tamaño o cambie padding */
+.search-form input[type="search"]:-webkit-autofill {
+    border-radius: 25px !important;
+    box-shadow: 0 0 0px 1000px white inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+    min-width: 220px !important;
+    max-width: 220px !important;
+    padding: 8px 36px 8px 12px !important;
+}
+
+/* Al enfocar que no cambie tamaño ni padding */
+.search-form input[type="search"]:focus {
+    width: 220px !important;
+    min-width: 220px !important;
+    max-width: 220px !important;
+    padding: 8px 36px 8px 12px !important;
+}
+
+/* Mantén el botón igual */
+.search-form button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-form button svg {
+    width: 18px;
+    height: 18px;
+    stroke: #666;
+}
+
+.search-form button:hover svg {
+    stroke: #0e5f0e;
+}
+
+/* Responsivo sin cambios en width fijo */
+@media (max-width: 768px) {
+
+    .subtitulos{
+        font-size: 15px;
+    }
+    .search-form {
+        width: 120px !important;
+        height: 36px !important;
+    }
+
+    .search-form input[type="search"] {
+        width: 120px !important;
+        min-width: 120px !important;
+        max-width: 120px !important;
+        font-size: 1.2rem;
+        padding: 6px 35px 6px 10px !important;
+    }
+
+    .search-form input[type="search"]:focus {
+        width: 120px !important;
+        min-width: 120px !important;
+        max-width: 120px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-form {
+        width: 120px !important;
+        height: 36px !important;
+    }
+
+    .search-form input[type="search"] {
+        width: 120px !important;
+        min-width: 120px !important;
+        max-width: 120px !important;
+        font-size: 1.1rem;
+        padding: 5px 30px 5px 8px !important;
+    }
+
+    .prodcons{
+        height: auto;
+        width: 140px;
+    }
+    .search-form input[type="search"]:focus {
+        width: 120px !important;
+        min-width: 120px !important;
+        max-width: 120px !important;
+    }
+}

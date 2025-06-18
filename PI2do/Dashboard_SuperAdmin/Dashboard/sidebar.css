@@ -1,0 +1,654 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;/*
+    font-size: 18px;*/
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    background: white;
+}
+
+/* Estilos para la bandera de idioma */
+#banderaIdioma {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid black;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+        
+#banderaIdioma:hover {
+    transform: scale(1.1);
+}
+
+.carrusel-destacado {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto 40px auto;
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+*, *:before, *:after { /*Se quita la barra de desplazamiento de abajo*/
+    box-sizing: inherit;
+}
+
+/* Estilos de la barra lateral */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0; /* Posición final al lado derecho */
+  width: 280px;
+  height: 100vh;
+  background: rgb(243, 231, 221);
+  box-shadow: -2px 0 10px rgba(36, 122, 129, 0.2);
+  transform: translateX(100%); /* OCULTA fuera del lado derecho */
+  transition: transform 0.3s ease;
+  z-index: 999;
+  font-size: 18px;
+}
+
+.sidebar.visible {
+  transform: translateX(0);
+}
+
+#overlay.hidden {
+  display: none;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 998;
+}
+#close-btn {
+  text-align: left;
+  padding: 20px;
+  cursor: pointer;
+  font-size: 20px; /* Aumenta el tamaño del ícono */
+  color: #333;
+  transition: transform 0.2s;
+}
+
+.sidebar .logo-details {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+/*Se supone que asi esta centrado el logo en la barra*/
+.sidebar .logo-details .logo-img {
+    height: 120px;
+    min-width: 45px;
+    margin: 32px;
+}
+
+.sidebar .logo-details .logo_name {
+    font-size: 20px;
+    color: #333;
+    font-weight: 600;
+}
+
+.sidebar .nav-links {
+    margin-top: 20px;
+    height: calc(100% - 180px);
+    padding: 0;
+    list-style: none;
+    overflow-y: auto;
+}
+
+.sidebar .nav-links li {
+    position: relative;
+    margin: 8px 0;
+}
+
+.sidebar .nav-links li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+.sidebar .nav-links li a:hover,
+.sidebar .nav-links li a.active {
+    background: rgb(159, 217, 132);
+}
+
+.sidebar .nav-links li i {
+    min-width: 30px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+}
+
+.sidebar .nav-links li .link_name {
+    font-size: 15px;
+    font-weight: 400;
+    color: #333;
+    margin-left: 10px;
+}
+
+/* Estilos para los detalles del perfil en el sidebar */
+.sidebar .profile-details {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar .profile-details .profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 2px solid rgb(159, 217, 132);
+    padding: 2px;
+    background: white;
+    /* Ensure the default image also looks good */
+    flex-shrink: 0;
+}
+
+.sidebar .profile-details .name-job {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    margin-left: 0;
+    flex-grow: 1;
+}
+
+.sidebar .profile-details .profile_name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+    word-break: break-word;
+}
+
+.sidebar .profile-details .job {
+    font-size: 12px;
+    color: #666;
+    /* Removed background color */
+    padding: 0;
+    border-radius: 0;
+    display: inline-block;
+}
+
+/* Ajuste del contenido principal */
+.contenedor-principal {
+    margin-right: 280px !important;
+    margin-left: 0 !important;
+    padding: 20px !important;
+    transition: all 0.3s ease;
+}
+
+/* Estilos del header */
+header {
+    width: 100%;
+    height: 50px;
+    background: rgb(225, 216, 204);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header_2 {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: white;
+    border-bottom: 2px solid black;
+    padding-left: 20px;
+}
+
+.prodcons {
+    height: 120px;
+    max-width: 100%;
+}
+
+/* Controles de administrador */
+.admin-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+/* Botón de búsqueda */
+.search-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Barra de búsqueda */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 30px;
+    padding: 5px 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: absolute;
+    right: 200px;
+    width: 250px;
+    transition: all 0.3s ease;
+}
+
+.search-bar input {
+    border: none;
+    width: 100%;
+    padding: 8px;
+    outline: none;
+}
+
+.search-close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+/* Notificaciones */
+.notif-btn {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 18px;
+}
+
+.notif-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #f44336;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Botón Admin */
+.admin-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: background 0.2s;
+    font-size: 15px;
+}
+
+.admin-btn:hover {
+    background: #f5f5f5;
+}
+
+.admin-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/*--------Barra oculta------------*/
+.admin-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    background: rgb(243, 231, 221);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /*elementos en columna*/
+}
+
+.sidebar-menu {
+    flex: 1; /*Ocupa todo el espacio restante*/
+    padding: 10px 0;
+}
+
+/*fijo en la parte inferior*/
+.sidebar-footer {
+    margin-top: auto; /*empuja el footer hacia abajo */
+    padding: 20px 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+
+.logout-btn {
+    margin-top: auto;
+    width: 100%;
+    padding: 10px;
+    background-color: #758561;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: serif;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #57703a;
+}
+
+/*para mostrar elementos */
+.hidden {
+    display: none;
+}
+
+.active {
+    transform: translateX(0);
+}
+
+.sidebar-menu a {
+    display: flex;
+    justify-content:right; /* Alinea texto e icono a los extremos */
+    align-items: center;
+    padding: 12px 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 2rem;
+    transition: background 0.2s;
+}
+
+.sidebar-menu a:hover {
+    background: #f5f5f5;
+}
+
+.sidebar-menu svg {
+    margin-left: 15px; /* Espacio entre texto e icono */
+    margin-right: 0; /* Elimina margen derecho */
+}
+
+/* Estilo para el encabezado ADMIN */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+    width: 100%;
+    text-align: right; /* Texto a la derecha */
+    padding-right: 10px;
+}
+
+.sidebar-header img{
+    height: 50px;
+    width: 50px;
+}
+
+/* imagen de usuario como close */
+.close-sidebar { 
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+
+/*-----------Conntenedores de articulos------------*/
+.contenedor-principal {
+    width: 100%;
+    max-width: 1200px;
+    margin: 10px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Contenedor de texto */
+.formato-txt {
+    flex: 1; /* Ocupa espacio disponible */
+    min-width: 300px; /* Ancho mínimo antes de wrap */
+    padding: 20px;
+    margin: 0; /* Eliminamos márgenes negativos */
+}
+
+.formato-txt h2 {
+    font-size: clamp(28px, 3vw, 40px); /* Texto responsivo */
+    margin: 0 0 15px 0;
+}
+
+.formato-txt p {
+    font-size: clamp(13px, 1.5vw, 15px);
+    margin-bottom: 20px;
+}
+
+.formato-txt button {
+    width: 50%;
+    min-width: 150px;
+    height: 40px;
+    border: none;
+    border-radius: 30px;
+    background: rgb(27, 100, 27);
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: clamp(14px, 1.5vw, 16px);
+    cursor: pointer;
+    transition: 0.3s ease;
+    align-self: flex-start;
+    margin-top: 25px;
+}
+
+.formato-txt button:hover {
+    background: rgb(20, 80, 20);
+}
+
+/*------------ Contenedor de artículos ------------*/
+.encabezado-articulos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.selector-meses {
+    position: relative;
+}
+
+.estilo-selector {
+    appearance: none;
+    padding: 10px 35px 10px 15px;
+    border: none;
+    border-radius: 30px;
+    background-color: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 15px;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.flecha-personalizada {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    color: #242524;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: transform 0.3s ease;
+}
+
+.estilo-selector:focus ~ .flecha-personalizada {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.estilo-selector:hover {
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+.contenedor-articulo {
+    width: 90%;
+    max-width: 900px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.encabezado-articulos h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 25px;
+    text-align: left;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Estructura del artículo */
+.articulo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 15px;
+}
+
+.fecha {
+    font-size: 1rem;
+    color: #000000;
+    font-style: italic;
+}
+
+.numero {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #242524;
+    min-width: 40px;
+    padding-top: 5px;
+}
+
+.contenido-articulo {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+/*Imagenes*/
+.imagen-articulo {
+    width: 180px;
+    height: 120px;
+    min-width: 180px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.imagen-articulo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.imagen-articulo:hover img {
+    transform: scale(1.03);
+}
+
+/*Texto*/
+.texto-articulo {
+    flex: 1;
+    padding-right: 10px;
+}
+
+.texto-articulo h3 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 2rem;
+    color: #333;
+    margin: 0 0 8px 0;
+}
+
+.texto-articulo p {
+    font-size: 0.95rem;
+    color: #555;
+    margin: 0 0 10px 0;
+    line-height: 1.5;
+}
+
+/* Estilos para el overlay */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    z-index: 900; /* Debe estar entre el sidebar y el contenido */
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.sidebar-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Estilo para el botón de cerrar sesión */
+.sidebar .nav-links li.log_out {
+    margin-top: auto;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 10px;
+}
+
+.sidebar .nav-links li.log_out a {
+    color: #dc3545;
+}
+
+.sidebar .nav-links li.log_out a:hover {
+    background: #dc3545;
+    color: white;
+}
+
+.sidebar .nav-links li.log_out a:hover i,
+.sidebar .nav-links li.log_out a:hover .link_name {
+    color: white;
+}

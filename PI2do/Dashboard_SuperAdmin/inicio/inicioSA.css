@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    background: white;
+}
+
+*, *:before, *:after { /*Se quita la barra de desplazamiento de abajo*/
+    box-sizing: inherit;
+}
+
+/*-----------Conntenedores de articulos------------*/
+.contenedor-principal {
+    width: 100%;
+    max-width: 1200px;
+    margin: 10px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Sección de saludo admin */
+@media (min-width: 701px) {
+.rec-admin {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    height: 250px;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap; /* Permite ajuste en pantallas pequeñas */
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: rgb(159, 217, 132);
+    border-radius: 40px;
+}
+
+/* Contenedor de texto */
+.formato-txt {
+    flex: 1; /* Ocupa espacio disponible */
+    min-width: 300px; /* Ancho mínimo antes de wrap */
+    padding: 20px;
+    margin: 0; /* Eliminamos márgenes negativos */
+}
+
+.formato-txt h2 {
+    font-size: clamp(28px, 3vw, 40px); /* Texto responsivo */
+    margin: 0 0 15px 0;
+}
+
+.formato-txt p {
+    font-size: clamp(13px, 1.5vw, 15px);
+    margin-bottom: 20px;
+}
+
+.formato-txt button {
+    width: 50%;
+    min-width: 150px;
+    height: 40px;
+    border: none;
+    border-radius: 30px;
+    background: rgb(27, 100, 27);
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: clamp(14px, 1.5vw, 16px);
+    cursor: pointer;
+    transition: 0.3s ease;
+    align-self: flex-start;
+    margin-top: 25px;
+}
+
+.formato-txt button:hover {
+    background: rgb(20, 80, 20);
+}
+
+/* Imagen admin */
+.admin-img {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px; /* Espacio interno */
+}
+
+.admin-img img {
+    max-height: 200px; /* Altura máxima aumentada */
+    height: 280px;
+    width: auto; /* Ancho proporcional */
+    object-fit: contain;
+}
+}
+/*------------ Contenedor de artículos ------------*/
+.encabezado-articulos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.selector-meses {
+    position: relative;
+}
+
+.estilo-selector {
+    appearance: none;
+    padding: 10px 35px 10px 15px;
+    border: none;
+    border-radius: 30px;
+    background-color: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 15px;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.flecha-personalizada {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    color: #242524;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: transform 0.3s ease;
+}
+
+.estilo-selector:focus ~ .flecha-personalizada {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.estilo-selector:hover {
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+.contenedor-articulo {
+    width: 90%;
+    max-width: 900px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.encabezado-articulos h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 25px;
+    text-align: left;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Estructura del artículo */
+.articulo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 15px;
+}
+
+.fecha {
+    font-size: 1rem;
+    color: #000000;
+    font-style: italic;
+}
+
+.numero {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #242524;
+    min-width: 40px;
+    padding-top: 5px;
+}
+
+.contenido-articulo {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+/*Imagenes*/
+.imagen-articulo {
+    width: 180px;
+    height: 120px;
+    min-width: 180px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.imagen-articulo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.imagen-articulo:hover img {
+    transform: scale(1.03);
+}
+
+/*Texto*/
+.texto-articulo {
+    flex: 1;
+    padding-right: 10px;
+}
+
+.texto-articulo h3 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 2rem;
+    color: #333;
+    margin: 0 0 8px 0;
+}
+
+.texto-articulo p {
+    font-size: 0.95rem;
+    color: #555;
+    margin: 0 0 10px 0;
+    line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+    .rec-admin {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 20px;
+        gap: 0;
+        overflow: hidden;
+        background-color: rgb(159, 217, 132);
+        border-radius: 40px;
+    }/*
+    .rec-admin {
+        position: relative;
+        width: 90%;
+        max-width: 900px;
+        height: 250px;
+        padding: 30px;
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: space-between;
+        align-items: flex-start;
+        background-color: rgb(159, 217, 132);
+        border-radius: 40px;
+    }*/
+    .admin-img {
+      width: 100%;
+      padding: 0; /* Elimina espacio innecesario */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .admin-img img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        max-height: 100%;
+        object-fit: contain;
+        display: block;
+        margin: -40px;
+    }
+  
+    .formato-txt {
+      padding: 0;
+      margin: 0;
+    }
+  
+    .formato-txt h2 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+  
+    .formato-txt p {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+  
+    .formato-txt button {
+      width: 70%;
+      margin-top: 15px;
+    }
+  }
+  

@@ -1,0 +1,136 @@
+/* Estilos para botones de interacción */
+.interaction-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.like-button-small, .comment-toggle-small {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.like-button-small:hover, .comment-toggle-small:hover {
+    background-color: #f0f0f0;
+    border-color: #ccc;
+}
+
+.like-button-small.liked {
+    color: #e74c3c;
+    border-color: #e74c3c;
+    background-color: #ffeaea;
+}
+
+.like-button-small.liked svg {
+    fill: #e74c3c;
+}
+
+/* Estilos para la sección de comentarios */
+.comments-section {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.existing-comments {
+    margin-bottom: 15px;
+}
+
+.comment {
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-left: 3px solid #0c730c;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #0c730c;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.comment-text {
+    color: #333;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.comment-date {
+    color: #888;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.add-comment {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-comment textarea {
+    width: 100%;
+    min-height: 60px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.add-comment button {
+    align-self: flex-start;
+    background-color: #0c730c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.add-comment button:hover {
+    background-color: #0a5a0a;
+}
+
+/* Ajustes para el footer del post */
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .post-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .interaction-buttons {
+        margin-top: 0;
+    }
+}
+
+/* Estilos para resaltar búsquedas */
+.search-highlight {
+    background-color: yellow;
+    font-weight: bold;
+}

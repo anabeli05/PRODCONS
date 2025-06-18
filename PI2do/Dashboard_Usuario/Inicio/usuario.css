@@ -1,0 +1,1229 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para el contenido del blog */
+.sobrecont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    background: #f9f9f9;
+}
+
+.cuadro-info {
+    width: 50%;
+}
+
+.imagen-principal {
+    width: 45%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.apubli {
+    text-align: center;
+    margin: 30px 0;
+    color: #0c730c;
+    font-size: 1.8rem;
+}
+
+.post-list {
+    padding: 0 20px;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.post {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.post:hover {
+    transform: translateY(-5px);
+}
+
+.post-header {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.post-body {
+    padding: 20px;
+}
+
+.post-body h2 {
+    color: #0c730c;
+    margin-bottom: 10px;
+}
+
+.post-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #0c730c;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.post-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sobrecont {
+        flex-direction: column;
+    }
+    
+    .cuadro-info, .imagen-principal {
+        width: 100%;
+    }
+}
+
+:root {         
+    color: black;
+    color: white;    
+    color: #FFC107;
+    color: #0097A7;
+    color: rgb(90, 61, 61);
+    color: beige;
+    color: rgb(12, 115, 12);
+    color: rgb(47, 81, 47);
+    color: rgb(126, 222, 126);
+    color: rgb(225, 216, 204);
+    color: #868278;
+    color: rgb(231, 231, 219);
+    color: rgb(109, 151, 109);
+
+}
+
+html{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+/* /cuerpo/ */
+body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.imagen-principal{
+    display: block;       /*  centrar */
+    width: 90%;           /* Define el ancho */
+    height: 500px;        /* Define la altura */
+    object-fit: cover;    /* Ajusta la imagen sin deformarla */
+    margin: 170px auto 0; /* Centrar y empujar hacia abajo */
+
+}
+
+.sobrecont{
+    position: relative;
+    text-align: center;
+}
+
+.cuadro-info{
+    position: absolute;
+    top: 35%; /* Ajusta el cuadro arriba de la imagen*/
+    left: 25%;
+    transform: translateX(-50%);/*Centrar el cuadro de manera horizontal/ */
+    height: 340px; /*la altura del cuadrado/ */
+    background-color: beige;/*color de fondo que contendra el cuadrado/ */
+    color: black;  /*color de las letras que contendra el texto añadido*/
+    font-size: 18px; /*Tamaño asignado de las letras*/
+    display: flex;
+    align-items: center; /*posicionar el texto en el centro del cuadrado*/
+    justify-content: center; /*justificar el contenido al centro*/
+    display: flex;
+    flex-direction: column; /* Asegura que el texto esté arriba */
+    align-items: center; /* Centra el contenido */
+    text-align: justify; /* justifica el texto */
+    width: 30%; /* Ajusta el ancho si es necesario */
+    margin: auto; /* Centra en la página */
+    text-align-last: left;
+    font-family:'Georgia';
+
+}
+
+.cuadro-info p{
+    font-family:'Georgia';
+     width: 80%;
+     line-height: 25px;
+     margin-top: -35px;
+     color: black;
+}
+
+.quiens{
+    font-family:'Georgia';
+    width: 400px;
+    position: center;
+    line-height: 1.5;
+}
+
+h2{
+    margin-bottom: 60px; /*definir el espacio entre el titulo y el texto de los cuadros*/
+    font-family:'Georgia';
+
+}
+
+.container{
+    max-width: 120rem; /*tamaño maximo que podra tener el cuadrado*/
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    display: flex;
+    flex-direction: column; /* Alinea los elementos verticalmente */
+    margin-bottom: 40px; /* Espaciado entre los elementos */
+}
+
+.info, .info2 {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.info-prod, .info-cons{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #f5f5f5;
+    margin-bottom: 20px;
+}
+
+.img-info1, .img-info2 {
+    width: 100%;
+    height: auto;
+}
+*{
+    margin : 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Georgia', serif;
+        position: relative;
+}
+
+*{margin : 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.post-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px
+}
+
+.content{
+    display: grid;
+    padding: 20px;
+    font-family: 'Georgia', serif;
+    text-align: justify;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    max-width: 1000px;
+    margin: auto;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.post-img-1{
+    background  : url(post1.jpg);
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    transition: .2s;
+}
+
+.post-img-2{
+    background: url(post2.jpg);
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    transition: .2s;
+}
+
+.post-img-3{
+    background: url(post3.jpg);
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    transition: .2s;
+}
+
+.post-img-4{
+    background: url(post4.jpg);
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    transition: .2s;
+}
+
+.post-img-5{
+    background: url(post5.jpg);
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    transition: .2s;
+}
+
+.post-img-6{
+    background: url(post6.jpg);
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    transition: .2s;
+}
+
+.post{
+   box-shadow: 0 2px 5px 1px rgba(0, 0, 0, .2); 
+   overflow: hidden;
+   transition: .2s;
+   flex-direction: column; 
+   max-height: 100%;
+   width: 300px;
+   justify-content: center;
+    
+}
+
+.post:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 2px 28px px rgba(0,  0, 0, .30);
+}
+
+.post-header {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.post:hover .post-img-1,
+.post:hover .post-img-2,
+.post:hover .post-img-3,
+.post:hover .post-img-4,
+.post:hover .post-img-5,
+.post:hover .post-img-6{
+    transform: scale(1.1);
+}
+
+.post-body {
+    height: 55%;
+    background-color: #F5E7DC;
+    padding: 15px;
+    text-align: justify;
+    min-height: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.post-body span{
+    padding-top: 10px;
+    display: block;
+    font-size: 12px;
+    line-height: .1;
+    text-align: right;
+    right: 20px;
+    color: #6c6b6b;
+    bottom: 10px;
+    font-weight: bold;
+    margin-top: 5px;
+    font-family: 'Georgia';
+}
+
+.post-body h2{
+    margin-bottom: 15px;
+    text-align: center;
+    font-family: 'Georgia';
+}
+
+.pos-body p{
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-size: 10px;
+    font-family: 'Georgia';
+}
+
+.post-body .post-link{
+    font-weight: bold;
+    display: block;
+    text-decoration: none;
+    padding: 10px;
+    color: black;
+    text-align: left;
+    width: 50%;
+    margin-top: 10px;
+    border-radius: 20px;
+    box-shadow: 1px 2px 6px 1px rgba(0  0, 0, .1);
+    transition: .2s;
+    font-family: 'Georgia';
+}
+
+.post-body .post-link:hover{
+    background: #d98880;
+    box-shadow: 1px 2px 6px 1px rgba(0  0, 0, .2);
+    transform: translateY(-2px);
+}
+
+@media(max-width: 840px){
+    .content{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 600px){
+    .content{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+h2 {
+    color: #333;
+    font-size: 1.5em;
+}
+
+p {
+     color: #666;
+    font-size: 1em;
+}
+
+/*Menu de registro*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family:Arial, Helvetica, sans-serif; /*define el tipo de letra que sera utilizada*/
+
+}
+
+.navlink {
+    text-align: right;
+    color: #000;
+    display: flex;
+    text-align: center;
+    justify-content: flex-end;  
+    font-family: 'Georgia';  
+}
+
+.controls{
+    /*background-color: rgb(172, 211, 146);*/
+    background-color: white; /*define el color del fondo*/
+    width: 170px; /*define el ancho que abarcara en la pantalla*/
+    padding: 10px;
+    margin: auto;
+    margin-top: 40px;
+    border-radius: 5px;
+    font-family: 'calibri';
+    border-radius: 20px;
+    width: 80%; /*define el largo de los espacios para ingresar los datos*/
+    text-align: black; /*define de que color sera el texto*/
+}
+
+.login{
+    background-color: transparent;
+    padding: 20px;
+    margin: auto;
+    margin-top: 200px;
+    border: 2px solid black;
+    text-align: center;
+    border-radius: 30px;
+    width: 455px;
+    padding-top: 60px;
+    color: black;
+    
+}
+
+.boton{
+    width: 10px;
+    padding: 10px;
+    margin: auto;
+    margin-top: 55px;
+    border-radius: 5px;
+    background-color: rgb(108,130,95);
+    color: white;
+    width: 325px;
+}
+
+
+
+
+.recuerdame{
+    width: 170px;
+    padding: 10px;
+    margin: auto;
+    margin-top: 40px;
+    padding: 20px;
+    margin: auto;
+    margin-top: 4px;
+    /*border-left-width: 0px;
+    border-right-width: 0px;*/
+    color: rgb(79, 79, 79);
+    color: black;
+   
+}
+
+.apubli{
+    font-size: 30px;
+    font-family: 'Georgia';
+    color: #000;
+    margin-top: 60px; 
+    margin-left: 80px;
+}
+
+@media (max-width: 1024px) {
+    .cuadro-info {
+        width: 50%;
+        font-size: 16px;
+        height: auto;
+        padding: 15px;
+        left: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .cuadro-info {
+        width: 90%;
+        font-size: 14px;
+        padding: 10px;
+        height: auto;
+        top: 20px;
+        left: 50%;
+    }
+
+    
+}
+
+@media (max-width: 768px) {
+    .sobrecont {
+      position: relative;
+    }
+  
+    .cuadro-info {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      max-width: 90%;
+      padding: 10px;
+      font-size: 16px;
+     
+    }
+  
+    .cuadro-info p {
+      width: 100%;
+      font-size: 15px;
+      line-height: 22px;
+    }
+
+    .apubli{
+        margin-right: 85px;
+    }
+  }
+
+ 
+  /* Contenedor de bienvenida */
+.falling-leaves-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: rgb(246, 246, 233);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Cuadro con el texto "Bienvenidos" */
+.welcome-box {
+    position: relative;
+    z-index: 2;
+    background-color: beige;
+    padding: 150px 200px;
+    border-radius: 15px;
+    font-size: 3.2rem;
+    font-family: 'Georgia', serif;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+/* Contenedor de hojas */
+.leaves {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Hoja individual */
+.leaf {
+    position: absolute;
+    top: -5%;
+    animation-name: fall;
+    animation-timing-function: linear;
+}
+
+/* Animación de caída */
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* Tamaño del SVG de la hoja */
+.leaf svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Contenido del blog (oculto al inicio) */
+#main-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+/* Mostrar el contenido con transición */
+#main-content.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Responsividad: móvil */
+@media (max-width: 480px) {
+    .welcome-box {
+        padding: 1.5rem 1rem; /* Reducir padding en móviles */
+        width: 70%; /* El cuadro se ajusta más en pantallas pequeñas */
+        max-width: 300px; /* Limitar el tamaño máximo en móviles */
+        font-size: 1.8rem; /* Tamaño de fuente adecuado para móviles */
+    }
+}
+
+/* Responsividad: tablet */
+@media (min-width: 481px) and (max-width: 768px) {
+    .welcome-box {
+        padding: 1.5rem 2rem; /* Ajustamos el padding en tablets */
+        width: 70%; /* Aumentamos un poco el tamaño para tabletas */
+        max-width: 400px; /* Limitar el tamaño máximo */
+        font-size: 2rem; /* Font-size mayor en tablets */
+    }
+}
+
+/* Responsividad: pantallas grandes */
+@media (min-width: 769px) {
+    .welcome-box {
+        width: 50%; /* Aseguramos que no ocupe todo el ancho en pantallas grandes */
+        max-width: 600px; /* Limitamos el tamaño máximo para pantallas grandes */
+    }
+}
+
+
+/* Estilos para el banner de cookies */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f5f5f5;
+    padding: 15px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: none;
+}
+
+.cookie-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.cookie-content p {
+    margin: 0;
+    flex: 1;
+    min-width: 250px;
+    color: #333;
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.cookie-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.accept-btn {
+    background-color: #0c730c;
+    color: white;
+}
+
+.reject-btn {
+    background-color: #868278;
+    color: white;
+}
+
+/* Botón hamburguesa */
+.hamburger-icon {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    position: fixed;
+    top: 62px;
+    right: 15px;
+    z-index: 1001;
+    color: rgb(29, 123, 41);
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+/* Menú lateral móvil */
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background:   rgb(193, 238, 196);
+    width: 260px;
+    height: 100vh;
+    padding: 20px;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    width: 100%;
+}
+
+/* Mostrar cuando está activo */
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+/* Botón cerrar */
+.close-icon {
+    font-size: 24px;
+    align-self: flex-end;
+    cursor: pointer;
+    margin-bottom: 20px;
+    color: black;
+}
+
+/* Logo dentro del menú */
+.mobile-logo {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.mobile-logo img {
+    width: 300px;
+    height: auto;
+}
+
+/* Lista del menú */
+.mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    line-height: 80px;
+    margin-left: 50px;
+}
+
+.mobile-menu li {
+    margin: 15px 0;
+    width: 100%;
+    text-align: left 50%;
+    margin-top: -10px;
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    font-size: 19px;
+    color: black;
+}
+
+.lupa-icon {
+    width: 34px;
+    height: 24px;
+    margin-left: 30%;
+}
+
+.buscador-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.barra-busqueda {
+  width: 0;
+  opacity: 0;
+  transition: width 0.4s ease, opacity 0.4s ease;
+  padding: 5px;
+  border: rgb(193, 238, 196);
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Cuando se activa */
+.barra-busqueda.activa {
+  width: 250px; /* o el ancho que desees */
+  height: 40px;
+  opacity: 1;
+}
+
+
+
+/* Mostrar solo en móviles */
+@media screen and (max-width: 480px) {
+    .hamburger-icon {
+        display: block;
+    }
+
+    /* Oculta la segunda barra original en móviles */
+    .subtitulos {
+        display: none !important;
+        color: black;
+    }
+}
+
+@media screen and (max-width: 412px) {
+    .hamburger-icon {
+        display: block;
+    }
+
+    /* Oculta la segunda barra original en móviles */
+    .subtitulos {
+        display: none !important;
+        color: black;
+    }
+}
+.apubli{
+    font-size: 30px;
+    font-family: 'Georgia';
+    color: #000;
+    margin-top: 60px; 
+    margin-left: 80px;
+}
+
+@media (max-width: 1024px) {
+    .cuadro-info {
+        width: 50%;
+        font-size: 16px;
+        height: auto;
+        padding: 15px;
+        left: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .cuadro-info {
+        width: 90%;
+        font-size: 14px;
+        padding: 10px;
+        height: auto;
+        top: 20px;
+        left: 50%;
+    }
+
+    
+}
+
+@media (max-width: 768px) {
+    .sobrecont {
+      position: relative;
+    }
+  
+    .cuadro-info {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      max-width: 90%;
+      padding: 10px;
+      font-size: 16px;
+     
+    }
+  
+    .cuadro-info p {
+      width: 100%;
+      font-size: 15px;
+      line-height: 22px;
+    }
+
+    .apubli{
+        margin-right: 85px;
+    }
+  }
+
+ 
+  /* Mensaje de bienvenida */
+
+.falling-leaves-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: rgb(246, 246, 233);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Cuadro con el texto "Bienvenidos" */
+.welcome-box {
+    position: relative;
+    z-index: 2;
+    background-color: beige;
+    padding: 150px 200px;
+    border-radius: 15px;
+    font-size: 3.2rem;
+    font-family: 'Georgia', serif;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+/* Contenedor de hojas */
+.leaves {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Hoja individual */
+.leaf {
+    position: absolute;
+    top: -5%;
+    animation-name: fall;
+    animation-timing-function: linear;
+}
+
+/* Animación de caída */
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* Tamaño del SVG de la hoja */
+.leaf svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Contenido del blog (oculto al inicio) */
+#main-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+/* Mostrar el contenido con transición */
+#main-content.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Responsividad: móvil */
+@media (max-width: 480px) {
+    #welcome-box {
+        padding: 1.5rem 1rem; /* Reducir padding en móviles */
+        width: 70%; /* El cuadro se ajusta más en pantallas pequeñas */
+        max-width: 300px; /* Limitar el tamaño máximo en móviles */
+    }
+
+    #welcome-box h1 {
+        font-size: 1.8rem; /* Tamaño de fuente adecuado para móviles */
+    }
+}
+
+/* Responsividad: tablet */
+@media (min-width: 481px) and (max-width: 768px) {
+    #welcome-box {
+        padding: 1.5rem 2rem; /* Ajustamos el padding en tablets */
+        width: 70%; /* Aumentamos un poco el tamaño para tabletas */
+        max-width: 400px; /* Limitar el tamaño máximo */
+    }
+
+    #welcome-box h1 {
+        font-size: 2rem; /* Font-size mayor en tablets */
+    }
+}
+
+/* Responsividad: pantallas grandes */
+@media (min-width: 769px) {
+    #welcome-box {
+        width: 50%; /* Aseguramos que no ocupe todo el ancho en pantallas grandes */
+        max-width: 600px; /* Limitamos el tamaño máximo para pantallas grandes */
+    }
+}
+
+/* Estilos para el banner de cookies */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f5f5f5;
+    padding: 15px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: none;
+}
+
+.cookie-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.cookie-content p {
+    margin: 0;
+    flex: 1;
+    min-width: 250px;
+    color: #333;
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.cookie-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.accept-btn {
+    background-color: #0c730c;
+    color: white;
+}
+
+.reject-btn {
+    background-color: #868278;
+    color: white;
+}
+
+/* Botón hamburguesa */
+.hamburger-icon {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    position: fixed;
+    top: 62px;
+    right: 15px;
+    z-index: 1001;
+    color: rgb(29, 123, 41);
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+/* Menú lateral móvil */
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background:   rgb(193, 238, 196);
+    width: 260px;
+    height: 100vh;
+    padding: 20px;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    width: 100%;
+}
+
+/* Mostrar cuando está activo */
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+/* Botón cerrar */
+.close-icon {
+    font-size: 24px;
+    align-self: flex-end;
+    cursor: pointer;
+    margin-bottom: 20px;
+    color: black;
+}
+
+/* Logo dentro del menú */
+.mobile-logo {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.mobile-logo img {
+    width: 300px;
+    height: auto;
+}
+
+/* Lista del menú */
+.mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    line-height: 80px;
+    margin-left: 50px;
+}
+
+.mobile-menu li {
+    margin: 15px 0;
+    width: 100%;
+    text-align: left 50%;
+    margin-top: -10px;
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    font-size: 19px;
+    color: black;
+}
+
+.lupa-icon {
+    width: 34px;
+    height: 24px;
+    margin-left: 30%;
+}
+
+.buscador-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.barra-busqueda {
+  width: 0;
+  opacity: 0;
+  transition: width 0.4s ease, opacity 0.4s ease;
+  padding: 5px;
+  border: rgb(193, 238, 196);
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+/* Cuando se activa */
+.barra-busqueda.activa {
+  width: 250px; /* o el ancho que desees */
+  height: 40px;
+  opacity: 1;
+}
+
+
+
+/* Mostrar solo en móviles */
+@media screen and (max-width: 480px) {
+    .hamburger-icon {
+        display: block;
+    }
+
+    /* Oculta la segunda barra original en móviles */
+    .subtitulos {
+        display: none !important;
+        color: black;
+    }
+}
+
+@media screen and (max-width: 412px) {
+    .hamburger-icon {
+        display: block;
+    }
+
+    /* Oculta la segunda barra original en móviles */
+    .subtitulos {
+        display: none !important;
+        color: black;
+    }
+}

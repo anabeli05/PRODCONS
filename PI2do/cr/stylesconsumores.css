@@ -1,0 +1,337 @@
+/* Estilos para la barra de navegación */
+.barra_left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: rgb(225, 216, 204);
+    border-bottom: 4px solid black;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    z-index: 1000;
+}
+
+.apubli {
+    text-align: center;
+    margin: 40px 0;
+    color: #0c730c;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.flecha_left {
+    display: flex;
+    align-items: center;
+}
+
+.flecha_left a {
+    display: flex;
+    align-items: center;
+}
+
+.flecha_left svg {
+    width: 32px;
+    height: 32px;
+    fill: #000;
+    cursor: pointer;
+    transition: fill 0.3s ease;
+}
+
+.flecha_left svg:hover {
+    fill: #4CAF50;
+}
+
+/* Ajuste para el contenido principal para que no quede debajo de la barra */
+.sobrecont {
+    margin-top: 70px; /* Ajusta este valor según la altura de tu barra */
+}
+
+/* Ajustes para la imagen */
+.imagenp {
+    display: block;       /*  centrar */
+    width: 64%;           /* Define el ancho */
+    height: 620px;        /* Define la altura */
+    object-fit: cover;    /* Ajusta la imagen sin deformarla */
+    margin-right: 560px;
+    margin-top: -31px;
+    margin-top: 40px;
+}
+
+/* Ajustes para el cuadro */
+.cuadro-info {
+    position: absolute;
+    top: 304.8px; /* Ajusta el cuadro arriba de la imagen*/
+    right: 9px;
+    transform: translateY(-50%);/*Centrar el cuadro de manera horizontal*/
+    height: 570px; /*la altura del cuadrado*/
+    background-color: rgb(109, 151, 109);/*color de fondo que contendra el cuadrado*/
+    color: white;/*color de las letras que contendra el texto añadido*/
+    font-size: 18px;/*Tamaño asignado de las letras*/
+    display: flex;
+    align-items: center;/*posicionar el texto en el centro del cuadrado*/
+    justify-content: center;/*justificar el contenido al centro*/
+    flex-direction: column; /* Asegura que el texto esté arriba */
+    text-align: justify; /* justifica el texto */
+    width: 50%; /* Ajusta el ancho si es necesario */
+    padding: 25px;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    max-width: 540px;
+    margin-top: 75.5px;
+    z-index: 1;
+}
+
+.title{
+    padding: 10px;
+    font-size: 36px;
+    text-align: center;
+    transform: translateY(-5px);
+    line-height: 44px;
+}
+
+.texto{
+    padding: 10px;
+    font-size: 25px;
+    text-align:justify;
+    transform: translateY(-20px);
+    width: 460px;
+    line-height: 30px;/*espacio entre renglones*/
+
+}
+
+/* Para que se adapte bien en pantallas pequeñas */
+@media (max-width: 768px) {
+    .sobrecont {
+        flex-direction: column;
+    }
+    .imagen-principal, .cuadro-info {
+        width: 100%;
+    }
+}
+
+.footer {
+    background: #0B4F14;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    font-family: 'Georgia';
+    height: 100%;
+    margin-top: auto; /*pega el footer al suelo*/
+    max-height: 200px; /*acomodar la altura maxima*/
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 2500px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.af{
+    max-width: 500px; /* Comprime el ancho del contenedor */
+    /*text-align: left; /* Alinea el texto a la izquierda */
+    padding: 0;
+    text-align: justify;
+    line-height: 15px;
+    color: white;
+    font-size: 20px;
+    font-family: 'Georgia';
+}
+
+.footer-center{
+    max-width: 500px; /* Comprime el ancho del contenedor */
+    /*text-align: left; /* Alinea el texto a la izquierda */
+    padding: 0;
+    text-align: left;
+    line-height: 18px;
+    padding-top: 10px;/*mover el texto para abajo*/
+}
+
+.footer1  {
+    text-align: justify;
+    font-size: 16px; /* Ajusta el tamaño de la fuente para hacer el texto más comprimido */
+    line-height: 26px; /* Ajusta la altura de las líneas para que el texto esté más compacto */
+    font-family: 'Georgia';
+}
+.footer3, .footer-center, .footer2 {
+    flex: 1;
+    margin: 25px;
+    min-width: 100px;
+    font-size: 25px;
+    font-family: 'Georgia';
+}
+
+.prodcons2 {
+    width: 300px;
+    height: auto;
+    margin-bottom: 5.5px;
+}
+
+h4 {
+    margin: 0 0 10px;
+    font-weight: bold;
+    transform: translateY(-8px); /* Mueve el texto de 'SOBRE NOSOTROS' hacia arriba */
+    font-family: 'Georgia';
+}
+
+.pfooter .lf {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    font-family: 'Georgia';
+}
+
+
+
+.ulfooter .lf .af {
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 35px;
+    padding-top: 8px;
+    font-family: 'Georgia';
+    list-style-type: none;
+}
+
+.footer2 li{
+    list-style-type: none;
+}
+
+.footer2{
+    line-height: 15px;
+    transform: translateX(80px);
+    font-size: 26px;
+    font-family: 'Georgia';
+    margin-top: 5px;
+    text-align: left;
+}
+
+.footer3{
+    line-height: 18px;
+    margin-top: 5px;
+}
+
+.footer3 a{
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 65px;
+    margin-right: 100px;
+}
+
+.footer3 li{
+    list-style-type: none;
+}
+
+.cfooter{
+    font-size: 20px;
+    padding-top: 10px;
+    text-align: left;
+    font-family: 'Georgia';
+    margin-left: 20px;
+}
+
+
+.footer-bottom {
+    flex: 1;
+    margin: 1px;
+    min-width: -150px;
+    font-family: 'Georgia';
+    font-size: 17.4px;
+    text-align: right;
+    margin-top: -50px;
+    transform: translateX(-22px)
+}
+
+/* ======== Media Query para Tablets y móviles ======== */
+@media (max-width: 768px) {
+    .sobrecont {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 10px auto;
+    }
+
+    .imagenp {
+        width: 90%;
+        height: auto;
+        margin-top: 10px;
+    }
+
+    .cuadro-info {
+        position: static;
+        top: auto;
+        right: auto;
+        transform: none;
+        margin-top: 20px;
+        width: 90%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 24px;
+        line-height: 32px;
+        text-align: center;
+    }
+
+    .texto {
+        font-size: 18px;
+        line-height: 26px;
+        width: 100%;
+        text-align: justify;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer1, .footer2, .footer3 {
+        margin: 10px 0;
+        width: 90%;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .footer3 a {
+        margin-right: 0;
+        line-height: 30px;
+        display: block;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        transform: none;
+        margin-top: 20px;
+    }
+}
+
+/* ======== Media Query para móviles pequeños (menor a 480px) ======== */
+@media (max-width: 480px) {
+    .imagenp {
+        width: 103%;
+        margin-top: 0px;
+    }
+
+    .cuadro-info {
+        width: 95%;
+        padding: 15px;
+        margin-top: 85px;
+        margin-right: 10px;
+    }
+
+    .title {
+        font-size: 20px;
+        line-height: 28px;
+    }
+
+    .texto {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}

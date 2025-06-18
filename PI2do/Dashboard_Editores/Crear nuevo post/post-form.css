@@ -1,0 +1,154 @@
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  background: rgb(227, 217, 208);
+}
+
+/*------ FORMULARIO GENERAL -------*/
+.contenedor-formulario {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: white;
+}
+
+.seccion {
+  margin-bottom: 40px;
+  padding: 25px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.intro {
+  background-color: #f0f9ff;
+}
+
+label {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+/* Campos de texto, select, y textarea */
+input[type="text"],
+input[type="datetime-local"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  box-sizing: border-box;
+  font-size: 1.3rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Textareas especiales */
+textarea {
+  overflow: hidden;
+  resize: none;
+}
+
+/* Input de imagen */
+input[type="file"] {
+  margin-top: 10px;
+}
+
+
+/* Botón para agregar bloques */
+.agregar {
+  margin-top: 15px;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.3rem;
+}
+
+.agregar:hover {
+  background-color: #45a049;
+}
+
+.quill-editor {
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.bloque {
+  position: relative;
+  border: 1px dashed #aaa;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.bloque .eliminar-bloque {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.ql-container input[type="file"] {
+  z-index: 10;
+  position: relative;
+}
+
+/* Botón de enviar */
+.submit-btn {
+  background-color: #3c82f6;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.6rem;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #2563eb;
+}
+
+/* Responsive (opcional) */
+@media (max-width: 600px) {
+  .contenedor-formulario {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  label,
+  input,
+  textarea,
+  select {
+    font-size: 1.2rem;
+  }
+
+  .submit-btn,
+  .agregar {
+    font-size: 1.2rem;
+  }
+}
