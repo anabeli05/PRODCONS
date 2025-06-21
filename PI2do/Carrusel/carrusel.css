@@ -1,69 +1,88 @@
 /* Carrusel adaptado para que los posts se vean igual que en articulos.css */
-.carousel-container {
-    position: relative;
+.carrusel-destacado {
     width: 100%;
     max-width: 1200px;
     margin: 40px auto;
-    overflow: visible;
-    padding: 0 60px;
-    background: none;
+    padding: 0 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.carousel-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;
+    padding: 0 40px;
 }
 
 .carousel {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    gap: 30px;
+    gap: 20px;
     padding: 0;
     position: relative;
     z-index: 1;
-    width: 100%;
-}
-
-/* Estilos para los contadores de likes y comentarios */
-.post-stats {
-    display: flex;
-    gap: 15px;
-    margin: 10px 0;
-    font-size: 14px;
-    color: #666;
-}
-
-.post-stats span {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.post-stats i {
-    font-size: 16px;
-    color: #2ecc71;
-}
-
-.post-stats .likes i {
-    color: #e74c3c;
-}
-
-.post-stats .comments i {
-    color: #2ecc71;
+    width: 300%;
+    flex-wrap: nowrap;
 }
 
 .carousel-item.post {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease;
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, .2);
+    transition: .2s;
     flex-direction: column;
-    width: calc(33.333% - 20px);
-    min-width: 300px;
-    height: auto;
+    width: 100%;
+    height: 100%;
     background: white;
     border-radius: 8px;
     display: flex;
     flex-shrink: 0;
     position: relative;
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
+    text-align: justify;
+}
+
+.post-body {
+    background-color: #F5E7DC;
+    padding: 15px;
+    text-align: justify;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    border-radius: 0 0 8px 8px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+}
+
+.post-body h2 {
+    margin-bottom: 15px;
+    text-align: center;
+    margin-top: 0;
+    font-size: 20px;
+    color: #3f5022;
+    position: relative;
+    z-index: 2;
+}
+
+.post-body .descripcion {
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #666;
+    position: relative;
+    z-index: 2;
 }
 
 .carousel-item.post:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .post-header {
@@ -74,6 +93,12 @@
     align-items: center;
     justify-content: center;
     border-radius: 8px 8px 0 0;
+    position: relative;
+    background: white;
+}
+
+.post-header.has-image {
+    background: #3f5022;
 }
 
 .post-header img {
@@ -81,6 +106,7 @@
     height: 200px;
     object-fit: cover;
     border-radius: 8px 8px 0 0;
+    transition: transform 0.3s ease;
 }
 
 .carousel-item.post:hover .post-header img {
@@ -94,7 +120,6 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    background: rgb(248, 237, 227);
 }
 
 .post-title {
@@ -133,15 +158,42 @@
 
 .post-link {
     display: inline-block;
-    padding: 10px 20px;
-    color: #007bff;
+    color: #3f5022;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .post-link:hover {
-    color: #0056b3;
+    color: #2ecc71;
+}
+
+/* Estilos para los contadores de likes y comentarios */
+.post-stats {
+    display: flex;
+    gap: 15px;
+    margin: 10px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.post-stats span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.post-stats i {
+    font-size: 16px;
+    color: #2ecc71;
+}
+
+.post-stats .likes i {
+    color: #e74c3c;
+}
+
+.post-stats .comments i {
+    color: #2ecc71;
 }
 
 /* Botones de navegación modernos - posicionados fuera del carrusel */
@@ -149,11 +201,11 @@ button.prev, button.next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.95);
-    border: 2px solid #2ecc71;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #3f5022;
     cursor: pointer;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     z-index: 2;
     display: flex;
@@ -162,12 +214,12 @@ button.prev, button.next {
     padding: 0;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    font-size: 20px;
-    color: #2ecc71;
+    font-size: 18px;
+    color: #3f5022;
 }
 
 button.prev:hover, button.next:hover {
-    background: #2ecc71;
+    background: #3f5022;
     color: white;
     transform: translateY(-50%) scale(1.1);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
@@ -175,7 +227,7 @@ button.prev:hover, button.next:hover {
 
 button.prev::before, button.next::before {
     content: '';
-    border: solid;
+    border: solid #3f5022;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 10px;
@@ -190,27 +242,21 @@ button.next::before {
 }
 
 button.prev {
-    left: -60px;
+    left: 20px;
 }
 
 button.next {
-    right: -60px;
+    right: 20px;
 }
 
-/* --- Responsividad --- */
+/* Media queries */
 @media (max-width: 1200px) {
-    .carousel-item.post {
-        width: calc(50% - 20px);
-        min-width: 300px;
-    }
-}
-
-@media (max-width: 900px) {
     .carousel-container {
-        padding: 0 40px;
+        padding: 0 20px;
     }
     
     button.prev, button.next {
+        display: block !important;
         width: 40px;
         height: 40px;
     }
@@ -218,105 +264,11 @@ button.next {
     button.prev::before, button.next::before {
         padding: 8px;
     }
-    
-    button.prev {
-        left: -40px;
-    }
-    
-    button.next {
-        right: -40px;
-    }
-}
-
-@media (max-width: 600px) {
-    .carousel-container {
-        padding: 0 20px;
-    }
-    
-    .carousel-item.post {
-        width: 100%;
-        min-width: 100%;
-    }
-    
-    button.prev, button.next {
-        width: 35px;
-        height: 35px;
-    }
-    
-    button.prev::before, button.next::before {
-        padding: 6px;
-        border-width: 0 2.5px 2.5px 0;
-    }
-    
-    button.prev {
-        left: -20px;
-    }
-    
-    button.next {
-        right: -20px;
-    }
-}
-
-/* Botones de navegación modernos - posicionados fuera del carrusel */
-button.prev, button.next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.95);
-    border: 2px solid #2ecc71;
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-button.prev:hover, button.next:hover {
-    background: #2ecc71;
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-}
-
-button.prev::before, button.next::before {
-    content: '';
-    border: solid #2ecc71;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 10px;
-}
-
-button.prev::before {
-    transform: rotate(135deg);
-}
-
-button.next::before {
-    transform: rotate(-45deg);
-}
-
-button.prev {
-    left: -60px;
-}
-
-button.next {
-    right: -60px;
-}
-
-/* --- Responsividad --- */
-@media (max-width: 1200px) {
-    .carousel-item.post {
-        width: calc(50% - 20px);
-        min-width: 300px;
-    }
 }
 
 @media (max-width: 900px) {
-    .carousel-item.post {
+    .carousel-container {
+        padding: 0 10px;
         width: 100%;
         min-width: 100%;
     }
@@ -343,45 +295,35 @@ button.next {
     }
 }
 
-/* --- Responsividad --- */
-@media (max-width: 900px) {
+@media (max-width: 600px) {
     .carousel-item.post {
-        width: 65vw;
-        margin: 0 10px;
+        width: 100%;
+        min-width: 100%;
     }
+    
     .post-header {
         height: 140px;
     }
+    
     .post-header img {
         height: 140px;
     }
+    
     button.prev, button.next {
         width: 35px;
         height: 35px;
     }
+    
     button.prev::before, button.next::before {
         padding: 6px;
         border-width: 0 2.5px 2.5px 0;
     }
-}
-
-@media (max-width: 600px) {
-    .carousel-item.post {
-        width: 90vw;
-        margin: 0 5px;
+    
+    button.prev {
+        left: -20px;
     }
-    .post-header {
-        height: 120px;
-    }
-    .post-header img {
-        height: 120px;
-    }
-    button.prev, button.next {
-        width: 30px;
-        height: 30px;
-    }
-    button.prev::before, button.next::before {
-        padding: 5px;
-        border-width: 0 2px 2px 0;
+    
+    button.next {
+        right: -20px;
     }
 }

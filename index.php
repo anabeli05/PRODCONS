@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="footer/footer/footer.css">
     <link rel="stylesheet" href="articulos.css">
-    <link rel="stylesheet" href="PI2do/Header visitantes/barra_principal.css">
+    <link rel="stylesheet" href='PI2do/Header_visitantes/barra_principal.css'>
     <link rel="stylesheet" href="PI2do/Carrusel/carrusel.css">
 
     <!-- Google Cloud Translation API -->
@@ -45,6 +45,27 @@
 </head>
 
 <body>
+
+    <!-- Header principal -->
+    <header>
+        <div class="logo">
+            <img src="PI2do/imagenes/prodcon/logoSinfondo.png" alt="Logo PRODCONS">
+        </div>
+        <nav>
+            <ul>
+                <li><a href='/PRODCONS/PI2do/pr/produccionr.php'>PRODUCCIÓN RESPONSABLE</a></li>
+                <li><a href='/PRODCONS/PI2do/cr/consumores.php'>CONSUMO RESPONSABLE</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <form class="search-form">
+                <button class="lupa">
+                    <img src="PI2do/Header_visitantes/lupa.png" alt="Buscar">
+                </button>
+                <input type="search" placeholder="Buscar...">
+            </form>
+        </div>
+    </header>
 
     <!-- Botón hamburguesa (solo en móviles) -->
     <div class="hamburger-icon" onclick="toggleMenu()">☰</div>
@@ -433,7 +454,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </section>
 
     </main>
-    <script src="/PRODCONS/carousel.js"></script>
+    <script src='carousel.js'></script>
 
     <!-- Banner de Cookies -->
     <div class="cookie-banner" id="cookieBanner">
@@ -533,9 +554,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/footer/footer/footer.php'; ?>
-    <script src='/PRODCONS/Header visitantes/barra_principal.js'></script>
+    <script src='Header_visitantes/barra_principal.js'></script>
 
 </body>
 </html>
-
 
