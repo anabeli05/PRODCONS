@@ -2938,3 +2938,24 @@ DEBUG: Correo recibido: xiomicob2005@outlook.com
 DEBUG: Contraseña recibida: Prodcons12345
 DEBUG: Clase Contacto cargada
 DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-21 17:42:46 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-21 17:42:50 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: prodcons.blog@gmail.com
+DEBUG: Contraseña recibida: Prodcons12345
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-21 17:43:57 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-06-21 17:44:01 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: xiomicob2005@outlook.com
+DEBUG: Contraseña recibida: Prodcons12345
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-06-21 17:44:25 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
