@@ -113,7 +113,7 @@ try {
             </a>
         </li>
         <li>
-            <a href="../Dashboard_SuperAdmin/Registro de Editores/registro.php">
+            <a href='../../Dashboard_SuperAdmin/Registro_Editores/registro.php'>
                 <i class="fas fa-user-plus"></i>
                 <span class="link_name">Registrar Editor</span>
             </a>
