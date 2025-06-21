@@ -110,9 +110,6 @@
 
 <header>
     <div class="header-contenedor">
-        <div class="logo">
-            <img src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo PRODCONS">
-        </div>
         <div class="principal">
             <a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.php'>EMPRESAS RESPONSABLES</a>
             <a href="/PRODCONS/PI2do/inicio_sesion/login.php" class="link-login">INICIAR SESIÓN</a>

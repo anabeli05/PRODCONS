@@ -86,7 +86,7 @@ session_start();
       <h2 class="text-2xl font-semibold text-green-700 mb-3">Coca-Cola FEMSA</h2>
       <p class="text-base font-semibold">Sector bebidas</p>
       <p class="text-base mb-4">Reducción de agua, reciclaje, economía circular.</p>
-      <img src="/PRODCONS/PI2do/imagenes/empresas/coca-cola femsa.png" alt="FEMSA" class="w-full h-40 object-contain" />
+      <img src="/PRODCONS/PI2do/imagenes/empresas/coca-colaFemsa.png" alt="FEMSA" class="w-full h-40 object-contain" />
     </div>
 
     <!-- Grupo Modelo -->
@@ -94,7 +94,7 @@ session_start();
       <h2 class="text-2xl font-semibold text-green-700 mb-3">Grupo Modelo</h2>
       <p class="text-base font-semibold">Sector bebidas</p>
       <p class="text-base mb-4">Huella de carbono, uso eficiente del agua, envases reciclables.</p>
-      <img src="/PRODCONS/PI2do/imagenes/empresas/Grupo Modelo.png" alt="Grupo Modelo" class="w-full h-40 object-contain" />
+      <img src="/PRODCONS/PI2do/imagenes/empresas/GrupoModelo.png" alt="Grupo Modelo" class="w-full h-40 object-contain" />
     </div>
 
     <!-- Alsea -->
@@ -134,7 +134,7 @@ session_start();
       <h2 class="text-2xl font-semibold text-green-700 mb-3">Walmart de México</h2>
       <p class="text-base font-semibold">Sector retail</p>
       <p class="text-base mb-4">Reducción de residuos, eficiencia energética, productos sostenibles.</p>
-      <img src="/PRODCONS/PI2do/imagenes/empresas/Walmart Mexico.png" alt="Walmart" class="w-full h-40 object-contain" />
+      <img src="/PRODCONS/PI2do/imagenes/empresas/WalmartMexico.png" alt="Walmart" class="w-full h-40 object-contain" />
     </div>
 
     <!-- PepsiCo -->
