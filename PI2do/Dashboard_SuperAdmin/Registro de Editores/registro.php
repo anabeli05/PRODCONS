@@ -12,6 +12,8 @@ require_once __DIR__ . '/../../Base de datos/conexion.php';
 
 // Crear una instancia de la clase Conexion
 $conexion = new Conexion();
+$conexion->abrir_conexion();
+$conn = $conexion->conexion;
 
 // Inicializar variables
 $error = null;
