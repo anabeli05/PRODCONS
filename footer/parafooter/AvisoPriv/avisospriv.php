@@ -19,7 +19,7 @@
         <div class="section">
             <h2>2. Responsable del Tratamiento de Datos</h2>
             <p><strong>Responsable:</strong> PRODCONDS</p>
-            <p><strong>Correo Electrónico:</strong> PRODCONDS@gmail.com</p>
+            <p><strong>Correo Electrónico:</strong> prodcons.blog@gmail.com</p>
             <p><strong>Ubicación:</strong> Manzanillo, Colima, México, C.P. 28219</p>
         </div>
         
@@ -36,7 +36,7 @@
         <div class="section">
             <h2>5. Contacto</h2>
             <p>Para cualquier duda sobre este Aviso de Privacidad, contáctenos a:</p>
-            <p><strong>Correo electrónico:</strong> PRODCONDS@gmail.com</p>
+            <p><strong>Correo electrónico:</strong> prodcons.blog@gmail.com</p>
             <p><strong>Dirección postal:</strong> Manzanillo, Colima, México, C.P. 28219</p>
         </div>
         

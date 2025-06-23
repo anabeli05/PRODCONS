@@ -22,7 +22,7 @@
 
         <!-- Columna 4: Correo -->
         <div class="footer3" style="flex:1; margin:0 15px 0 15px; min-width:100px; line-height:15px; margin-top:-50px; display:flex; flex-direction:column; align-items:flex-end; margin-right:40px; padding-right:15px;">
-            <p class="cfooter" style="font-size:15px; text-align:right; font-family:Georgia; margin-bottom:15px; font-weight:normal; color:#fbfbfb;">prodcons@gmail.com</p>
+            <p class="cfooter" style="font-size:15px; text-align:right; font-family:Georgia; margin-bottom:15px; font-weight:normal; color:#fbfbfb;">prodcons.blog@gmail.com</p>
             <p style="font-size:14px; color:#fbfbfb; margin-top:10px; text-align:right; font-family:Georgia; font-weight:normal;">Suscríbete Con Nosotros</p>
         </div>
     </div>
