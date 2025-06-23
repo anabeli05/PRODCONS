@@ -72,7 +72,8 @@ try {
 
     <div class="main-content">
         <div class="secciones">
-            <div class="section-title">Perfil</div>
+            <div class="section-title">
+                <span>Perfil</span></div>
 
             <?php if (isset($mensaje)): ?>
                 <div class="alert alert-success"><?php echo $mensaje; ?></div>
@@ -108,7 +109,7 @@ try {
                 </div>
                 
                 <div class="button-container">
-                    <button type="button" onclick="window.location.href='../cambiar contraseña/cambiar.php'" class="btn btn-warning" aria-label="Cambiar Contraseña">
+                    <button type="button" onclick="window.location.href='../cambiar_contraseña/cambiar.php'" class="btn btn-warning" aria-label="Cambiar Contraseña">
                         Cambiar Contraseña
                     </button>    
                     <button type="submit" name="actualizar_perfil" class="btn btn-primary" aria-label="Actualizar Perfil">

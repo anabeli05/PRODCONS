@@ -47,6 +47,8 @@ try {
     $conexion->cerrar_conexion();
 }
 ?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../Dashboard/sidebar.css">
 
     <header> 
         <div class="header-contenedor">
@@ -68,19 +70,18 @@ try {
                 <div class="search-bar hidden">
                     <input type="text" placeholder="Buscar...">
                     <button class="search-close-btn">&times;</button>
-                </div>
+                    </div><!--
                 <a href="../Notibox/noti-box.php" class="notif-btn" aria-label="Notificaciones">
                     <i class="fas fa-bell" aria-hidden="true" data-no-translate></i>
-                    <span class="notif-badge">1</span>
-                </a>
+                </a>-->
                 <div class="admin-btn" id="sidebarToggle">
                     <span>Super Administrador</span>
                     <i class="fas fa-chevron-down"></i>
                     <img src="../../imagenes/logos/perfil.png" alt="Admin" class="admin-avatar">
-                </div><!--
+                </div>
                 <div class="idiomaToggle">
                     <img class="españa" id="banderaIdioma" src="../PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
-                </div>-->
+                </div>
             </div>
         </div>
 </section>
@@ -100,39 +101,39 @@ try {
         <img src="../../imagenes/prodcon/logoSinfondo.png" alt="Logo" class="logo-img">
     </div>
     <ul class="nav-links">
-        <li>
-            <a href="../inicio/inicioSA.php">
-                <i class="fas fa-home"></i>
+    <li data-no-translate="true">
+            <a href="../inicio/inicioSA.php" data-no-translate>
+                <i class="fas fa-home" data-no-translate></i>
                 <span class="link_name">Inicio</span>
             </a>
         </li>
-        <li>
-            <a href="../Editores/editores.php">
-                <i class="fas fa-users"></i>
+        <li data-no-translate="true">
+            <a href="../Editores/editores.php" data-no-translate>
+                <i class="fas fa-users" data-no-translate></i>
                 <span class="link_name">Editores</span>
             </a>
         </li>
-        <li>
-            <a href='../../Dashboard_SuperAdmin/Registro_Editores/registro.php'>
-                <i class="fas fa-user-plus"></i>
+        <li data-no-translate="true">
+            <a href="../Registro_Editores/registro.php" data-no-translate>
+                <i class="fas fa-user-plus" data-no-translate></i>
                 <span class="link_name">Registrar Editor</span>
             </a>
         </li>
-        <li>
-            <a href="../Estadisticas/estadisticas-adm.php">
-                <i class="fas fa-chart-bar"></i>
+        <li data-no-translate="true">
+            <a href="../Estadisticas/estadisticas-adm.php" data-no-translate>
+                <i class="fas fa-chart-bar" data-no-translate></i>
                 <span class="link_name">Estadísticas</span>
             </a>
         </li>
-        <li>
-            <a href="../Configuracion/configuracion.php">
-                <i class="fas fa-key"></i>
+        <li data-no-translate="true">
+            <a href="../Configuracion/configuracion.php" data-no-translate>
+                <i class="fas fa-key" data-no-translate></i>
                 <span class="link_name">Configuración</span>
             </a>
         </li>
-        <li class="log_out">
-            <a href="../../inicio_sesion/logout.php">
-                <i class="fas fa-sign-out-alt"></i>
+        <li class="log_out" data-no-translate="true">
+            <a href="../../inicio_sesion/logout.php" data-no-translate>
+                <i class="fas fa-sign-out-alt" data-no-translate></i>
                 <span class="link_name">Cerrar Sesión</span>
             </a>
         </li>

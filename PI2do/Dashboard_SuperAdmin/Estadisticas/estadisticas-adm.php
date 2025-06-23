@@ -13,7 +13,7 @@ if (!isset($_SESSION['Usuario_ID'])) {
 }
 
 // Verificar si el usuario es Super Admin
-if (!isset($_SESSION['Rol']) || $_SESSION['Rol'] !== 'SuperAdmin') {
+if (!isset($_SESSION['Rol']) || $_SESSION['Rol'] !== 'Super Admin') {
     header('Location: ../../inicio_sesion/login.php');
     exit();
 }
