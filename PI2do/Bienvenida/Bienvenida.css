@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Contenedor de bienvenida */
 .falling-leaves-container {
     position: relative;
@@ -103,3 +104,110 @@
         max-width: 600px; /* Limitamos el tamaño máximo para pantallas grandes */
     }
 }
+=======
+/* Contenedor de bienvenida */
+.falling-leaves-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: rgb(246, 246, 233);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Cuadro con el texto "Bienvenidos" */
+.welcome-box {
+    position: relative;
+    z-index: 2;
+    background-color: beige;
+    padding: 150px 200px;
+    border-radius: 15px;
+    font-size: 3.2rem;
+    font-family: 'Georgia', serif;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+/* Contenedor de hojas */
+.leaves {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Hoja individual */
+.leaf {
+    position: absolute;
+    top: -5%;
+    animation-name: fall;
+    animation-timing-function: linear;
+}
+
+/* Animación de caída */
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* Tamaño del SVG de la hoja */
+.leaf svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Contenido del blog (oculto al inicio) */
+#main-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+/* Mostrar el contenido con transición */
+#main-content.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Responsividad: móvil */
+@media (max-width: 480px) {
+    #welcome-box {
+        padding: 1.5rem 1rem; /* Reducir padding en móviles */
+        width: 70%; /* El cuadro se ajusta más en pantallas pequeñas */
+        max-width: 300px; /* Limitar el tamaño máximo en móviles */
+    }
+
+    #welcome-box h1 {
+        font-size: 1.8rem; /* Tamaño de fuente adecuado para móviles */
+    }
+}
+
+/* Responsividad: tablet */
+@media (min-width: 481px) and (max-width: 768px) {
+    #welcome-box {
+        padding: 1.5rem 2rem; /* Ajustamos el padding en tablets */
+        width: 70%; /* Aumentamos un poco el tamaño para tabletas */
+        max-width: 400px; /* Limitar el tamaño máximo */
+    }
+
+    #welcome-box h1 {
+        font-size: 2rem; /* Font-size mayor en tablets */
+    }
+}
+
+/* Responsividad: pantallas grandes */
+@media (min-width: 769px) {
+    #welcome-box {
+        width: 50%; /* Aseguramos que no ocupe todo el ancho en pantallas grandes */
+        max-width: 600px; /* Limitamos el tamaño máximo para pantallas grandes */
+    }
+}
+>>>>>>> main

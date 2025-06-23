@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="footer/footer/footer.css">
     <link rel="stylesheet" href="articulos.css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="/PRODCONS/PI2do/Header-visitantes/barra_principal.css">
+=======
+    <link rel="stylesheet" href='PI2do/Header_visitantes/barra_principal.css'>
+>>>>>>> main
     <link rel="stylesheet" href="PI2do/Carrusel/carrusel.css">
 
     <!-- Google Cloud Translation API -->
@@ -110,9 +114,12 @@
 
 <header>
     <div class="header-contenedor">
+<<<<<<< HEAD
         <div class="logo">
             <!--<img src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo PRODCONS">-->
         </div>
+=======
+>>>>>>> main
         <div class="principal">
             <a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.php'>EMPRESAS RESPONSABLES</a>
             <a href="/PRODCONS/PI2do/inicio_sesion/login.php" class="link-login">INICIAR SESIÓN</a>
@@ -436,7 +443,11 @@ document.addEventListener('DOMContentLoaded', function() {
     </section>
 
     </main>
+<<<<<<< HEAD
     <script src="/PRODCONS/carousel.js"></script>
+=======
+    <script src='carousel.js'></script>
+>>>>>>> main
 
     <!-- Banner de Cookies -->
     <div class="cookie-banner" id="cookieBanner">
@@ -536,9 +547,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/footer/footer/footer.php'; ?>
+<<<<<<< HEAD
     <script src='/PRODCONS/Header-visitantes/barra_principal.js'></script>
+=======
+    <script src='Header_visitantes/barra_principal.js'></script>
+>>>>>>> main
 
 </body>
 </html>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main

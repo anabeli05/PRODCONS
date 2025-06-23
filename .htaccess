@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Configuración principal para PRODCONS
 RewriteEngine On
 
@@ -32,3 +33,39 @@ ErrorDocument 500 /PRODCONS/error500.html
     php_value max_execution_time 300
     php_value memory_limit 256M
 </IfModule>
+=======
+# Configuración principal para PRODCONS
+RewriteEngine On
+
+# Forzar HTTP en lugar de HTTPS para evitar errores 404
+RewriteCond %{HTTPS} on
+RewriteRule ^(.*)$ http://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Permitir archivos PHP
+<Files "*.php">
+    Order allow,deny
+    Allow from all
+</Files>
+
+# Manejar espacios en URLs
+RewriteRule ^(.*)\ (.*)$ $1%20$2 [R=301,L]
+
+# Configuración de errores personalizados
+ErrorDocument 404 /PRODCONS/error404.html
+ErrorDocument 500 /PRODCONS/error500.html
+
+# Configuración de seguridad básica
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Configuración de PHP
+<IfModule mod_php.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 300
+    php_value memory_limit 256M
+</IfModule>
+>>>>>>> main

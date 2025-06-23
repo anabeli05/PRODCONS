@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 html, body {
     height: 100%;
     margin: 0;
@@ -587,3 +588,594 @@ h4 {
 .flecha_left a:hover svg {
     transform: translateX(-3px);
 }
+=======
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.barra_left{
+    top: 0;/*que tan separado estara del inicio*/
+    left: 0;
+    width: 100%;/*anchura que abarcara de la pantalla*/
+    background: rgb(225, 216, 204);/*color del fondo*/
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 20px;/*indicaremos cuanto lo justificaremos a la izquierda*/
+    border-bottom: 4px solid black;
+    position: fixed; /* Fija la barra */
+    left: 0; /* Alineación izquierda */
+    right: 0;
+    height: 50px;
+    z-index: 1000;
+}
+
+/* FOOTER STYLES */
+.footer {
+    background: #0a4e1a;
+    color: white;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    border-top: none !important;
+    box-shadow: none !important;
+    padding-top: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 2500px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 20px 0 0 0;
+  }
+  
+  .prodcons2 {
+    width: 250px;
+    height: auto;
+    margin-bottom: 5.5px;
+    margin-left: 40px;
+    margin-right: 0;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    min-width: unset !important;
+  }
+  
+  .footer-center {
+    max-width: 500px;
+    padding: 0;
+    text-align: left;
+    line-height: 18px;
+    padding-top: 0;
+    margin-right: 40px;
+    margin-left: 0;
+  }
+  
+  .footer-center h4 {
+    font-size: 26px;
+    margin-bottom: 26px;
+    font-family: 'Georgia';
+    color: white;
+    text-align: left;
+  }
+  
+  .footer1 {
+    flex: 1;
+    text-align: justify;
+    font-size: 16px;
+    line-height: 26px;
+    font-family: Georgia;
+    max-width: 400px;
+    color: white;
+    margin: 0 auto;
+  }
+  
+  .footer2 {
+    line-height: 15px;
+    min-width: 120px;
+    font-size: 18px;
+    font-family: Georgia;
+    margin-top: -40px;
+    text-align: left;
+  }
+  
+  .footer-links-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .footer-links-vertical a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    line-height: 22px;
+    font-family: Georgia, serif;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-links-vertical a:hover {
+    color: #d8d8d8;
+  }
+  
+  .footer3 {
+    line-height: 15px;
+    margin-top: -60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 20px;
+    padding-right: 15px;
+  }
+  
+  .footer3 a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 35px;
+    white-space: nowrap;
+    margin-right: 0;
+  }
+  
+  .cfooter {
+    font-size: 18px;
+    text-align: right;
+    font-family: Georgia;
+    margin-bottom: 15px;
+    font-weight: normal;
+    color: #fbfbfb;
+  }
+  
+  .af, .footer-btn {
+    color: white !important;
+  }
+  
+  /* Footer responsive */
+  @media (max-width: 900px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+      padding: 18px 0 12px 0;
+      gap: 0;
+    }
+    
+    .footer-center, .footer2, .footer3 {
+      width: 100%;
+      text-align: center;
+      margin: 10px 0;
+      padding: 0;
+      max-width: 100%;
+    }
+    
+    .footer3 {
+      align-items: center;
+    }
+    
+    .footer2 {
+      margin-top: 0;
+    }
+    
+    .footer-links-vertical {
+      align-items: center;
+    }
+    
+    .prodcons2 {
+      margin-left: 0;
+    }
+  }
+  
+.apubli {
+    text-align: center;
+    margin: 30px 0;
+    color: #0c730c;
+    font-size: 1.8rem;
+}
+
+.flecha_left {
+    margin-left: 0;
+}
+
+.flecha_left a {
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+
+.flecha_left svg {
+    width: 32px;
+    height: 32px;
+    fill: #000; /* Color del icono */
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    transition: transform 0.2s;
+}
+
+.flecha_left svg:hover {
+    transform: scale(1.1);
+    fill: #4CAF50;
+}
+
+/* Ajuste para el contenedor principal para que no quede debajo de la barra */
+.sobreprod {
+    margin-top: 90px; /* Espacio para la barra superior */
+    display: flex; /* Coloca los elementos en fila */
+    align-items: center; /* Alinea verticalmente el cuadro y la imagen */
+    justify-content: center; /* Centra todo horizontalmente */
+    margin: 50px auto; /* Centra todo el contenedor */
+    
+}
+
+/* Ajustes para la imagen */
+.imagens {
+    display: block;       /*  centrar */
+    width: 64%;           /* Define el ancho */
+    height: 620px;        /* Define la altura */
+    object-fit: cover;    /* Ajusta la imagen sin deformarla */
+    margin-left: 578px;
+    margin-top: 40px;
+}
+
+/* Ajustes para el cuadro */
+.info-prod {
+    position: absolute;
+    top: 324.5px; /* Ajusta el cuadro arriba de la imagen*/
+    left: 9px;
+    transform: translateY(-50%);/*Centrar el cuadro de manera horizontal*/
+    height: 570px; /*la altura del cuadrado*/
+    background-color:  #868278;/*color de fondo que contendra el cuadrado*/
+    color: white;/*color de las letras que contendra el texto añadido*/
+    font-size: 20px;/*Tamaño asignado de las letras*/
+    display: flex;
+    align-items: center;/*posicionar el texto en el centro del cuadrado*/
+    justify-content: center;/*justificar el contenido al centro*/
+    flex-direction: column; /* Asegura que el texto esté arriba */
+    text-align: justify; /* justifica el texto */
+    width: 50%; /* Ajusta el ancho si es necesario */
+    padding: 25px;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    max-width: 540px;
+    margin-top: 75.5px;
+    z-index: 1;
+    margin-bottom: 0;
+}
+
+.title{
+    padding: 10px;
+    font-size: 36px;
+    text-align: center;
+    transform: translateY(-5px);
+    line-height: 44px;
+    font-family: 'Georgia';
+}
+
+.text{
+    padding: 10px;
+    font-size: 25px;
+    text-align:justify;
+    transform: translateY(-20px);
+    width: 460px;
+    line-height: 30px;/*espacio entre renglones*/
+    font-family: 'Georgia';
+
+}
+/* Para que se adapte bien en pantallas pequeñas */
+@media (max-width: 768px) {
+    .sobreprod {
+        flex-direction: column;
+    }
+    .imagen-principal, .cuadro-info {
+        width: 100%;
+    }
+}
+
+/* Empuja el footer hacia abajo*/
+.footer {
+    background: #0B4F14;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    font-family: 'Georgia';
+    height: 100%;
+    margin-top: auto; /*pega el footer al suelo*/
+    max-height: 200px; /*acomodar la altura maxima*/
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 2500px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.af{
+    max-width: 500px; /* Comprime el ancho del contenedor */
+    /*text-align: left; /* Alinea el texto a la izquierda */
+    padding: 0;
+    text-align: justify;
+    line-height: 15px;
+    color: white;
+    font-size: 20px;
+    font-family: 'Georgia';
+}
+
+.footer-center{
+    max-width: 500px; /* Comprime el ancho del contenedor */
+    /*text-align: left; /* Alinea el texto a la izquierda */
+    padding: 0;
+    text-align: left;
+    line-height: 18px;
+    padding-top: 10px;/*mover el texto para abajo*/
+}
+
+.footer1  {
+    text-align: justify;
+    font-size: 16px; /* Ajusta el tamaño de la fuente para hacer el texto más comprimido */
+    line-height: 26px; /* Ajusta la altura de las líneas para que el texto esté más compacto */
+    font-family: 'Georgia';
+}
+.footer3, .footer-center, .footer2 {
+    flex: 1;
+    margin: 25px;
+    min-width: 100px;
+    font-size: 25px;
+    font-family: 'Georgia';
+}
+
+.prodcons2 {
+    width: 300px;
+    height: auto;
+    margin-bottom: 5.5px;
+}
+
+h4 {
+    margin: 0 0 10px;
+    font-weight: bold;
+    transform: translateY(-8px); /* Mueve el texto de 'SOBRE NOSOTROS' hacia arriba */
+    font-family: 'Georgia';
+}
+
+.pfooter .lf {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    font-family: 'Georgia';
+}
+
+
+
+.ulfooter .lf .af {
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 35px;
+    padding-top: 8px;
+    font-family: 'Georgia';
+    list-style-type: none;
+}
+
+.footer2 li{
+    list-style-type: none;
+}
+
+.footer2{
+    line-height: 15px;
+    transform: translateX(80px);
+    font-size: 26px;
+    font-family: 'Georgia';
+    margin-top: 5px;
+    text-align: left;
+}
+
+.footer3{
+    line-height: 18px;
+    margin-top: 5px;
+}
+
+.footer3 a{
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 65px;
+    margin-right: 100px;
+}
+
+.footer3 li{
+    list-style-type: none;
+}
+
+.cfooter{
+    font-size: 20px;
+    padding-top: 10px;
+    text-align: left;
+    font-family: 'Georgia';
+    margin-left: 20px;
+}
+
+
+.footer-bottom {
+    flex: 1;
+    margin: 1px;
+    min-width: -150px;
+    font-family: 'Georgia';
+    font-size: 17.4px;
+    text-align: right;
+    margin-top: -50px;
+    transform: translateX(-22px)
+}
+
+/* Responsividad para dispositivos más pequeños (móviles) */
+@media (max-width: 768px) {
+    .sobreprod {
+        flex-direction: column; /* Coloca elementos en columna */
+        align-items: center;
+    }
+
+    .info-prod {
+        position: static; /* Elimina posicionamiento absoluto */
+        order: 1;
+        width: 90%;
+        margin: 10px auto;
+        transform: none;
+        top: auto;
+        left: auto;
+    }
+
+    .title {
+        font-size: 22px;
+        line-height: 28px;
+    }
+
+    .text {
+        font-size: 14px;
+        line-height: 22px;
+        width: 100%;
+    }
+
+    .imagens {
+        order: 2;
+        width: 90%;
+        margin: 10px auto;
+        height: auto;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .info-prod {
+        font-size: 14px;
+        padding: 10px;
+        width: 95%;
+    }
+    .title {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .text {
+        font-size: 12px;
+        line-height: 20px;
+    }
+
+    .imagens {
+        width: 95%;
+    }
+}
+
+
+/* Estilos para el botón de regreso - Comentar o eliminar estos estilos */
+/*
+.boton-regreso {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.boton-regreso:hover {
+    transform: scale(1.1);
+    background-color: #45a049;
+}
+
+.boton-regreso a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.boton-regreso svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+*/
+
+/* Estilos para la barra de navegación superior con el botón de regreso */
+.barra_left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.flecha_left {
+    display: flex;
+    align-items: center;
+}
+
+.flecha_left a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.flecha_left svg {
+    width: 24px;
+    height: 24px;
+    fill: #333;
+    transition: transform 0.2s;
+}
+
+.flecha_left a:hover svg {
+    transform: translateX(-3px);
+}
+>>>>>>> main

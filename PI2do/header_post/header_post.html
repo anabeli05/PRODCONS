@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -185,3 +186,192 @@
 
 </html>
 
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PRODCONS</title>
+    <link href="/PRODCONS/PI2do/header_post/header_post.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="header-contenedor">
+            <i class="flecha_left" onclick="window.history.back()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+                    <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+                </svg>
+            </i>
+        <div class="principal">
+                <a class="navlink" href="/PRODCONS/PI2do/empresas_responsables/empresasr.php">EMPRESAS RESPONSABLES</a>
+                <!-- Selector visible -->
+                <div id="idiomaToggle">
+                    <img class="españa" id="banderaIdioma" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()" />
+                </div>
+                <!-- Opciones ocultas desplegables -->
+                <div id="idiomasOpciones" style="display: none;">
+                    <img class="ingles" src="/PRODCONS/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés" />
+                    <img class="españa" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español" />
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="logo">
+        <div class="header_2">
+            <img class="prodcons" src="/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png" alt="Logo" />
+            <div class="subtitulos">
+                <a href="/PRODCONS/PI2do/pr/produccionr.php">PRODUCCIÓN RESPONSABLE</a>
+                <a href="/PRODCONS/PI2do/cr/consumores.php">CONSUMO RESPONSABLE</a>
+            </div>
+        </div>
+    </section>
+    <!-- Google Cloud Translation API -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <!-- Script de traducción global -->
+    <script src="/PRODCONS/translate.js"></script>
+    <!-- Script para mostrar/ocultar banderas -->
+    <script>
+        function alternarIdioma() {
+            const opciones = document.getElementById('idiomasOpciones');
+            opciones.style.display = (opciones.style.display === 'block') ? 'none' : 'block';
+        }
+
+
+        function cambiarIdioma(idioma) {
+            localStorage.setItem('preferredLanguage', idioma === 'ingles' ? 'en' : 'es');
+            location.reload(); // Aquí puedes cambiar esto si usas traducción dinámica
+        }
+    </script>
+
+
+    <!-- Estilos del botón de idioma -->
+    <style>
+
+        .link-login {
+
+
+            color: #000000;
+
+
+            font-weight: bold;
+
+
+            font-family: 'Arial', sans-serif;
+
+
+            text-decoration: none;
+
+
+            cursor: pointer;
+
+
+            text-transform: uppercase;
+
+
+            margin-left: 15px;
+
+
+            transition: color 0.3s ease;
+
+
+        }
+
+
+
+
+
+        .link-login:hover {
+
+
+            color: #000000;
+
+
+            text-decoration: none;
+
+
+        }
+
+
+
+
+
+        .idioma-text {
+
+
+            color: #000000;
+
+
+            font-weight: bold;
+
+
+            font-family: 'Arial', sans-serif;
+
+
+            font-size: 16.1px;
+
+
+            cursor: pointer;
+
+
+            text-transform: uppercase;
+
+
+            background: none;
+
+
+            border: none;
+
+
+            padding: 0;
+
+
+            margin-left: 15px;
+
+
+            transition: color 0.3s ease;
+
+
+        }
+
+
+
+
+
+        .idioma-text:hover {
+
+
+            color: #000000;
+
+
+        }
+
+
+
+
+
+        .idioma-text:focus {
+
+
+            outline: none;
+
+
+            box-shadow: none;
+
+
+        }
+
+
+    </style>
+
+
+</body>
+
+
+
+
+
+</html>
+
+>>>>>>> main

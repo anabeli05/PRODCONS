@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [
     {
       "id": 1,
@@ -19,6 +20,27 @@
       "title": "Un post sobre tecnología",
       "body": "La tecnología está cambiando el mundo de muchas maneras."
     }
+=======
+[
+    {
+      "id": 1,
+      "userId": 101,
+      "title": "Mi primer post",
+      "body": "Este es el contenido de mi primer post. ¡Es emocionante!"
+    },
+    {
+      "id": 2,
+      "userId": 102,
+      "title": "Mi segundo post",
+      "body": "Aquí hay más información sobre lo que quiero compartir."
+    },
+    {
+      "id": 3,
+      "userId": 103,
+      "title": "Un post sobre tecnología",
+      "body": "La tecnología está cambiando el mundo de muchas maneras."
+    }
+>>>>>>> main
 =======
 =======
 >>>>>>> 499d8689da2df5b15ff270fec87942ec846e9b42

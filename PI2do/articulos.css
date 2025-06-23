@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Estilos para el contenedor principal */
 .post-list {
     display: flex;
@@ -183,3 +184,190 @@
         height: 120px;
     }
 }
+=======
+/* Estilos para el contenedor principal */
+.post-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.content {
+    width: 100%;
+    max-width: 800px; /* Adjust max-width for a single column look */
+    display: grid;
+    grid-template-columns: 1fr; /* Changed to a single column */
+    gap: 30px; /* Added vertical gap between posts */
+    margin: 0 auto; /* Center the single column */
+}
+
+/* Estilos para cada artículo - Matched to carousel styling */
+.post {
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, .2); /* Match carousel shadow */
+    transition: .2s; /* Match carousel transition */
+    flex-direction: column; /* Match carousel flex direction */
+    /* max-height: 100%; Removed as per carrusel.css */
+    width: 100%; /* Allow post to take full width of the grid column */
+    /* height: 450px; */ /* Optional: set a fixed height if desired */
+    justify-content: center; /* Match carousel justify-content */
+    /* margin: 0 15px; Removed margin as grid handles spacing */
+    background: white; /* Match carousel background */
+    border-radius: 8px; /* Match carousel border radius */
+    display: flex; /* Match carousel display */
+    flex-shrink: 0; /* Match carousel flex-shrink */
+    /* height: 100%; Removed as per carrusel.css */
+}
+
+.post:hover {
+    transform: translateY(-4px); /* Match carousel hover transform */
+    box-shadow: 0 2px 28px 0px rgba(0, 0, 0, .30); /* Match carousel hover shadow */
+}
+
+.post-header {
+    width: 100%; /* Match carousel width */
+    height: 200px; /* Match carousel header height */
+    overflow: hidden;
+    cursor: pointer; /* Match carousel cursor */
+    display: flex; /* Match carousel display */
+    align-items: center; /* Match carousel align-items */
+    justify-content: center; /* Match carousel justify-content */
+    background: #f5e7dc; /* Match carousel background */
+}
+
+.post-header img {
+    width: 100%; /* Match carousel width */
+    height: 200px; /* Match carousel image height */
+    object-fit: cover;
+    border-radius: 5px; /* Match carousel border radius */
+    transition: .2s; /* Match carousel transition */
+}
+
+.post:hover .post-header img {
+    transform: scale(1.1); /* Match carousel hover transform */
+}
+
+.post-body {
+    background-color: #F5E7DC; /* Match carousel background */
+    padding: 15px; /* Match carousel padding */
+    text-align: justify; /* Match carousel text-align */
+    height: auto; /* Let height adjust based on content */
+    display: flex; /* Match carousel display */
+    flex-direction: column; /* Match carousel flex-direction */
+    gap: 10px; /* Match carousel gap */
+}
+
+.post-body span {
+    padding-top: 10px; /* Match carousel padding-top */
+    display: block; /* Match carousel display */
+    font-size: 12px; /* Match carousel font-size */
+    line-height: 1.2; /* Adjusted line-height */
+    text-align: right; /* Match carousel text-align */
+    color: #6c6b6b; /* Match carousel color */
+    font-weight: bold; /* Match carousel font-weight */
+    margin-top: 5px; /* Match carousel margin-top */
+    /* line-height: .1; Removed very low line height */
+}
+
+.post-body h2 {
+    margin-bottom: 15px; /* Match carousel margin-bottom */
+    text-align: center; /* Match carousel text-align */
+    margin-top: 0; /* Ensure no top margin */
+    font-size: 20px; /* Keep existing font size */
+    color: #333; /* Keep existing color */
+}
+
+.post-body p {
+    line-height: 1.5; /* Match carousel line-height */
+    margin-bottom: 20px; /* Match carousel margin-bottom */
+    font-size: 1rem; /* Match carousel font-size */
+    color: #666; /* Keep existing color */
+}
+
+.post-link {
+    font-weight: bold; /* Match carousel font-weight */
+    display: block; /* Match carousel display */
+    text-decoration: none; /* Match carousel text-decoration */
+    padding: 10px; /* Match carousel padding */
+    color: black; /* Match carousel color */
+    text-align: left; /* Match carousel text-align */
+    width: 50%; /* Match carousel width */
+    margin-top: 10px; /* Match carousel margin-top */
+    border-radius: 20px; /* Match carousel border-radius */
+    box-shadow: 1px 2px 6px 1px rgba(0,0,0,.1); /* Match carousel box-shadow */
+    transition: .2s; /* Match carousel transition */
+}
+
+.post-link:hover {
+    background: #d98880; /* Match carousel background on hover */
+    box-shadow: 1px 2px 6px 1px rgba(0,0,0,.2); /* Match carousel box-shadow on hover */
+    transform: translateY(-2px); /* Match carousel transform on hover */
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
+/* Estilos para la sección superior */
+.sobrecont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    margin-bottom: 30px;
+}
+
+.cuadro-info {
+    flex: 1;
+    padding: 20px;
+}
+
+.cuadro-info h2 {
+    margin: 0 0 15px;
+    color: #333;
+}
+
+.cuadro-info p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.imagen-principal {
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+.apubli {
+    text-align: center;
+    margin: 30px 0;
+    color: #333;
+    font-size: 24px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 900px) {
+    .post {
+        /* Adjust width for smaller screens if needed, grid might handle this */
+        /* width: 65vw; */
+    }
+    .post-header {
+        height: 140px;
+    }
+    .post-header img {
+        height: 140px;
+    }
+}
+
+@media (max-width: 600px) {
+    .post {
+         /* Adjust width for smaller screens if needed, grid might handle this */
+        /* width: 90vw; */
+    }
+     .post-header {
+        height: 120px;
+    }
+    .post-header img {
+        height: 120px;
+    }
+}
+>>>>>>> main

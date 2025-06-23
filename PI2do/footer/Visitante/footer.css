@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .footer2 {
   line-height: 15px;
   min-width: 120px;
@@ -32,4 +33,40 @@
   padding: 0;
   margin: 0;
   width: 100%;
+=======
+.footer2 {
+  line-height: 15px;
+  min-width: 120px;
+  font-size: 18px;
+  font-family: Georgia;
+  margin-top: 25px;
+  text-align: left;
+  padding-top: 10px;
+}
+
+.footer2 li {
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
+.footer2 a {
+  text-decoration: none;
+  transition: color 0.3s ease;
+  color: white;
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: Georgia, serif;
+  display: block;
+}
+
+.footer2 a:hover {
+  color: #d8d8d8;
+}
+
+.ulfooter {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+>>>>>>> main
 }

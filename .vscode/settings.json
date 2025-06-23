@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 {
     "liveServer.settings.port": 5506,
     "liveServer.settings.root": "/"
+=======
+{
+    "liveServer.settings.port": 5506,
+    "liveServer.settings.root": "/"
+>>>>>>> main
 }

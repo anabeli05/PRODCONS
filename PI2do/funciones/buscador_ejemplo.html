@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -143,4 +144,151 @@ document.getElementById('busqueda').addEventListener('input', function(e) {
     <h3>4. ¡Listo!</h3>
     <p>Con este código puedes implementar un buscador con resaltado elegante y sin alterar la forma del texto en cualquier proyecto web.</p>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo de Buscador con Resaltado - PRODCONS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 2rem;
+        }
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+        .search-highlight {
+            display: inline !important;
+            white-space: inherit !important;
+            background: none !important;
+            color: inherit !important;
+            font-family: inherit !important;
+            font-size: inherit !important;
+            font-weight: inherit !important;
+            font-style: inherit !important;
+            line-height: inherit !important;
+            letter-spacing: inherit !important;
+            text-shadow: 0 0 1px #137333;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+        }
+        .descripcion .search-highlight {
+            text-shadow: 0 0 1px #444;
+        }
+        .buscador {
+            margin-bottom: 2rem;
+        }
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Buscador con Resaltado de Coincidencias</h1>
+    <div class="buscador">
+        <label for="busqueda">Buscar:</label>
+        <input type="text" id="busqueda" placeholder="Escribe una palabra clave...">
+    </div>
+    <div class="card">
+        <h2 class="titulo">Menos plásticos más vida</h2>
+        <p class="descripcion">El plástico nos rodea: en casa, en tiendas y hasta en los océanos. Con pequeñas decisiones, podemos reducir su uso y hacer la diferencia. ¿Listo para cambiar hábitos y ayudar al planeta?</p>
+    </div>
+    <div class="card">
+        <h2 class="titulo">Consumo Digital y Producción Responsable</h2>
+        <p class="descripcion">El consumo digital impacta el planeta más de lo que imaginas. Optar por prácticas responsables en tecnología puede hacer una gran diferencia. ¿Sabes cómo reducir tu impacto digital?</p>
+    </div>
+    <hr>
+    <h2>¿Cómo funciona este buscador?</h2>
+    <ol>
+        <li><b>El usuario escribe una palabra clave</b> en el campo de búsqueda.</li>
+        <li><b>El script busca esa palabra</b> en los títulos y descripciones de las tarjetas.</li>
+        <li><b>Solo se muestran las tarjetas que contienen la palabra</b> (sin importar mayúsculas, minúsculas o acentos).</li>
+        <li><b>La palabra encontrada se resalta</b> con un contorno, sin cambiar el tamaño ni el estilo del texto.</li>
+    </ol>
+    <h2>Paso a paso del código</h2>
+    <h3>1. HTML básico</h3>
+    <pre><code>&lt;input type="text" id="busqueda" placeholder="Buscar..."&gt;
+&lt;div class="card"&gt;
+  &lt;h2 class="titulo"&gt;Menos plásticos más vida&lt;/h2&gt;
+  &lt;p class="descripcion"&gt;El plástico nos rodea...&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+    <h3>2. CSS para el resaltado</h3>
+    <pre><code>.search-highlight {
+    display: inline !important;
+    white-space: inherit !important;
+    background: none !important;
+    color: inherit !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    font-style: inherit !important;
+    line-height: inherit !important;
+    letter-spacing: inherit !important;
+    text-shadow: 0 0 1px #137333;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+}
+.descripcion .search-highlight {
+    text-shadow: 0 0 1px #444;
+}
+</code></pre>
+    <h3>3. JavaScript para buscar y resaltar</h3>
+    <pre><code>// Normaliza texto eliminando acentos y pasando a minúsculas
+function normalizeText(text) {
+    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+// Escapa caracteres especiales para regex
+function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&');
+}
+// Resalta coincidencias en el texto
+function highlightText(text, searchTerm) {
+    if (!searchTerm) return text;
+    const safeTerm = escapeRegExp(searchTerm);
+    const regex = new RegExp(`(${safeTerm})`, 'gi');
+    return text.replace(regex, '<span class="search-highlight">$1</span>');
+}
+// Lógica de búsqueda y resaltado
+function searchArticles(searchTerm) {
+    const cards = document.querySelectorAll('.card');
+    const normalizedSearch = normalizeText(searchTerm.trim());
+    cards.forEach(card => {
+        const title = card.querySelector('.titulo');
+        const desc = card.querySelector('.descripcion');
+        const titleText = title.textContent;
+        const descText = desc.textContent;
+        const normalizedTitle = normalizeText(titleText);
+        const normalizedDesc = normalizeText(descText);
+        const content = normalizedTitle + ' ' + normalizedDesc;
+        if (!normalizedSearch || content.includes(normalizedSearch)) {
+            card.style.display = 'block';
+            title.innerHTML = highlightText(titleText, searchTerm);
+            desc.innerHTML = highlightText(descText, searchTerm);
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+document.getElementById('busqueda').addEventListener('input', function(e) {
+    searchArticles(e.target.value);
+});
+</code></pre>
+    <h3>4. ¡Listo!</h3>
+    <p>Con este código puedes implementar un buscador con resaltado elegante y sin alterar la forma del texto en cualquier proyecto web.</p>
+</body>
+>>>>>>> main
 </html> 

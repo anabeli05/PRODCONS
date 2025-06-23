@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 {
     "require": {
         "sendgrid/sendgrid": "^8.1"
     }
 }
+=======
+{
+    "require": {
+        "sendgrid/sendgrid": "^8.1"
+    }
+}
+>>>>>>> main

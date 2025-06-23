@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit colors="true" bootstrap="../vendor/autoload.php">
     <testsuites>
@@ -11,3 +12,18 @@
         </whitelist>
     </filter>
 </phpunit>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true" bootstrap="../vendor/autoload.php">
+    <testsuites>
+        <testsuite name="All">
+            <directory>.</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">../lib</directory>
+        </whitelist>
+    </filter>
+</phpunit>
+>>>>>>> main

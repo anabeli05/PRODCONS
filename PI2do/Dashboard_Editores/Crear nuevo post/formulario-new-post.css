@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Estilos generales del formulario */
 .contenedor-formulario {
     max-width: 800px;
@@ -216,3 +217,223 @@ input[type="color"] {
     border: 1px solid #ddd;
     border-radius: 4px;
 }
+=======
+/* Estilos generales del formulario */
+.contenedor-formulario {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el header */
+.header-contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.principal {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.idioma {
+    margin-right: auto;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+.admin-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.notif-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #555;
+    text-decoration: none;
+}
+
+.notif-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #dc3545;
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50%;
+}
+
+.admin-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #000;
+}
+
+.admin-btn span {
+    font-weight: bold;
+}
+
+.admin-avatar {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.contenedor-formulario h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Estilos para los campos del formulario */
+.contenedor-formulario form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contenedor-formulario label {
+    font-weight: bold;
+    color: #444;
+}
+
+.contenedor-formulario input[type="text"],
+.contenedor-formulario input[type="date"],
+.contenedor-formulario textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.contenedor-formulario textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Estilos para el contenedor de imágenes */
+.imagenes-container {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.imagen-input {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr auto;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 4px;
+}
+
+.imagen-input input[type="file"] {
+    padding: 5px;
+}
+
+.imagen-input input[type="text"] {
+    padding: 8px;
+}
+
+.imagen-input select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.imagen-input button {
+    padding: 8px 12px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.imagen-input button:hover {
+    background: #cc0000;
+}
+
+/* Botón para agregar más imágenes */
+.imagenes-container > button {
+    background: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.imagenes-container > button:hover {
+    background: #45a049;
+}
+
+/* Estilos para mensajes de éxito y error */
+.mensaje-exito {
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.mensaje-error {
+    background-color: #f2dede;
+    color: #a94442;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.mensaje-error ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+/* Botón de envío */
+button[type="submit"] {
+    background: #4CAF50;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+    background: #45a049;
+}
+
+/* Estilos para el selector de color */
+input[type="color"] {
+    width: 100px;
+    height: 40px;
+    padding: 2px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+>>>>>>> main

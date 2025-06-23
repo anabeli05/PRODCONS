@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 2025-06-06 21:16:13 - Unknown column 'Autor' in 'field list'
+=======
+2025-06-06 21:16:13 - Unknown column 'Autor' in 'field list'
+>>>>>>> main
