@@ -108,6 +108,9 @@ $conexion->cerrar_conexion();
     <link rel="stylesheet" href="/PRODCONS/footer/footer/footer.css">
     <link rel="stylesheet" href="/PRODCONS/articulos.css">
     <link rel="stylesheet" href="/PRODCONS/PI2do/Header_visitantes/barra_principal.css">
+    <script src="/PRODCONS/carousel.js"></script>
+    <link rel="stylesheet" href="/PRODCONS/PI2do/Carrusel/carrusel.css">
+    <link rel="stylesheet" href="/PRODCONS/PI2do/pr/stylesprodr.css">
 
     <!-- Google Cloud Translation API -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
@@ -374,20 +377,15 @@ $conexion->cerrar_conexion();
     <header>
         <div class="header-contenedor">
             <div class="principal">
-<a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.php'>EMPRESAS RESPONSABLES</a>
-            <a href="/PRODCONS/PI2do/inicio_sesion/logout.php" class="link-login">CERRAR SESIÓN</a>
-             <!-- =====================================================================
-                SELECTOR DE BANDERA PARA CAMBIO DE IDIOMA - PERSONALIZABLE
-                Estos elementos controlan la selección de idioma en la página principal
-                ===================================================================== -->
-                <!-- Bandera principal visible - Puedes cambiar la imagen por defecto aquí -->
-                <div id="idiomaToggle">
-<img class="españa" id="banderaIdioma" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
+                <a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.php'>EMPRESAS RESPONSABLES</a>
+                <a href="/PRODCONS/PI2do/inicio_sesion/logout.php" class="link-login">CERRAR SESIÓN</a>
+                <div id="idiomaToggle" style="display: inline-block; margin-left: 10px;">
+                    <img class="españa" id="banderaIdioma" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" alt="Idioma" onclick="alternarIdioma()">
                 </div>
-                <!-- Opciones de banderas desplegables - Puedes cambiar las imágenes aquí -->
-                <div id="idiomasOpciones">
-<img class="ingles" src="/PRODCONS/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés">
-<img class="españa" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español">
+                <!-- Opciones de banderas desplegables -->
+                <div id="idiomasOpciones" style="display: none;">
+                    <img class="ingles" src="/PRODCONS/PI2do/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
+                    <img class="españa" src="/PRODCONS/PI2do/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid black; cursor: pointer; margin-left: 5px;">
                 </div>
             </div>
         </div>
@@ -434,31 +432,7 @@ $conexion->cerrar_conexion();
         }
     </style>
 
-    <script>
-function updateIdiomaButtonText(lang) {
-    const btnIdioma = document.getElementById('btnIdioma');
-    if (!btnIdioma) return;
-    if (lang === 'es') {
-        btnIdioma.textContent = 'IDIOMA';
-    } else if (lang === 'en') {
-        btnIdioma.textContent = 'LANGUAGE';
-    }
-}
-
-document.getElementById('btnIdioma').addEventListener('click', function() {
-    const currentLang = localStorage.getItem('preferredLanguage') || 'es';
-    const newLang = currentLang === 'es' ? 'en' : 'es';
-    localStorage.setItem('preferredLanguage', newLang);
-    translateContent(newLang);
-    updateIdiomaButtonText(newLang);
-});
-
-// Update button text on page load based on saved language
-document.addEventListener('DOMContentLoaded', function() {
-    const savedLanguage = localStorage.getItem('preferredLanguage') || 'es';
-    updateIdiomaButtonText(savedLanguage);
-});
-</script>
+    
 
     <section class="logo">
         <div class="header_2">
@@ -484,16 +458,6 @@ document.addEventListener('DOMContentLoaded', function() {
     </section>
 
     <script>
-        
-        // =====================================================================
-        // FUNCIONES DE CONTROL DE IDIOMA - MODIFICAR CON PRECAUCIÓN
-        // =====================================================================
-        
-        /**
-         * Función para alternar entre idiomas al hacer clic en la bandera principal
-         * Esta función cambia la imagen de la bandera y realiza la traducción
-         * MODIFICAR SOLO si necesitas cambiar la apariencia o comportamiento
-         */
         function alternarIdioma() {
             const bandera = document.getElementById('banderaIdioma');
             const idiomaActual = bandera.src.includes('ingles.png') ? 'ingles' : 'espanol';
@@ -504,23 +468,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 ? '/PRODCONS/PI2do/imagenes/logos/ingles.png' // Ruta a la imagen de la bandera inglesa
                 : '/PRODCONS/PI2do/imagenes/logos/espanol.png'; // Ruta a la imagen de la bandera española
             
-            // Realizar la traducción - NO MODIFICAR esta línea
-            translateContent(nuevoIdioma === 'ingles' ? 'en' : 'es');
+            // Realizar la traducción
+            translateContent(nuevoIdioma);
             
-            // Guardar la preferencia en localStorage - NO MODIFICAR esta línea
+            // Guardar la preferencia en localStorage
             localStorage.setItem('preferredLanguage', nuevoIdioma === 'ingles' ? 'en' : 'es');
         }
 
-        // Cargar el idioma guardado al iniciar la página - NO MODIFICAR
+        // Cargar el idioma guardado al iniciar la página
         document.addEventListener('DOMContentLoaded', function() {
-            const savedLanguage = localStorage.getItem('preferredLanguage');
-            if (savedLanguage) {
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'es';
             const bandera = document.getElementById('banderaIdioma');
-            bandera.src = savedLanguage === 'en' 
-                    ? '/PRODCONS/PI2do/imagenes/logos/ingles.png' 
-                    : '/PRODCONS/PI2do/imagenes/logos/espanol.png';
+            bandera.src = savedLanguage === 'en'
+                ? '/PRODCONS/PI2do/imagenes/logos/ingles.png'
+                : '/PRODCONS/PI2do/imagenes/logos/espanol.png';
+            bandera.setAttribute('data-idioma', savedLanguage);
             translateContent(savedLanguage);
-            }
         });
 </script>
 
@@ -546,47 +509,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
     </section>
-
-    <script>
-        
-        // =====================================================================
-        // FUNCIONES DE CONTROL DE IDIOMA - MODIFICAR CON PRECAUCIÓN
-        // =====================================================================
-        
-        /**
-         * Función para alternar entre idiomas al hacer clic en la bandera principal
-         * Esta función cambia la imagen de la bandera y realiza la traducción
-         * MODIFICAR SOLO si necesitas cambiar la apariencia o comportamiento
-         */
-        function alternarIdioma() {
-            const bandera = document.getElementById('banderaIdioma');
-            const idiomaActual = bandera.src.includes('ingles.png') ? 'ingles' : 'espanol';
-            const nuevoIdioma = idiomaActual === 'ingles' ? 'espanol' : 'ingles';
-            
-            // Cambiar la imagen de la bandera - Puedes modificar las rutas si cambias las imágenes
-            bandera.src = nuevoIdioma === 'ingles' 
-                ? '/PRODCONS/PI2do/imagenes/logos/ingles.png' // Ruta a la imagen de la bandera inglesa
-                : '/PRODCONS/PI2do/imagenes/logos/espanol.png'; // Ruta a la imagen de la bandera española
-            
-            // Realizar la traducción - NO MODIFICAR esta línea
-            translateContent(nuevoIdioma === 'ingles' ? 'en' : 'es');
-            
-            // Guardar la preferencia en localStorage - NO MODIFICAR esta línea
-            localStorage.setItem('preferredLanguage', nuevoIdioma === 'ingles' ? 'en' : 'es');
-        }
-        
-        // Cargar el idioma guardado al iniciar la página - NO MODIFICAR
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedLanguage = localStorage.getItem('preferredLanguage');
-            if (savedLanguage) {
-                const bandera = document.getElementById('banderaIdioma');
-                bandera.src = savedLanguage === 'en' 
-                    ? '/PRODCONS/PI2do/imagenes/logos/ingles.png' 
-                    : '/PRODCONS/PI2do/imagenes/logos/espanol.png';
-            translateContent(savedLanguage);
-            }
-        });
-    </script>
 
     <!-- Contenido principal -->
     <main class="main-content">
@@ -751,38 +673,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
 <script>
-        // Función para alternar el idioma
-        function alternarIdioma() {
-            const idiomasOpciones = document.getElementById('idiomasOpciones');
-            idiomasOpciones.style.display = idiomasOpciones.style.display === 'block' ? 'none' : 'block';
-        }
-
-        // Función para cambiar el idioma
-        function cambiarIdioma(idioma) {
-            const banderaPrincipal = document.getElementById('banderaIdioma');
-            const banderaIngles = document.querySelector('.ingles');
-            const banderaEspana = document.querySelector('.españa');
-            
-            if (banderaPrincipal) {
-                banderaPrincipal.src = idioma === 'ingles' 
-                    ? "/PRODCONS/PI2do/imagenes/logos/ingles.png" 
-                    : "/PRODCONS/PI2do/imagenes/logos/espanol.png";
-            }
-            
-            if (banderaIngles && banderaEspana) {
-                banderaIngles.style.display = idioma === 'espanol' ? 'none' : 'block';
-                banderaEspana.style.display = idioma === 'espanol' ? 'block' : 'none';
-            }
-            
-            currentLanguage = idioma === 'ingles' ? 'en' : 'es';
-            translateContent(currentLanguage);
-            
-            const opciones = document.getElementById('idiomasOpciones');
-            if (opciones) {
-                opciones.style.display = 'none';
-            }
-        }
-
         // Código para el carrusel
         document.addEventListener('DOMContentLoaded', function() {
             const carousel = document.querySelector('.carousel');
@@ -976,6 +866,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
     <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/footer/footer/footer.php'; ?>
+    <script src="/PRODCONS/translate.js"></script>
     <script src="/PRODCONS/carousel.js"></script>
     <script src='/PRODCONS/Header_visitantes/barra_principal.js'></script>
 

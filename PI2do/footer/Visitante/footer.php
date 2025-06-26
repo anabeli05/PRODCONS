@@ -11,16 +11,31 @@
         
         <!-- Columna 3: Enlaces legales -->
         <div class="footer2" style="flex:1; margin:15px; min-width:100px;">
-            <ul class="ulfooter">
-                <li><a class="lf af" href='/PRODCONS/footer/parafooter/AvisoPriv/avisospriv.php'>Avisos De Privacidad</a></li>
-                <li><a class="lf af" href='/PRODCONS/footer/parafooter/politicas/politica.php'>Política De Sostenibilidad</a></li> 
-                <li><a class="lf af" href='/PRODCONS/footer/parafooter/term-condi/term-condi.php'>Términos Y Condiciones</a></li> 
+            <ul class="ulfooter" style="list-style:none; padding:0; margin:0;">
+                <li style="margin-bottom:10px;" data-no-translate>
+                    <a href='/PRODCONS/footer/parafooter/AvisoPriv/avisospriv.php' data-no-translate>
+                        <span>Avisos De Privacidad</span>
+                        <i class="lf af"></i>
+                    </a>
+                </li>
+                <li style="margin-bottom:10px;" data-no-translate>
+                    <a href='/PRODCONS/footer/parafooter/politicas/politica.php' data-no-translate>
+                        <span>Política De Sostenibilidad</span>
+                        <i class="lf af"></i>
+                    </a>
+                </li>
+                <li data-no-translate>
+                    <a href='/PRODCONS/footer/parafooter/term-condi/term-condi.php' data-no-translate>
+                        <span>Términos Y Condiciones</span>
+                        <i class="lf af"></i>
+                    </a>
+                </li>
             </ul>
         </div>
         
         <!-- Columna 4: Correo -->
         <div class="footer3" style="flex:1; margin:0 15px 0 15px; min-width:100px; line-height:15px; margin-top:-50px; display:flex; flex-direction:column; align-items:flex-end; margin-right:40px; padding-right:15px;">
-            <p class="cfooter" style="font-size:15px; text-align:right; font-family:Georgia; margin-bottom:15px; font-weight:normal; color:#fbfbfb;">prodcons@gmail.com</p>
+            <p class="cfooter" style="font-size:15px; text-align:right; font-family:Georgia; margin-bottom:15px; font-weight:normal; color:#fbfbfb;">prodcons.blog@gmail.com</p>
             <p style="font-size:14px; color:#fbfbfb; margin-top:10px; text-align:right; font-family:Georgia; font-weight:normal;">Suscríbete Con Nosotros</p>
         </div>
     </div>
