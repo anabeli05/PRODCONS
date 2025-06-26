@@ -375,6 +375,7 @@ $conexion->cerrar_conexion();
         <div class="header-contenedor">
             <div class="principal">
 <a class="navlink" href='/PRODCONS/PI2do/empresas_responsables/empresasr.php'>EMPRESAS RESPONSABLES</a>
+    <span class="usuario-text">USUARIO</span>
             <a href="/PRODCONS/PI2do/inicio_sesion/logout.php" class="link-login">CERRAR SESIÓN</a>
              <!-- =====================================================================
                 SELECTOR DE BANDERA PARA CAMBIO DE IDIOMA - PERSONALIZABLE
@@ -394,6 +395,17 @@ $conexion->cerrar_conexion();
     </header>
 
 <style>
+    .usuario-text {
+    color: #000000; /* Negro puro */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    text-decoration: none;
+    cursor: default;
+    text-transform: uppercase;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
 .link-login {
     color: #000000; /* Negro */
     font-weight: bold;
