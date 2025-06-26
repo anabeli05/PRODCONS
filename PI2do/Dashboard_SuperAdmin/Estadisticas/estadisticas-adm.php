@@ -37,8 +37,6 @@ try {
     $resultPosts = $stmt->get_result();
     $totalPosts = $resultPosts->fetch_assoc()['total'];
     
-
-    
     // Total de likes
     $sqlLikes = "SELECT COUNT(*) as total_likes FROM likes";
     $conexion->sentencia = $sqlLikes;
@@ -55,7 +53,7 @@ try {
     $resultComentarios = $stmt->get_result();
     $totalComentarios = $resultComentarios->fetch_assoc()['total_comentarios'];
     
-    // Obtener posts más populares (clasificados por likes)
+    // Obtener posts más populares por likes
     try {
         // Verificar columnas de la tabla likes
         $sqlColumns = "SHOW COLUMNS FROM likes";
@@ -77,7 +75,7 @@ try {
             throw new Exception("No se encontró la columna del ID del artículo en la tabla likes");
         }
         
-        // Obtener todos los posts con sus likes
+        // Obtener posts más populares
         $sqlPopulares = "SELECT a.Titulo as titulo, COALESCE(l.likes, 0) as likes
                          FROM articulos a
                          LEFT JOIN (
@@ -92,7 +90,6 @@ try {
         $postsPopulares = $resultPopulares->fetch_all(MYSQLI_ASSOC);
     } catch (Exception $e) {
         error_log("Error al obtener posts populares: " . $e->getMessage());
-        // Si hay error, usar datos de ejemplo
         $postsPopulares = array(
             array('titulo' => 'Post de ejemplo 1', 'likes' => 0)
         );
@@ -114,13 +111,15 @@ try {
     <title>PRODCONS - Estadísticas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="estadisticas-adm.css" />
+    <link rel="stylesheet" href="../../Dashboard_SuperAdmin/Dashboard/sidebar.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../Dashboard_SuperAdmin/Dashboard/barra-nav-copy.js" defer></script>
     <style>
         .chart-wrapper {
             width: 100%;
             max-width: 800px;
             margin: 0 auto;
         }
-
         .bar-label {
             display: flex;
             align-items: center;
@@ -129,17 +128,12 @@ try {
             background: #f8f9fa;
             border-radius: 8px;
         }
-
         .bar-title {
             flex: 1;
             font-weight: bold;
             color: #333;
             margin-right: 20px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
-
         .bar-container {
             flex: 2;
             height: 20px;
@@ -147,55 +141,36 @@ try {
             border-radius: 4px;
             overflow: hidden;
         }
-
         .bar {
             height: 100%;
             background: #007bff;
             transition: width 0.3s ease;
-            border-radius: 4px;
-        }
-
-        .bar-label .bar-title {
-            min-width: 200px;
-        }
-
-        .bar-label .bar-container {
-            min-width: 400px;
         }
     </style>
-    <link rel="stylesheet" href="../../Dashboard_SuperAdmin/Dashboard/sidebar.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../../Dashboard_SuperAdmin/Dashboard/barra-nav-copy.js" defer></script>
 </head>
 <body>
     <section class="logo"> 
-    <?php include('../../Dashboard_SuperAdmin/Dashboard/sidebar.php'); ?>
+        <?php include('../../Dashboard_SuperAdmin/Dashboard/sidebar.php'); ?>
     </section>
 
     <div class="contenedor-estadisticas">
         <div class="titulo-estadisticas"><h1>Estadísticas Generales</h1></div>
-        
         <section class="statistics">
             <div class="stat">
                 <h1><i class="fas fa-file-alt"></i> Posts</h1>
-                <p class="stat-number"><?php echo isset($totalPosts) ? number_format($totalPosts, 0, ',', '.') : '0'; ?></p>
+                <p class="stat-number"><?php echo number_format($totalPosts, 0, ',', '.'); ?></p>
             </div>
-
-
-
             <div class="stat">
                 <h1><i class="fas fa-heart" style="color: #e4405f;"></i> Likes</h1>
-                <p class="stat-number"><?php echo isset($totalLikes) ? number_format($totalLikes, 0, ',', '.') : '0'; ?></p>
+                <p class="stat-number"><?php echo number_format($totalLikes, 0, ',', '.'); ?></p>
             </div>
-
             <div class="stat">
                 <h1><i class="fas fa-comment"></i> Comentarios</h1>
-                <p class="stat-number"><?php echo isset($totalComentarios) ? number_format($totalComentarios, 0, ',', '.') : '0'; ?></p>
+                <p class="stat-number"><?php echo number_format($totalComentarios, 0, ',', '.'); ?></p>
             </div>
         </section>
 
         <div class="titulo-estadisticas"><h1>Posts Populares</h1></div>
-        
         <div class="contenedor-ok">
             <section class="chart">
                 <div class="chart-wrapper">
@@ -205,10 +180,7 @@ try {
                                 <div class="bar-label">
                                     <div class="bar-title"><?php echo htmlspecialchars($post['titulo']); ?></div>
                                     <div class="bar-container">
-                                        <div class="bar bar<?php echo $index + 1; ?>" 
-                                             style="width: <?php echo min(100, ($post['likes'] / max(array_column($postsPopulares, 'likes'))) * 100); ?>%"
-                                             data-label="<?php echo number_format($post['likes'], 0, ',', '.'); ?>"
-                                             data-views="<?php echo $post['likes']; ?>">
+                                        <div class="bar" style="width: <?php echo min(100, ($post['likes'] / max(array_column($postsPopulares, 'likes'))) * 100); ?>%">
                                         </div>
                                     </div>
                                 </div>
@@ -221,44 +193,5 @@ try {
             </section>
         </div>
     </div>
-
-    <script>
-        // Gráfico de posts populares
-        const ctxPostsPopulares = document.getElementById('postsPopularesChart').getContext('2d');
-        new Chart(ctxPostsPopulares, {
-            type: 'bar',
-            data: {
-                labels: <?php echo json_encode(array_column($postsPopulares, 'titulo')); ?>,
-                datasets: [{
-                    label: 'Likes',
-                    data: <?php echo json_encode(array_column($postsPopulares, 'likes')); ?>,
-                    backgroundColor: '#2196F3',
-                    borderColor: '#1976D2',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            precision: 0
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        position: 'top'
-                    },
-                    title: {
-                        display: true,
-                        text: 'Posts con más Likes'
-                    }
-                }
-            }
-        });
-    </script>
 </body>
 </html>

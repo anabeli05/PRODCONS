@@ -48,7 +48,6 @@ try {
     <title>PRODCONS - Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="inicioSA.css">
-    <link rel="stylesheet" href="../Dashboard/sidebar.css">
     <script src='../Dashboard/barra-nav-copy.js' defer></script>
 </head>
 <body>

@@ -107,7 +107,7 @@ $conexion->cerrar_conexion();
     <link rel="stylesheet" href="/PRODCONS/styles.css">
     <link rel="stylesheet" href="/PRODCONS/footer/footer/footer.css">
     <link rel="stylesheet" href="/PRODCONS/articulos.css">
-    <link rel="stylesheet" href="/PRODCONS/PI2do/Header visitantes/barra_principal.css">
+    <link rel="stylesheet" href="/PRODCONS/PI2do/Header_visitantes/barra_principal.css">
 
     <!-- Google Cloud Translation API -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
@@ -977,7 +977,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/footer/footer/footer.php'; ?>
     <script src="/PRODCONS/carousel.js"></script>
-    <script src='/PRODCONS/Header visitantes/barra_principal.js'></script>
+    <script src='/PRODCONS/Header_visitantes/barra_principal.js'></script>
 
 </body>
 </html>

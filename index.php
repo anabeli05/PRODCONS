@@ -46,27 +46,6 @@
 
 <body>
 
-    <!-- Header principal -->
-    <header>
-        <div class="logo">
-            <img src="PI2do/imagenes/prodcon/logoSinfondo.png" alt="Logo PRODCONS">
-        </div>
-        <nav>
-            <ul>
-                <li><a href='/PRODCONS/PI2do/pr/produccionr.php'>PRODUCCIÓN RESPONSABLE</a></li>
-                <li><a href='/PRODCONS/PI2do/cr/consumores.php'>CONSUMO RESPONSABLE</a></li>
-            </ul>
-        </nav>
-        <div class="search-container">
-            <form class="search-form">
-                <button class="lupa">
-                    <img src="PI2do/Header_visitantes/lupa.png" alt="Buscar">
-                </button>
-                <input type="search" placeholder="Buscar...">
-            </form>
-        </div>
-    </header>
-
     <!-- Botón hamburguesa (solo en móviles) -->
     <div class="hamburger-icon" onclick="toggleMenu()">☰</div>
 
@@ -81,7 +60,7 @@
 
       <!-- Opciones del menú -->
       <ul>
-<a href='/PRODCONS/PI2do/pr/produccionr.php'>PRODUCCIÓN RESPONSABLE</a>
+        <a href='/PRODCONS/PI2do/pr/produccionr.php'>PRODUCCIÓN RESPONSABLE</a>
         <a href='/PRODCONS/PI2do/cr/consumores.php'>CONSUMO RESPONSABLE</a>
          <li>
           <form>
@@ -220,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <img class="prodcons" src='/PRODCONS/PI2do/imagenes/prodcon/logoSinfondo.png' alt="Logo">
 
             <div class="subtitulos">
-<a href='/PRODCONS/PI2do/pr/produccionr.php'>PRODUCCIÓN RESPONSABLE</a>
+                <a href='/PRODCONS/PI2do/pr/produccionr.php'>PRODUCCIÓN RESPONSABLE</a>
                 <a href='/PRODCONS/PI2do/cr/consumores.php'>CONSUMO RESPONSABLE</a>
 
                 <form class="search-form">
