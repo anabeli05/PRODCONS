@@ -131,43 +131,40 @@ try {
                 </div>
                 
                 <nav class="sidebar-menu">
-
-                <a href='../inicio/inicio.php'><!----cambiar la ruta a inicio---->
-                        <span>Inicio</span>
+                    <a href='../inicio/inicio.php' data-no-translate>
+                            <span>Inicio</span>
                         <i class="fas fa-file-alt"></i>
                     </a>
-
-                <a href='../MisArticulos/mis-articulos.php'>
+                    
+                    <a href='../MisArticulos/mis-articulos.php' data-no-translate>
                         <span>Mis Artículos</span>
                         <i class="fas fa-file-alt"></i>
                     </a>
-
-                    <a href="../Crear nuevo post/post-form.html">
+                    
+                    <a href="../Crear nuevo post/formulario-new-post.php" data-no-translate>
                         <span>Crear Post</span>
                         <i class="fas fa-edit"></i>
                     </a>
 
-                    <a href='../PostPlaneados/post-planeados.php'>
+                    <a href='../PostPlaneados/post-planeados.php' data-no-translate>
                         <span>Post Planeados</span>
                         <i class="fas fa-calendar"></i>
                     </a>
                                         
-                    <a href='../Estadisticas/estadisticas-adm.php'>
+                    <a href='../Estadisticas/estadisticas-adm.php' data-no-translate>
                         <span>Estadísticas</span>
                         <i class="fas fa-chart-bar"></i>
                     </a>
                     
-                    <a href='../Configuracion/configuracion.php'>
+                    <a href='../Configuracion/configuracion.php' data-no-translate>
                         <span>Configuración</span>
                         <i class="fas fa-cog"></i>
                     </a>
-                
-                <div class="sidebar-footer">
-                    <a href='../../inicio_sesion/logout.php' class="logout-btn">
-                        Cerrar Sesión
+                    
+                    <a href='../../inicio_sesion/logout.php' class="logout-btn" data-no-translate>
+                        <span>Cerrar Sesión</span>
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
-                </div>
                 </nav>
             </div>
         </div>
@@ -223,7 +220,7 @@ try {
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
-                <a href="../cambiar contraseña/cambiar.php" class="text-[15px] text-black hover:underline">Cambiar Contraseña</a>
+                <a href="../cambiar_contraseña/cambiar.php" class="text-[15px] text-black hover:underline">Cambiar Contraseña</a>
             </div>
         </div>
 
