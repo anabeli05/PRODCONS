@@ -2938,3 +2938,21 @@ DEBUG: Correo recibido: xiomicob2005@outlook.com
 DEBUG: Contraseña recibida: Prodcons12345
 DEBUG: Clase Contacto cargada
 DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-07-03 15:29:35 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-07-03 15:29:44 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: rvuelvas@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12345
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado
+--- Nuevo Log de Sesión: 2025-07-03 15:35:25 ---
+DEBUG: Iniciando proceso de login
+DEBUG: Error message: None
+--- Nuevo Log de Sesión: 2025-07-03 15:35:47 ---
+DEBUG: Botón de ingreso presionado
+DEBUG: Correo recibido: rvuelvas@ucol.mx
+DEBUG: Contraseña recibida: Prodcons12345
+DEBUG: Clase Contacto cargada
+DEBUG: Objeto Contacto creado

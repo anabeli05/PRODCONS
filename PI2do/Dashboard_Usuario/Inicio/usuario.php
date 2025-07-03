@@ -337,7 +337,7 @@ $conexion->cerrar_conexion();
     <section class="carrusel-destacado">
         <?php 
         // Incluir el archivo de conexión
-        require_once __DIR__ . '/PI2do/Base de datos/conexion.php';
+        require_once __DIR__ . '/../../Base de datos/conexion.php';
         
         // Inicializar la conexión a la base de datos
         $conexion = new Conexion();
@@ -352,26 +352,49 @@ $conexion->cerrar_conexion();
                                LEFT JOIN imagenes_articulos ia ON a.ID_Articulo = ia.Articulo_ID
                                WHERE a.Estado = 'Publicado' 
                                GROUP BY a.ID_Articulo
-                               ORDER BY a.`Fecha de Publicacion` DESC");
+                               ORDER BY a.`Fecha de Publicacion` DESC") or die("Error en la preparación de la consulta del carrusel: " . $conn->error);
 
-        if (!$stmt_carousel) {
-            die("Error en la preparación de la consulta del carrusel: " . $conn->error);
-        }
-                                            $mes_espanol = traducirMesEspanol($mes_ingles);
-                                            $año = date('Y', $fecha_timestamp);
-                                            echo htmlspecialchars("$dia de $mes_espanol de $año");
-                                        } else {
-                                            echo "Fecha desconocida";
-                                        }
-                                    ?></span>
-                                    <span> | Por   <?= htmlspecialchars($pub['autor_nombre'] ?? '') ?></span>
+        $stmt_carousel->execute();
+        $result_carousel = $stmt_carousel->get_result();
+        $carousel_items = $result_carousel->fetch_all(MYSQLI_ASSOC);
+
+        if (!empty($carousel_items)): ?>
+            <div class="carousel-container">
+                <div class="carousel" id="carousel">
+                    <?php foreach ($carousel_items as $pub):
+                        $fecha = $pub['Fecha de Publicacion'] ?? null;
+                        if ($fecha) {
+                            $fecha_timestamp = strtotime($fecha);
+                            $dia = date('d', $fecha_timestamp);
+                            $mes_ingles = date('F', $fecha_timestamp);
+                            $mes_espanol = traducirMesEspanol($mes_ingles);
+                            $año = date('Y', $fecha_timestamp);
+                            $fecha_formateada = htmlspecialchars("$dia de $mes_espanol de $año");
+                        } else {
+                            $fecha_formateada = "Fecha desconocida";
+                        }
+                        ?>
+                        <div class="carousel-item">
+                            <article class="post">
+                                <div class="post-header">
+                                    <img src="<?= htmlspecialchars($pub['Ruta_Imagen'] ?? '') ?>" alt="<?= htmlspecialchars($pub['Titulo'] ?? '') ?>" class="post-img">
+                                </div>
+                                <div class="post-content">
+                                    <h2><?= htmlspecialchars($pub['Titulo'] ?? '') ?></h2>
+                                    <div class="post-meta">
+                                        <span><?= $fecha_formateada ?></span>
+                                        <span> | Por <?= htmlspecialchars($pub['autor_nombre'] ?? '') ?></span>
+                                    </div>
+                                    <div class="post-buttons">
+                                        <a href="/PRODCONS/PI2do/postWeb/ver-articulo-usuario.php?ID_Articulo=<?= htmlspecialchars($pub['ID_Articulo']) ?>" class="leer-mas">Leer más</a>
+                                    </div>
                                 </div>
                             </article>
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <button class="prev" aria-label="Publicación anterior">‹</button>
-                <button class="next" aria-label="Publicación siguiente">›</button>
+                <button class="carousel-control prev" aria-label="Publicación anterior">‹</button>
+                <button class="carousel-control next" aria-label="Publicación siguiente">›</button>
             </div>
         <?php else: ?>
             <div class="no-posts">
@@ -385,7 +408,7 @@ $conexion->cerrar_conexion();
     </section>
 
     </main>
-    <script src='PI2do/Carrusel/carrusel.js'></script>
+    <script src='/PRODCONS/PI2do/Carrusel/carrusel.js'></script>
     <h3 class="apubli"> MIRA MAS DE NUESTRO CONTENIDO </h3>
 
     <section class="post-list">

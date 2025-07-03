@@ -27,6 +27,8 @@
 					throw new Exception("Error de conexión: " . $this->conexion->connect_error);
 				}
                 // DEBUG: Conexión exitosa a la base de datos
+				//hi aniampaluresemejor gracia
+				//????
 				$this->conexion->set_charset("utf8");
 			} catch (Exception $e) {
                 // DEBUG: Excepción en la conexión: " . $e->getMessage() . "
