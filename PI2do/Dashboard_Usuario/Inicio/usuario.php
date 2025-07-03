@@ -66,7 +66,7 @@ $stmt_carousel = $conn->prepare("SELECT a.*, u.Nombre as autor_nombre,
                                LEFT JOIN imagenes_articulos ia ON a.ID_Articulo = ia.Articulo_ID
                                WHERE a.Estado = 'Publicado' 
                                GROUP BY a.ID_Articulo
-                               ORDER BY a.`Fecha de Publicacion` DESC LIMIT 3");
+                               ORDER BY a.`Fecha de Publicacion` DESC");
 
 if (!$stmt_carousel) {
     die("Error en la preparación de la consulta del carrusel: " . $conn->error);
@@ -108,7 +108,6 @@ $conexion->cerrar_conexion();
     <link rel="stylesheet" href="/PRODCONS/footer/footer/footer.css">
     <link rel="stylesheet" href="/PRODCONS/articulos.css">
     <link rel="stylesheet" href="/PRODCONS/PI2do/Header_visitantes/barra_principal.css">
-    <script src="/PRODCONS/carousel.js"></script>
     <link rel="stylesheet" href="/PRODCONS/PI2do/Carrusel/carrusel.css">
     <link rel="stylesheet" href="/PRODCONS/PI2do/pr/stylesprodr.css">
 
@@ -130,193 +129,6 @@ $conexion->cerrar_conexion();
         
         #banderaIdioma:hover {
             transform: scale(1.1);
-        }
-        
-        .carrusel-destacado {
-            width: 100%;
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            position: relative;
-        }
-
-        .carousel-container {
-            width: 100%;
-        }
-
-        .carousel {
-            display: flex;
-            gap: 20px;
-            transition: transform 0.5s ease-in-out;
-            flex-wrap: nowrap;
-        }
-
-        .carousel-item {
-            flex: 0 0 100%;
-            min-width: 100%;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            margin: 0;
-        }
-
-        .post-header {
-            margin-bottom: 20px;
-        }
-
-        .post-header img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            object-fit: cover;
-        }
-
-        .post-body h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #040404;
-            font-family: Georgia, serif;
-        }
-
-        .descripcion {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #333333;
-            font-family: Georgia, serif;
-        }
-
-        .post-footer {
-            display: flex;
-            align-items: center;
-            color: #333333;
-            font-size: 14px;
-            font-family: Georgia, serif;
-            margin-top: 20px;
-        }
-
-        .post-footer span {
-            margin-right: 10px;
-            font-weight: bold;
-        }
-
-        .prev, .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: white;
-            border: none;
-            padding: 15px;
-            cursor: pointer;
-            font-size: 24px;
-            transition: background 0.3s;
-        }
-
-        .prev:hover, .next:hover {
-            background: rgba(0,0,0,0.7);
-        }
-
-        .prev {
-            left: 20px;
-        }
-
-        .next {
-            right: 20px;
-        }
-
-        .no-posts {
-            text-align: center;
-            padding: 40px;
-            color: #333333;
-            font-family: Georgia, serif;
-        }
-        
-        /* Estilos para los botones de interacción */
-        .post-actions {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .interaction-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .like-button-small,
-        .comment-toggle-small {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 5px 10px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #666;
-        }
-
-        .like-button-small:hover,
-        .comment-toggle-small:hover {
-            color: #000;
-            transform: scale(1.1);
-        }
-
-        .post-link {
-            padding: 8px 16px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 20px;
-            transition: background-color 0.3s ease;
-            font-weight: bold;
-        }
-
-        .post-link:hover {
-            background-color: #45a049;
-        }
-
-        /* Estilos para la sección de comentarios */
-        .comments-section {
-            margin-top: 15px;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .add-comment {
-            margin-top: 10px;
-        }
-        
-        .add-comment textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            resize: vertical;
-            min-height: 60px;
-        }
-        
-        .add-comment button {
-            padding: 8px 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-weight: bold;
-        }
-        
-        .add-comment button:hover {
-            background-color: #45a049;
-        }
-
-        .existing-comments {
-            margin-bottom: 15px;
         }
     </style>
 
@@ -521,64 +333,59 @@ $conexion->cerrar_conexion();
         <img class="imagen-principal" src="/PRODCONS/PI2do/imagenes/tractor.png" alt="Imagen Principal">
     </div>
 
-<!-- Carrusel destacado -->
-<section class="carrusel-destacado">
-    <?php 
-    // Usar la consulta que ya obtuvo todas las publicaciones
-    if (!empty($publicaciones_carousel_all)): ?>
-        <div class="carousel-container">
-            <div class="carousel">
-                <?php foreach ($publicaciones_carousel_all as $pub): 
-                    $article_id = isset($pub['ID_Articulo']) ? (int)$pub['ID_Articulo'] : 0;
-                    $imagenes = explode(',', $pub['imagenes'] ?? '');
-                    $imagen_principal = !empty($imagenes) ? $imagenes[0] : '/PRODCONS/PI2do/imagenes/default-post.jpg';
-                ?>
-                    <article class="carousel-item post" data-post-id="<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>">
-                        <div class="post-header">
-                            <img src="<?php echo htmlspecialchars($imagen_principal); ?>" 
-                                 alt="<?php echo htmlspecialchars($pub['Titulo'] ?? ''); ?>" 
-                                 class="post-img">
-                        </div>
-                        <div class="post-body">
-                            <h2><?php echo htmlspecialchars($pub['Titulo'] ?? ''); ?></h2>
-                            <p class="descripcion">
-                                <?php 
-                                $contenido = htmlspecialchars($pub['Contenido'] ?? '');
-                                if (strlen($contenido) > 100) {
-                                    $contenido = substr($contenido, 0, 401) . '...';
-                                }
-                                echo $contenido;
-                                ?>
-                            </p>
-                            <a href="/PRODCONS/PI2do/postWeb/ver-articulo-usuario.php?ID_Articulo=<?php echo htmlspecialchars($pub['ID_Articulo'] ?? ''); ?>" class="post-link">Leer más...</a>
-                            <span>Publicado el <?php 
-                                $fecha_timestamp = strtotime($pub['Fecha de Publicacion'] ?? '');
-                                if ($fecha_timestamp !== false) {
-                                    $dia = date('d', $fecha_timestamp);
-                                    $mes_ingles = date('F', $fecha_timestamp);
-                                    $mes_espanol = traducirMesEspanol($mes_ingles);
-                                    $año = date('Y', $fecha_timestamp);
-                                    echo htmlspecialchars("$dia de $mes_espanol de $año");
-                                } else {
-                                    echo "Fecha desconocida";
-                                }
-                            ?></span>
-                            <span> | Por <?php echo htmlspecialchars($pub['autor_nombre'] ?? ''); ?></span>
-                        </div>
-                    </article>
-                <?php endforeach; ?>
-            </div>
-            <button class="prev" aria-label="Publicación anterior">‹</button>
-            <button class="next" aria-label="Publicación siguiente">›</button>
-        </div>
-    <?php else: ?>
-        <div class="no-posts">
-            <p>No hay publicaciones disponibles en este momento. ¡Vuelve pronto!</p>
-        </div>
-    <?php endif; ?>
-</section>                    </div>
-</section>
+    <!-- Carrusel destacado -->
+    <section class="carrusel-destacado">
+        <?php 
+        // Incluir el archivo de conexión
+        require_once __DIR__ . '/PI2do/Base de datos/conexion.php';
+        
+        // Inicializar la conexión a la base de datos
+        $conexion = new Conexion();
+        $conexion->abrir_conexion();
+        $conn = $conexion->conexion;
 
+        // Consulta para el carrusel 
+        $stmt_carousel = $conn->prepare("SELECT a.*, u.Nombre as autor_nombre, 
+                               GROUP_CONCAT(ia.Url_Imagen) as imagenes
+                               FROM articulos a 
+                               JOIN usuarios u ON a.Usuario_ID = u.Usuario_ID 
+                               LEFT JOIN imagenes_articulos ia ON a.ID_Articulo = ia.Articulo_ID
+                               WHERE a.Estado = 'Publicado' 
+                               GROUP BY a.ID_Articulo
+                               ORDER BY a.`Fecha de Publicacion` DESC");
+
+        if (!$stmt_carousel) {
+            die("Error en la preparación de la consulta del carrusel: " . $conn->error);
+        }
+                                            $mes_espanol = traducirMesEspanol($mes_ingles);
+                                            $año = date('Y', $fecha_timestamp);
+                                            echo htmlspecialchars("$dia de $mes_espanol de $año");
+                                        } else {
+                                            echo "Fecha desconocida";
+                                        }
+                                    ?></span>
+                                    <span> | Por   <?= htmlspecialchars($pub['autor_nombre'] ?? '') ?></span>
+                                </div>
+                            </article>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <button class="prev" aria-label="Publicación anterior">‹</button>
+                <button class="next" aria-label="Publicación siguiente">›</button>
+            </div>
+        <?php else: ?>
+            <div class="no-posts">
+                <p>No hay publicaciones destacadas disponibles en este momento.</p>
+            </div>
+        <?php endif; ?>
+        <?php 
+        // Close the database connection
+        $conexion->cerrar_conexion();
+        ?>
+    </section>
+
+    </main>
+    <script src='PI2do/Carrusel/carrusel.js'></script>
     <h3 class="apubli"> MIRA MAS DE NUESTRO CONTENIDO </h3>
 
     <section class="post-list">
@@ -673,31 +480,6 @@ $conexion->cerrar_conexion();
             </div>
 
 <script>
-        // Código para el carrusel
-        document.addEventListener('DOMContentLoaded', function() {
-            const carousel = document.querySelector('.carousel');
-            const prev = document.querySelector('.prev');
-            const next = document.querySelector('.next');
-            let currentSlide = 0;
-
-            function slideTo(index) {
-                if (index < 0) {
-                    currentSlide = carousel.children.length - 1;
-                } else if (index >= carousel.children.length) {
-                    currentSlide = 0;
-                } else {
-                    currentSlide = index;
-                }
-                carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-            }
-
-            prev.addEventListener('click', () => slideTo(currentSlide - 1));
-            next.addEventListener('click', () => slideTo(currentSlide + 1));
-
-            // Cambiar automáticamente cada 5 segundos
-            setInterval(() => slideTo(currentSlide + 1), 5000);
-        });
-
         // Script para activar/desactivar la barra de búsqueda
         const btnLupa = document.getElementById('btnLupa');
         const barraBusqueda = document.getElementById('barraBusqueda');
