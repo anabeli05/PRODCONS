@@ -15,21 +15,21 @@
 
 		public function abrir_conexion(){
 			try {
-                echo "DEBUG: Intentando conectar a la base de datos...<br>";
-                echo "DEBUG: Host: " . $this->host . "<br>";
-                echo "DEBUG: Puerto: " . $this->port . "<br>";
-                echo "DEBUG: Usuario: " . $this->usuario . "<br>";
-                echo "DEBUG: Base de datos: " . $this->base . "<br>";
+                // DEBUG: Intentando conectar a la base de datos...
+                // DEBUG: Host: " . $this->host . "
+                // DEBUG: Puerto: " . $this->port . "
+                // DEBUG: Usuario: " . $this->usuario . "
+                // DEBUG: Base de datos: " . $this->base . "
                 
 				$this->conexion = new mysqli($this->host, $this->usuario, $this->password, $this->base, $this->port);
 				if ($this->conexion->connect_error) {
-                    echo "DEBUG: Error de conexión: " . $this->conexion->connect_error . "<br>";
+                    // DEBUG: Error de conexión: " . $this->conexion->connect_error . "
 					throw new Exception("Error de conexión: " . $this->conexion->connect_error);
 				}
-                echo "DEBUG: Conexión exitosa a la base de datos<br>";
+                // DEBUG: Conexión exitosa a la base de datos
 				$this->conexion->set_charset("utf8");
 			} catch (Exception $e) {
-                echo "DEBUG: Excepción en la conexión: " . $e->getMessage() . "<br>";
+                // DEBUG: Excepción en la conexión: " . $e->getMessage() . "
 				error_log("Error de conexión: " . $e->getMessage());
 				throw $e;
 			}

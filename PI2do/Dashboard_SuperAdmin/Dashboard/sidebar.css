@@ -4,7 +4,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-size: 18px;
+    /*font-size: 18px;*/
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
     background: white;
@@ -50,6 +50,7 @@ html, body {
   transform: translateX(100%); /* OCULTA fuera del lado derecho */
   transition: transform 0.3s ease;
   z-index: 999;
+  font-size: 18px;
 }
 
 .sidebar.visible {
@@ -119,6 +120,7 @@ html, body {
     padding: 12px 15px;
     border-radius: 8px;
     transition: all 0.3s ease;
+    color: #333;
 }
 
 .sidebar .nav-links li a:hover,
@@ -277,6 +279,7 @@ header {
     border: none;
     cursor: pointer;
     padding: 5px;
+    font-size: 18px;
 }
 
 .notif-badge {
@@ -436,21 +439,6 @@ header {
     align-items: center;
 }
 
-/* Sección de saludo admin */
-.rec-admin {
-    position: relative;
-    width: 90%;
-    max-width: 900px;
-    height: 250px;
-    padding: 30px;
-    display: flex;
-    flex-wrap: wrap; /* Permite ajuste en pantallas pequeñas */
-    justify-content: space-between;
-    align-items: flex-start;
-    background-color: rgb(159, 217, 132);
-    border-radius: 40px;
-}
-
 /* Contenedor de texto */
 .formato-txt {
     flex: 1; /* Ocupa espacio disponible */
@@ -487,23 +475,6 @@ header {
 
 .formato-txt button:hover {
     background: rgb(20, 80, 20);
-}
-
-/* Imagen admin */
-.admin-img {
-    width: 35%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px; /* Espacio interno */
-}
-
-.admin-img img {
-    max-height: 200px; /* Altura máxima aumentada */
-    height: 280px;
-    width: auto; /* Ancho proporcional */
-    object-fit: contain;
 }
 
 /*------------ Contenedor de artículos ------------*/

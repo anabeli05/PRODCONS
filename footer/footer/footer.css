@@ -6,11 +6,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  position: relative;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   padding-bottom: 44px;
   flex-shrink: 0;
   border-top: none !important;
   box-shadow: none !important;
+  z-index: 1000;
 }
 
 .footer-container {

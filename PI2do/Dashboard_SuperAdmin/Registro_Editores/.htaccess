@@ -1,0 +1,9 @@
+Order allow,deny
+Allow from all
+Require all granted
+
+<Files "registro.php">
+    Order allow,deny
+    Allow from all
+    Require all granted
+</Files>

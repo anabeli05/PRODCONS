@@ -78,6 +78,7 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
     <link href='post-planeados.css'	 rel="stylesheet">
     <link href='../Dashboard/sidebar.css' rel="stylesheet">
     <script src='../Dashboard/barra-nav.js' defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Tailwind CSS y font -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -150,43 +151,40 @@ $dia_semana = date('w', strtotime($primer_dia)); // 0=Domingo, 1=Lunes, ...
                 </div>
                 
                 <nav class="sidebar-menu">
-
-                <a href='../inicio/inicio.php'><!----cambiar la ruta a inicio---->
-                        <span>Inicio</span>
+                    <a href='../inicio/inicio.php' data-no-translate>
+                            <span>Inicio</span>
                         <i class="fas fa-file-alt"></i>
                     </a>
-
-                <a href='../MisArticulos/mis-articulos.php'>
+                    
+                    <a href='../MisArticulos/mis-articulos.php' data-no-translate>
                         <span>Mis Artículos</span>
                         <i class="fas fa-file-alt"></i>
                     </a>
-
-                    <a href="../Crear nuevo post/post-form.html">
+                    
+                    <a href="../Crear nuevo post/formulario-new-post.php" data-no-translate>
                         <span>Crear Post</span>
                         <i class="fas fa-edit"></i>
                     </a>
 
-                    <a href='../PostPlaneados/post-planeados.php'>
+                    <a href='../PostPlaneados/post-planeados.php' data-no-translate>
                         <span>Post Planeados</span>
                         <i class="fas fa-calendar"></i>
                     </a>
                                         
-                    <a href='../Estadisticas/estadisticas-adm.php'>
+                    <a href='../Estadisticas/estadisticas-adm.php' data-no-translate>
                         <span>Estadísticas</span>
                         <i class="fas fa-chart-bar"></i>
                     </a>
                     
-                    <a href='../Configuracion/configuracion.php'>
+                    <a href='../Configuracion/configuracion.php' data-no-translate>
                         <span>Configuración</span>
                         <i class="fas fa-cog"></i>
                     </a>
-                
-                <div class="sidebar-footer">
-                    <a href='../../inicio_sesion/logout.php' class="logout-btn">
-                        Cerrar Sesión
+                    
+                    <a href='../../inicio_sesion/logout.php' class="logout-btn" data-no-translate>
+                        <span>Cerrar Sesión</span>
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
-                </div>
                 </nav>
             </div>
         </div>

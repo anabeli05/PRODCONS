@@ -120,7 +120,7 @@
     ?>
         <!-- Cuadro verde -->
         <div style="background-color: rgb(109, 151, 109);" 
-             class="w-full md:w-1/2 text-white p-8 rounded-md flex flex-col justify-center">
+            class="w-full md:w-100 text-white p-8 rounded-md flex flex-col justify-center">
             <h2 class="text-3xl font-bold mb-6 leading-tight">EL CONSUMO RESPONSABLE</h2>
             <p class="text-lg leading-relaxed">
                 El consumo responsable implica elegir productos y servicios que minimicen el impacto ambiental, fomenten la economía local y respeten los derechos de los trabajadores. Es una forma de tomar decisiones conscientes para reducir el desperdicio y promover un futuro más sostenible.
@@ -131,21 +131,21 @@
         </div>
 
         <!-- Imagen -->
-        <div class="w-full md:w-1/2 flex items-center justify-center mt-6 md:mt-0">
+        <div class="w-full md:w-100 flex items-center justify-center mt-6 md:mt-0">
             <img src="/PRODCONS/PI2do/imagenes/manoConsumo.png" alt="Consumo Responsable" class="max-w-full h-auto rounded-md shadow-lg" />
         </div>
     </div>
 
-<!-- Carrusel destacado -->
+<!-- Carrusel destacado
 <section class="carrusel-destacado">
-    <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/PI2do/Carrusel/carrusel.php'; ?>
+    </?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/PI2do/Carrusel/carrusel.php'; ?>
 </section>
     
 
     <h3 class="apubli"> MIRA MAS DE NUESTRO CONTENIDO </h3>
 
     <section class="post-list">
-        <?php
+        </?php
         require_once $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/PI2do/Base de datos/conexion.php';
         
         // Función para traducir el nombre del mes a español
@@ -196,13 +196,13 @@
             $imagenes = !empty($imagenes_string) ? explode(',', $imagenes_string) : [];
             $imagen_principal = !empty($imagenes[0]) ? $imagenes[0] : '/PRODCONS/PI2do/imagenes/default-post.jpg';
         ?>
-            <article class="post" data-post-id="<?php echo htmlspecialchars($post['ID_Articulo'] ?? ''); ?>">
+            <article class="post" data-post-id="</?php echo htmlspecialchars($post['ID_Articulo'] ?? ''); ?>">
                 <div class="post-header">
-                    <img src="<?php echo htmlspecialchars($imagen_principal ?? ''); ?>" alt="<?php echo htmlspecialchars($post['Titulo'] ?? ''); ?>" class="post-img">
+                    <img src="</?php echo htmlspecialchars($imagen_principal ?? ''); ?>" alt="</?php echo htmlspecialchars($post['Titulo'] ?? ''); ?>" class="post-img">
                 </div>
                 <div class="post-body">
-                    <h2><?php echo htmlspecialchars($post['Titulo'] ?? ''); ?></h2>
-                    <p class="descripcion"><?php 
+                    <h2></?php echo htmlspecialchars($post['Titulo'] ?? ''); ?></h2>
+                    <p class="descripcion"></?php 
                         $contenido = htmlspecialchars($post['Contenido'] ?? '');
                         // Truncar contenido a aproximadamente 100 caracteres si es más largo
                         if (strlen($contenido) > 100) {
@@ -210,8 +210,8 @@
                         }
                         echo $contenido;
                     ?></p>
-                    <a href="/PRODCONS/PI2do/postWeb/ver-articulo.php?id=<?php echo htmlspecialchars($post['ID_Articulo'] ?? ''); ?>" class="post-link">Leer más...</a>
-                    <span>Publicado el <?php 
+                    <a href="/PRODCONS/PI2do/postWeb/ver-articulo.php?id=</?php echo htmlspecialchars($post['ID_Articulo'] ?? ''); ?>" class="post-link">Leer más...</a>
+                    <span>Publicado el </?php 
                          $fecha_timestamp = strtotime($post['Fecha de Publicacion'] ?? '');
                          if ($fecha_timestamp !== false) {
                              $dia = date('d', $fecha_timestamp);
@@ -223,12 +223,12 @@
                              echo "Fecha desconocida";
                          }
                     ?></span>
-                    <span> | Por   <?= htmlspecialchars($post['autor_nombre'] ?? '') ?></span>
+                    <span> | Por   </?php htmlspecialchars($post['autor_nombre'] ?? '') ?></span>
                 </div>
             </article>
-        <?php endforeach; ?>
+        </?php endforeach; ?>
     </section>
-    </main>
+    </main>-->
     
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -332,7 +332,7 @@
 
 
 <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/footer/footer/footer.php'; ?>
-<script src='/PRODCONS/Header visitantes/barra_principal.js'></script>
+<script src='/PRODCONS/Header_visitantes/barra_principal.js'></script>
 
 </body>
 </html>

@@ -74,7 +74,7 @@
     <header>
         <div class="header-contenedor">
             <i class="flecha_left">
-                <a href="/PRODCONS/" title="Regresar a la página principal">
+                <a href="/PRODCONS/PI2do/Dashboard_Usuario/inicio/usuario.php" title="Regresar a la página principal">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-6 h-6">
                         <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
                     </svg>
@@ -160,7 +160,7 @@
     ?>
         <!-- Cuadro café -->
         <div style="background-color: #868278;" 
-             class="w-full md:w-1/2 text-white p-8 rounded-md flex flex-col justify-center">
+             class="w-full md:w-100 text-white p-8 rounded-md flex flex-col justify-center">
             <h2 class="text-3xl font-bold mb-6 leading-tight">LA PRODUCCIÓN RESPONSABLE</h2>
             <p class="text-lg leading-relaxed">
                 Cada producto que consumimos tiene un costo ambiental que muchas veces no vemos. Desde la extracción de materiales hasta su fabricación y distribución, el impacto puede ser enorme si no se hace de manera responsable.
@@ -171,14 +171,14 @@
         </div>
 
         <!-- Imagen -->
-        <div class="w-full md:w-1/2 flex items-center justify-center mt-6 md:mt-0">
+        <div class="w-full md:w-100 flex items-center justify-center mt-6 md:mt-0">
             <img src="/PRODCONS/PI2do/imagenes/produccion.png" alt="Producción Responsable" class="max-w-full h-auto rounded-md shadow-lg" />
         </div>
     </div>
 
-<!-- Carrusel destacado -->
+<!-- Carrusel destacado 
 <section class="carrusel-destacado">
-    <?php 
+    </?php 
     
     // Re-fetch publications for the carousel to include like/comment counts if needed, 
     // or pass them from the main query if it already fetches them.
@@ -213,21 +213,21 @@
     $conexion_carousel->cerrar_conexion();
     
     ?>
-    <!-- Duplicating carousel structure to add interaction buttons -->
+     Duplicating carousel structure to add interaction buttons
     <div class="carousel-container">
         <div class="carousel">
-            <?php if (!empty($publicaciones_carousel)): ?>
-                <?php foreach ($publicaciones_carousel as $pub): 
+            </?php if (!empty($publicaciones_carousel)): ?>
+                </?php foreach ($publicaciones_carousel as $pub): 
     $article_id = isset($pub['ID_Articulo']) ? (int)$pub['ID_Articulo'] : 0;
     $imagen_principal_carousel = $pub['imagen_principal'] ?? '/PRODCONS/PI2do/imagenes/default-post.jpg';
 ?>                ?>
-                    <div class="carousel-item post" data-post-id="<?php echo htmlspecialchars($article_id); ?>">
+                    <div class="carousel-item post" data-post-id="</?php echo htmlspecialchars($article_id); ?>">
                 <div class="post-header">
-                            <img src="/PRODCONS/PI2do/imagenes/articulos/<?= htmlspecialchars($imagen_principal_carousel) ?>" alt="<?= htmlspecialchars($pub['Titulo'] ?? '') ?>" class="post-img">
+                            <img src="/PRODCONS/PI2do/imagenes/articulos/</?php htmlspecialchars($imagen_principal_carousel) ?>" alt="</?php htmlspecialchars($pub['Titulo'] ?? '') ?>" class="post-img">
                 </div>
                 <div class="post-body">
-                            <h2><?= htmlspecialchars($pub['Titulo'] ?? '') ?></h2>
-                            <p class="descripcion"><?php 
+                            <h2></?php htmlspecialchars($pub['Titulo'] ?? '') ?></h2>
+                            <p class="descripcion"></?php 
                                 $descripcion = htmlspecialchars($pub['descripcion'] ?? '');
                                 // Truncar descripción a aproximadamente 401 caracteres si es más larga
                                 if (strlen($descripcion) > 401) {
@@ -238,15 +238,15 @@
 
                     <div class="post-footer">
                                 <div class="post-actions">
-                                <a href="/PRODCONS/PI2do/postWeb/ver-articulo-usuario.php?ID_Articulo=<?php echo htmlspecialchars($article_id); ?>" class="post-link">Leer más...</a>
+                                <a href="/PRODCONS/PI2do/postWeb/ver-articulo-usuario.php?ID_Articulo=</?php echo htmlspecialchars($article_id); ?>" class="post-link">Leer más...</a>
                         <div class="interaction-buttons">
-                                        <button class="like-button-small" data-post-id="<?php echo htmlspecialchars($article_id); ?>" title="Me gusta">
+                                        <button class="like-button-small" data-post-id="</?php echo htmlspecialchars($article_id); ?>" title="Me gusta">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                                 </svg>
                                             <span class="likes-count">0</span>
                             </button>
-                                        <button class="comment-toggle-small" data-post-id="<?php echo htmlspecialchars($article_id); ?>" title="Comentarios">
+                                        <button class="comment-toggle-small" data-post-id="</?php echo htmlspecialchars($article_id); ?>" title="Comentarios">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
                                     <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
                                 </svg>
@@ -258,7 +258,7 @@
 
                             <div class="comments-section" style="display: none;">
                                 <div class="existing-comments">
-                                    <!-- Los comentarios se mostrarán aquí via AJAX -->
+                                     Los comentarios se mostrarán aquí via AJAX 
                         </div>
                         <div class="add-comment">
                                     <textarea placeholder="Escribe tu comentario..."></textarea>
@@ -266,7 +266,7 @@
                         </div>
                     </div>
                             
-                            <span style="font-size: 12px; line-height: 1.2;">Publicado el <?php 
+                            <span style="font-size: 12px; line-height: 1.2;">Publicado el </?php 
                                 $fecha_timestamp = strtotime($pub['Fecha'] ?? '');
                                 if ($fecha_timestamp !== false) {
                                     $dia = date('d', $fecha_timestamp);
@@ -278,17 +278,17 @@
                                     echo "Fecha desconocida";
                                 }
                             ?></span>
-                            <span>| Por   <?= htmlspecialchars($pub['autor_nombre'] ?? '') ?></span>
+                            <span>| Por   </?php htmlspecialchars($pub['autor_nombre'] ?? '') ?></span>
                     
                 </div>
                 </div>
                 </div>
-                <?php endforeach; ?>
-            <?php else: ?>
+                </?php endforeach; ?>
+            </?php else: ?>
                 <div class="no-posts">
                     <p>No hay publicaciones disponibles en este momento. ¡Vuelve pronto!</p>
                         </div>
-            <?php endif; ?>
+            </?php endif; ?>
                     </div>
         <button class="prev" aria-label="Publicación anterior">‹</button>
         <button class="next" aria-label="Publicación siguiente">›</button>
@@ -299,20 +299,20 @@
 
     <section class="post-list">
         <div class="content">
-            <?php foreach ($publicaciones as $post): 
+            </?php foreach ($publicaciones as $post): 
     $article_id = isset($post['ID_Articulo']) ? (int)$post['ID_Articulo'] : 0;
     // Check if images data is available before exploding
     $imagenes_string = $post['imagenes'] ?? '';
     $imagenes = !empty($imagenes_string) ? explode(',', $imagenes_string) : [];
     $imagen_principal = !empty($imagenes[0]) ? $imagenes[0] : '/PRODCONS/PI2do/imagenes/default-post.jpg';
 ?>            ?>
-                <article class="post" data-post-id="<?php echo htmlspecialchars($article_id); ?>">
+                <article class="post" data-post-id="</?php echo htmlspecialchars($article_id); ?>">
                 <div class="post-header">
-                        <img src="<?php echo htmlspecialchars($imagen_principal); ?>" alt="<?php echo htmlspecialchars($post['Titulo'] ?? ''); ?>" class="post-img">
+                        <img src="</?php echo htmlspecialchars($imagen_principal); ?>" alt="</?php echo htmlspecialchars($post['Titulo'] ?? ''); ?>" class="post-img">
                 </div>
                 <div class="post-body">
-                        <h2><?php echo htmlspecialchars($post['Titulo'] ?? ''); ?></h2>
-                        <p class="descripcion"><?php 
+                        <h2></?php echo htmlspecialchars($post['Titulo'] ?? ''); ?></h2>
+                        <p class="descripcion"></?php 
                             $contenido = htmlspecialchars($post['Contenido'] ?? '');
                             // Truncar contenido a aproximadamente 401 caracteres para coincidir con el carrusel
                             if (strlen($contenido) > 401) {
@@ -323,15 +323,15 @@
                         
                     <div class="post-footer">
                             <div class="post-actions">
-                                <a href="/PRODCONS/PI2do/postWeb/ver-articulo-usuario.php?ID_Articulo=<?php echo htmlspecialchars($article_id); ?>" class="post-link">Leer más...</a>
+                                <a href="/PRODCONS/PI2do/postWeb/ver-articulo-usuario.php?ID_Articulo=</?php echo htmlspecialchars($article_id); ?>" class="post-link">Leer más...</a>
                         <div class="interaction-buttons">
-                                    <button class="like-button-small" data-post-id="<?php echo htmlspecialchars($article_id); ?>" title="Me gusta">
+                                    <button class="like-button-small" data-post-id="</?php echo htmlspecialchars($article_id); ?>" title="Me gusta">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                                 </svg>
                                         <span class="likes-count">0</span>
                             </button>
-                                    <button class="comment-toggle-small" data-post-id="<?php echo htmlspecialchars($article_id); ?>" title="Comentarios">
+                                    <button class="comment-toggle-small" data-post-id="</?php echo htmlspecialchars($article_id); ?>" title="Comentarios">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
                                     <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
                                 </svg>
@@ -343,7 +343,7 @@
 
                         <div class="comments-section" style="display: none;">
                             <div class="existing-comments">
-                                <!-- Los comentarios se mostrarán aquí via AJAX -->
+                                Los comentarios se mostrarán aquí via AJAX 
                         </div>
                         <div class="add-comment">
                                 <textarea placeholder="Escribe tu comentario..."></textarea>
@@ -351,7 +351,7 @@
                         </div>
                     </div>
 
-                        <span style="font-size: 12px; line-height: 1.2;">Publicado el <?php 
+                        <span style="font-size: 12px; line-height: 1.2;">Publicado el </?php 
                             $fecha_timestamp = strtotime($post['Fecha de Publicacion'] ?? '');
                             if ($fecha_timestamp !== false) {
                                 $dia = date('d', $fecha_timestamp);
@@ -363,16 +363,15 @@
                                 echo "Fecha desconocida";
                             }
                         ?></span>
-                        <span>| Por <?php echo htmlspecialchars($post['autor_nombre'] ?? ''); ?></span>
+                        <span>| Por </?php echo htmlspecialchars($post['autor_nombre'] ?? ''); ?></span>
                 </div>
             </article>
-            <?php endforeach; ?>
+            </?php endforeach; ?>
         </div>
     </section>
-    </main>
+    </main>-->
     
 <script>
- <script>
         // Script para activar/desactivar la barra de búsqueda
         const btnLupa = document.getElementById('btnLupa');
         const barraBusqueda = document.getElementById('barraBusqueda');
@@ -541,7 +540,7 @@
 </script>
 
     <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/footer/footer/footer.php'; ?>
-    <script src='/PRODCONS/Header visitantes/barra_principal.js'></script>
+    <script src='/PRODCONS/Header_visitantes/barra_principal.js'></script>
 
 </body>
 </html>

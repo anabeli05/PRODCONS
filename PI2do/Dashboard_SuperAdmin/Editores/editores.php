@@ -85,7 +85,7 @@ if (!isset($_SESSION['csrf_token'])) {
                         <th>Nombre</th>
                         <th>Email</th>
                         <th>Posts</th>
-                        <th>Visitas</th>
+                        <!--<th>Visitas</th>-->
                         <th>Estado</th>
                         <th>Acciones</th>
                     </tr>
@@ -101,7 +101,7 @@ if (!isset($_SESSION['csrf_token'])) {
                                 <td><?php echo htmlspecialchars($editor['Nombre']); ?></td>
                                 <td><?php echo htmlspecialchars($editor['Correo']); ?></td>
                                 <td><?php echo number_format($editor['total_posts']); ?></td>
-                                <td><?php echo number_format($editor['total_visitas'] ?? 0); ?></td>
+                                <!--<td>/?php echo number_format($editor['total_visitas'] ?? 0); ?></td>-->
                                 <td>
                                     <span class="status-badge <?php echo $editor['estado']; ?>">
                                         <?php echo ucfirst($editor['estado']); ?>
