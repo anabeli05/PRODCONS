@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PRODCONS</title>
+    <link href="/Header visitantes/barra_principal.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <div class="header-contenedor">
+            <div class="principal">
+                <a class="navlink" href="/empresas_responsables/empresasr.html">EMPRESAS RESPONSABLES</a>
+
+                <!-- Bandera actual -->
+                <div id="idiomaToggle">
+                    <img class="españa" id="banderaIdioma" src="/imagenes/logos/espanol.png" alt="Idioma" />
+                </div>
+
+                <!-- Opción secundaria -->
+                <div id="idiomasOpciones">
+                    <img class="ingles" src="/imagenes/logos/ingles.png" onclick="cambiarIdioma('ingles')" alt="Cambiar a inglés" />
+                    <img class="españa" src="/imagenes/logos/espanol.png" onclick="cambiarIdioma('espanol')" alt="Cambiar a español" />
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="logo">
+        <div class="header_2">
+            <svg class="hamburguesa" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-linecap="round" stroke-linejoin="round" width="36" height="36" stroke-width="1.5" onclick="toggleMenu()">
+                <path d="M4 6l16 0"></path>
+                <path d="M4 12l16 0"></path>
+                <path d="M4 18l16 0"></path>
+            </svg>
+
+            <img class="prodcons" src="/imagenes/prodcon/logoSinfondo.png" alt="Logo" />
+
+            <div class="subtitulos">
+                <li><a href="/pr/produccionr.html">PRODUCCIÓN RESPONSABLE</a></li>
+                <li><a href="/cr/consumores.html">CONSUMO RESPONSABLE</a></li>
+
+                <!-- Buscador con lupa integrada -->
+                <form class="search-form" action="#" method="GET" role="search">
+                    <input type="search" name="q" placeholder="Buscar..." aria-label="Buscar" />
+                    <button type="submit" aria-label="Buscar">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" width="20" height="20" stroke-width="1.5">
+                            <circle cx="10" cy="10" r="7"></circle>
+                            <line x1="21" y1="21" x2="15" y2="15"></line>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menú de hamburguesa -->
+    <div class="menu" id="menu">
+        <ul>
+            <li><a href="/pr/produccionr.html" onclick="setActive(this)">PRODUCCION RESPONSABLE</a></li>
+            <li><a href="/cr/consumores.html" onclick="setActive(this)">CONSUMO RESPONSABLE</a></li>
+             <form class="search-form" action="#" method="GET" role="search">
+                    <input type="search" name="q" placeholder="Buscar..." aria-label="Buscar" />
+                    <button type="submit" aria-label="Buscar">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" width="20" height="20" stroke-width="1.5">
+                            <circle cx="10" cy="10" r="7"></circle>
+                            <line x1="21" y1="21" x2="15" y2="15"></line>
+                        </svg>
+                    </button>
+                </form>
+        </ul>
+    </div>
+
+    <script>
+        // Toggle para la visibilidad del menú de hamburguesa
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.classList.toggle("active");
+        }
+
+        const idiomaToggle = document.getElementById('idiomaToggle');
+        const bandera = document.getElementById('banderaIdioma');
+        const opciones = document.getElementById('idiomasOpciones');
+
+        idiomaToggle.addEventListener('click', () => {
+            opciones.style.display = opciones.style.display === 'block' ? 'none' : 'block';
+        });
+
+        function cambiarIdioma(idioma) {
+            if (idioma === 'ingles') {
+                bandera.src = "/imagenes/logos/ingles.png";
+            } else {
+                bandera.src = "/imagenes/logos/espanol.png";
+            }
+            opciones.style.display = 'none';
+        }
+    </script>
+
+    <!-- Google Cloud Translation API -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <!-- Script de traducción global -->
+    <script src="/translate.js"></script>
+</body>
+
+</html>

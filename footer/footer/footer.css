@@ -1,0 +1,236 @@
+/* Estructura principal */
+.footer {
+  background: #0a4e1a;
+  color: white;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  padding-bottom: 44px;
+  flex-shrink: 0;
+  border-top: none !important;
+  box-shadow: none !important;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 2500px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 20px 0 0 0;
+}
+
+/* Columna 1: Logo */
+.prodcons2 {
+  width: 250px;
+  height: auto;
+  margin-bottom: 5.5px;
+  margin-left: 40px;
+  margin-right: 0;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  min-width: unset !important;
+}
+
+/* Columna 2: Sobre Nosotros */
+.footer-center {
+  max-width: 500px;
+  padding: 0;
+  text-align: left;
+  line-height: 18px;
+  padding-top: 35px;
+  margin-right: 40px;
+  margin-left: 0;
+}
+
+.footer-center h4 {
+  font-size: 26px;
+  margin-bottom: 26px;
+  font-family: 'Georgia';
+  color: white;
+  text-align: left;
+   margin-top: 35px;
+}
+
+.footer1 {
+  flex: 1;
+  text-align: justify;
+  font-size: 16px;
+  line-height: 26px;
+  font-family: Georgia;
+  max-width: 400px;
+  color: white;
+  margin: 0 auto;
+}
+
+/* Columna 3: Enlaces legales */
+.footer2 {
+  line-height: 15px;
+  min-width: 120px;
+  font-size: 18px;
+  font-family: Georgia;
+  margin-top: 35px;
+  text-align: left;
+}
+
+.footer-links-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.footer-links-vertical a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+  line-height: 22px;
+  font-family: Georgia, serif;
+  transition: color 0.3s ease;
+}
+
+.footer-links-vertical a:hover {
+  color: #d8d8d8;
+}
+
+/* Columna 4: Correo */
+.footer3 {
+  line-height: 15px;
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 20px;
+  padding-right: 15px;
+}
+
+.footer3 a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 35px;
+  white-space: nowrap;
+  margin-right: 0;
+   margin-top: 35px;
+}
+
+.cfooter {
+  font-size: 18px;
+  text-align: right;
+  font-family: Georgia;
+  margin-bottom: 15px;
+  font-weight: normal;
+  color: #fbfbfb;
+   margin-top: 83px;
+}
+
+.af {
+  color: white !important;
+}
+
+/* Footer responsive */
+/* Dispositivos pequeños: hasta 480px */
+@media (max-width: 480px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px 10px;
+  }
+
+  .footer1, .footer2, .footer3 {
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+  }
+
+  .footer2 {
+    margin-left: 15px;
+  }
+
+  .footer3 {
+    align-items: center;
+  }
+
+  .footer-center h4 {
+    font-size: 20px;
+  }
+
+  .footer1 {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .footer3 a {
+    font-size: 14px;
+  }
+
+  .prodcons2 {
+    width: 70%;
+    margin: 0 auto 15px;
+  }
+}
+
+/* Tablets: hasta 768px */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px 15px;
+  }
+
+  .footer1, .footer2, .footer3 {
+    width: 100%;
+    padding: 15px 10px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .footer3 {
+    align-items: center;
+  }
+
+  .footer-center h4 {
+    font-size: 22px;
+  }
+
+  .footer1 {
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  .prodcons2 {
+    width: 60%;
+    margin: 0 auto 20px;
+  }
+}
+
+/* Laptops y pantallas medianas: hasta 1024px */
+@media (max-width: 1024px) {
+  .footer-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 30px;
+  }
+
+  .footer1, .footer2, .footer3 {
+    flex: 1 1 300px;
+    max-width: 100%;
+    text-align: left;
+    padding: 10px 20px;
+  }
+
+  .footer3 {
+    align-items: flex-end;
+  }
+
+  .prodcons2 {
+    width: 40%;
+    margin: 0 auto 25px;
+  }
+}

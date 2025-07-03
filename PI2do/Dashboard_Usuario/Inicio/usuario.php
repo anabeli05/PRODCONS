@@ -107,7 +107,11 @@ $conexion->cerrar_conexion();
     <link rel="stylesheet" href="/PRODCONS/styles.css">
     <link rel="stylesheet" href="/PRODCONS/footer/footer/footer.css">
     <link rel="stylesheet" href="/PRODCONS/articulos.css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="/PRODCONS/PI2do/Header_visitantes/barra_principal.css">
+=======
+    <link rel="stylesheet" href="/PRODCONS/PI2do/Header visitantes/barra_principal.css">
+>>>>>>> 1c69748dd375ae7c49913422a4d68ee974457a24
 
     <!-- Google Cloud Translation API -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
@@ -989,7 +993,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <?php include $_SERVER['DOCUMENT_ROOT'].'/PRODCONS/footer/footer/footer.php'; ?>
     <script src="/PRODCONS/carousel.js"></script>
+<<<<<<< HEAD
     <script src='/PRODCONS/Header_visitantes/barra_principal.js'></script>
+=======
+    <script src='/PRODCONS/Header visitantes/barra_principal.js'></script>
+>>>>>>> 1c69748dd375ae7c49913422a4d68ee974457a24
 
 </body>
 </html>
