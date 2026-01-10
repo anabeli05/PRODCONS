@@ -293,7 +293,7 @@ if ($article_id <= 0) {
             text-align: center;
             color: #666;
         }
-        }
+        
 
         .comment {
             background: #fff;
@@ -558,8 +558,8 @@ if ($article_id <= 0) {
                 </div>
             </div>
         </section>
-        <?php if (!empty($article['imagenes'])): ?>
-            <div class="carrusel-imagenes">
+       
+          <!--  <div class="carrusel-imagenes"> IMAGEN DUPLICADA
                 <?php 
                 $imagenes = explode(',', $article['imagenes']);
                 foreach ($imagenes as $index => $imagen):
@@ -573,20 +573,12 @@ if ($article_id <= 0) {
                     <?php endforeach; ?>
                 </div>
             </div>
-        <?php endif; ?>
+        -->
         <div class="contenido-principal">
             <p><?php echo nl2br(htmlspecialchars($article['Contenido'])); ?></p>
         </div>
 
-        <!-- Article content will go here -->
-        <main>
-            <!-- Aquí podrías agregar más secciones del artículo si el contenido está estructurado -->
-            <!-- Por ahora, usamos el mismo contenido que en el header para simplificar -->
-            <section>
-                <h2>Contenido</h2>
-                 <p><?php echo nl2br(htmlspecialchars($article['Contenido'])); ?></p>
-            </section>
-        </main>
+                        <!--se elimmina duplicado de contenido-->
 
         <!-- Sección de autor y fecha -->
         <div class="article-meta">
@@ -688,6 +680,8 @@ if ($article_id <= 0) {
             <p><?php echo $error ?? 'Artículo no encontrado.'; ?></p>
         </div>
     <?php endif; ?>
+</body>
+</html>
 
 <!-- =====================================================================
 SCRIPT PARA ACTUALIZAR BOTONES DE IDIOMA - NO MODIFICAR
